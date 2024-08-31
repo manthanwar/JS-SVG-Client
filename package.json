@@ -1,0 +1,35 @@
+{
+  "name": "js-svg-client",
+  "version": "1.0.0",
+  "description": "Client Side SVG using JavaScript",
+  "author": "Amit M. Manthanwar",
+  "license": "ISC",
+  "main-Removed": "main.js",
+  "private": true,
+  "mode": "development",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manthanwar/JS-SVG-Client.git"
+  },
+  "keywords": [
+    "scalable",
+    "vector",
+    "graphics",
+    "svg",
+    "javascript",
+    "js"
+  ],
+
+  "bugs": {
+    "url": "https://github.com/manthanwar/js-svgc/issues"
+  },
+  "homepage": "https://github.com/manthanwar/js-svgc#readme",
+  "devDependencies": {
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
