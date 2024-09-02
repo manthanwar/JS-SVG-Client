@@ -1,14 +1,14 @@
 const path = require('path');
 
-// import webpack from 'webpack';
-
-module.exports = {
+const config = {
  entry: {
   index: path.resolve('./src/index.js')
  },
+ experiments: {
+  outputModule: true
+ },
  output: {
-  // library: "js-svg-client",
-  // libraryTarget: "svg",
+  libraryTarget: 'module',
   path: path.resolve(__dirname, 'dist'),
   filename: 'svg.min.js',
   compareBeforeEmit: true,
@@ -20,3 +20,5 @@ module.exports = {
  mode: 'development',
  mode: 'production'
 };
+
+module.exports = config;

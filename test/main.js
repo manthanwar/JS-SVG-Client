@@ -20,16 +20,27 @@
 // =============================================================================
 
 // import data from './data.js';
-import html from './html.js';
+// import html from './html.js';
 
 // import { Circle, Rectangle } from './SvgMaster.js';
 
-import * as mySvg from './SvgMain.js';
+// import * as mySvg from '../dist//svg.min.js';
+
+// import Html from '../dist/svg.min.js'
+import Html from '../src/Html.js';
 
 window.onload = (event) => {
  // htmlTags();
+ // var html = new mySvg.Html();
+ var html = new Html();
 
- drawSvg();
+ console.log(html.className);
+
+ html.createDate('date');
+
+ // html.newHead('body', 'Amit M. Manthanwar');
+
+ // drawSvg();
 };
 
 function htmlTags() {
@@ -55,7 +66,6 @@ function drawSvg() {
  drawDiv();
 
  drawSvgMain();
-
 
  // drawRectangle();
  // drawCircle();
@@ -85,7 +95,8 @@ function drawDiv() {
  data.id = 'svgDiv';
  data.width = '848px';
  data.height = '448px';
- data.style = 'border: 2px solid red; padding: 10px;box-sizing:border-box; transform: scale(1, 1);';
+ data.style =
+  'border: 2px solid red; padding: 10px;box-sizing:border-box; transform: scale(1, 1);';
  var div = new mySvg.Div(data);
 }
 
@@ -112,9 +123,8 @@ function drawSvgMain() {
  var svgMain = new mySvg.Svg(data);
 
  // console.log(svgText.getSizeSvg('svgDiv'));
-  // console.log(svgText.getSizeSvg('svgText'));
-  // console.log(svgMain.getSizeSvg('svgMain'));
-
+ // console.log(svgText.getSizeSvg('svgText'));
+ // console.log(svgMain.getSizeSvg('svgMain'));
 
  data.containerId = 'svgMain';
  data.strokeWidth = 0.1;
@@ -128,8 +138,6 @@ function drawSvgMain() {
  data.fill = 'yellow';
  data.fillOpacity = '0.04';
  var rectangle1 = new mySvg.Rectangle(data);
-
-
 }
 
 function drawRectangle() {

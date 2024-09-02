@@ -19,6 +19,8 @@
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 
+import Html from './Html.js';
+
 import SvgParent from './SvgParent.js';
 import Div from './Div.js';
 import Svg from './Svg.js';
@@ -72,48 +74,40 @@ import AnimateMotion from './AnimateMotion.js';
 import Triangle from './Triangle.js';
 
 export {
- SvgParent,
- Div,
- Svg,
- Group,
- Link,
- //
+ Animate,
+ AnimateMotion,
+ AnimateSet,
+ AnimateTransform,
  Circle,
- Ellipse,
- Rectangle,
- Line,
- Polyline,
- Polygon,
- Path,
- //
- Text,
- TextPath,
- Image,
- //
- Grid,
- Use,
- //
- Defs,
- Marker,
  ClipPath,
- Mask,
- //
- LinearGradient,
- RadialGradient,
- GradientStop,
- //
- Pattern,
- //
- Filter,
- FeOffset,
+ Defs,
+ Div,
+ Ellipse,
  FeBlend,
  FeDropShadow,
  FeGaussianBlur,
- //
- AnimateSet,
- Animate,
- AnimateTransform,
- AnimateMotion,
- //
- Triangle
+ FeOffset,
+ Filter,
+ GradientStop,
+ Grid,
+ Group,
+ Html,
+ Image,
+ Line,
+ LinearGradient,
+ Link,
+ Marker,
+ Mask,
+ Path,
+ Pattern,
+ Polygon,
+ Polyline,
+ RadialGradient,
+ Rectangle,
+ Svg,
+ SvgParent,
+ Text,
+ TextPath,
+ Triangle,
+ Use
 };

@@ -1,0 +1,209 @@
+[
+  {
+    "key": "ctrl+shift+x",
+    "command": "workbench.action.tasks.build",
+    "when": "taskCommandsRegistered"
+  },
+  {
+    "key": "ctrl+shift+b",
+    "command": "-workbench.action.tasks.build",
+    "when": "taskCommandsRegistered"
+  },
+  {
+    "key": "ctrl+shift+b",
+    "command": "workbench.view.extensions",
+    "when": "viewContainer.workbench.view.extensions.enabled"
+  },
+  {
+    "key": "ctrl+shift+x",
+    "command": "-workbench.view.extensions",
+    "when": "viewContainer.workbench.view.extensions.enabled"
+  },
+
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.focus",
+    "comment": "Toggle between terminal and editor focus"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+left",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+right",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+pageUp",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+pageDown",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "Ctrl+Shift+C",
+    "when": "resourceExtname == .tex",
+    "command": "latex-workshop.recipes",
+    "args": "clean-latex-on-windows-recipes",
+    "comment": "run the recipe from .vscode/settings.json file"
+  },
+  {
+    "latex-only": {
+      "key": "Ctrl+Shift+L",
+      "when": "resourceExtname == .tex",
+      "command": "latex-workshop.recipes",
+      "args": "latex-only",
+      "comment": "run the recipe from .vscode/settings.json file"
+    }
+  },
+  {
+    "key": "Ctrl+Shift+S",
+    "when": "resourceExtname == .tex",
+    "command": "latex-workshop.recipes",
+    "args": "latex-dvips-ps2pdf",
+    "comment": "run the recipe from .vscode/settings.json file"
+  },
+  {
+    "run-latexworkshop-bibtex": {
+      "key": "Ctrl+Shift+M",
+      "when": "resourceExtname == .tex",
+      "command": "latex-workshop.recipes",
+      "args": "latex-dvips-ps2pdf-bibtex",
+      "comment": "run the recipe from .vscode/settings.json file"
+    }
+  },
+
+  {
+    "command-echo": {
+      "key": "Ctrl+Shift+E",
+      "when": "resourceExtname == .tex",
+      "command": "workbench.action.terminal.sendSequence",
+      "args": {
+        "text": "clear \u000D echo ${fileBasenameNoExtension}\u000D echo ${file}\u000D"
+      },
+      "comment": "echo command"
+    }
+  },
+  {
+    "runTask-cleanall": {
+      "key": "Ctrl+Shift+TT",
+      "when": "resourceExtname == .tex",
+      "command": "workbench.action.tasks.runTask",
+      "args": "cleanLatexAux"
+    }
+  },
+  {
+    "runTask-clean": {
+      "key": "Ctrl+Shift+D",
+      "when": "resourceExtname == .tex",
+      "command": "workbench.action.tasks.runTask",
+      "args": "make-clean"
+    }
+  },
+  {
+    "runTask-pdflatex2x": {
+      "key": "Ctrl+Shift+A",
+      "when": "resourceExtname == .tex",
+      "whenA": "editorLangId == markdown",
+      "command": "workbench.action.tasks.runTask",
+      "args": "make-pdflatex2x"
+    }
+  },
+  {
+    "key": "Ctrl+Shift+X",
+    "when": "resourceExtname == .py",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "./${fileBasename}\u000D ${latex-workshop.refresh-viewer}"
+    },
+    "comment": "run the python file"
+  },
+  {
+    "key": "Ctrl+Shift+X",
+    "when": "resourceExtname == .tex",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "make -f $makefile latexrun file=${fileBasenameNoExtension}\u000D"
+    },
+    "comment": "run the makefile"
+  },
+  {
+    "key": "Ctrl+Shift+X",
+    "when": "resourceExtname == .sty",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "make -f $makefile latexrun file=${fileBasenameNoExtension}\u000D"
+    },
+    "comment": "run the makefile"
+  },
+
+  {
+    "key": "Ctrl+Shift+Z",
+    "command": "latex-workshop.refresh-viewer",
+    "comment": "Refresh PDF Viewer"
+  },
+
+  {
+    "key": "Ctrl+Shift+Y",
+    "command": "runCommands",
+    "when": "resourceExtname == .tex",
+    "args": {
+      "commands": [
+        {
+          "command": "workbench.action.terminal.sendSequence",
+          "args": {
+            "text": "make -f $makefile latexrun file=${fileBasenameNoExtension}\u000D"
+          }
+        },
+        {
+          "command": "latex-workshop.refresh-viewer",
+        }
+      ]
+    }
+  },
+
+  {
+    "key": "Ctrl+Shift+T+X",
+    "command": "workbench.action.tasks.runTask",
+    "args": "cmd-All"
+  },
+
+  {
+    "key": "ctrl+a",
+    "command": "workbench.action.terminal.selectAll",
+    "when": "terminalFocus",
+    "comment": "select all terminal"
+  },
+
+  {
+    "key": "Ctrl+F5",
+    "command": "workbench.action.files.revert",
+    "when": "resourceExtname == .pdf"
+  },
+
+
+  {
+    "key": "Ctrl+=",
+    "command": "editor.action.fontZoomIn"
+  },
+  {
+    "key": "Ctrl+-",
+    "command": "editor.action.fontZoomOut"
+  },
+  {
+    "key": "Ctrl+0",
+    "command": "editor.action.fontZoomReset"
+  }
+
+
+]
