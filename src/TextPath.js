@@ -65,41 +65,92 @@ Default value: auto; Animatable: yes
 */
 // endregion comment
 
-import SvgParent from './SvgParent.js';
+// import SvgParent from './SvgParent.js';
 
-export default class Text extends SvgParent {
+// export default class Text extends SvgParent {
+export default class Text {
  constructor(data) {
-  super(data);
-  if (typeof data.id !== 'object') {
-   this.data.id = {};
-   this.data.id.path = 'path';
-   this.data.id.text = 'text';
-   this.data.id.textPath = 'textPath';
+  // super(data);
+  this.data = {};
+  this.data.ns = 'http://www.w3.org/2000/svg';
+  // this.setData(data);
+
+  if (data.containerId === undefined) {
+   this.data.container = document.body;
+  } else {
+   this.data.container = document.getElementById(data.containerId);
   }
-  if (typeof data.style !== 'object') {
-   this.data.style = {};
-   this.data.style.path = '';
-   this.data.style.text = '';
-   this.data.style.textPath = '';
+
+  this.data.id = {};
+  this.data.id.path = 'path';
+  this.data.id.text = 'text';
+  this.data.id.textPath = 'textPath';
+  if (data.id.path) this.data.id.path = data.id.path;
+  if (data.id.text) this.data.id.text = data.id.text;
+  if (data.id.textPath) this.data.id.textPath = data.id.textPath;
+
+  this.data.style = {};
+  this.data.style.path = '';
+  this.data.style.text = '';
+  this.data.style.textPath = '';
+
+  if (data.style) {
+   if (data.style.path) this.data.style.path = data.style.path;
+   if (data.style.text) this.data.style.text = data.style.text;
+   if (data.style.textPath) this.data.style.textPath = data.style.textPath;
   }
-  if (typeof data.class !== 'object') {
-   this.data.class = {};
-   this.data.class.path = '';
-   this.data.class.text = '';
-   this.data.class.textPath = '';
+
+  this.data.class = {};
+  this.data.class.path = '';
+  this.data.class.text = '';
+  this.data.class.textPath = '';
+
+  if (data.class) {
+   if (data.class.path) this.data.class.path = data.class.path;
+   if (data.class.text) this.data.class.text = data.class.text;
+   if (data.class.textPath) this.data.class.textPath = data.class.textPath;
   }
-  if (data.d === undefined) this.data.d = 'M0,0 H100 V100';
+
+  this.data.d = 'M0,0 H100 V100';
+  if (data.d) this.data.d = data.d;
+
+  this.data.path = this.data.d;
+  this.data.x = '0';
+  this.data.y = '0';
+  this.data.dx = '0';
+  this.data.dy = '0';
+  this.data.rotate = '0';
+  this.data.textLength = '';
+  this.data.lengthAdjust = '';
+  this.data.spacing = '';
+  this.data.fontSize = 'inherit';
+  this.data.startOffset = '0';
+
+  if (data.x) this.data.x = data.x;
+  if (data.y) this.data.y = data.y;
+  if (data.dx) this.data.dx = data.dx;
+  if (data.dy) this.data.dy = data.dy;
+  if (data.rotate) this.data.rotate = data.rotate;
+  if (data.textLength) this.data.textLength = data.textLength;
+  if (data.lengthAdjust) this.data.lengthAdjust = data.lengthAdjust;
+  if (data.spacing) this.data.spacing = data.spacing;
+  if (data.fontSize) this.data.fontSize = data.fontSize;
+  if (data.startOffset) this.data.startOffset = data.startOffset;
+  // if (data.href) this.data.href = data.href;
+
+  // if (data.d === undefined) this.data.d = 'M0,0 H100 V100';
   // if (data.path === undefined) this.data.path = this.data.d;
-  if (data.text === undefined) this.data.text = 'Text';
-  if (data.startOffset === undefined) this.data.startOffset = '0';
-  if (data.href === undefined) this.data.href = '#' + this.data.id.path;
-  if (data.dx === undefined) this.data.dx = '0';
-  if (data.dy === undefined) this.data.dy = '0';
-  if (data.rotate === undefined) this.data.rotate = '0';
-  if (data.textLength === undefined) this.data.textLength = 'auto';
-  if (data.lengthAdjust === undefined) this.data.lengthAdjust = 'spacing';
-  if (data.spacing === undefined) this.data.spacing = 'auto';
-  if (data.fontSize === undefined) this.data.fontSize = '30';
+  // if (data.text === undefined) this.data.text = 'Text';
+  // if (data.startOffset === undefined) this.data.startOffset = '0';
+  // if (data.href === undefined) this.data.href = '#' + this.data.id.path;
+  // if (data.dx === undefined) this.data.dx = '0';
+  // if (data.dy === undefined) this.data.dy = '0';
+  // if (data.rotate === undefined) this.data.rotate = '0';
+  // if (data.textLength === undefined) this.data.textLength = 'auto';
+  // if (data.lengthAdjust === undefined) this.data.lengthAdjust = 'spacing';
+  // if (data.spacing === undefined) this.data.spacing = 'auto';
+  // if (data.fontSize === undefined) this.data.fontSize = '30';
+
   this.obj = this.newPath();
   this.objText = this.newText();
   this.objTextPath = this.newTextPath();
@@ -109,8 +160,13 @@ export default class Text extends SvgParent {
   var obj = document.createElementNS(this.data.ns, 'path');
   obj.setAttributeNS(null, 'd', this.data.d);
   obj.setAttributeNS(null, 'id', this.data.id.path);
-  obj.setAttributeNS(null, 'style', this.data.style.path);
-  obj.setAttributeNS(null, 'class', this.data.class.path);
+
+  if (this.data.style.path)
+   obj.setAttributeNS(null, 'style', this.data.style.path);
+
+  if (this.data.class.path)
+   obj.setAttributeNS(null, 'class', this.data.class.path);
+
   this.data.container.appendChild(obj);
   return obj;
  }

@@ -25,6 +25,7 @@ export default class Div extends SvgParent {
  constructor(data) {
   super(data);
   this.setData(data);
+  this.data.container = document.body;
   this.obj = this.newDiv();
  }
 
@@ -35,6 +36,7 @@ export default class Div extends SvgParent {
   kv.style = '';
   kv.width = '100px';
   kv.height = '100px';
+  kv.transform = '';
   kv.class = '';
   this.keys = Object.keys(kv);
   return kv;
@@ -46,7 +48,9 @@ export default class Div extends SvgParent {
   obj.style = this.data.style;
   obj.style.width = this.data.width;
   obj.style.height = this.data.height;
+  obj.style.transform = this.data.transform;
   if (this.data.class) obj.classList.add(this.data.class);
+  this.obj = obj;
   this.data.container.appendChild(obj);
   return obj;
  }
