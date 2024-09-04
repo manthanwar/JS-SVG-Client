@@ -66,8 +66,8 @@ Default value: auto; Animatable: yes
 // endregion comment
 
 // import SvgParent from './SvgParent.js';
-
 // export default class Text extends SvgParent {
+
 export default class Text {
  constructor(data) {
   // super(data);
@@ -111,21 +111,25 @@ export default class Text {
    if (data.class.textPath) this.data.class.textPath = data.class.textPath;
   }
 
-  this.data.d = 'M0,0 H100 V100';
-  if (data.d) this.data.d = data.d;
-
-  this.data.path = this.data.d;
-  this.data.x = '0';
-  this.data.y = '0';
-  this.data.dx = '0';
-  this.data.dy = '0';
-  this.data.rotate = '0';
+  this.data.d = '';
+  this.data.text = '';
+  this.data.x = '';
+  this.data.y = '';
+  this.data.dx = '';
+  this.data.dy = '';
+  this.data.rotate = '';
   this.data.textLength = '';
   this.data.lengthAdjust = '';
   this.data.spacing = '';
-  this.data.fontSize = 'inherit';
-  this.data.startOffset = '0';
+  this.data.fontSize = '40';
+  this.data.startOffset = '';
+  this.data.href = '#' + this.data.id.path;
 
+  if (data.d) this.data.d = data.d;
+  this.data.path = this.data.d;
+
+  if (data.text) this.data.text = data.text;
+  if (data.x) this.data.x = data.x;
   if (data.x) this.data.x = data.x;
   if (data.y) this.data.y = data.y;
   if (data.dx) this.data.dx = data.dx;
@@ -136,20 +140,7 @@ export default class Text {
   if (data.spacing) this.data.spacing = data.spacing;
   if (data.fontSize) this.data.fontSize = data.fontSize;
   if (data.startOffset) this.data.startOffset = data.startOffset;
-  // if (data.href) this.data.href = data.href;
-
-  // if (data.d === undefined) this.data.d = 'M0,0 H100 V100';
-  // if (data.path === undefined) this.data.path = this.data.d;
-  // if (data.text === undefined) this.data.text = 'Text';
-  // if (data.startOffset === undefined) this.data.startOffset = '0';
-  // if (data.href === undefined) this.data.href = '#' + this.data.id.path;
-  // if (data.dx === undefined) this.data.dx = '0';
-  // if (data.dy === undefined) this.data.dy = '0';
-  // if (data.rotate === undefined) this.data.rotate = '0';
-  // if (data.textLength === undefined) this.data.textLength = 'auto';
-  // if (data.lengthAdjust === undefined) this.data.lengthAdjust = 'spacing';
-  // if (data.spacing === undefined) this.data.spacing = 'auto';
-  // if (data.fontSize === undefined) this.data.fontSize = '30';
+  if (data.href) this.data.href = data.href;
 
   this.obj = this.newPath();
   this.objText = this.newText();
@@ -158,15 +149,12 @@ export default class Text {
 
  newPath() {
   var obj = document.createElementNS(this.data.ns, 'path');
-  obj.setAttributeNS(null, 'd', this.data.d);
-  obj.setAttributeNS(null, 'id', this.data.id.path);
-
+  if (this.data.d) obj.setAttributeNS(null, 'd', this.data.d);
+  if (this.data.id.path) obj.setAttributeNS(null, 'id', this.data.id.path);
   if (this.data.style.path)
    obj.setAttributeNS(null, 'style', this.data.style.path);
-
   if (this.data.class.path)
    obj.setAttributeNS(null, 'class', this.data.class.path);
-
   this.data.container.appendChild(obj);
   return obj;
  }
@@ -188,17 +176,21 @@ export default class Text {
 
  newText() {
   var obj = document.createElementNS(this.data.ns, 'text');
-  obj.setAttributeNS(null, 'x', this.data.x);
-  obj.setAttributeNS(null, 'y', this.data.y);
-  obj.setAttributeNS(null, 'dx', this.data.dx);
-  obj.setAttributeNS(null, 'dy', this.data.dy);
-  obj.setAttributeNS(null, 'rotate', this.data.rotate);
-  obj.setAttributeNS(null, 'textLength', this.data.textLength);
-  obj.setAttributeNS(null, 'lengthAdjust', this.data.lengthAdjust);
-  obj.setAttributeNS(null, 'spacing', this.data.spacing);
+  if (this.data.x) obj.setAttributeNS(null, 'x', this.data.x);
+  if (this.data.y) obj.setAttributeNS(null, 'y', this.data.y);
+  if (this.data.dx) obj.setAttributeNS(null, 'dx', this.data.dx);
+  if (this.data.dy) obj.setAttributeNS(null, 'dy', this.data.dy);
+  if (this.data.rotate) obj.setAttributeNS(null, 'rotate', this.data.rotate);
+  if (this.data.textLength)
+   obj.setAttributeNS(null, 'textLength', this.data.textLength);
+  if (this.data.lengthAdjust)
+   obj.setAttributeNS(null, 'lengthAdjust', this.data.lengthAdjust);
+  if (this.data.spacing) obj.setAttributeNS(null, 'spacing', this.data.spacing);
   obj.setAttributeNS(null, 'id', this.data.id.text);
-  obj.setAttributeNS(null, 'style', this.data.style.text);
-  obj.setAttributeNS(null, 'class', this.data.class.text);
+  if (this.data.style.text)
+   obj.setAttributeNS(null, 'style', this.data.style.text);
+  if (this.data.class.text)
+   obj.setAttributeNS(null, 'class', this.data.class.text);
   this.data.container.appendChild(obj);
   return obj;
  }
@@ -214,13 +206,18 @@ export default class Text {
 
  newTextPath() {
   var obj = document.createElementNS(this.data.ns, 'textPath');
-  obj.setAttributeNS(null, 'startOffset', this.data.startOffset);
-  obj.setAttributeNS(null, 'path', this.data.d);
-  obj.setAttributeNS(null, 'id', this.data.id.textPath);
-  obj.setAttributeNS(null, 'style', this.data.style.textPath);
-  obj.setAttributeNS(null, 'class', this.data.class.textPath);
-  obj.setAttributeNS(null, 'font-size', this.data.fontSize);
-  obj.textContent = this.data.text;
+  if (this.data.text) obj.textContent = this.data.text;
+  if (this.data.d) obj.setAttributeNS(null, 'path', this.data.d);
+  if (this.data.id.textPath)
+   obj.setAttributeNS(null, 'id', this.data.id.textPath);
+  if (this.data.style.textPath)
+   obj.setAttributeNS(null, 'style', this.data.style.textPath);
+  if (this.data.class.textPath)
+   obj.setAttributeNS(null, 'class', this.data.class.textPath);
+  if (this.data.fontSize)
+   obj.setAttributeNS(null, 'font-size', this.data.fontSize);
+  if (this.data.startOffset)
+   obj.setAttributeNS(null, 'startOffset', this.data.startOffset);
   this.objText.appendChild(obj);
   return obj;
  }

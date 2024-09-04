@@ -78,6 +78,7 @@ export default class Text extends SvgParent {
   kv.strokeLinejoin = ''; // arcs| bevel|miter (default)|miter-clip|round
   kv.paintOrder = ''; // normal (default) | [ fill || stroke }| markers]
   kv.textAnchor = 'middle'; // start (default) | middle | end
+  kv.alignmentBaseline = ''; // auto (default)| baseline | before-edge | text-before-edge | middle | central | after-edge | text-after-edge | ideographic | alphabetic | hanging | mathematical | top | center | bottom | inherit
   kv.textLength = '';
   kv.lengthAdjust = ''; //  spacing (default) | spacingAndGlyphs
   kv.rotate = '';
