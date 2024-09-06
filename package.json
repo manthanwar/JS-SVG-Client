@@ -1,11 +1,11 @@
 {
-  "name": "js-cosvg-client",
+  "name": "js-svg-client",
   "version": "2024.09.01",
   "description": "Client Side SVG using JavaScript",
   "author": "Amit M. Manthanwar",
   "homepage": "https://github.com/manthanwar/JS-SVG-Client",
   "license": "https://github.com/manthanwar/JS-SVG-Client/blob/main/LICENSE.md",
-  "private": true,
+  "private": false,
   "scripts": {
     "build-node": "webpack --config webpack.config.js",
     "build": "webpack --config webpack.config.web.js",

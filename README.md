@@ -9,16 +9,16 @@ Client Side JavaScript for Creating Scalable Vector Graphics
 &nbsp;
 ![GitHub repo size](https://img.shields.io/github/repo-size/manthanwar/JS-SVG-Client?&color=purple)
 &nbsp;
-![npm bundle size](https://img.shields.io/bundlephobia/min/js-svg-client?color=olive)
+[![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/manthanwar)
 &nbsp;
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/js-svg-client?color=teal&labelColor=maroon)](SPONSORS.md)
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/manthanwar)
 
-Please consider [donating](SPONSORS.md) to sustain our activities!
+
 
 ## Introduction
 
 This package contains a library of JavaScript codes for data visualization (data
-viz) using HTML SVG (Scalable Vector Graphics) elements. Data viz deals with the
+viz) using Scalable Vector Graphics (SVG) elements. Data viz deals with the
 graphic representations of information, data, or knowledge intended to
 communicate and improve cognition about information derived from variety of data
 sources quickly, clearly and effectively via visual or graphical means. This
@@ -26,7 +26,7 @@ visualization library is one of the many available on the web to help understand
 complex ideas, patterns and trends hidden in the data to derive meaningful
 insights for informed data-driven decision making.
 
-This library is written in pure JavaScript, CSS and SVG without any other
+This library is written in pure JavaScript and SVG without any other
 dependencies. This use of native browser technologies is the main advantage of
 this library which can run on any server or client machine including any mobile
 device without internet to render results on a browser locally from a local
@@ -35,16 +35,15 @@ filesystem or with internet by deploying it on a web server.
 Using this library you can make elegant, lightweight, super-fast, fully
 customizable and interactive user interfaces, vector graphics, and artworks for
 your data rich websites/commercial/academic/research projects using appropriate
-license. This library is intuitive, interactive and easy to use. It supports
+[license](LICENSE.md). This library is intuitive, interactive and easy to use. It supports
 many data types and chart types including ability to export output results in
 PDF, PNG, JPG, SVG or EPS file formats as well as ability to export input data
 to CSV, XLS, or HTML table formats.
 
-Feel free to ask questions, post issues, submit pull request, and request new
-features.
+Feel free to [ask questions](https://github.com/manthanwar/JS-SVG-Client/discussions), [post issues](https://github.com/manthanwar/JS-SVG-Client/issues), [submit pull request](https://github.com/manthanwar/JS-SVG-Client/pulls), and [request new features](https://github.com/manthanwar/JS-SVG-Client/discussions/categories/ideas).
 
 For more information about this project and how to use this extension, please
-check out our documentation.
+check out our [documentation](DOCUMENTATION.md).
 
 ## Documentation
 
@@ -324,3 +323,6 @@ supporting us at [Patreon](https://patreon.com/manthanwar) or
 ## Sponsors
 
 These [GitHub Sponsors](SPONSORS.md) help push this project forward 🎉.
+
+
+Please consider [donating](SPONSORS.md) to sustain our activities!
