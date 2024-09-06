@@ -3,7 +3,7 @@
 
 # dist
 dist/*
-!dist/svg-min.js
+!dist/svg.min.js
 
 
 # Logs
