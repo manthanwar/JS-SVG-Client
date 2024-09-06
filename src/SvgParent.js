@@ -94,8 +94,8 @@ export default class SvgParent {
      return this.data[key];
     },
     set: function (value) {
-     this.obj.setAttributeNS(null, this.camelDash(value), value);
      this.data[key] = value;
+     this.setAttr(this.obj);
      return this;
     },
     enumerable: true,

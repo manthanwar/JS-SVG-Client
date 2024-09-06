@@ -1,0 +1,17 @@
+body {
+ background-color: white;
+}
+
+
+.link{
+    fill: pink;
+
+}
+
+.link:hover{
+    fill: lime;
+}
+
+.link:active {
+  fill: cyan;
+}

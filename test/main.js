@@ -108,18 +108,6 @@ function drawNestedDiv() {
   .attr('width', '10')
   .attr('height', '10')
   .attr('style', 'fill: pink;');
-
- // console.log(svg.data.containerId);
-
- // document.body.innerHTML = `
- // <svg width = "400" height = "400" style="border:2px solid red;">
- // <rect x="10" y="10" height="100" width="100" fill = "red"/>
- //   <svg x="0" y="140" height="200" width="200" fill = "red" style="background-color=pink;">
- //   <rect width="100%" height="100%" fill = "green"/>
- //   </svg>
- // </svg>
-
- // `;
 }
 
 function drawSvgMain() {

@@ -13,8 +13,6 @@ Client Side JavaScript for Creating Scalable Vector Graphics
 &nbsp;
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/manthanwar)
 
-
-
 ## Introduction
 
 This package contains a library of JavaScript codes for data visualization (data
@@ -42,14 +40,16 @@ to CSV, XLS, or HTML table formats.
 
 Feel free to [ask questions](https://github.com/manthanwar/JS-SVG-Client/discussions), [post issues](https://github.com/manthanwar/JS-SVG-Client/issues), [submit pull request](https://github.com/manthanwar/JS-SVG-Client/pulls), and [request new features](https://github.com/manthanwar/JS-SVG-Client/discussions/categories/ideas).
 
-For more information about this project and how to use this extension, please
-check out our [documentation](DOCUMENTATION.md).
+For more information about this project and how to use this package, please
+check out our detailed [documentation](DOCUMENTATION.md).
 
-## Documentation
+## Quick Start
 
-### Quick Start
+### Example 1: Draw A Basic Circle
 
-#### index.html
+In this example, we add q div tag inside the document body. Next, we add a svg tag inside the div. Finally, we draw the circle inside the svg. See the following HTML and JavaScript codes on how to achieve this.
+
+#### [index.html](./doc/Examples/index.html)
 
 ```html
 <html>
@@ -59,235 +59,72 @@ check out our [documentation](DOCUMENTATION.md).
   <title>Page Title</title>
   <link rel="shortcut icon" href="#" />
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script type="module" src="main.js"></script>
+  <script type="module" src="basic-circle.js"></script>
  </head>
  <body></body>
 </html>
 ```
 
-#### main.js
+### [basic-circle.js](./doc/Examples/basic-circle.js)
 
-```js
-import * as mySvg from '../dist/svg.min.js';
+```javascript
+import * as mySvg from './svg.min.js';
 
-var html = new mySvg.Html();
-html.newHead(document.body, 'Draw Circle');
+window.onload = (event) => {
+ createDiv();
+ createSvg();
+ createCircle();
+};
 
-let data = {};
-data.containerId = 'svgDiv';
-data.id = 'svgText';
-data.width = '100%';
-data.height = '100%';
-data.viewbox = '0 0 100% 100% ';
-// data.viewbox = '0 0 100 100';
-data.style =
- 'background-color: rgba(0,200,0,0); border: 2px solid green; padding:10px; box-sizing:border-box;';
-var svgText = new mySvg.Svg(data);
+function createDiv() {
+ var data = {
+  containerId: 'body',
+  id: 'svgDiv'
+ };
+ var svgDiv = new mySvg.Div(data);
+}
 
-var data = {};
-data.containerId = 'svgMain';
-data.href = 'http://google.com';
-data.id = 'link';
-var link = new mySvg.Link(data);
+function createSvg() {
+ var data = {
+  containerId: 'svgDiv',
+  id: 'svgMain',
+  width: 200,
+  height: 200,
+  style: 'border: 2px solid red'
+ };
+ var svgMain = new mySvg.Svg(data);
+}
 
-data.containerId = 'link';
-data.cx = 320;
-data.cy = 160;
-data.r = 60;
-data.fillOpacity = '1';
-data.strokeOpacity = '0.8';
-var circ1 = new mySvg.Circle(data);
+function createCircle() {
+ var data = {
+  containerId: 'svgMain',
+  id: 'circle',
+  cx: 100,
+  cy: 100,
+  r: 50,
+  stroke: 'blue',
+  strokeWidth: 10,
+  fill: 'pink'
+ };
+ var circle = new mySvg.Circle(data);
+}
 ```
+
+### Example 2: Draw the Incircle and the Circumcircle of a Triangle
+
+Here the objective is to draw the inner and outer circles of a triangle given the three vertices of a triangle. In this example, we first add `<div>` tag inside the html document body. In the div we add the main `<svg>`. In the main svg, we add the 10 x 10 grid to easily visualize the drawing process. Finally, we draw the triangle and corresponding inner and outer circles. The three coordinates of the vertices of triangle are specified using the grid values as percentage of the width of the svg element. See the following HTML and JavaScript files to understand the coding process how we can achieve this. The JavaScript file also contains various other example functions.
+
+- [index.html](./test/index.html)
+- [main.js](./text/main.js)
+
+## Documentation
 
 To check out the detailed documentation, visit
 
-- [English](doc/js-svg-client.pdf) [coming soon!]
+- [English](doc/DOCUMENTATION.md)
 - [README.md](README.md)
 
-Contact me if you are willing to help translate the documentation :)
-
-## Attributes of SVG tags
-
-### Circle
-
-- r Required. The radius of the circle
-- cx The x-axis center of the circle. Default is 0
-- cy The y-axis center of the circle. Default is 0
-
-### Ellipse
-
-- The rx attribute defines the x (horizontal) radius
-- The ry attribute defines the y (vertical) radius
-- The cx attribute defines the x-axis center of the ellipse
-- The cy attribute defines the y-axis center of the ellipse
-
-### Rectangle
-
-- `width` Required. The width of the rectangle
-- `height` Required. The height of the rectangle
-- `x` The x-position for the top-left corner of the rectangle
-- `y` The y-position for the top-left corner of the rectangle
-- `rx` The x radius of the corners of the rectangle (used to round the corners).
-  Default is 0
-- `ry` The y radius of the corners of the rectangle (used to round the corners).
-  Default is 0
-
-### Line
-
-- `x1` The start of the line on the x-axis
-- `y1` The start of the line on the y-axis
-- `x2` The end of the line on the x-axis
-- `y2` The end of the line on the y-axis
-
-### Polyline or Polygon
-
-- `points` The points attribute defines the x and y coordinates for each corner
-  of the Polyline.
-
-### Text
-
-- `x` The x position of the start of the text. Default is 0
-- `y` The y position of the start of the text. Default is 0
-- `dx` The horizontal shift position for text (from previous text position)
-- `dy` The vertical shift position for text (from previous text position)
-- `rotate` The rotation (in degrees) applied to each letter of text
-- `textLength` The width that the text must fit in
-- `lengthAdjust` How the text should be compressed or stretched to fit the width
-  defined by the textLength attribute
-  - values: lengthAdjust = spacing (default) | spacingAndGlyphs
-    - `spacing` It will adjust the spacing between glyphs but will not stretch
-      or squeeze the glyphs themselves.
-    - `spacingAndGlyphs` It will adjust both spacing between glyphs and glyph
-      size.
-
-#### Example
-
-```html
-<svg height="40" width="250">
- <text x="5" y="30" fill="red" font-size="35">
-  I Love
-  <tspan fill="none" stroke="green">SVG</tspan>
-  !
- </text>
- <text x="5" y="30" fill="red" font-size="25" transform="rotate(30 20,40)">
-  I love SVG!
- </text>
-</svg>
-```
-
-### TextPath
-
-- `href` The URL to the path or basic shape on which to render the text. If the
-  path attribute is set, href has no effect.
-
-  - Value type: `<URL>`; Default value: `none`; Animatable: yes
-
-- `lengthAdjust` Where length adjustment should be applied to the text: the
-  space between glyphs, or both the space and the glyphs themselves.
-
-  - Value type: `spacing` | `spacingAndGlyphs`; Default value: `spacing`;
-    Animatable: yes
-
-- `method` Which method to render individual glyphs along the path.
-
-  - Value type: `align` | `stretch`
-  - Default value: `align`; Animatable: yes
-
-- `path` Experimental The path on which the text should be rendered.
-
-  - Value type: `<path_data>`; Default value: `none`; Animatable: yes
-
-- `side` Experimental Which side of the path the text should be rendered.
-
-  - Value type: `left|right` ; Default value: left; Animatable: yes
-
-- `spacing` How space between glyphs should be handled.
-
-  - Value type: `auto|exact` ; Default value: exact; Animatable: yes
-
-- `startOffset` How far the beginning of the text should be offset from the
-  beginning of the path. Value type: `<length>` | `<percentage>` | `<number>` ;
-  Default value: 0; Animatable: yes
-
-- `textLength` The width of the space into which the text will render.
-  - Value type: `<length>` | `<percentage>` | `<number>` ; Default value: auto;
-    Animatable: yes
-
-#### Set TextPath Href by first removing path
-
-```js
-text1.objTextPath.removeAttribute('path');
-text1.setTextHref('#id');
-```
-
-### Link
-
-- `href` hyperlink
-- `target` Options: `_self` (default) | `_blank`
-
-### Marker
-
-- `id` The unique id for the marker
-- `markerUnits` This attribute defines the coordinate system for the attributes
-- `markerHeight` The height of the marker. Default is 3
-- `markerWidth` The width of the marker. Default is 3
-- `refX` The x position where the marker connects with the vertex. Default is 0
-- `refY` The y position where the marker connects with the vertex. Default is 0
-- `orient` The orientation of the marker relative to the shape it is attached
-  to. Can be "auto", "auto-start-reverse" or an angle. Default is 0
-- `preserveAspectRatio` This attribute defines how the svg fragment must be
-  deformed if it is embedded in a container with a different aspect ratio.
-- `viewBox` This attribute defines the bound of the SVG viewport for the current
-  SVG fragment. Value type:
-
-### Stroke
-
-- `stroke` - sets the color of the line around an element
-- `stroke-width` - sets the width of the line around an element
-- `stroke-opacity` - sets the opacity of the line around an element
-- `stroke-linecap` - sets the shape of the end-lines for a line or open path
-  - The value of the `stroke-linecap` attribute can be `"butt"`, `"round"` or
-    `"square"`.
-- `stroke-dasharray` - sets the line to show as a dashed line
-- `stroke-linejoin` - sets the shape of the corners where two lines meet
-  - The value of the `stroke-linejoin` attribute can be `"arcs"`, `"bevel"`,
-    `"miter"`, `"miter-clip"` or `"round"`.
-
-### Transforms
-
-- `matrix(n,n,n,n,n,n)` Defines a 2D transformation, using a matrix of six
-  values
-  `matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY())`
-- `translate(x,y)` Defines a 2D translation, moving the element along the X- and
-  the Y-axis
-- `translateX(n)` Defines a 2D translation, moving the element along the X-axis
-- `translateY(n)` Defines a 2D translation, moving the element along the Y-axis
-- `scale(x,y)` Defines a 2D scale transformation, changing the elements width
-  and height
-- `scaleX(n)` Defines a 2D scale transformation, changing the element's width
-- `scaleY(n)` Defines a 2D scale transformation, changing the element's height
-- `rotate(angle)` Defines a 2D rotation, the angle is specified in the parameter
-- `skew(x-angle,y-angle)` Defines a 2D skew transformation along the X- and the
-  Y-axis
-- `skewX(angle)` Defines a 2D skew transformation along the X-axis
-- `skewY(angle)` Defines a 2D skew transformation along the Y-axis
-
-### Filter
-
-- `<feBlend>`
-- `<feColorMatrix>`
-- `<feComponentTransfer>`
-- `<feComposite>`
-- `<feConvolveMatrix>`
-- `<feDiffuseLighting>`
-- `<feDisplacementMap>`
-- `<feDropShadow>`
-- `<feGaussianBlur>`
-- `<feMergeNode>`
-- `<feMorphology>`
-- `<feOffset>`
-- `<feSpecularLighting>`
-- `<feTile>`
+Contact us if you are willing to help translate the documentation :)
 
 ## License
 
@@ -295,7 +132,7 @@ Please check the [Software Licenses](LICENSE.md) for details.
 
 ## Repository
 
-This is a repository of SVG files located at
+This GitHub repository of package is located at
 
 <https://github.com/manthanwar/JS-SVG-Client.git>
 
@@ -323,6 +160,5 @@ supporting us at [Patreon](https://patreon.com/manthanwar) or
 ## Sponsors
 
 These [GitHub Sponsors](SPONSORS.md) help push this project forward 🎉.
-
 
 Please consider [donating](SPONSORS.md) to sustain our activities!
