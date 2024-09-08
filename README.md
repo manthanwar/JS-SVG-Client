@@ -41,7 +41,7 @@ to CSV, XLS, or HTML table formats.
 Feel free to [ask questions](https://github.com/manthanwar/JS-SVG-Client/discussions), [post issues](https://github.com/manthanwar/JS-SVG-Client/issues), [submit pull request](https://github.com/manthanwar/JS-SVG-Client/pulls), and [request new features](https://github.com/manthanwar/JS-SVG-Client/discussions/categories/ideas).
 
 For more information about this project and how to use this package, please
-check out our detailed [documentation](DOCUMENTATION.md).
+check out our detailed [documentation](doc/DOCUMENTATION.md).
 
 ## Quick Start
 
