@@ -79,6 +79,7 @@ export default class Html {
   h1.style.color = 'blue';
   h1.innerHTML = data;
   element.appendChild(h1);
+  return h1;
  }
 
  newOl(element, data) {
