@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title>SVG Basics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+ <script src='main.js'></script> -->
+ </head>
+ <body>
+  <h1>SVG Basics</h1>
+
+  <div
+   style="
+    width: 404px;
+    height: 404px;
+    border: 2px solid red;
+    position: relative;
+    left: 200px;
+   "
+  >
+   <svg width="100%" height="100%">
+    <ellipse id="myCircle" cx="50" cy="50" rx="40" ry="20" stroke-width="4" />
+    <use href="#myCircle" x = "100" y="100" fill="green" stroke="red" transform-origin="150 150" transform="rotate(45)"/>
+    <use href="#myCircle" x = "200" y="100" rx="100" fill="green" stroke="red" transform-origin="250 150" transform="rotate(-45)"/>
+   </svg>
+  </div>
+ </body>
+</html>

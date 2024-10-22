@@ -666,7 +666,7 @@
     "eslint.validate": [
         "javascript"
     ],
-    "explorer.sortOrder": "type",
+    // "explorer.sortOrder": "type",
     "files.associations": {
         ".code-snippets": "json",
         "*.awk": "sh",

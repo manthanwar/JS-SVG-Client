@@ -1,0 +1,28 @@
+#brand {
+ color: teal;
+}
+
+#subbrand {
+ color: maroon;
+}
+
+header {
+ display: inline-flex;
+}
+header a {
+ margin-left: 20px;
+}
+
+h1 {
+ color: teal;
+ background-color: whitesmoke;
+}
+
+#svgDivDolphin {
+ margin: auto;
+ display: block;
+ margin-top: 50px;
+ width: 500px;
+ height: 300px;
+ border: 4px solid green;
+}

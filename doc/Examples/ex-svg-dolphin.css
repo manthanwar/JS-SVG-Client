@@ -1,0 +1,8 @@
+div {
+ width: 300px;
+ height: 300px;
+ border: 2px solid red;
+ position: relative;
+ left: 200px;
+ border-radius: 20px;
+}
