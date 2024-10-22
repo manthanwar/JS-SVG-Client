@@ -1,5 +1,5 @@
 import * as mySvg from '../../dist/svg.min.js';
-import plotData from './ex-plot-data.js';
+import dolphinData from './demo-dolphin-data.js';
 
 window.onload = (event) => {
  document.title = 'SVG';
@@ -23,10 +23,15 @@ function drawDolphin() {
  drawSvgMain();
  const grid = drawGrid();
 
- drawDolphinEye(grid.objSvg.width, grid.objSvg.height);
-
- drawPathDolphinBody01(grid.objSvg.width, grid.objSvg.height);
- drawPathDolphinBody01a(grid.objSvg.width, grid.objSvg.height);
+ const wd = grid.objSvg.width;
+ const ht = grid.objSvg.height;
+ const xMax = 10;
+ const yMax = 6;
+ const xOff = 0;
+ const yOff = 0;
+ dolphinEye(wd, ht);
+ dolphinBody(wd, ht, xMax, yMax, xOff, yOff);
+ dolphinBody_1D(wd, ht, xMax, yMax, xOff, yOff);
 }
 
 function drawDiv() {
@@ -95,9 +100,7 @@ function drawGrid() {
  // gridLine.minorX[1].style = 'stroke:green; stroke-width:4;';
 }
 
-function drawDolphinEye(wd, ht) {
- console.log('width = ' + wd);
- console.log('height = ' + ht);
+function dolphinEye(wd, ht) {
  const data = {};
  data.containerId = 'svgMain-svg';
  data.transform = 'matrix(1 0 0 -1 0 ' + ht + ')';
@@ -112,126 +115,204 @@ function drawDolphinEye(wd, ht) {
  const circle = new mySvg.Circle(data);
 }
 
-function drawPathDolphinBody01(wd, ht) {
- var data = {};
+function drawBezier(data, width, height, xMax, yMax, xOff = 0, yOff = 0) {
+ const xxx = width / xMax;
+ const yyy = height / yMax;
+ const pts = data.map((v, i) => (i % 2 ? (v + yOff) * yyy : (v + xOff) * xxx));
+ const str =
+  'M' + pts.slice(0, 2).join(',') + ' C' + pts.slice(2, data.length).join(',');
+
+ return str;
+}
+
+// function drawBezierPoly(data, width, height, xMax, yMax, xOff = 0, yOff = 0) {
+//  const xxx = width / xMax;
+//  const yyy = height / yMax;
+//  const pts = data.map((v, i) => (i % 2 ? (v + yOff) * yyy : (v + xOff) * xxx));
+//  return str;
+// }
+
+function dolphinBody(wd, ht, xMax, yMax, xOff = 0, yOff = 0) {
+ const dolPath = [];
+ dolphinData.body.forEach((element, idx) => {
+  const dPts = element;
+  const dStr = drawBezier(dPts, wd, ht, xMax, yMax, xOff, yOff);
+  const data = {};
+  data.d = dStr;
+  data.containerId = 'svgMain-svg';
+  data.id = 'body-' + idx;
+  data.transform = 'matrix(1 0 0 -1 0 ' + ht + ')';
+  data.fill = 'none';
+  data.fillOpacity = '0.3';
+  data.stroke = 'blue';
+  data.strokeWidth = '2';
+  dolPath[idx] = new mySvg.Path(data);
+ });
+}
+
+function dolphinBody_1D(wd, ht, xMax, yMax, xOff = 0, yOff = 0) {
+ // const dol = [].concat(...dolphinData.body);
+ // console.log(dol);
+
+ const dolArray = dolphinData.body;
+
+ // console.log(dolArray[0]);
+
+ dolArray.forEach((array, idx) => (idx === 0 ? array : array.splice(0, 2)));
+
+ console.log(dolArray[0]);
+ console.log(dolArray[1]);
+ console.log(dolArray[2]);
+
+ const dol = [].concat(...dolArray);
+ console.log(dol)
+
+ // for (let i = 1; i< dolArray.length; i++){
+
+ // }
+
+ const dPts = dol;
+
+ //   const dPts = [
+ //    1.2, 3.0, 2.4, 6.4, 7.4, 3.8, 7.8, 2.0, //7.8, 2.0,
+ // 7.8, 2.0, 9.0, 1.6, 8.8, 1.0,//8.8, 1.0,
+ // 8.0, 1.6, 7.2, 0.4, 7.2, 0.4,//7.2, 0.4,
+ // 6.8, 0.6, 7.4, 1.8, 7.4, 1.8,//7.4, 1.8,
+ // 5.4, 3.4, 2.4, 3.4, 1.4, 2.5,//1.4, 2.5,
+ // 1.0, 2.4, 1.0, 2.6, 1.2, 3.0
+ // ];
+ const dStr = drawBezier(dPts, wd, ht, xMax, yMax, xOff, yOff);
+ const data = {};
+ data.d = dStr;
  data.containerId = 'svgMain-svg';
- data.id = 'body-01';
+ data.id = 'body-all';
  data.transform = 'matrix(1 0 0 -1 0 ' + ht + ')';
- var p0x = 1.2 * (wd / 10);
- var p1x = 2.4 * (wd / 10);
- var p2x = 7.4 * (wd / 10);
- var p3x = 7.8 * (wd / 10);
- var p0y = 3 * (ht / 6);
- var p1y = 6.4 * (ht / 6);
- var p2y = 3.8 * (ht / 6);
-var p3y = 2 * (ht / 6);
-
- var dataString = 'M' + p0x + ',' + p0y + ' ' + 'C' + p1x + ',' + p1y + ' ' + p2x + ',' + p2y + ' ' + p3x + ',' + p3y;
-
- // data.d = 'M1.2,3  C2.4,6.4 7.4,3.8 7.8,2';
- data.d = dataString;
-
+ data.fill = 'lime';
  data.fillOpacity = '0.3';
- data.fill = 'none';
  data.stroke = 'red';
- data.strokeWidth = '5';
-
- var path = new mySvg.Path(data);
+ data.strokeWidth = '2';
+ const dolObj = new mySvg.Path(data);
 }
 
-function drawPathDolphinBody02(wd, ht) {
- var data = {};
+function dolphin_body_B01(wd, ht, xMax, yMax, xOff = 0, yOff = 0) {
+ const dPts = [1.2, 3, 2.4, 6.4, 7.4, 3.8, 7.8, 2];
+ const dStr = drawBezier(dPts, wd, ht, xMax, yMax, xOff, yOff);
+ const data = {};
+ data.d = dStr;
  data.containerId = 'svgMain-svg';
  data.id = 'body-01';
  data.transform = 'matrix(1 0 0 -1 0 ' + ht + ')';
- var p0x = 1.2 * (wd / 10);
- var p1x = 2.4 * (wd / 10);
- var p2x = 7.4 * (wd / 10);
- var p3x = 7.8 * (wd / 10);
- var p0y = 3 * (ht / 6);
- var p1y = 6.4 * (ht / 6);
- var p2y = 3.8 * (ht / 6);
- var p3y = 2 * (ht / 6);
-
- var dataString =
-  'M' +
-  p0x +
-  ',' +
-  p0y +
-  ' ' +
-  'C' +
-  p1x +
-  ',' +
-  p1y +
-  ' ' +
-  p2x +
-  ',' +
-  p2y +
-  ' ' +
-  p3x +
-  ',' +
-  p3y;
-
- // data.d = 'M1.2,3  C2.4,6.4 7.4,3.8 7.8,2';
- data.d = dataString;
-
- data.fillOpacity = '0.3';
  data.fill = 'none';
- data.stroke = 'red';
- data.strokeWidth = '5';
-
- var path = new mySvg.Path(data);
-}
-
-
-function drawPathDolphinBody(wd, ht, pointData) {
-
-}
-
-function drawPathDolphinBody01a(wd, ht) {
- var data = {};
- data.containerId = 'svgMain-svg';
- data.id = 'body-01';
- data.transform = 'matrix(1 0 0 -1 0 ' + ht + ')';
- var p0x = 1.2 * (wd / 10);
- var p1x = 2.4 * (wd / 10);
- var p1x = 0.4 * (wd / 10);
- var p2x = 7.4 * (wd / 10);
- var p3x = 7.8 * (wd / 10);
- var p0y = 3 * (ht / 6);
- var p1y = 6.4 * (ht / 6);
- var p2y = 3.8 * (ht / 6);
- var p3y = 2 * (ht / 6);
-
- var dataString =
-  'M' +
-  p0x +
-  ',' +
-  p0y +
-  ' ' +
-  'C' +
-  p1x +
-  ',' +
-  p1y +
-  ' ' +
-  p2x +
-  ',' +
-  p2y +
-  ' ' +
-  p3x +
-  ',' +
-  p3y;
-
- // data.d = 'M1.2,3  C2.4,6.4 7.4,3.8 7.8,2';
- data.d = dataString;
-
  data.fillOpacity = '0.3';
- data.fill = 'none';
- data.stroke = 'green';
+ data.stroke = 'pink';
  data.strokeWidth = '5';
-
- var path = new mySvg.Path(data);
+ new mySvg.Path(data);
 }
+
+// region raw
+// function drawPathDolphinBody01(wd, ht) {
+//  var data = {};
+//  data.containerId = 'svgMain-svg';
+//  data.id = 'body-01';
+//  data.transform = 'matrix(1 0 0 -1 0 ' + ht + ')';
+//  var p0x = 1.2 * (wd / 10);
+//  var p1x = 2.4 * (wd / 10);
+//  var p2x = 7.4 * (wd / 10);
+//  var p3x = 7.8 * (wd / 10);
+//  var p0y = 3 * (ht / 6);
+//  var p1y = 6.4 * (ht / 6);
+//  var p2y = 3.8 * (ht / 6);
+//  var p3y = 2 * (ht / 6);
+
+//  var dataString =
+//   'M' +
+//   p0x +
+//   ',' +
+//   p0y +
+//   ' ' +
+//   'C' +
+//   p1x +
+//   ',' +
+//   p1y +
+//   ' ' +
+//   p2x +
+//   ',' +
+//   p2y +
+//   ' ' +
+//   p3x +
+//   ',' +
+//   p3y;
+
+//  // data.d = 'M1.2,3  C2.4,6.4 7.4,3.8 7.8,2';
+//  data.d = dataString;
+
+//  data.fillOpacity = '0.3';
+//  data.fill = 'none';
+//  data.stroke = 'red';
+//  data.strokeWidth = '5';
+
+//  var path = new mySvg.Path(data);
+// }
+
+// const bezier = {};
+// bezier.points = [1.2, 3, 2.4, 6.4, 7.4, 3.8, 7.8, 2];
+// bezier.xMax = 10;
+// bezier.yMax = 6;
+// bezier.width = wd;
+// bezier.height = ht;
+// data.d = drawBezier(bezier);
+
+// function drawBezier(data) {
+//  const xxx = data.width / data.xMax;
+//  const yyy = data.height / data.yMax;
+//  const pts = data.points.map((v, i) => (i % 2 ? v * yyy : v * xxx));
+//  return 'M' + pts.slice(0, 2).join(',') + ' C' + pts.slice(2, 8).join(',');
+// }
+
+// function drawPathDolphinBody01a(wd, ht) {
+//  var data = {};
+//  data.containerId = 'svgMain-svg';
+//  data.id = 'body-01';
+//  data.transform = 'matrix(1 0 0 -1 0 ' + ht + ')';
+//  var p0x = 1.2 * (wd / 10);
+//  var p1x = 2.4 * (wd / 10);
+//  var p1x = 0.4 * (wd / 10);
+//  var p2x = 7.4 * (wd / 10);
+//  var p3x = 7.8 * (wd / 10);
+//  var p0y = 3 * (ht / 6);
+//  var p1y = 6.4 * (ht / 6);
+//  var p2y = 3.8 * (ht / 6);
+//  var p3y = 2 * (ht / 6);
+
+//  var dataString =
+//   'M' +
+//   p0x +
+//   ',' +
+//   p0y +
+//   ' ' +
+//   'C' +
+//   p1x +
+//   ',' +
+//   p1y +
+//   ' ' +
+//   p2x +
+//   ',' +
+//   p2y +
+//   ' ' +
+//   p3x +
+//   ',' +
+//   p3y;
+
+//  // data.d = 'M1.2,3  C2.4,6.4 7.4,3.8 7.8,2';
+//  data.d = dataString;
+
+//  data.fillOpacity = '0.3';
+//  data.fill = 'none';
+//  data.stroke = 'green';
+//  data.strokeWidth = '5';
+
+//  var path = new mySvg.Path(data);
+// }
 
 // var data = {
 //  containerId: 'svgMain-svg',
@@ -248,3 +329,4 @@ function drawPathDolphinBody01a(wd, ht) {
 //  P4: [7.4, 3.8],
 //  P4: [7.8, 2]
 // };
+// endregion raw
