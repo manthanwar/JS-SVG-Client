@@ -33,7 +33,7 @@ export default class SvgParent {
   this.data = JSON.parse(JSON.stringify(data));
   this.data.ns = 'http://www.w3.org/2000/svg';
   this.setData(data);
-  if (data.containerId === undefined) {
+  if (data.containerId === undefined || data.containerId === 'body') {
    this.data.container = document.body;
   } else {
    this.data.container = document.getElementById(data.containerId);

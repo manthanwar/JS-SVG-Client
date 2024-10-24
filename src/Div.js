@@ -25,13 +25,12 @@ export default class Div extends SvgParent {
  constructor(data) {
   super(data);
   this.setData(data);
-  this.data.container = document.body;
   this.obj = this.newDiv();
  }
 
  initKeyVal() {
   const kv = {};
-  kv.containerId = 'body';
+  kv.containerId = '';
   kv.id = 'svgDiv';
   kv.style = '';
   kv.width = '100px';
