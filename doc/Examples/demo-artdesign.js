@@ -1,13 +1,90 @@
 import * as mySvg from '../../dist/svg.min.js';
 import dolphinData from './demo-dolphin-data.js';
 
+import Dolphin from './demo-dolphin.js';
+
 window.onload = (event) => {
  document.title = 'SVG';
 
- drawDolphin();
+ // drawDolphin();
 
+ drawDolphinUsingClass();
  // drawHtml();
 };
+
+function drawDolphinUsingClass() {
+ const data = {};
+ data.dolphin = dolphinData;
+ data.containerId = 'body';
+ data.divMain = {
+  containerId: 'body',
+  id: 'divMainBox',
+  style: 'border: 2px solid red; border-radius:10px; padding:10px;',
+  width: '1140px',
+  height: '450px',
+  transform: 'scale(1.5)'
+ };
+ data.divDolphin = {
+  // containerId: 'divMainBox',
+  // id: 'divDolphin',
+  style: 'border: 2px solid green; border-radius:10px; padding:10px;',
+  width: 700 + 'px',
+  height: 700 * (3 / 5) + 'px',
+  transform: 'scale(1)'
+ };
+ data.divOptions = {
+  // containerId: 'divMainBox',
+  // id: 'divOptions',
+  style:
+   'border: 2px solid blue; border-radius:10px; padding:20px; margin:20px 50px;',
+  width: '300px',
+  height: '300px',
+  transform: 'scale(1)'
+ };
+ data.svgMain = {
+  // containerId: 'divDolphin',
+  // id: 'divDolphin-svgMain',
+  width: '100%',
+  height: '100%',
+  viewBox: '0 0 100% 100% ',
+  style: `background-color: rgba(0,200,0,0); border: 1px solid green; padding:10px; box-sizing:border-box;`
+ };
+  data.gridOn = false;
+ data.grid = {
+  // containerId: 'divDolphin-svgMain',
+  minorNumX: 5,
+  minorNumY: 5,
+  majorNumX: 10,
+  majorNumY: 6,
+  titleOn: true,
+  axisLabelOnX: true,
+  axisLabelOnY: true,
+  axisNumOnX: true,
+  axisNumOnY: true,
+  majorOnX: true,
+  majorOnY: true,
+  minorOnX: true,
+  minorOnY: true,
+  boxOn: false,
+  axesOn: false,
+
+  title: {
+   text: 'Dolphin'
+  },
+
+  axisLabelX: {
+   text: 'X Axis'
+  },
+
+  axisLabelY: {
+   text: 'Y Axis'
+  }
+ };
+ const dol = new Dolphin(data);
+
+//  data.divMain.containerId = 'dol2';
+//  const dol2 = new Dolphin(data);
+}
 
 function drawHtml() {
  var html = new mySvg.Html();
@@ -46,7 +123,7 @@ function drawDolphin() {
 function drawDivDolphinMain() {
  var data = {
   containerId: 'body',
-  id: 'divDolphinMain',
+  id: 'divMainBox',
   style: 'border: 2px solid red; border-radius:10px; padding:10px;',
   width: '1140px',
   height: '450px',
@@ -59,7 +136,7 @@ function drawDivDolphin() {
  const wd = 700;
  const ht = wd * (3 / 5);
  var data = {
-  containerId: 'divDolphinMain',
+  containerId: 'divMainBox',
   id: 'divDolphin',
   style: 'border: 2px solid green; border-radius:10px; padding:10px;',
   width: wd + 'px',
@@ -71,7 +148,7 @@ function drawDivDolphin() {
 
 function drawDivDolphinSlider() {
  var data = {
-  containerId: 'divDolphinMain',
+  containerId: 'divMainBox',
   id: 'divDolphinSlider',
   style:
    'border: 2px solid blue; border-radius:10px; padding:20px; margin:20px 50px;',

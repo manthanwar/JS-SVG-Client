@@ -19,7 +19,7 @@ h1 {
  background-color: whitesmoke;
 }
 
-#divDolphinMain {
+#divMainBox {
  display: flex;
  flex-direction: row;
  justify-content: space-between;
@@ -62,11 +62,12 @@ input[type='range'] {
  border: 2px solid red;
  background-color: white;
  position: absolute;
- top: 50%;
- left: 50%;
+ top: 30%;
+ left: -150%;
  transform: translate(-50%, -50%);
  font-size: 19px;
  word-wrap: break-word;
+ transform: scale(1.5);
 }
 
 #alertBox span {
@@ -74,8 +75,6 @@ input[type='range'] {
  padding: 2px 16px;
  font-weight: bold;
 }
-
-
 
 #submitBtn {
  margin: auto;

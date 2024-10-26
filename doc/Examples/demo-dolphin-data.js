@@ -40,7 +40,7 @@ data.finTop = [
 
 data.finBottom = [2.6, 3.05, 3.0, 2.4, 4.8, 1.3, 3.6, 3.1];
 
-data.eye = [1.7, 3.3, 4];
+data.eye = [1.7, 3.3, 6];
 
 data.bodyStyle = {
  fill: 'pink',
