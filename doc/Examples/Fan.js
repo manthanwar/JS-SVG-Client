@@ -1,6 +1,6 @@
 // =============================================================================
-// File Name     : Dolphin.js
-// Description   : JS Class to draw Dolphin using JS-SVG-Client
+// File Name     : Fan.js
+// Description   : JS Class to draw Ceiling Fan/Propeller using JS-SVG-Client
 // -----------------------------------------------------------------------------
 // Author        : Amit Manohar Manthanwar
 // Mailer        : manthanwar@hotmail.com
@@ -14,13 +14,13 @@
 // =============================================================================
 // Revision Log  | Author  | Description
 // --------------+---------+----------------------------------------------------
-// 25-Oct-2024   | AMM     | Initial Version
+// 26-Oct-2024   | AMM     | Initial Version
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 
 import * as mySvg from '../../dist/svg.min.js';
 
-export default class Dolphin {
+export default class Fan {
  constructor(data) {
   this.init();
   this.merge(this.data, data);
@@ -195,9 +195,6 @@ export default class Dolphin {
   divSlider.obj.innerHTML +=
    '<br style="margin-top:10px;"><div id="slideContainer"> <input type="range" min="4" max="6" step="0.1" value="4.8"  id="sliderY" /> <div id="sliderValueY" class="sliderValue">Point 1 y = </div></div>';
 
-  // divSlider.obj.innerHTML +=
-  //  '<br style="margin-top:30px;"> <input type="text" id="fname" name="fname"><br><br><input type="color" id="favcolor" name="favcolor" value="#ff0000">';
-
   divSlider.obj.innerHTML +=
    '<br style="margin-top:30px;"> <button type="button" id="submitBtn">Submit</button> ';
 
@@ -325,8 +322,8 @@ export default class Dolphin {
   data.r = this.data.dolphin.eye[2];
   data.stroke = 'blue';
   data.strokeWidth = 2;
-  data.fill = 'cyan';
-  data.fillOpacity = '0.3';
+  data.fill = 'red';
+  data.fillOpacity = '0.8';
   data.strokeOpacity = '1';
   const eye = new mySvg.Circle(data);
   return eye;

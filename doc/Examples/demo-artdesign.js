@@ -6,10 +6,12 @@ import Dolphin from './demo-dolphin.js';
 window.onload = (event) => {
  document.title = 'SVG';
 
- // drawDolphin();
-
- drawDolphinUsingClass();
  // drawHtml();
+
+//  drawDolphin();
+ drawDolphinUsingClass();
+
+//  drawFan();
 };
 
 function drawDolphinUsingClass() {
@@ -19,11 +21,16 @@ function drawDolphinUsingClass() {
  data.divMain = {
   containerId: 'body',
   id: 'divMainBox',
-  style: 'border: 2px solid red; border-radius:10px; padding:10px;',
+  style: 'border: 4px solid red; border-radius:10px; padding:10px;',
   width: '1140px',
   height: '450px',
-  transform: 'scale(1.5)'
+  transform: 'scale(1.2)'
  };
+
+
+
+
+
  data.divDolphin = {
   // containerId: 'divMainBox',
   // id: 'divDolphin',
@@ -49,7 +56,7 @@ function drawDolphinUsingClass() {
   viewBox: '0 0 100% 100% ',
   style: `background-color: rgba(0,200,0,0); border: 1px solid green; padding:10px; box-sizing:border-box;`
  };
-  data.gridOn = false;
+ data.gridOn = false;
  data.grid = {
   // containerId: 'divDolphin-svgMain',
   minorNumX: 5,
@@ -82,8 +89,8 @@ function drawDolphinUsingClass() {
  };
  const dol = new Dolphin(data);
 
-//  data.divMain.containerId = 'dol2';
-//  const dol2 = new Dolphin(data);
+ //  data.divMain.containerId = 'dol2';
+ //  const dol2 = new Dolphin(data);
 }
 
 function drawHtml() {
@@ -281,8 +288,8 @@ function dolphinEye(wd, ht, xMax, yMax, xOff, yOff) {
  data.r = dolphinData.eye[2];
  data.stroke = 'blue';
  data.strokeWidth = 2;
- data.fill = 'cyan';
- data.fillOpacity = '0.3';
+ data.fill = dolphinData.eyeStyle.fill;
+ data.fillOpacity = '1';
  data.strokeOpacity = '1';
  const circle = new mySvg.Circle(data);
 }
@@ -414,6 +421,77 @@ function drawBezier(data, wd, ht, xMax, yMax, xOff = 0, yOff = 0) {
  const len = data.length;
  return 'M' + pts.slice(0, 2).join(',') + ' C' + pts.slice(2, len).join(',');
 }
+
+// function drawFan() {
+//  const data = {};
+//  data.dolphin = dolphinData;
+//  data.containerId = 'body';
+//  data.divMain = {
+//   containerId: 'body',
+//   id: 'divMainBox',
+//   style: 'border: 2px solid red; border-radius:10px; padding:10px;',
+//   width: '1140px',
+//   height: '450px',
+//   transform: 'scale(1.5)'
+//  };
+//  data.divDolphin = {
+//   // containerId: 'divMainBox',
+//   // id: 'divDolphin',
+//   style: 'border: 2px solid green; border-radius:10px; padding:10px;',
+//   width: 700 + 'px',
+//   height: 700 * (3 / 5) + 'px',
+//   transform: 'scale(1)'
+//  };
+//  data.divOptions = {
+//   // containerId: 'divMainBox',
+//   // id: 'divOptions',
+//   style:
+//    'border: 2px solid blue; border-radius:10px; padding:20px; margin:20px 50px;',
+//   width: '300px',
+//   height: '300px',
+//   transform: 'scale(1)'
+//  };
+//  data.svgMain = {
+//   // containerId: 'divDolphin',
+//   // id: 'divDolphin-svgMain',
+//   width: '100%',
+//   height: '100%',
+//   viewBox: '0 0 100% 100% ',
+//   style: `background-color: rgba(0,200,0,0); border: 1px solid green; padding:10px; box-sizing:border-box;`
+//  };
+//  data.gridOn = false;
+//  data.grid = {
+//   // containerId: 'divDolphin-svgMain',
+//   minorNumX: 5,
+//   minorNumY: 5,
+//   majorNumX: 10,
+//   majorNumY: 6,
+//   titleOn: true,
+//   axisLabelOnX: true,
+//   axisLabelOnY: true,
+//   axisNumOnX: true,
+//   axisNumOnY: true,
+//   majorOnX: true,
+//   majorOnY: true,
+//   minorOnX: true,
+//   minorOnY: true,
+//   boxOn: false,
+//   axesOn: false,
+
+//   title: {
+//    text: 'Dolphin'
+//   },
+
+//   axisLabelX: {
+//    text: 'X Axis'
+//   },
+
+//   axisLabelY: {
+//    text: 'Y Axis'
+//   }
+//  };
+//  const dol = new Dolphin(data);
+// }
 
 // region raw
 // const dPts = [].concat(...dolphinData.body);

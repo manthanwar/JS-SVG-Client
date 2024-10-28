@@ -1,0 +1,48 @@
+FAN
+
+divMain
+- svgMain
+  - svgGrid
+  - drawFan
+    - blade01 - n blades
+    - joint01 - n joints
+    - screw01 - n screws
+    - house01 - Outer
+    - house02 - inner
+
+
+Config Options
+
+Blade Color
+Blade Number
+Blade Design
+
+
+
+Dolphin
+divMainBox - red   - main container
+divOptions - blue  - config
+divDolphin - green - design
+svgMain
+svgGrid
+objDraw
+JSON Data
+
+
+divMain - main container
+svgMain - svg container
+svgGrid
+
+Data = {
+key01: val01,
+key02: val02,
+key03: val03,
+}
+
+Data Types: Number, String, Array, Object
+
+
+
+
+
+

@@ -5,7 +5,7 @@ import dataTemplate from './demo-data-template.js';
 
 window.onload = (event) => {
  document.title = 'SVG';
- dataTemplate.renderBody('demo-operations.html');
+ dataTemplate.renderBody('demo-home.html');
 
  const main = document.getElementsByTagName('main')[0];
 

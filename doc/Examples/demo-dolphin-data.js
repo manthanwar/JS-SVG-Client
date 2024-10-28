@@ -40,15 +40,32 @@ data.finTop = [
 
 data.finBottom = [2.6, 3.05, 3.0, 2.4, 4.8, 1.3, 3.6, 3.1];
 
-data.eye = [1.7, 3.3, 6];
+data.eye = [1.7, 3.3, 10];
 
-data.bodyStyle = {
- fill: 'pink',
+data.eyeStyle = {
+ fill: 'cyan',
  fillOpacity: '0.5',
  stroke: 'blue',
  strokeWidth: '2',
  strokeOpacity: '1'
 };
+
+data.bodyStyle = {
+ fill: 'green',
+ fillOpacity: '0.5',
+ stroke: 'blue',
+ strokeWidth: '2',
+ strokeOpacity: '1'
+};
+
+data.bodyOneStyle = {
+ fill: 'pink',
+ fillOpacity: '0.5',
+ stroke: 'blue',
+ strokeWidth: '4',
+ strokeOpacity: '1',
+};
+
 
 data.finStyle = {
  fill: 'pink',
@@ -57,7 +74,6 @@ data.finStyle = {
  strokeWidth: '2',
  strokeOpacity: '1'
 };
-
 
 data.bodyOne = [
  1.2, 3.0, 2.0, 5.0, 4.0, 4.6, 4.0, 4.6,
@@ -83,12 +99,5 @@ data.bodyOne = [
  1.0, 2.4, 1.0, 2.6, 1.2, 3.0
 ];
 
-data.bodyOneStyle = {
- fill: 'pink',
- fillOpacity: '0.5',
- stroke: 'blue',
- strokeWidth: '2',
- strokeOpacity: '1'
-};
 
 export default data;

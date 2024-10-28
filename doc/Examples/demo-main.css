@@ -1,0 +1,236 @@
+html {
+ font-size: 6.25%;
+}
+
+body {
+ font-size: 20rem;
+}
+
+header {
+ /* background-color: whitesmoke; */
+ display: inline-flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 0 20px;
+ width: 100%;
+ height: 60px;
+ box-sizing: border-box;
+ overflow: hidden;
+ margin-bottom: 20px;
+ margin-top: 0px;
+ position: relative;
+}
+
+header #logo {
+ display: inline-block;
+ width: 50px;
+ height: 50px;
+ /* background-color: red; */
+ margin-right: 10px;
+ /* border: 1px solid pink; */
+}
+
+header #logo:hover {
+ animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+.aaa {
+ fill: teal;
+ /* fill: hsla(180, 100%, 25%, 1); */
+}
+.aaa:hover {
+ /* fill: dodgerblue; */
+ fill: hsla(180, 100%, 25%, 0.7);
+}
+.aaa:active {
+ fill: hotpink;
+}
+
+header brand {
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ color: teal;
+ /* font-family: Arial, Helvetica, sans-serif; */
+ font-size: 28rem;
+ font-weight: bold;
+ line-height: 60px;
+}
+
+header brand span {
+ font-size: 22rem;
+ font-family: sans-serif;
+ font-weight: normal;
+ margin-left: 10px;
+ color: maroon;
+}
+
+.navBarLines {
+ cursor: pointer;
+ transform: scale(0.8);
+}
+
+.navBarLine1,
+.navBarLine2,
+.navBarLine3 {
+ width: 35px;
+ height: 5px;
+ background-color: #333;
+ margin: 6px 0;
+ transition: 0.4s;
+}
+
+.navBarLineChange .navBarLine1 {
+ transform: translate(0, 11px) rotate(-45deg);
+}
+
+.navBarLineChange .navBarLine2 {
+ opacity: 0;
+}
+
+.navBarLineChange .navBarLine3 {
+ transform: translate(0, -11px) rotate(45deg);
+}
+
+.navBarLineColor {
+ background-color: maroon;
+}
+
+nav {
+ display: none;
+ position: absolute;
+ width: 300px;
+ top: 52px;
+ right: -400px;
+ height: 400px;
+ padding: 10px;
+ background-color: whitesmoke;
+ border: 1px solid teal;
+}
+
+.navChange {
+ display: block;
+ animation: slideIn 1s forwards;
+ animation-delay: 0s;
+}
+
+@keyframes slideIn {
+ 100% {
+  right: 30px;
+ }
+}
+
+.navSubMenu::before {
+ content: '\25B8';
+ /* color: teal; */
+ padding-left: 10px;
+ padding-right: 5px;
+ height: 40px;
+ line-height: 40px;
+}
+
+nav div {
+ display: none;
+}
+
+.navSubMenuToggle {
+ display: block;
+}
+
+nav a,
+nav a:link,
+nav a:visited {
+ color: black;
+ text-decoration: none;
+ margin: 10px;
+ /* width: 200px; */
+ /* margin-bottom: 10px; */
+ box-sizing: border-box;
+ padding-left: 10px;
+ height: 40px;
+ line-height: 40px;
+ padding-top: 0px;
+}
+
+nav a:hover {
+ color: teal;
+ /* border-bottom: 1px dotted red; */
+ /* background-color: hsl(180, 100%, 25%); */
+ background-color: teal;
+ border-radius: 0 20px 20px 0;
+ color: white;
+ /* padding-left: 20px; */
+}
+
+a:hover::before {
+}
+
+a,
+a:link,
+a:visited {
+ color: black;
+ text-decoration: none;
+ box-sizing: border-box;
+ height: 20px;
+}
+
+a:hover {
+ color: teal;
+ /* background-color: teal; */
+ border-bottom: 1px solid red;
+}
+
+a:active {
+ color: dodgerblue;
+}
+
+nav a {
+ display: block;
+ padding: 4px;
+ font-size: 20rem;
+}
+
+footer {
+ margin-top: 100px;
+ padding: 20px;
+ background-color: whitesmoke;
+ font-size: 16rem;
+}
+
+footer div {
+ font-weight: bold;
+ display: block;
+ margin-top: 20px;
+ margin-bottom: 0px;
+}
+
+footer div:first-child {
+ margin-top: 0px;
+}
+
+footer menu {
+ display: flex;
+ justify-content: flex-start;
+ align-items: flex-start;
+}
+
+footer a {
+ /* margin-top: -610px; */
+ /* margin-left: 0px; */
+ margin-right: 20px;
+ font-weight: normal;
+}
+
+footer copy {
+ display: block;
+ margin-top: 30px;
+ /* margin-bottom: 50px    ; */
+ font-weight: normal;
+ color: dimgray;
+}
