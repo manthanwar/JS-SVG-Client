@@ -185,7 +185,7 @@ data.renderBody = (htmlPage) => {
  document.body.innerHTML = data.bodyInnerHtml.replaceAll('\n', '');
 
  const logo = document.getElementById('logo');
- logo.innerHTML = `<a href="demo-home.html"><svg class="aaa"> <g transform="scale(8) translate(-2.4,-0.2) rotate(154, 5, 3)"><path d="M1.2, 3.0 C0.5, 5, 4.0, 4.6, 4.0, 4.6, 4.0, 4.6, 4.8, 5.4, 6.0, 5.0, 6.0, 5.0, 5.0, 5.0, 5.4, 4.2, 5.4, 4.2, 7.5, 3.3, 7.8, 2.0, 7.8, 2.0, 9.0, 1.6, 8.8, 1.0, 8.0, 1.6, 7.2, 0.4, 7.2, 0.4, 6.8, 0.6, 7.4, 1.8, 7.4, 1.8, 7.4, 1.8, 5.7, 3.2, 3.6, 3.2, 4.8, 1.3, 3.0, 2.2, 2.6, 3.1, 2.6, 3.1, 1.8, 3.0, 1.4, 2.5, 1.0, 2.4, 1.0, 2.6, 1.2, 3.0" /></g></svg></a>
+ logo.innerHTML = `<a href="demo-home.html"><svg class="logoSvg" width="50" height="50"> <g transform="scale(8) translate(-2.4,-0.2) rotate(154, 5, 3)"><path d="M1.2, 3.0 C0.5, 5, 4.0, 4.6, 4.0, 4.6, 4.0, 4.6, 4.8, 5.4, 6.0, 5.0, 6.0, 5.0, 5.0, 5.0, 5.4, 4.2, 5.4, 4.2, 7.5, 3.3, 7.8, 2.0, 7.8, 2.0, 9.0, 1.6, 8.8, 1.0, 8.0, 1.6, 7.2, 0.4, 7.2, 0.4, 6.8, 0.6, 7.4, 1.8, 7.4, 1.8, 7.4, 1.8, 5.7, 3.2, 3.6, 3.2, 4.8, 1.3, 3.0, 2.2, 2.6, 3.1, 2.6, 3.1, 1.8, 3.0, 1.4, 2.5, 1.0, 2.4, 1.0, 2.6, 1.2, 3.0" /></g></svg></a>
 `;
  // <circle cx="1.7" cy="3.4" r="0.16" fill="white"/>
  // matrix(8 0 0 -8 -7 42)
@@ -261,9 +261,11 @@ const junkA = `
 </div>
 `;
 
+// <div>Company Links</div>
+// <div>Social Media</div>
 data.bodyInnerHtml = `
 <header>
-<brand><div id="logo"></div><div>Dolphin <span id="page"></span></div></brand>
+<brand><div id="logo"></div><div><a href="demo-home.html">Dolphin</a> <span id="page"></span></div></brand>
 <div class="navBarLines">
 <div class="navBarLine1"></div>
 <div class="navBarLine2"></div>
@@ -271,18 +273,18 @@ data.bodyInnerHtml = `
 </div>
 </header>
 <nav></nav>
-<main></main>
+<main id="main"></main>
 <footer>
-<div>Company</div>
+<div>Dolphin is a data-driven vector visualization studio. It is available as a lightweight stand-alone client-side application as well as the most efficient server-side data visualization engine.<br>Thank you for choosing Dolphin for your data visualization needs.
+</div>
 <menu>
-<a href="aboutUs.html">About</a>
-<a href="contact.html">Contact</a>
+<a href="aboutUs.html">About Us</a>
+<a href="contact.html">Contact Us</a>
 <a href="privacy.html">Privacy Policy</a>
 <a href="cookies.html">Cookie Policy</a>
 <a href="service.html">Terms of Service</a>
 <a href="careers.html">Careers</a>
 </menu>
-<div>Social</div>
 <menu>
 <a href="linkedin.html">LinkedIn</a>
 <a href="facebook.html">YouTube</a>

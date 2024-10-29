@@ -1,0 +1,13 @@
+#divMainBox {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ align-items: flex-start;
+ /* grid-template-columns: auto auto; */
+ /* column-gap: 5px; */
+ margin: auto;
+ /* margin-top: 10px; */
+ /* width: 500px; */
+ /* height: 300px; */
+ /* border: 4px solid green; */
+}
