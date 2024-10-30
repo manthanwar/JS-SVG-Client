@@ -1,6 +1,23 @@
-// import * as mySvg from '../../dist/svg.min.js';
-// import dolphinData from './demo-dolphin-data.js';
-// import Dolphin from './demo-dolphin.js';
+// =============================================================================
+// File Name : demo-fan.js
+// Description   : Draw Ceiling Fan/Propeller using JS-SVG-Client
+// -----------------------------------------------------------------------------
+// Author: Amit Manohar Manthanwar
+// Mailer: manthanwar@hotmail.com
+// WebURL: https://manthanwar.github.io
+// -----------------------------------------------------------------------------
+// Copyright : (c) 2024 Amit Manohar Manthanwar
+// License   : MIT License
+// ----------------------------------------------------------------------------
+// This program can be redistributed and/or modified under the terms
+// of the MIT License. For details see the file license.txt
+// =============================================================================
+// Revision Log  | Author  | Description
+// --------------+---------+----------------------------------------------------
+// 26-Oct-2024   | AMM | Initial Version
+// --------------+---------+----------------------------------------------------
+// =============================================================================
+
 import dataTemplate from './demo-data-template.js';
 import Fan from './Fan.js';
 
@@ -8,15 +25,8 @@ window.onload = (event) => {
  document.title = 'SVG';
  dataTemplate.renderBody('demo-fan.html');
 
- const main = document.getElementsByTagName('main')[0];
+ // const main = document.getElementsByTagName('main')[0];
  // main.innerHTML = 'Hello World';
-
- // drawHtml();
-
- //  drawDolphin();
- //  drawDolphinUsingClass();
-
- //  drawFan();
 
  const data = {
   divMainBox: {
@@ -25,10 +35,9 @@ window.onload = (event) => {
   },
   gridOn: false,
   numB: 3,
-  clrB: 'pink'
+  clrB: 'pink',
+  clrH: 'maroon'
  };
 
  const fan = new Fan(data);
- // fan.plotTitle = 'aaaaaaaaaaaaaaaaaaa';
- // console.log('fan = ' + fan.data.divMain.containerId);
 };

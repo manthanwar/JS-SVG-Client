@@ -18,7 +18,7 @@ header {
  overflow: hidden;
  margin-bottom: 20px;
  margin-top: -8px;
- background-color: whitesmoke;
+ /* background-color: whitesmoke; */
 }
 
 header #logo {
@@ -216,22 +216,11 @@ nav a {
 }
 
 footer {
- margin-top: 70px;
+ margin-top: 270px;
  padding: 10px 20px;
  background-color: whitesmoke;
  font-size: 16rem;
 }
-
-footer div {
- /* font-weight: bold; */
- /* display: block; */
- /* margin-top: 10px; */
- /* margin-bottom: 0px; */
-}
-
-/* footer div:first-child {
- margin-top: 0px;
-} */
 
 footer menu {
  display: flex;

@@ -1,6 +1,4 @@
 :root {
- --blue: #1e90ff;
- --white: #ffffff;
  --speed: 4s;
 }
 
@@ -8,18 +6,12 @@
  display: flex;
  flex-direction: row;
  justify-content: space-between;
- align-items: flex-start;
- /* grid-template-columns: auto auto; */
- /* column-gap: 5px; */
+ /* align-items: flex-start; */
+ align-items: center;
  margin: auto;
- /* margin-top: 10px; */
- /* width: 500px; */
- /* height: 300px; */
- /* border: 4px solid green; */
 }
 
 #divMainBox svg:hover {
- border: none;
  animation: spin var(--speed) linear infinite;
 }
 
@@ -31,7 +23,7 @@
 
 #slideContainer input {
  margin: auto;
- margin-top: 10px;
+ /* margin-top: 10px; */
  width: 100%;
 }
 
@@ -54,4 +46,33 @@
 
 #divBladeColor {
  margin-top: 20px;
+}
+
+#alertBox {
+ display: none;
+ width: 300px;
+ height: 200px;
+ padding: 30px;
+ border: 2px solid red;
+ background-color: white;
+ position: absolute;
+ top: 30%;
+ left: -150%;
+ transform: translate(-50%, -50%);
+ font-size: 19px;
+ word-wrap: break-word;
+ transform: scale(1.5);
+}
+
+#alertBox table {
+ border-collapse: separate;
+ border-spacing: 20px 10px;
+}
+
+#submitBtn {
+ margin: auto;
+ margin-top: 20px;
+ font-size: 20px;
+ padding: 6px 20px;
+ width: 150px;
 }
