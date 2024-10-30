@@ -1,3 +1,9 @@
+:root {
+ --blue: #1e90ff;
+ --white: #ffffff;
+ --speed: 4s;
+}
+
 #divMainBox {
  display: flex;
  flex-direction: row;
@@ -10,4 +16,42 @@
  /* width: 500px; */
  /* height: 300px; */
  /* border: 4px solid green; */
+}
+
+#divMainBox svg:hover {
+ border: none;
+ animation: spin var(--speed) linear infinite;
+}
+
+@keyframes spin {
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+#slideContainer input {
+ margin: auto;
+ margin-top: 10px;
+ width: 100%;
+}
+
+#divBladeColor,
+#sliderValueX,
+#sliderValueY,
+#sliderValueN {
+ margin: 10px 0px;
+ font-size: 24px;
+}
+#sliderValueX {
+ color: teal;
+}
+#sliderValueY {
+ color: maroon;
+}
+#sliderValueN {
+ color: dodgerblue;
+}
+
+#divBladeColor {
+ margin-top: 20px;
 }

@@ -42,7 +42,39 @@ key03: val03,
 Data Types: Number, String, Array, Object
 
 
+ /**
+  * A = [rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y];
+  * A = [1, 1, 0, 0, 1, 4, 3];
+  * Array.splice(start_index, delete_count, value1, value2, value3, ...)
+  */
 
 
+ // this.obj.arc = this.drawArc(wd, ht, xMax, yMax, xOff, yOff);
 
+ drawArc(wd, ht, xMax, yMax, xOff = 0, yOff = 0) {
+  const dataArc = [1, 1, 0, 0, 0, 4, 3];
+  const strArc = this.getArString(dataArc, wd, ht, xMax, yMax, xOff, yOff);
 
+  const data = {};
+  const x = wd / xMax;
+  const y = ht / yMax;
+  data.d = 'M' + 4 * x + ' ' + 5 * y + +' ' + strArc;
+  data.containerId = this.data.idSvg;
+  data.id = 'divDolphin-svgMain-body';
+  data.transform = 'matrix(1 0 0 -1 0 ' + ht + ')';
+  data.fill = 'red';
+  data.fillOpacity = 0.5;
+  data.stroke = 'red';
+  data.strokeWidth = 2;
+  return new mySvg.Path(data);
+ }
+
+ drawBezier(data) {
+  const xxx = this.data.width / this.data.xMax;
+  const yyy = this.data.height / this.data.yMax;
+  const xOff = this.data.xOff;
+  const yOff = this.data.yOff;
+  const pts = data.map((v, i) => (i % 2 ? (v + yOff) * yyy : (v + xOff) * xxx));
+  const len = data.length;
+  return 'M' + pts.slice(0, 2).join(',') + ' C' + pts.slice(2, len).join(',');
+ }

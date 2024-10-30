@@ -21,14 +21,14 @@ window.onload = (event) => {
  const data = {
   divMainBox: {
    containerId: 'main',
-   id: 'divMainBox',
-   transform: 'scale(1)'
-  }
-  // gridOn: false
+   id: 'divMainBox'
+  },
+  gridOn: false,
+  numB: 3,
+  clrB: 'pink'
  };
 
  const fan = new Fan(data);
- fan.plotTitle = 'aaaaaaaaaaaaaaaaaaa';
-
+ // fan.plotTitle = 'aaaaaaaaaaaaaaaaaaa';
  // console.log('fan = ' + fan.data.divMain.containerId);
 };
