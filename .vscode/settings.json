@@ -203,6 +203,30 @@
         "[Default Dark+] [Dracula] [Dracula Theme] [Dracula Soft]": {
             "textMateRules": [
                 //-------------------------------------------------------------
+                //#region CSS
+                //-------------------------------------------------------------
+                {
+                    "scope": "constant.numeric.css",
+                    "settings": {
+                        // "foreground": "#bd93f9", // purple
+                        // "foreground": "#C16069" // crmson
+                        // "foreground": "#8be9fd", // cyan
+                        "foreground": "#ffff00", // yellow
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": "keyword.other.unit.px.css",
+                    "settings": {
+                        "foreground": "#00ff00",
+                        // "fontStyle": "bold"
+                    }
+                },
+                //-------------------------------------------------------------
+                //#endregion CSS
+                //-------------------------------------------------------------
+
+                //-------------------------------------------------------------
                 //#region Markdown
                 //-------------------------------------------------------------
                 {

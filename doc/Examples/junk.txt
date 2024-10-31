@@ -78,3 +78,69 @@ Data Types: Number, String, Array, Object
   const len = data.length;
   return 'M' + pts.slice(0, 2).join(',') + ' C' + pts.slice(2, len).join(',');
  }
+
+https://www.analyticsvidhya.com/blog/2021/12/12-data-plot-types-for-visualization/#h-12-types-of-data-plot-types-for-visualization
+
+
+https://plotly.com/python/gauge-charts/
+
+https://www.dundas.com/support/learning/documentation/data-visualizations/working-with-gauges
+
+
+
+Plot Types
+
+- Pie Chart
+  - Simple Circle
+  - Wedge or Exploded
+  - Donut
+  - Pie to Pie
+  - Pie to Bar
+  - 3D Pie
+
+- Bar Chart
+  - Vertical Bar
+  - Horizontal Bar
+  - Vertical Bars Grouped
+  - Vertical Bars Stacked
+  - Vertical Bars Segmented (as % of 100%)
+
+- plot(x,y)
+  - Scatter
+  - Line Chart
+  - Stairs/Step
+  - Area
+  - Time Series
+  - Surface
+  - Fill Between / Contour Error Envelop
+  - Bubble Chart
+  - Spline Chart
+  - Error Bars
+  - Box and Whisker Plots
+  - Function Plot
+
+- Polar Plot
+  - Line
+  - Scatter
+  - Bar
+  - Radar
+
+- Gauges / Indicators
+  - Radial
+  - Vertical
+
+
+- Gantt Chart
+https://www.explo.co/chart-type/radar-chart
+
+https://docs.boltiot.com/docs/gauge
+
+https://developers.google.com/chart/interactive/docs/gallery/gauge
+
+
+
+https://docs.oracle.com/en/cloud/saas/freeform/freef/about_the_gauge_chart_type_104x0c217bd4.html
+
+https://plotly.com/r/gauge-charts/
+
+https://plotly.com/javascript/

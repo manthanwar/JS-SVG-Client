@@ -6,6 +6,10 @@ body {
  font-size: 20rem;
 }
 
+* {
+ box-sizing: border-box;
+}
+
 header {
  position: relative;
  display: inline-flex;
