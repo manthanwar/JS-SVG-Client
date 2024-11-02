@@ -88,3 +88,22 @@ input[type='range'] {
  padding: 10px 20px;
  width: 150px;
 }
+
+a,
+a:link,
+a:visited {
+ color: teal;
+ text-decoration: none;
+ box-sizing: border-box;
+ height: 20px;
+}
+
+a:hover {
+ color: teal;
+ /* background-color: teal; */
+ /* border-bottom: 1px solid red; */
+}
+
+a:active {
+ color: dodgerblue;
+}

@@ -6,11 +6,13 @@ data.home = {
  href: 'http://127.0.0.1:5500/doc/Examples/demo-artfan.html'
 };
 
+// link = on nav page
+// page = page header
 data.navMenu = [
  {
   link: 'Home',
+  page: 'Home of Vector Visualization',
   href: 'demo-home.html'
-  // page: 'aaaa-homm'
  },
  {
   link: 'Art',
@@ -24,24 +26,99 @@ data.navMenu = [
    {
     link: 'Industrial Fan',
     page: 'Fan Design',
-    href: 'demo-fan.html'
+    href: 'demo-art-fan.html'
+   },
+   {
+    link: 'Logo Design',
+    page: 'Logo Design',
+    href: 'demo-art-logo.html'
    }
   ]
  },
  {
-  link: 'Viz',
-  page: 'Visualization Dashboard',
-  href: 'demo-dashboard.html'
+  link: 'Charts',
+  menu: [
+   {
+    link: 'Dashboard',
+    page: 'Visualization Dashboards',
+    href: 'demo-dashboard.html'
+   },
+   {
+    link: 'Pie Chart',
+    page: 'Pie Chart',
+    href: 'demo-plot-pie.html'
+   },
+   {
+    link: 'Bar Chart',
+    page: 'Bar Chart',
+    href: 'demo-plot-bar-axisY.html'
+   },
+   {
+    link: 'Scatter Chart',
+    page: 'Scatter Chart',
+    href: 'demo-plot-scats.html'
+   },
+   {
+    link: 'Line Chart',
+    page: 'Line Chart',
+    href: 'demo-plot-lines.html'
+   },
+   {
+    link: 'Stair Chart',
+    page: 'Stair Chart',
+    href: 'demo-plot-steps.html'
+   },
+   {
+    link: 'Area Chart',
+    page: 'Area Chart',
+    href: 'demo-plot-areas.html'
+   },
+   {
+    link: 'Time-Series',
+    page: 'Time-Series Plot',
+    href: 'demo-plot-times.html'
+   },
+   {
+    link: 'Bubble Chart',
+    page: 'Bubble Chart',
+    href: 'demo-plot-blobs.html'
+   }
+  ]
  },
  {
-  link: 'Mfg',
-  page: 'Operations Dashboard',
-  href: 'demo-operations.html'
+  link: 'Manufacturing',
+  menu: [
+   {
+    link: 'Process Industry',
+    page: 'Process Operations Dashboard',
+    href: 'demo-operations.html'
+   },
+   {
+    link: 'Water Resources',
+    page: 'River Management Dashboard',
+    href: 'demo-operations.html'
+   }
+  ]
  },
  {
-  link: 'Pub',
-  page: 'Data-Driven Reporting and Publication Automation',
-  href: 'demo-reporting.html'
+  link: 'Publications',
+  menu: [
+   {
+    link: 'Data-Driven Reporting',
+    page: 'Data-Driven Reporting and Publication Automation',
+    href: 'demo-reporting.html'
+   },
+   {
+    link: 'Brand Identity',
+    page: 'Brand Identity, House Style, and Communications Automation',
+    href: 'demo-reporting.html'
+   },
+   {
+    link: 'E-Commerce',
+    page: 'E-Commerce Applications',
+    href: 'demo-reporting.html'
+   }
+  ]
  },
  {
   link: 'Map',
@@ -156,6 +233,9 @@ data.makeNav = () => {
     div.appendChild(aaa);
    }
    aaa.innerHTML = item.link + ' +';
+   //  aaa.style.height = '40px';
+   //  aaa.style.lineHeight = '40px';
+   aaa.style.padding = '0px 0 10px 10px';
    aaa.onclick = () => {
     const str = item.link + ' +';
     if (aaa.innerHTML === str) {
@@ -342,6 +422,22 @@ data.footerInnerHtml = `
 `;
 
 data.plotContainerInnerHTML = `
+ <div id="plot-Container">
+ <div><main><h1>Pie Basic</h1><article id="pie-basic"></article></main></div>
+
+ <div><main><h1>Bar axis y</h1><article id="bar-axisY"></article></main></div>
+
+<div><main><h1>Plot Scatter </h1><article id="plt-scats"></article></main></div>
+<div><main><h1>Plot Lines   </h1><article id="plt-lines"></article></main></div>
+<div><main><h1>Plot Steps   </h1><article id="plt-steps"></article></main></div>
+<div><main><h1>Plot Areas   </h1><article id="plt-areas"></article></main></div>
+<div><main><h1>Time Series  </h1><article id="plt-times"></article></main></div>
+<div><main><h1>Bubble Chart </h1><article id="plt-blobs"></article></main></div>
+
+</div>
+`;
+
+data.plotContainerInnerHTMLAll = `
  <div id="plot-Container">
  <div><main><h1>Pie Basic</h1><article id="pie-basic"></article></main></div>
  <div><main><h1>Pie Wedge</h1><article id="pie-wedge"></article></main></div>

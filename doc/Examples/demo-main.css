@@ -131,8 +131,10 @@ nav {
  width: 300px;
  top: 52px;
  right: -400px;
- height: 400px;
+ /* height: 700px; */
  padding: 10px;
+ z-index: 999;
+ overflow: scroll;
  background-color: whitesmoke;
  border: 1px solid teal;
 }
@@ -151,11 +153,8 @@ nav {
 
 .navSubMenu::before {
  content: '\25B8';
- /* color: teal; */
- padding-left: 10px;
  padding-right: 5px;
- height: 40px;
- line-height: 40px;
+ margin-left: 10px;
 }
 
 nav div {
@@ -171,14 +170,12 @@ nav a:link,
 nav a:visited {
  color: black;
  text-decoration: none;
- margin: 10px;
- /* width: 200px; */
- /* margin-bottom: 10px; */
  box-sizing: border-box;
- padding-left: 10px;
+ margin: 0 20px;
+ padding: 0px 10px;
+ width: 250px;
  height: 40px;
  line-height: 40px;
- padding-top: 0px;
 }
 
 nav a:hover {
@@ -222,8 +219,9 @@ nav a {
 footer {
  margin-top: 270px;
  padding: 10px 20px;
- background-color: whitesmoke;
  font-size: 16rem;
+ background-color: whitesmoke;
+ color: dimgray;
 }
 
 footer menu {
@@ -233,11 +231,12 @@ footer menu {
  /* margin-bottom: 0px; */
 }
 
-footer a {
+footer a,footer a:link {
  /* margin-top: -610px; */
  /* margin-left: 0px; */
  margin-right: 20px;
  font-weight: normal;
+ color: dimgray;
 }
 
 footer copy {

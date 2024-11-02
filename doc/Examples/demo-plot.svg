@@ -25,7 +25,7 @@
      showgrid="true"
      inkscape:zoom="3.3103"
      inkscape:cx="140.02"
-     inkscape:cy="490.28"
+     inkscape:cy="466.12"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -88,14 +88,14 @@
     <text
        xml:space="preserve"
        style="font-size:2.6458px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.26458"
-       x="16.035"
-       y="145.75"
+       x="14.596"
+       y="145.59"
        id="text1083"><tspan
          sodipodi:role="line"
          id="tspan1081"
          style="stroke-width:0.26458"
-         x="16.035"
-         y="145.75">AngSum = 18, 72, 180, 252, 324, 360</tspan></text>
+         x="14.596"
+         y="145.59">AngSum = 18, 72, 180, 252, 324, 360</tspan></text>
     <path
        style="fill:none;stroke:#dc8add;stroke-width:0.399995"
        d="M 39.729,110.54 49,82"
@@ -115,36 +115,48 @@
     <text
        xml:space="preserve"
        style="font-size:2.6458px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.26458"
-       x="16.035"
-       y="151.75"
+       x="15.635"
+       y="150.15"
        id="text1211"><tspan
          sodipodi:role="line"
          id="tspan1209"
          style="stroke-width:0.26458"
-         x="16.035"
-         y="151.75">AngHalf = 9,27,54,36,36,18</tspan></text>
-    <path
-       style="fill:none;stroke:#26a269;stroke-width:0.399995"
-       d="M 39.999,110 H 70"
-       id="path1315" />
+         x="15.635"
+         y="150.15">AngHalf = 9,27,54,36,36,18</tspan></text>
     <path
        style="fill:none;stroke:#26a269;stroke-width:0.399995"
        d="M 41,110 70.631,105.3"
        id="path1335" />
-    <path
-       style="fill:none;stroke:#26a269;stroke-width:0.399995"
-       d="M 40,110 64.271,92.36"
-       id="path1337" />
     <text
        xml:space="preserve"
        style="font-size:2.6458px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.26458"
-       x="16.035"
-       y="157.75"
+       x="15.235"
+       y="154.63"
        id="text2199"><tspan
          sodipodi:role="line"
          id="tspan2197"
          style="stroke-width:0.26458"
-         x="16.035"
-         y="157.75">AngCenter = 9, 45, 126, 216, 288, 342</tspan></text>
+         x="15.235"
+         y="154.63">AngCenter = 9, 45, 126, 216, 288, 342</tspan></text>
+    <path
+       style="fill:none;stroke:#26a269;stroke-width:0.399995"
+       d="M 40,110 61.213,88.783"
+       id="path4174" />
+    <path
+       style="fill:none;stroke:#26a269;stroke-width:0.399995"
+       d="M 41,111 23.365,86.724"
+       id="path4176" />
+    <path
+       style="fill:none;stroke:#26a269;stroke-width:0.399995"
+       d="M 40,110 15.729,127.64"
+       id="path4178" />
+    <path
+       style="fill:none;stroke:#26a269;stroke-width:0.399995"
+       d="M 40,110 49.271,138.54"
+       id="path4180" />
+    <path
+       style="fill:none;stroke:#26a269;stroke-width:0.399995"
+       d="M 39.467,109.72 68,119"
+       id="path4182" />
   </g>
 </svg>

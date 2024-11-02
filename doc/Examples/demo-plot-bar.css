@@ -24,7 +24,17 @@
  border-spacing: 20px 10px;
 }
 
-.wedge:hover {
- /* color: cyan; */
- fill: cyan;
+
+.bar:hover {
+ fill: black;
+ animation: shake 0.1s linear infinite alternate;
+}
+
+@keyframes shake {
+ 0% {
+  translate: -2px 0px;
+ }
+ 100% {
+  translate: 2px 0px;
+ }
 }
