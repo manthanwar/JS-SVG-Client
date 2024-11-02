@@ -341,4 +341,43 @@ data.footerInnerHtml = `
 <div>&copy; Copyright 2024 by Manthanwar. All Rights Reserved.</div>
 `;
 
+data.plotContainerInnerHTML = `
+ <div id="plot-Container">
+ <div><main><h1>Pie Basic</h1><article id="pie-basic"></article></main></div>
+ <div><main><h1>Pie Wedge</h1><article id="pie-wedge"></article></main></div>
+ <div><main><h1>Pie Donut</h1><article id="pie-donut"></article></main></div>
+ <div><main><h1>Pie 2 Pie</h1><article id="pie-2-pie"></article></main></div>
+ <div><main><h1>Pie 2 Bar</h1><article id="pie-2-bar"></article></main></div>
+
+ <div><main><h1>Bar axis x</h1><article id="bar-axisX"></article></main></div>
+ <div><main><h1>Bar axis y</h1><article id="bar-axisY"></article></main></div>
+ <div><main><h1>Bar club x</h1><article id="bar-clubX"></article></main></div>
+ <div><main><h1>Bar club y</h1><article id="bar-clubY"></article></main></div>
+ <div><main><h1>Bar heap x</h1><article id="bar-heapX"></article></main></div>
+ <div><main><h1>Bar heap y</h1><article id="bar-heapY"></article></main></div>
+ <div><main><h1>Bar cent x</h1><article id="bar-centX"></article></main></div>
+ <div><main><h1>Bar cent y</h1><article id="bar-centY"></article></main></div>
+
+<div><main><h1>Plot Scatter </h1><article id="plt-scats"></article></main></div>
+<div><main><h1>Plot Lines   </h1><article id="plt-lines"></article></main></div>
+<div><main><h1>Plot Steps   </h1><article id="plt-steps"></article></main></div>
+<div><main><h1>Plot Areas   </h1><article id="plt-areas"></article></main></div>
+<div><main><h1>Time Series  </h1><article id="plt-times"></article></main></div>
+<div><main><h1>Bubble Chart </h1><article id="plt-blobs"></article></main></div>
+<div><main><h1>Spline Chart </h1><article id="plt-curve"></article></main></div>
+<div><main><h1>Error Chart  </h1><article id="plt-error"></article></main></div>
+<div><main><h1>Box & Whisker</h1><article id="plt-whisk"></article></main></div>
+
+<div><main><h1>Polar Lines  </h1><article id="pol-lines"></article></main></div>
+<div><main><h1>Polar Scatter</h1><article id="pol-scats"></article></main></div>
+<div><main><h1>Polar Bar-R  </h1><article id="pol-barsR"></article></main></div>
+<div><main><h1>Radar Chart  </h1><article id="pol-radar"></article></main></div>
+
+<div><main><h1>Gauge Round  </h1><article id="gag-round"></article></main></div>
+<div><main><h1>Gauge Bar-x  </h1><article id="gag-barsX"></article></main></div>
+<div><main><h1>Gauge Bar-y  </h1><article id="gag-barsY"></article></main></div>
+
+</div>
+`;
+
 export default data;
