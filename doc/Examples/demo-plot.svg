@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="false"
      inkscape:document-units="mm"
      showgrid="true"
-     inkscape:zoom="3.3103"
-     inkscape:cx="140.02"
-     inkscape:cy="466.12"
+     inkscape:zoom="1.5964"
+     inkscape:cx="478.89"
+     inkscape:cy="489.85"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -52,111 +52,153 @@
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#deddda;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.131865;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
        id="path34"
        cx="40"
-       cy="110"
+       cy="30"
        rx="20"
        ry="19.999" />
     <text
        xml:space="preserve"
        style="font-size:2.6458px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.26458"
        x="16.035"
-       y="100.75"
+       y="20.75"
        id="text602"><tspan
          sodipodi:role="line"
          id="tspan600"
          style="stroke-width:0.26458"
          x="16.035"
-         y="100.75">Amit</tspan></text>
+         y="20.75">Amit</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.6458px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.26458"
        x="16.035"
-       y="140.75"
+       y="60.75"
        id="text788"><tspan
          sodipodi:role="line"
          id="tspan786"
          style="stroke-width:0.26458"
          x="16.035"
-         y="140.75">Ang = 18, 54, 108, 72, 72, 36</tspan></text>
+         y="60.75">Ang = 18, 54, 108, 72, 72, 36</tspan></text>
     <path
        style="fill:none;stroke:#dc8add;stroke-width:0.399995"
-       d="M 39.999,110 H 70"
+       d="M 39.999,30 H 70"
        id="path925" />
     <path
        style="fill:none;stroke:#dc8add;stroke-width:0.399995"
-       d="M 40,110 68.533,100.72"
+       d="M 40,30 68.533,20.72"
        id="path1079" />
     <text
        xml:space="preserve"
        style="font-size:2.6458px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.26458"
        x="14.596"
-       y="145.59"
+       y="65.59"
        id="text1083"><tspan
          sodipodi:role="line"
          id="tspan1081"
          style="stroke-width:0.26458"
          x="14.596"
-         y="145.59">AngSum = 18, 72, 180, 252, 324, 360</tspan></text>
+         y="65.59">AngSum = 18, 72, 180, 252, 324, 360</tspan></text>
     <path
        style="fill:none;stroke:#dc8add;stroke-width:0.399995"
-       d="M 39.729,110.54 49,82"
+       d="M 39.729,30.54 49,2"
        id="path1201" />
     <path
        style="fill:none;stroke:#dc8add;stroke-width:0.399995"
-       d="M 40,110 H 9.999"
+       d="M 40,30 H 9.999"
        id="path1203" />
     <path
        style="fill:none;stroke:#dc8add;stroke-width:0.399995"
-       d="M 40,110 30.729,138.54"
+       d="M 40,30 30.729,58.54"
        id="path1205" />
     <path
        style="fill:none;stroke:#dc8add;stroke-width:0.399995"
-       d="M 40,110 64.271,127.64"
+       d="M 40,30 64.271,47.64"
        id="path1207" />
     <text
        xml:space="preserve"
        style="font-size:2.6458px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.26458"
        x="15.635"
-       y="150.15"
+       y="70.15"
        id="text1211"><tspan
          sodipodi:role="line"
          id="tspan1209"
          style="stroke-width:0.26458"
          x="15.635"
-         y="150.15">AngHalf = 9,27,54,36,36,18</tspan></text>
+         y="70.15">AngHalf = 9,27,54,36,36,18</tspan></text>
     <path
        style="fill:none;stroke:#26a269;stroke-width:0.399995"
-       d="M 41,110 70.631,105.3"
+       d="M 41,30 70.631,25.3"
        id="path1335" />
     <text
        xml:space="preserve"
        style="font-size:2.6458px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.26458"
        x="15.235"
-       y="154.63"
+       y="74.63"
        id="text2199"><tspan
          sodipodi:role="line"
          id="tspan2197"
          style="stroke-width:0.26458"
          x="15.235"
-         y="154.63">AngCenter = 9, 45, 126, 216, 288, 342</tspan></text>
+         y="74.63">AngCenter = 9, 45, 126, 216, 288, 342</tspan></text>
     <path
        style="fill:none;stroke:#26a269;stroke-width:0.399995"
-       d="M 40,110 61.213,88.783"
+       d="M 40,30 61.213,8.783"
        id="path4174" />
     <path
        style="fill:none;stroke:#26a269;stroke-width:0.399995"
-       d="M 41,111 23.365,86.724"
+       d="M 41,31 23.365,6.724"
        id="path4176" />
     <path
        style="fill:none;stroke:#26a269;stroke-width:0.399995"
-       d="M 40,110 15.729,127.64"
+       d="M 40,30 15.729,47.64"
        id="path4178" />
     <path
        style="fill:none;stroke:#26a269;stroke-width:0.399995"
-       d="M 40,110 49.271,138.54"
+       d="M 40,30 49.271,58.54"
        id="path4180" />
     <path
        style="fill:none;stroke:#26a269;stroke-width:0.399995"
-       d="M 39.467,109.72 68,119"
+       d="M 39.467,29.72 68,39"
        id="path4182" />
+    <rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#1a5fb4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.105999;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="rect137"
+       width="6.0009"
+       height="9.9981"
+       x="27"
+       y="140" />
+    <rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#1a5fb4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.105999;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="rect219"
+       width="6.0009"
+       height="29.998"
+       x="37"
+       y="120" />
+    <rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#1a5fb4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.105999;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="rect221"
+       width="6.0009"
+       height="59.998"
+       x="47"
+       y="90" />
+    <rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#1a5fb4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.106;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="rect223"
+       width="6.0009"
+       height="39.998"
+       x="57"
+       y="110" />
+    <rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#1a5fb4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.106;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="rect225"
+       width="6.0009"
+       height="39.998"
+       x="67"
+       y="110" />
+    <rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#1a5fb4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.105999;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="rect227"
+       width="6.0009"
+       height="19.998"
+       x="77"
+       y="130" />
   </g>
 </svg>

@@ -29,12 +29,10 @@ window.onload = (event) => {
   divMainBox: {
    containerId: 'main',
    id: 'divMainBox'
-  },
-  // gridOn: false,
-  numB: 3,
-  clrB: 'pink',
-  clrH: 'maroon'
+  }
  };
+
+ // data.colors = ['red', 'green', 'blue', 'teal', 'purple', 'maroon'];
 
  data.data = `Sport,Votes
 Polo,5
@@ -42,6 +40,7 @@ Hockey,15
 Cricket,30
 Football,20
 Basketball,20
+Volleyball,10
 `;
 
  data.title = 'Survey of favorite sport';
