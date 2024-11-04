@@ -64,8 +64,8 @@ data.navMenu = [
     href: 'demo-plot-lines.html'
    },
    {
-    link: 'Stair Chart',
-    page: 'Stair Chart',
+    link: 'Stair Plot',
+    page: 'Stair Plot',
     href: 'demo-plot-steps.html'
    },
    {
