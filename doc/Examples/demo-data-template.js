@@ -81,7 +81,7 @@ data.navMenu = [
    {
     link: 'Bubble Chart',
     page: 'Bubble Chart',
-    href: 'demo-plot-blobs.html'
+    href: 'demo-plot-bubble.html'
    }
   ]
  },

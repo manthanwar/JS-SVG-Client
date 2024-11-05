@@ -1,6 +1,6 @@
 // =============================================================================
-// File Name  : Scatter.js
-// Description: JS Class to draw Scatter Chart using JS-SVG-Client
+// File Name  : Bubble.js
+// Description: JS Class to draw Bubble Chart using JS-SVG-Client
 // -----------------------------------------------------------------------------
 // Author     : Amit Manohar Manthanwar
 // Mailer     : manthanwar@hotmail.com
@@ -21,7 +21,7 @@
 import * as mySvg from '../../../dist/svg.min.js';
 import Color from './Color.js';
 
-export default class Scatter {
+export default class Bubble {
  constructor(data) {
   this.init(data);
 
@@ -140,14 +140,14 @@ export default class Scatter {
   };
 
   this.data.grid.padding = {
-   left: 40,
+   left: 50,
    right: 10,
    top: 30,
    bottom: 40
   };
 
   this.data.grid.title = {
-   text: 'Scatter Plot',
+   text: 'Bubble Chart',
    x: '50%',
    y: '15',
    dx: '20',
@@ -197,8 +197,8 @@ export default class Scatter {
 
   this.data.hasHeader = true;
   this.merge(this.data, data);
-  this.createColors();
   this.data.dataObj = this.createDataObj();
+  this.createColors();
  } //init
 
  merge(current, updates) {
@@ -213,8 +213,25 @@ export default class Scatter {
  createColors() {
   if (!this.data.colors) {
    const color = new Color();
-   this.data.colors = color.getDistinct(this.data.grid.majorNumX);
+   this.data.colors = color.getDistinct(this.data.dataObj.xVal.length);
   }
+ }
+
+ /**
+  * Linear Scaling using 2 point equation of line
+  * xx = data value
+  * x1 = data minimum
+  * x2 = data maximum
+  * y1 = grid minimum
+  * y2 = grid maximum
+  * yy = data scaled
+  */
+ linearScale(x, x1, x2, y1, y2) {
+  return ((x - x1) * (y2 - y1)) / (x2 - x1) + y1;
+ }
+
+ linearScaleArray(dataArray, x1, x2, y1, y2) {
+  return dataArray.map((x) => this.linearScale(x, x1, x2, y1, y2));
  }
 
  createDataObj() {
@@ -226,48 +243,54 @@ export default class Scatter {
 
   const obj = {};
   obj.head = []; // data header row
-  obj.xVal = []; // Key = x axis values
-  obj.yVal = []; // Val = y axis values
-  obj.xSca = []; // Values scaled to max val of grid x
-  obj.ySca = []; // Values scaled to max val of grid y
-  obj.xPer = []; // Percentage values of given data x
-  obj.yPer = []; // Percentage values of given data y
-  obj.xMin = 0; // minimum value of given data x
-  obj.yMin = 0; // minimum value of given data y
-  obj.xMax = 0; // maximum value of given data x
-  obj.yMax = 0; // maximum value of given data y
-  // obj.xSum = 0; // sum of values of given data x
-  // obj.ySum = 0; // sum of values of given data y
-  // obj.rows = 0; // number of rows of data
-  // obj.cols = 0; // number of columns of data
-  obj.xFac = 0; // x axis scaling factor
-  obj.yFac = 0; // y axis scaling factor
+  obj.xVal = []; // val = x column values
+  obj.yVal = []; // Val = y column values
+  obj.zVal = []; // Val = z column values
+  obj.aVal = []; // Val = a column values
+  obj.bVal = []; // Val = b column values
+  obj.xSca = []; // x Values linearly scaled
+  obj.ySca = []; // y Values linearly scaled
+  obj.zSca = []; // z Values linearly scaled
 
   if (hasHead) {
-   obj.head = dataArr[0].split(',');
+   obj.head = dataArr[0].split(',').map((x) => x.trim());
    dataArr.splice(0, 1);
-  } else obj.head = ['items', 'values'];
+  } else obj.head = ['x', 'y', 'z', 'a', 'b'];
 
   for (const val of dataArr) {
    const valArr = val.split(',');
    obj.xVal.push(parseFloat(valArr[0]));
    obj.yVal.push(parseFloat(valArr[1]));
+   obj.zVal.push(parseFloat(valArr[2]));
+   obj.aVal.push(valArr[3].trim());
+   obj.bVal.push(valArr[4].trim());
   }
 
-  // obj.rows = obj.xVal.length;
-  // obj.cols = obj.head.length;
-  obj.xMin = Math.min(...obj.xVal);
-  obj.xMax = Math.max(...obj.xVal);
-  obj.yMin = Math.min(...obj.yVal);
-  obj.yMax = Math.max(...obj.yVal);
-  obj.xFac = Math.ceil(obj.xMax / this.data.grid.majorNumX);
-  obj.yFac = Math.ceil(obj.yMax / this.data.grid.majorNumY);
-  obj.xSca = obj.xVal.map((x) => x / obj.xFac);
-  obj.ySca = obj.yVal.map((y) => y / obj.yFac);
-  // obj.xSum = obj.xVal.reduce((a, b) => a + b, 0);
-  // obj.ySum = obj.yVal.reduce((a, b) => a + b, 0);
-  // obj.xPer = obj.xVal.map((x) => (x / obj.xSum) * 100);
-  // obj.yPer = obj.yVal.map((y) => (y / obj.ySum) * 100);
+  const xMinG = 1; // minimum of x grid
+  const yMinG = 1; // minimum of y grid
+  const xMaxG = this.data.grid.majorNumX - 1; // maximum x grid
+  const yMaxG = this.data.grid.majorNumY - 1; // maximum of y grid
+  const zMinB = this.data.bubbleMin; // minimum bubble size
+  const zMaxB = this.data.bubbleMax; // maximum bubble size
+  const xMin = Math.floor(Math.min(...obj.xVal));
+  const xMax = Math.ceil(Math.max(...obj.xVal));
+  const yMin = Math.floor(Math.min(...obj.yVal));
+  const yMax = Math.ceil(Math.max(...obj.yVal));
+  const zMin = Math.floor(Math.min(...obj.zVal));
+  const zMax = Math.ceil(Math.max(...obj.zVal));
+  const xDel = (xMax - xMin) / (xMaxG - 1);
+  const yDel = (yMax - yMin) / (yMaxG - 1);
+  const xDelN = Math.ceil(xDel);
+  const xMaxN = xMin + xDelN * (xMaxG - 1);
+  const yDelN = Math.ceil(yDel);
+  const yMaxN = yMin + yDelN * (yMaxG - 1);
+
+  obj.xSca = this.linearScaleArray(obj.xVal, xMin, xMaxN, xMinG, xMaxG);
+  obj.ySca = this.linearScaleArray(obj.yVal, yMin, yMaxN, yMinG, yMaxG);
+  obj.zSca = this.linearScaleArray(obj.zVal, zMin, zMax, zMinB, zMaxB);
+  obj.xLab = new Array(xMaxG + 2).fill(0).map((x, i) => xMin + (i - 1) * xDelN);
+  obj.yLab = new Array(yMaxG + 2).fill(0).map((x, i) => yMin + (i - 1) * yDelN);
+
   return obj;
  }
 
@@ -342,24 +365,30 @@ export default class Scatter {
   this.obj.circ = []; // data points drawn as circles
   const obj = this.data.dataObj;
   for (let i = 0; i < obj.xSca.length; i++) {
-   const circ = this.scalePoints([obj.xSca[i], obj.ySca[i]]);
-   this.obj.circ[i] = this.drawCircles(circ, i, this.data.colors[i]);
-   this.showValueOnHover(this.obj.circ[i], [obj.xVal[i], obj.yVal[i]]);
+   const cxy = this.scalePoints([obj.xSca[i], obj.ySca[i]]);
+   const rrr = obj.zSca[i];
+   this.obj.circ[i] = this.drawCircles(cxy, rrr, i, this.data.colors[i]);
+   const data = [obj.bVal[i], obj.xVal[i], obj.yVal[i], obj.zVal[i]];
+   this.showValueOnHover(this.obj.circ[i], data, this.data.colors[i]);
   }
  }
 
- showValueOnHover(element, data) {
+ showValueOnHover(element, data, clr) {
   const div = document.createElement('div');
   document.body.appendChild(div);
   div.style.display = 'none';
-  div.id = 'divShowValue';
+  div.id = element.id + '-divShowValue';
+  div.classList.add('divShowValue');
 
-  div.innerHTML = 'x = ' + data[0].toFixed(2) + '<br>';
-  div.innerHTML += 'y = ' + data[1].toFixed(2);
+  div.innerHTML = `<h4 style="margin:0">${data[0]}</h4><table >
+  <tr><td>Fat intake:</td>   <td>${data[1].toFixed(2)}</td><td>g</td></tr>
+  <tr><td>Sugar intake:</td> <td>${data[2].toFixed(2)}</td><td>g</td></tr>
+  <tr><td>Obesity:</td>      <td>${data[3].toFixed(2)}</td><td>%</td></tr>
+  </table>`;
 
   element.obj.onmouseover = (e) => {
    const left = e.clientX + 15 + 'px';
-   const top = e.clientY + 15 + 'px';
+   const top = e.clientY + 120 + 'px';
    div.style.left = left;
    div.style.top = top;
    div.style.display = 'block';
@@ -368,22 +397,23 @@ export default class Scatter {
 
   element.obj.onmouseout = (e) => {
    div.style.display = 'none';
-   element.obj.style.fill = 'pink';
+   element.obj.style.fill = clr;
   };
  }
 
- drawCircles(cxy, id, clr) {
+ drawCircles(cxy, rrr, id, clr) {
   const data = {};
   data.containerId = this.data.idSvg;
   data.id = data.containerId + '-circle-' + id;
   data.transform = this.transform();
   data.cx = cxy[0];
   data.cy = cxy[1];
-  data.r = this.data.dotSize;
+  data.r = rrr;
   data.stroke = 'blue';
   data.strokeWidth = 2;
-  data.fill = 'pink';
-  data.fillOpacity = '1';
+  // data.fill = 'pink';
+  data.fill = clr;
+  data.fillOpacity = '0.5';
   data.strokeOpacity = '1';
   data.class = 'bar';
   const eye = new mySvg.Circle(data);
@@ -391,18 +421,16 @@ export default class Scatter {
  }
 
  drawLabelAxisX() {
-  this.obj.xLab = []; // y axis labels
-  for (let i = 0; i < this.data.grid.majorNumX + 1 - this.data.xOff; i++) {
-   const xVal = (i * this.data.dataObj.xFac).toFixed();
-   const data = this.scalePoints([i, 0]);
-   this.obj.xLab[i] = this.drawTextLabX(data, xVal, i);
-  }
+  this.obj.xLab = []; // x axis labels
+  this.data.dataObj.xLab.forEach((val, idx) => {
+   this.obj.xLab[idx] = this.drawTextLabX(this.scalePoints([idx, 0]), val, idx);
+  });
  }
 
  drawLabelAxisY() {
   this.obj.yLab = []; // y axis labels
   for (let i = this.data.grid.majorNumY; i > -1; i--) {
-   const yVal = (i * this.data.dataObj.yFac).toFixed();
+   const yVal = this.data.dataObj.yLab[i];
    const data = this.scalePoints([0, this.data.grid.majorNumY + 1 - i]);
    this.obj.yLab[i] = this.drawTextLabY(data, yVal, i);
   }
@@ -430,8 +458,8 @@ export default class Scatter {
  // text label y axis
  drawTextLabY(xy, text, id) {
   const data = {};
-  data.x = xy[0] + 25;
-  data.y = xy[1] - this.data.yLabOff - 12;
+  data.x = xy[0] + 35;
+  data.y = xy[1] - this.data.yLabOff + 6;
   data.text = text;
   data.fontFamily = 'inherit';
   data.fontSize = '16';

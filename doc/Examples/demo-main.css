@@ -131,7 +131,7 @@ nav {
  width: 300px;
  top: 52px;
  right: -400px;
- /* height: 700px; */
+ max-height: 700px;
  padding: 10px;
  z-index: 999;
  overflow: scroll;
@@ -186,9 +186,6 @@ nav a:hover {
  border-radius: 0 20px 20px 0;
  color: white;
  /* padding-left: 20px; */
-}
-
-a:hover::before {
 }
 
 a,

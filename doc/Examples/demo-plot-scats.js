@@ -134,8 +134,6 @@ window.onload = (event) => {
  data.notes = "Anscombe's quartet";
 
  const main = document.getElementsByTagName('main')[0];
- // main.innerHTML = '<h1 style="text-align:center">' + data.title + '</h1>';
- // main.innerHTML += '<h2 style="text-align:center">' + data.title + '</h2>';
  main.innerHTML += '<h3 style="text-align:center">' + data.title + '</h3>';
 
  const bar = new Scatter(data);

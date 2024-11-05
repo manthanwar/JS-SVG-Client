@@ -1,0 +1,66 @@
+#divMainBox {
+ display: flex;
+ flex-direction: row;
+ /* justify-content: space-evenly; */
+ /* justify-content: flex-start; */
+ justify-content: center;
+ /* align-items: flex-start; */
+ align-items: center;
+ margin: auto;
+ margin-top: 10px;
+ padding: 10px;
+ /* padding-left: 100px; */
+ border: 2px solid red;
+ border-radius: 10px;
+}
+
+.legend {
+ width: 20px;
+ height: 20px;
+}
+
+#legend-key {
+ margin-left: -20px;
+ border-spacing: 20px 10px;
+}
+
+.bar:hover {
+ fill: black;
+ animation: shake 0.1s linear infinite alternate;
+}
+
+@keyframes shake {
+ 0% {
+  translate: -4px 0px;
+ }
+ 100% {
+  translate: 4px 0px;
+ }
+}
+
+.dataPoint {
+ fill: cyan;
+}
+
+.divShowValue {
+ position: absolute;
+ z-index: 999;
+ padding: 10px 20px;
+ font-family: Arial, Helvetica, sans-serif;
+ /* font-size: 24px; */
+ line-height: 30px;
+ color: white;
+ background-color: teal;
+ /* border-radius: 0 0 20px 0; */
+}
+
+.divShowValue table {
+ /* background-color: red; */
+ border-spacing: 20px 0px;
+}
+
+.divShowValue table td + td {
+    margin-left: 40px;
+ /* background-color: yellow; */
+ text-align: right;
+}
