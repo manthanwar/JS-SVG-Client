@@ -71,9 +71,10 @@ window.onload = (event) => {
 80.8	,	 91.5	,	15.80	,	FI	,	Finland
 86.5	,	102.9	,	14.70	,	DE	,	Germany
 95.0	,	 95.0	,	13.80	,	BE	,	Belgium
+65.0	,	 95.0	,	3.80	,	BE	,	Belgium
 `;
 
- data.title = `<a href="https://www.highcharts.com/demo/highcharts/bubble" target="_blank">Daily Sugar and fat intake per country</a> <a href="https://www.everviz.com/chart-examples/bubble-and-scatter-plot-charts/sugar-and-fat-intake-per-country-bubble-chart/" target="_blank">also see</a>`;
+ data.title = `<a href="https://www.highcharts.com/demo/highcharts/bubble" target="_blank">Daily Sugar and fat intake per country</a> & <a href="https://www.everviz.com/chart-examples/bubble-and-scatter-plot-charts/sugar-and-fat-intake-per-country-bubble-chart/" target="_blank">also see</a>`;
 
  data.notes = 'Daily Sugar and fat intake per country';
 

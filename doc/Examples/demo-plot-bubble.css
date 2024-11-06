@@ -60,7 +60,7 @@
 }
 
 .divShowValue table td + td {
-    margin-left: 40px;
+ margin-left: 40px;
  /* background-color: yellow; */
  text-align: right;
 }

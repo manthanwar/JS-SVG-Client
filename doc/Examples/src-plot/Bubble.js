@@ -251,6 +251,8 @@ export default class Bubble {
   obj.xSca = []; // x Values linearly scaled
   obj.ySca = []; // y Values linearly scaled
   obj.zSca = []; // z Values linearly scaled
+  obj.sLim = [65, 50]; // safe limit [fat, sugar] intake in gram
+  obj.sSca = []; // scaled safe limit [fat, sugar] intake in gram
 
   if (hasHead) {
    obj.head = dataArr[0].split(',').map((x) => x.trim());
@@ -285,6 +287,10 @@ export default class Bubble {
   const yDelN = Math.ceil(yDel);
   const yMaxN = yMin + yDelN * (yMaxG - 1);
 
+  const xLim = this.linearScale(obj.sLim[0], xMin, xMaxN, xMinG, xMaxG);
+  const yLim = this.linearScale(obj.sLim[1], yMin, yMaxN, yMinG, yMaxG);
+
+  obj.sSca = [xLim, yLim];
   obj.xSca = this.linearScaleArray(obj.xVal, xMin, xMaxN, xMinG, xMaxG);
   obj.ySca = this.linearScaleArray(obj.yVal, yMin, yMaxN, yMinG, yMaxG);
   obj.zSca = this.linearScaleArray(obj.zVal, zMin, zMax, zMinB, zMaxB);
@@ -356,6 +362,7 @@ export default class Bubble {
  }
 
  drawObject() {
+  this.drawLineSafety();
   this.drawDataPoints();
   this.drawLabelAxisX();
   this.drawLabelAxisY();
@@ -367,41 +374,67 @@ export default class Bubble {
   for (let i = 0; i < obj.xSca.length; i++) {
    const cxy = this.scalePoints([obj.xSca[i], obj.ySca[i]]);
    const rrr = obj.zSca[i];
-   this.obj.circ[i] = this.drawCircles(cxy, rrr, i, this.data.colors[i]);
-   const data = [obj.bVal[i], obj.xVal[i], obj.yVal[i], obj.zVal[i]];
-   this.showValueOnHover(this.obj.circ[i], data, this.data.colors[i]);
+   const dat = [obj.bVal[i], obj.xVal[i], obj.yVal[i], obj.zVal[i]];
+   const str = `<h4 style="margin:0">${dat[0]}</h4><table >
+  <tr><td>Fat intake:</td>   <td>${dat[1].toFixed(2)}</td><td>g</td></tr>
+  <tr><td>Sugar intake:</td> <td>${dat[2].toFixed(2)}</td><td>g</td></tr>
+  <tr><td>Obesity:</td>      <td>${dat[3].toFixed(2)}</td><td>%</td></tr>
+  </table>`;
+   this.obj.circ[i] = this.drawCircle(cxy, rrr, i, this.data.colors[i]);
+   this.eventMouseOver(this.obj.circ[i].obj, str, this.data.colors[i]);
   }
  }
 
- showValueOnHover(element, data, clr) {
+ drawLineSafety() {
+  const dataObj = this.data.dataObj;
+  const xMaxVal = this.data.grid.majorNumX;
+  const yMaxVal = this.data.grid.majorNumY;
+  const axisLim = this.scalePoints([0, 0, xMaxVal, yMaxVal]);
+  const safeLim = this.scalePoints(dataObj.sSca);
+  const xySafeX = [safeLim[0], axisLim[1], safeLim[0], axisLim[3]];
+  const xySafeY = [axisLim[0], safeLim[1], axisLim[2], safeLim[1]];
+  const txtPosX = this.scalePoints([1.25, 1.15]);
+  const txtPosY = this.scalePoints([xMaxVal - 1.4, 2.2]);
+  const moSafeX = `limit ${dataObj.sLim[0].toFixed()} grams`;
+  const moSafeY = `limit ${dataObj.sLim[1].toFixed()} grams`;
+  const txtStrX = 'Safe fat \u2B62';
+  const txtStrY =
+   '<span style="display:inline-block; transform: scale(-1, 1) translate(-2px,-8px);">\u2B5C</span>\u2500 Safe sugar';
+  this.obj.safeLineX = this.drawLine(xySafeX, 'safeLineX', 'blue');
+  this.obj.safeLineY = this.drawLine(xySafeY, 'safeLineY', 'red');
+  this.obj.safeTextX = this.drawDivSafe(txtPosX, txtStrX, 'safeX', 'dimgray');
+  this.obj.safeTextY = this.drawDivSafe(txtPosY, txtStrY, 'safeY', 'dimgray');
+  this.eventMouseOver(this.obj.safeTextX, moSafeX, 'dimgray');
+  this.eventMouseOver(this.obj.safeTextY, moSafeY, 'dimgray');
+ }
+
+ eventMouseOver(element, data, color) {
   const div = document.createElement('div');
-  document.body.appendChild(div);
+  div.innerHTML = data;
   div.style.display = 'none';
-  div.id = element.id + '-divShowValue';
   div.classList.add('divShowValue');
+  document.body.appendChild(div);
 
-  div.innerHTML = `<h4 style="margin:0">${data[0]}</h4><table >
-  <tr><td>Fat intake:</td>   <td>${data[1].toFixed(2)}</td><td>g</td></tr>
-  <tr><td>Sugar intake:</td> <td>${data[2].toFixed(2)}</td><td>g</td></tr>
-  <tr><td>Obesity:</td>      <td>${data[3].toFixed(2)}</td><td>%</td></tr>
-  </table>`;
-
-  element.obj.onmouseover = (e) => {
-   const left = e.clientX + 15 + 'px';
-   const top = e.clientY + 120 + 'px';
+  element.onmouseover = (e) => {
+   // const left = e.clientX + 15 + 'px';
+   // const top = e.clientY + 120 + 'px';
+   const left = e.pageX + 10 + 'px';
+   const top = e.pageY + 10 + 'px';
    div.style.left = left;
    div.style.top = top;
    div.style.display = 'block';
-   element.obj.style.fill = 'red';
+   element.style.fill = 'red';
+   element.style.color = 'teal';
   };
 
-  element.obj.onmouseout = (e) => {
+  element.onmouseout = (e) => {
    div.style.display = 'none';
-   element.obj.style.fill = clr;
+   element.style.fill = color;
+   element.style.color = color;
   };
  }
 
- drawCircles(cxy, rrr, id, clr) {
+ drawCircle(cxy, rrr, id, clr) {
   const data = {};
   data.containerId = this.data.idSvg;
   data.id = data.containerId + '-circle-' + id;
@@ -418,6 +451,27 @@ export default class Bubble {
   data.class = 'bar';
   const eye = new mySvg.Circle(data);
   return eye;
+ }
+
+ drawLine(xy, id, clr) {
+  const data = {};
+  data.containerId = this.data.idSvg;
+  data.id = data.containerId + '-line-' + id;
+  data.transform = this.transform();
+  data.x1 = xy[0];
+  data.y1 = xy[1];
+  data.x2 = xy[2];
+  data.y2 = xy[3];
+  data.stroke = clr;
+  data.strokeWidth = 4;
+  data.strokeOpacity = '1';
+  data.strokeLinecap = 'round'; // butt (default) | round | square
+  data.strokeDasharray = '0, 10';
+  // data.strokeLinejoin = ''; // arcs| bevel|miter (default)|miter-clip|round
+  data.fill = 'none';
+  data.fillOpacity = '1';
+  data.class = '';
+  return new mySvg.Line(data);
  }
 
  drawLabelAxisX() {
@@ -472,6 +526,19 @@ export default class Bubble {
   data.strokeWidth = '0';
   data.class = '';
   return new mySvg.Text(data);
+ }
+
+ drawDivSafe(xy, text, id, clr) {
+  const div = document.createElement('div');
+  this.obj.divMainObj.obj.appendChild(div);
+  div.id = this.data.divMainObj.id + '-div-txt-' + id;
+  div.style.color = clr;
+  div.style.textAlign = 'center';
+  div.style.position = 'absolute';
+  div.style.left = xy[0] + 'px';
+  div.style.top = this.data.height + this.data.grid.padding.top - xy[1] + 'px';
+  div.innerHTML = text;
+  return div;
  }
 
  drawOptions() {}
