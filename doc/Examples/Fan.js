@@ -18,7 +18,8 @@
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 
-import * as mySvg from '../../dist/svg.min.js';
+// import * as mySvg from '../../dist/svg.min.js';
+import * as mySvg from './svg.min.js';
 
 export default class Fan {
  constructor(data) {
@@ -28,8 +29,11 @@ export default class Fan {
   this.obj = {};
   this.obj.divMainBox = this.divMainBox();
   this.obj.divMainObj = this.divMainObj();
-  this.obj.divOptions = this.divOptions();
   this.obj.divMainSvg = this.divMainSvg();
+
+  if (this.data.optionsOn) {
+   this.obj.divOptions = this.divOptions();
+  }
 
   if (this.data.gridOn) {
    this.obj.grid = this.grid();
@@ -58,6 +62,8 @@ export default class Fan {
   data.valB = 3.5; // blade curve 2 value
   data.clrB = 'pink'; // blade fill color
   data.clrH = 'maroon'; // housing fill color
+  data.gridOn = true;
+  data.optionsOn = true;
 
   data.divMainBox = {
    containerId: 'main',
@@ -97,7 +103,6 @@ export default class Fan {
    style: 'border: 0px solid blue; padding:10px; margin:-10px;'
   };
 
-  data.gridOn = true;
   data.grid = {
    containerId: data.divMainSvg.id,
    minorNumX: 5,

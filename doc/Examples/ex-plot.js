@@ -1,4 +1,5 @@
-import * as mySvg from '../../dist/svg.min.js';
+// import * as mySvg from '../../dist/svg.min.js';
+import * as mySvg from './svg.min.js';
 import plotData from './ex-plot-data.js';
 
 window.onload = (event) => {
@@ -146,7 +147,7 @@ function linearRegression() {
  console.log('rSq           = ' + rSq);
  console.log('normResidual  = ' + normResidual);
  console.log('rmse          = ' + rmse);
- console.log('tval          = ', ttt)
+ console.log('tval          = ', ttt);
 }
 
 function getMeanStdDev(array) {

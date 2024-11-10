@@ -1,4 +1,5 @@
-import * as mySvg from '../../dist/svg.min.js';
+// import * as mySvg from '../../dist/svg.min.js';
+import * as mySvg from './svg.min.js';
 
 window.onload = (event) => {
  createDiv();

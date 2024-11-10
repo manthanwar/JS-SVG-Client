@@ -17,8 +17,8 @@
 // 01-Nov-2024   | AMM | Initial Version
 // --------------+---------+----------------------------------------------------
 // =============================================================================
-
-import * as mySvg from '../../../dist/svg.min.js';
+import * as mySvg from './svg.min.js';
+// import * as mySvg from '../../../dist/svg.min.js';
 
 export default class Pie {
  constructor(data) {

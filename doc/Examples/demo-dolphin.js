@@ -18,7 +18,9 @@
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 
-import * as mySvg from '../../dist/svg.min.js';
+import * as mySvg from './svg.min.js';
+
+// import * as mySvg from '../../dist/svg.min.js';
 
 export default class Dolphin {
  constructor(data) {

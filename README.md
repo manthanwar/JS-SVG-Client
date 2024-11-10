@@ -45,7 +45,7 @@ check out our detailed [documentation](doc/DOCUMENTATION.md).
 
 ## Quick Start
 
-### Example 1: Draw A Basic Circle
+### Example 1: Draw A Basic Circle `amit`
 
 In this example, we add q div tag inside the document body. Next, we add a svg tag inside the div. Finally, we draw the circle inside the svg. See the following HTML and JavaScript codes on how to achieve this.
 

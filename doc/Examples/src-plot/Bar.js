@@ -18,7 +18,8 @@
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 
-import * as mySvg from '../../../dist/svg.min.js';
+import * as mySvg from './svg.min.js';
+// import * as mySvg from '../../../dist/svg.min.js';
 
 export default class Bar {
  constructor(data) {
@@ -55,6 +56,8 @@ export default class Bar {
   data.yOff = 0; // y offset
   data.wBar = 0.6; // width of bars
   data.colors = this.colorArray();
+  data.strokes = this.strokeArray();
+  data.strokeWidth = 1;
   data.gridOn = true;
 
   data.divMainBox = {
@@ -218,6 +221,22 @@ export default class Bar {
   return colors;
  }
 
+ strokeArray() {
+  const strokes = [
+   'DarkRed',
+   'DarkGreen',
+   'DarkBlue',
+   'Purple',
+   'Olive',
+   'SaddleBrown',
+   'MediumVioletRed',
+   'Teal',
+   'Maroon',
+   'Magenta'
+  ];
+  return strokes;
+ }
+
  // get width() {
  //  return this.data.divMainObj.width;
  // }
@@ -348,10 +367,19 @@ export default class Bar {
    const dKey = this.scalePoints([i + 1, this.data.yMax]);
    const dVal = [dKey[0], rect[3]];
    const cent = obj.per[i].toFixed(0) + '%';
-   this.obj.bar[i] = this.drawBar(rect, i, this.data.colors[i]);
+   const tint = [this.data.colors[i], this.data.strokes[i]];
+
+   let clrV = this.data.colors[i];
+   if (this.data.clrV) clrV = this.data.clrV;
+
+   let clrP = 'white';
+   if (this.data.clrP) clrP = this.data.clrP;
+
+   // const clrP = this.data.clrP; // 'black'; //this.data.colors[i]
+   this.obj.bar[i] = this.drawBar(rect, i, tint);
    this.obj.key[i] = this.drawTextKey(dKey, obj.key[i], i, this.data.colors[i]);
-   this.obj.val[i] = this.drawTextVal(dVal, obj.val[i], i, this.data.colors[i]);
-   this.obj.per[i] = this.drawTextPer(dKey, cent, i, this.data.colors[i]);
+   this.obj.val[i] = this.drawTextVal(dVal, obj.val[i], i, clrV);
+   this.obj.per[i] = this.drawTextPer(dKey, cent, i, clrP);
   }
   this.drawYaxisLabel();
  } //drawObject
@@ -395,10 +423,12 @@ export default class Bar {
   data.containerId = this.data.idSvg;
   data.id = data.containerId + '-bar-' + id;
   data.transform = this.transform();
-  data.fill = clr;
-  data.fillOpacity = 0.8;
-  data.stroke = 'blue';
-  data.strokeWidth = '0';
+  data.fill = clr[0];
+  data.fillOpacity = 1;
+  data.stroke = clr[1];
+  // data.stroke = 'blue';
+  // data.strokeWidth = '0';
+  data.strokeWidth = this.data.strokeWidth;
   data.class = 'bar';
   return new mySvg.Rectangle(data);
  }
@@ -460,8 +490,8 @@ export default class Bar {
   data.id = data.containerId + '-txt-' + id;
   // data.transform = this.transform();
   // data.transform = `rotate(20,${data.x},${data.y}) translate(20,-10)`;
-  // data.fill = clr;
-  data.fill = 'white';
+  data.fill = clr;
+  // data.fill = 'white';
   data.fillOpacity = 1;
   data.stroke = 'white';
   data.strokeWidth = '0';

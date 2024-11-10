@@ -1,0 +1,33 @@
+html {
+ margin: 0px;
+ padding: 0px;
+}
+
+/* body {
+ padding: 50px;
+} */
+
+.markdown-body {
+ padding: 20px;
+ background-color: white;
+ color: black;
+}
+
+/* code {
+ padding: 2px 10px;
+ background-color: black;
+ color: white;
+} */
+
+pre {
+ background-color: green;
+ color: black;
+}
+
+pre code {
+ background-color: black;
+}
+
+pre code code {
+ background-color: red  ;
+}

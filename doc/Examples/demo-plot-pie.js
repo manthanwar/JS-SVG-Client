@@ -19,7 +19,8 @@
 // =============================================================================
 
 import dataTemplate from './demo-data-template.js';
-import Pie from './src-plot/Pie.js';
+// import Pie from './src-plot/Pie.js';
+import Pie from './Pie.js';
 
 window.onload = (event) => {
  document.title = 'SVG';

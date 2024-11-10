@@ -1,4 +1,5 @@
-import * as mySvg from '../../dist/svg.min.js';
+// import * as mySvg from '../../dist/svg.min.js';
+import * as mySvg from './svg.min.js';
 import dolphinData from './demo-dolphin-data.js';
 
 import Dolphin from './demo-dolphin.js';
@@ -8,10 +9,10 @@ window.onload = (event) => {
 
  // drawHtml();
 
-//  drawDolphin();
+ //  drawDolphin();
  drawDolphinUsingClass();
 
-//  drawFan();
+ //  drawFan();
 };
 
 function drawDolphinUsingClass() {
@@ -26,10 +27,6 @@ function drawDolphinUsingClass() {
   height: '450px',
   transform: 'scale(1.2)'
  };
-
-
-
-
 
  data.divDolphin = {
   // containerId: 'divMainBox',

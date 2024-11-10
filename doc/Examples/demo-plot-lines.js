@@ -1,6 +1,6 @@
 // =============================================================================
-// File Name  : demo-plot-bubble.js
-// Description: Draw Bubble Chart using JS-SVG-Client
+// File Name  : demo-plot-lines.js
+// Description: Draw Line Plot using JS-SVG-Client and Plot.js
 // -----------------------------------------------------------------------------
 // Author     : Amit Manohar Manthanwar
 // Mailer     : manthanwar@hotmail.com
@@ -14,13 +14,12 @@
 // =============================================================================
 // Revision Log  | Author  | Description
 // --------------+---------+----------------------------------------------------
-// 01-Nov-2024   | AMM | Initial Version
+// 06-Nov-2024   | AMM | Initial Version
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 
 import dataTemplate from './demo-data-template.js';
-// import Bubble from './src-plot/Bubble.js';
-import Bubble from './Bubble.js';
+import Line from './src-plot/Line.js';
 
 window.onload = (event) => {
  document.title = 'SVG';
@@ -82,5 +81,5 @@ window.onload = (event) => {
  const main = document.getElementsByTagName('main')[0];
  main.innerHTML += '<h3 style="text-align:center">' + data.title + '</h3>';
 
- const bubble = new Bubble(data);
+ // const line = new Line(data);
 };

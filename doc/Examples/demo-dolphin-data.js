@@ -63,9 +63,8 @@ data.bodyOneStyle = {
  fillOpacity: '0.5',
  stroke: 'blue',
  strokeWidth: '4',
- strokeOpacity: '1',
+ strokeOpacity: '1'
 };
-
 
 data.finStyle = {
  fill: 'pink',
@@ -98,6 +97,5 @@ data.bodyOne = [
 
  1.0, 2.4, 1.0, 2.6, 1.2, 3.0
 ];
-
 
 export default data;

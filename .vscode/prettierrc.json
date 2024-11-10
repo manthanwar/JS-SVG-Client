@@ -6,7 +6,6 @@
     "proseWrap": "always",
     "requireConfig": false,
     "semi": true,
-    "singleAttributePerLine": false,
     "singleQuote": true,
     "tabWidth": 1,
     "trailingComma": "none",

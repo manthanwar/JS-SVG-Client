@@ -18,9 +18,11 @@
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 
-import * as mySvg from '../../dist/svg.min.js';
+import * as mySvg from './svg.min.js';
+// // import * as mySvg from '../../dist/svg.min.js';
 import dataTemplate from './demo-data-template.js';
-import Pie from './src-plot/Pie.js';
+// import Pie from './src-plot/Pie.js';
+// import Pie from './Pie.js';
 
 window.onload = (event) => {
  document.title = 'SVG';

@@ -54,9 +54,14 @@ data.navMenu = [
     href: 'demo-plot-bar-axisY.html'
    },
    {
-    link: 'Scatter Chart',
-    page: 'Scatter Chart',
+    link: 'Scatter Plot',
+    page: 'Scatter Plot',
     href: 'demo-plot-scats.html'
+   },
+   {
+    link: 'Bubble Chart',
+    page: 'Bubble Chart',
+    href: 'demo-plot-bubble.html'
    },
    {
     link: 'Line Chart',
@@ -77,11 +82,6 @@ data.navMenu = [
     link: 'Time-Series',
     page: 'Time-Series Plot',
     href: 'demo-plot-times.html'
-   },
-   {
-    link: 'Bubble Chart',
-    page: 'Bubble Chart',
-    href: 'demo-plot-bubble.html'
    }
   ]
  },
@@ -260,7 +260,7 @@ data.renderBody = (htmlPage) => {
   document.head.appendChild(link);
  }
  link.type = 'image/svg+xml';
- link.href = 'icon.svg';
+ link.href = './icon.svg';
 
  document.body.innerHTML = data.bodyInnerHtml.replaceAll('\n', '');
 

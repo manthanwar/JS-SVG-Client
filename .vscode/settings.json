@@ -33,11 +33,15 @@
     "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         // "editor.defaultFormatter": "HookyQR.beautify",
-        "editor.formatOnType": true,
         "editor.suggest.insertMode": "replace",
         "prettier.singleAttributePerLine": false,
+        "prettier.printWidth": 380,
         "editor.tabSize": 1,
         "editor.indentSize": "tabSize",
+        "editor.formatOnSave": false,
+        "editor.formatOnPaste": false,
+        "editor.formatOnType": false,
+
     },
     "[java]": {
         "editor.defaultFormatter": "redhat.java"
@@ -101,8 +105,13 @@
     "markdown.preview.lineHeight": 1.5,
     "markdown.preview.scrollPreviewWithEditor": true,
     "markdown.preview.scrollEditorWithPreview": true,
+    // "markdown-preview-github-styles.lightTheme": "dark",
     "markdown.styles": [
-        // ".vscode/style-md.css"
+        // ".vscode/css/style-md.css",
+        // ".vscode/css/github-markdown.css",
+        // ".vscode/css/github-markdown-light.css"
+        // ".vscode/css/github-markdown-dark.css",
+        ".vscode/css/md.css",
     ],
     "[plaintext]": {
         "editor.fontSize": 14,
@@ -165,6 +174,7 @@
         "source.fixAll.tslint": "explicit",
         "source.fixAll.markdownlint": "explicit"
     },
+    "editor.mouseWheelZoom": true,
     "editor.accessibilitySupport": "off",
     "editor.renderLineHighlight": "gutter",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -751,7 +761,7 @@
     "html.format.enable": true,
     "html.format.indentHandlebars": true,
     "html.format.indentInnerHtml": true,
-    "html.format.wrapAttributes": "force-aligned",
+    // "html.format.wrapAttributes": "force-aligned",
     "html.format.wrapLineLength": 0,
     "json.format.keepLines": true,
     // "latex-workshop.message.badbox.show": false,

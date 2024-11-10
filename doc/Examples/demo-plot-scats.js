@@ -19,7 +19,8 @@
 // =============================================================================
 
 import dataTemplate from './demo-data-template.js';
-import Scatter from './src-plot/Scatter.js';
+// import Scatter from './src-plot/Scatter.js';
+import Scatter from './Scatter.js';
 
 window.onload = (event) => {
  document.title = 'SVG';
