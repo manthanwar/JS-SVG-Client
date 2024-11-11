@@ -275,6 +275,7 @@ data.renderBody = (htmlPage) => {
  data.makeNav();
 
  const subPage = data.findPage(data.navMenu, htmlPage);
+ document.title = subPage;
  if (subPage) document.getElementById('page').innerHTML = subPage;
 };
 

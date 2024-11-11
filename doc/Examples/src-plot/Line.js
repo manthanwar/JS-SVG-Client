@@ -18,7 +18,6 @@
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 import * as mySvg from './svg.min.js';
-// import * as mySvg from '../../../dist/svg.min.js';
 import Color from './Color.js';
 
 export default class Line {
@@ -43,7 +42,7 @@ export default class Line {
   }
 
   this.drawObject();
-  // this.drawLegend();
+  this.drawLegend();
  } //constructor
 
  init(data) {
@@ -59,6 +58,7 @@ export default class Line {
    style: 'border: 2px solid red; padding:10px 10px;margin-top:0px;',
    width: 1520 + 'px',
    height: 420 + 'px',
+   height: 520 + 'px',
    transform: 'scale(1)'
   };
 
@@ -68,6 +68,8 @@ export default class Line {
    style: 'border: 2px solid green; margin: 0 20px; padding:10px;',
    width: 800 + 'px',
    height: 400 + 'px',
+   width: 1000 + 'px',
+   height: 500 + 'px',
    transform: 'scale(1)'
   };
 
@@ -84,7 +86,7 @@ export default class Line {
    containerId: this.data.divMainBox.id,
    id: this.data.divMainBox.id + '-divMainKey',
    style: 'border: 0px solid cyan; margin: 0px; padding:10px;',
-   width: 200 + 'px',
+   width: 355 + 'px',
    height: 250 + 'px',
    transform: 'scale(1)'
   };
@@ -140,10 +142,10 @@ export default class Line {
   };
 
   this.data.grid.padding = {
-   left: 50,
-   right: 10,
-   top: 30,
-   bottom: 40
+   left: 60,
+   right: 30,
+   top: 10,
+   bottom: 45
   };
 
   this.data.grid.title = {
@@ -195,7 +197,21 @@ export default class Line {
    strokeOpacity: '1'
   };
 
-  this.data.hasHeader = true;
+  this.data.option = {
+   xOff: 0, // x offset
+   yOff: 0, // y offset,
+   hasHeader: true,
+   markerOn: true,
+   marker: {
+    size: Array(3).fill(6),
+    fill: ['pink', 'lime', 'cyan'],
+    stroke: ['blue', 'black', 'red'],
+    strokeWidth: [2, 4, 4],
+    strokeOpacity: [1, 1, 1],
+    fillOpacity: [0.5, 0.5, 0.5]
+   }
+  };
+
   this.merge(this.data, data);
   this.data.dataObj = this.createDataObj();
   this.createColors();
@@ -213,7 +229,7 @@ export default class Line {
  createColors() {
   if (!this.data.colors) {
    const color = new Color();
-   this.data.colors = color.getDistinct(this.data.dataObj.xVal.length);
+   this.data.colors = color.getDistinct(this.data.dataObj.matrix[0].length);
   }
  }
 
@@ -234,10 +250,10 @@ export default class Line {
   return dataArray.map((x) => this.linearScale(x, x1, x2, y1, y2));
  }
 
- createDataObj() {
+ createDataObjO() {
   const dataArr = this.data.csv.split('\n').filter((n) => n);
   const dataLen = dataArr.length;
-  const hasHead = this.data.hasHeader;
+  const hasHead = this.data.option.hasHeader;
 
   delete this.data.csv;
 
@@ -300,6 +316,88 @@ export default class Line {
   return obj;
  }
 
+ createDataObj() {
+  const dArr = this.data.csv.split('\n').filter((n) => n);
+  delete this.data.csv;
+
+  const obj = {};
+
+  if (this.data.option.hasHeader) {
+   obj.head = dArr[0].split(',').map((x) => x.trim());
+   dArr.splice(0, 1);
+  } else obj.head = dArr[0].split(',').map((v, i) => 'Column ' + i);
+
+  obj.key = obj.head.slice(1, obj.head.length);
+
+  const rows = dArr.length;
+  const cols = dArr[0].split(',').length;
+  // obj.matrix = new Array(cols).fill(0).map(() => new Array(rows).fill(0));
+  // obj.matrix = [...Array(cols)].map((_) => Array(rows));
+  obj.matrix = [...Array(cols)].map((_) => Array(rows).fill(0));
+  obj.matrixScaled = [...Array(cols)].map((_) => Array(rows).fill(0));
+
+  for (const ix in dArr) {
+   const vxArr = dArr[ix].split(',');
+   for (const iy in vxArr) obj.matrix[iy][ix] = parseFloat(vxArr[iy]);
+  }
+
+  const xGin = 0; // minimum of x grid
+  const yGin = 0; // minimum of y grid
+  const xGax = this.data.grid.majorNumX; // maximum x grid
+  const yGax = this.data.grid.majorNumY; // maximum of y grid
+
+  obj.vMin = []; // value minimum
+  obj.vMax = []; // value maximum
+  const vDel = []; // value delta
+  const vNel = []; // value delta new = vDelN
+  const vNax = []; // value max new = vMaxN
+
+  for (const row of obj.matrix) {
+   obj.vMin.push(Math.floor(Math.min(...row)));
+   obj.vMax.push(Math.ceil(Math.max(...row)));
+  }
+  if (!this.data.option.axisMin) this.data.option.axisMin = obj.vMin;
+  if (!this.data.option.axisMax) this.data.option.axisMax = obj.vMax;
+
+  let xAxisMin = obj.vMin[0];
+  let xAxisMax = obj.vMax[0];
+  let yAxisMin = Math.min(...obj.vMin.slice(1, obj.vMin.length));
+  let yAxisMax = Math.max(...obj.vMax.slice(1, obj.vMax.length));
+
+  if (this.data.option.axisLimit) {
+   xAxisMin = this.data.option.axisLimit[0];
+   xAxisMax = this.data.option.axisLimit[1];
+   yAxisMin = this.data.option.axisLimit[2];
+   yAxisMax = this.data.option.axisLimit[3];
+  }
+
+  const dx = (xAxisMax - xAxisMin) / xGax;
+  const dy = (yAxisMax - yAxisMin) / yGax;
+
+  obj.xLab = [...Array(xGax + 1)].map((_, i) => (xAxisMin + i * dx).toFixed(1));
+  obj.yLab = [...Array(yGax + 1)].map((_, i) => (yAxisMin + i * dy).toFixed(1));
+
+  obj.matrixScaled[0] = this.linearScaleArray(
+   obj.matrix[0],
+   xAxisMin,
+   xAxisMax,
+   xGin,
+   xGax
+  );
+
+  for (let i = 1; i < obj.vMin.length; i++) {
+   obj.matrixScaled[i] = this.linearScaleArray(
+    obj.matrix[i],
+    yAxisMin,
+    yAxisMax,
+    yGin,
+    yGax
+   );
+  }
+
+  return obj;
+ }
+
  divMainBox() {
   return new mySvg.Div(this.data.divMainBox);
  }
@@ -316,16 +414,14 @@ export default class Line {
   this.obj.divMainKey = this.divMainKey();
   const div = document.getElementById(this.data.divMainKey.id);
   const data = this.data.dataObj.key;
-  // let tableStr = '<b>Key</b><table id="legend-key">';
-  let tableStr = '<table id="legend-key">';
+  let tableStr = '<b>Key</b><table id="legend-key">';
+  tableStr += '<table id="legend-key">';
   // tableStr += '<th><td>' + 'sport' + '</td><td>' + 'val' + '</th>';
   data.forEach((v, i) => {
    const cls = 'class = "legend"';
    const sty = 'style="background-color:' + this.data.colors[i] + '"';
    const div = '<div ' + cls + ' ' + sty + '></div>';
    tableStr += '<tr><td>' + div + '</td><td>' + v + '</td>';
-   tableStr += '<td>' + this.data.dataObj.val[i] + '</td>';
-   tableStr += '<td>' + this.data.dataObj.per[i].toFixed(0) + '%</td>';
   });
   tableStr += '</tr></table>';
   div.innerHTML = tableStr;
@@ -362,26 +458,61 @@ export default class Line {
  }
 
  drawObject() {
-  this.drawLineSafety();
   this.drawDataPoints();
   this.drawLabelAxisX();
   this.drawLabelAxisY();
+  // this.drawLineSafety();
  } //drawObject
 
  drawDataPoints() {
-  this.obj.circ = []; // data points drawn as circles
-  const obj = this.data.dataObj;
-  for (let i = 0; i < obj.xSca.length; i++) {
-   const cxy = this.scalePoints([obj.xSca[i], obj.ySca[i]]);
-   const rrr = obj.zSca[i];
-   const dat = [obj.bVal[i], obj.xVal[i], obj.yVal[i], obj.zVal[i]];
-   const str = `<h4 style="margin:0">${dat[0]}</h4><table >
-  <tr><td>Fat intake:</td>   <td>${dat[1].toFixed(2)}</td><td>g</td></tr>
-  <tr><td>Sugar intake:</td> <td>${dat[2].toFixed(2)}</td><td>g</td></tr>
-  <tr><td>Obesity:</td>      <td>${dat[3].toFixed(2)}</td><td>%</td></tr>
-  </table>`;
-   this.obj.circ[i] = this.drawCircle(cxy, rrr, i, this.data.colors[i]);
-   this.eventMouseOver(this.obj.circ[i].obj, str, this.data.colors[i]);
+  const noLines = this.data.dataObj.matrix.length - 1;
+  const noMarks = this.data.dataObj.matrix[0].length;
+
+  this.obj.marker = [...Array(noLines)].map((_) => Array(noMarks));
+  this.obj.line = [];
+
+  for (let i = 0; i < this.data.dataObj.matrix.length - 1; i++) {
+   const style = {
+    fill: this.data.option.marker.fill[i],
+    fillOpacity: this.data.option.marker.fillOpacity[i],
+    stroke: this.data.option.marker.stroke[i],
+    strokeWidth: this.data.option.marker.strokeWidth[i],
+    strokeOpacity: this.data.option.marker.strokeOpacity[i]
+   };
+
+   const matX = this.data.dataObj.matrix[0];
+   const matY = this.data.dataObj.matrix[i + 1];
+
+   const objX = this.data.dataObj.matrixScaled[0];
+   const objY = this.data.dataObj.matrixScaled[i + 1];
+
+   const ptA = [];
+   const rrr = this.data.option.marker.size[i];
+
+   for (let j = 0; j < objY.length; j++) {
+    const pxy = this.scalePoints([objX[j], objY[j]]);
+    ptA.push(pxy);
+
+    if (this.data.option.markerOn) {
+     this.obj.marker[i][j] = this.drawCircle(pxy, rrr, i, style);
+
+     // <h4 style="margin:0">Values</h4>
+     const str = `<table><tr><td>x:</td>   <td>${matX[j].toFixed(1)}</td></tr>
+     <tr><td>y:</td> <td>${matY[j].toFixed(1)}</td></tr></table>`;
+     this.eventMouseOver(this.obj.marker[i][j].obj, str, style.fill);
+    }
+   }
+
+   const styleLine = {};
+   // styleLine.fill = this.data.option.line.fill[i];
+   styleLine.fill = 'none';
+   styleLine.stroke = this.data.option.line.stroke[i];
+   styleLine.strokeWidth = this.data.option.line.strokeWidth[i];
+   styleLine.strokeOpacity = this.data.option.line.strokeOpacity[i];
+   styleLine.strokeDasharray = this.data.option.line.strokeDasharray[i];
+
+   const ptS = ptA.join(',');
+   this.obj.line[i] = this.drawPolyline(ptS, i, styleLine);
   }
  }
 
@@ -434,7 +565,7 @@ export default class Line {
   };
  }
 
- drawCircle(cxy, rrr, id, clr) {
+ drawCircle(cxy, rrr, id, style) {
   const data = {};
   data.containerId = this.data.idSvg;
   data.id = data.containerId + '-circle-' + id;
@@ -442,15 +573,29 @@ export default class Line {
   data.cx = cxy[0];
   data.cy = cxy[1];
   data.r = rrr;
-  data.stroke = 'blue';
-  data.strokeWidth = 2;
-  // data.fill = 'pink';
-  data.fill = clr;
-  data.fillOpacity = '0.5';
-  data.strokeOpacity = '1';
-  data.class = 'bar';
-  const eye = new mySvg.Circle(data);
-  return eye;
+  data.fill = style.fill;
+  data.fillOpacity = style.fillOpacity;
+  data.stroke = style.stroke;
+  data.strokeWidth = style.strokeWidth;
+  data.strokeOpacity = style.strokeOpacity;
+  data.class = 'marker';
+  return new mySvg.Circle(data);
+ }
+
+ drawPolyline(points, id, style) {
+  const data = {};
+  data.containerId = this.data.idSvg;
+  data.id = data.containerId + '-line-' + id;
+  data.transform = this.transform();
+  data.points = points;
+  data.fill = style.fill;
+  data.fillOpacity = style.fillOpacity;
+  data.stroke = style.stroke;
+  data.strokeWidth = style.strokeWidth;
+  data.strokeOpacity = style.strokeOpacity;
+  data.strokeDasharray = style.strokeDasharray;
+  data.class = 'line';
+  return new mySvg.Polyline(data);
  }
 
  drawLine(xy, id, clr) {
@@ -476,8 +621,8 @@ export default class Line {
 
  drawLabelAxisX() {
   this.obj.xLab = []; // x axis labels
-  this.data.dataObj.xLab.forEach((val, idx) => {
-   this.obj.xLab[idx] = this.drawTextLabX(this.scalePoints([idx, 0]), val, idx);
+  this.data.dataObj.xLab.forEach((v, i) => {
+   this.obj.xLab[i] = this.drawTextLabX(this.scalePoints([i, 0]), v, i);
   });
  }
 
@@ -485,7 +630,7 @@ export default class Line {
   this.obj.yLab = []; // y axis labels
   for (let i = this.data.grid.majorNumY; i > -1; i--) {
    const yVal = this.data.dataObj.yLab[i];
-   const data = this.scalePoints([0, this.data.grid.majorNumY + 1 - i]);
+   const data = this.scalePoints([0, this.data.grid.majorNumY - i]);
    this.obj.yLab[i] = this.drawTextLabY(data, yVal, i);
   }
  }
@@ -495,7 +640,7 @@ export default class Line {
   const data = {};
   data.x = xy[0] + +this.data.grid.padding.left;
   data.y = xy[1] + this.data.height + this.data.grid.padding.top + 16;
-  data.text = text;
+  data.text = text.toString();
   data.fontFamily = 'inherit';
   data.fontSize = '16';
   data.fontWeight = 'normal';
@@ -503,7 +648,7 @@ export default class Line {
   data.id = data.containerId + '-txt-axisLabelX-' + id;
   data.fill = 'gray';
   data.fillOpacity = 1;
-  data.stroke = 'blue';
+  data.stroke = 'none';
   data.strokeWidth = '0';
   data.class = '';
   return new mySvg.Text(data);
@@ -512,17 +657,17 @@ export default class Line {
  // text label y axis
  drawTextLabY(xy, text, id) {
   const data = {};
-  data.x = xy[0] + 35;
-  data.y = xy[1] - this.data.yLabOff + 6;
-  data.text = text;
+  data.x = xy[0] + this.data.grid.padding.left - 20;
+  data.y = xy[1] + this.data.grid.padding.top + 6;
+  data.text = text.toString();
   data.fontFamily = 'inherit';
   data.fontSize = '16';
   data.fontWeight = 'normal';
   data.containerId = this.data.divMainSvg.id;
   data.id = data.containerId + '-txt-axisLabelY-' + id;
   data.fill = 'gray';
-  data.fillOpacity = 1;
-  data.stroke = 'blue';
+  data.fillOpacity = '1';
+  data.stroke = 'none';
   data.strokeWidth = '0';
   data.class = '';
   return new mySvg.Text(data);

@@ -10,7 +10,8 @@
     "build-node": "webpack --config webpack.config.js",
     "build": "webpack --config webpack.config.web.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./doc/Examples/demo-express.js"
+    "start-dev": "nodemon ./doc/Examples/demo-express.js",
+    "start": "node --watch ./doc/Examples/demo-express.js"
   },
   "repository": {
     "type": "git",

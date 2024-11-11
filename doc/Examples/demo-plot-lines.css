@@ -64,3 +64,8 @@
  /* background-color: yellow; */
  text-align: right;
 }
+
+main {
+    margin-top: -50px;
+ transform: scale(1);
+}
