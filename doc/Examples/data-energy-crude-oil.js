@@ -39,26 +39,36 @@ data.layout = {
  clrH: 'maroon'
 };
 
+data.grid = {
+ majorNumX: 7,
+ majorNumY: 6,
+ title: { text: ' ' },
+ axisLabelX: { text: 'Date' },
+ axisLabelY: { text: 'Price USD per MMBtu' }
+};
+
 data.option = {
- x: 0,
- y: 0,
+ // xOff: 0,
+ // yOff: 0,
+ dateFormat: 'mm/dd/yyyy',
+ columnsToPlot: [1], // [1,2,3,4] // 0 for date
+ // axisLimit: [20201110, 20241104, 0, 30],
  // hasHeader: false,
- bubbleOn: true,
- bubbleSizeMin: 5,
- bubbleSizeMax: 30,
- stroke: 'black',
- strokeWidth: 4,
- strokeOpacity: 1,
- fill: 'none',
- fillOpacity: 1,
- title: 'Daily sugar and fat intake by country',
- titleX: 'Daily fat intake (g)',
- titleY: 'Daily sugar intake (g)',
- grid: {
-  majorNumX: 6,
-  majorNumY: 6
+ markerOn: true,
+ marker: {
+  size: Array(3).fill(6),
+  fill: ['pink', 'lime', 'cyan'],
+  stroke: ['blue', 'black', 'red'],
+  strokeWidth: [2, 4, 4],
+  strokeOpacity: [1, 1, 1],
+  fillOpacity: [0.5, 0.5, 0.5]
  },
- legend: { position: 'bottom' }
+ line: {
+  stroke: ['blue', 'maroon', 'purple'],
+  strokeWidth: [2, 4, 4],
+  strokeOpacity: [1, 1, 1],
+  strokeDasharray: ['4', '1', '1']
+ }
 };
 
 export default data;

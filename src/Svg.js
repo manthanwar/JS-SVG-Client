@@ -44,7 +44,8 @@ export default class Svg extends SvgParent {
   kv.y = '0';
   kv.width = '100%';
   kv.height = '100%';
-  kv.viewbox = '0 0 100% 100%';
+  // kv.viewbox = '0 0 100% 100%';
+  kv.viewBox = '';
   kv.id = 'svg';
   kv.style = '';
   kv.class = '';

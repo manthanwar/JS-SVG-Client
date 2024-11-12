@@ -56,7 +56,7 @@ data.navMenu = [
    {
     link: 'Scatter Plot',
     page: 'Scatter Plot',
-    href: 'demo-plot-scats.html'
+    href: 'demo-plot-scatter.html'
    },
    {
     link: 'Bubble Chart',
@@ -81,7 +81,7 @@ data.navMenu = [
    {
     link: 'Time-Series',
     page: 'Time-Series Plot',
-    href: 'demo-plot-times.html'
+    href: 'demo-plot-timeSeries.html'
    }
   ]
  },

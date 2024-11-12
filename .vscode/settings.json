@@ -398,6 +398,23 @@
                         "foreground": "#ffff4e",
                         // "fontStyle": "bold"
                     }
+                },
+                {
+                    "scope": "constant.other.character-class.regexp",
+                    "settings": {
+                        "foreground": "#ffff4e",
+                        // "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": [
+                        "punctuation.definition.string.begin.js",
+                        "punctuation.definition.string.end.js"
+                    ],
+                    "settings": {
+                        "foreground": "#ffffff",
+                        // "fontStyle": "bold"
+                    }
                 }
                 //-------------------------------------------------------------
                 //#endregion JS

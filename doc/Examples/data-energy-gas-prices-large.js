@@ -1,7 +1,7 @@
 const data = {};
 
-data.title = `Gas Prices`;
-data.subtitle = 'in dollars (USD)';
+data.title = 'Natural Gas (NG:NMX) Historical Data';
+data.subtitle = 'USD per MMBtu';
 data.notes = '';
 data.source =
  '<a href="https://developers.google.com/chart/interactive/docs/gallery/linechart" target="_blank">Google Material Charts</a>';
@@ -1026,17 +1026,18 @@ data.grid = {
  majorNumX: 7,
  majorNumY: 6,
  title: { text: ' ' },
- axisLabelX: { text: 'Day since launch' },
- axisLabelY: { text: 'Earnings (USD million)' }
+ axisLabelX: { text: 'Date' },
+ axisLabelY: { text: 'Price USD per MMBtu' }
 };
 
 data.option = {
- xOff: 0,
- yOff: 0,
- axisLimit: [20201110, 20241104, 0, 30],
+ // xOff: 0,
+ // yOff: 0,
+ dateFormat: 'yyyy-mm-dd',
+ columnsToPlot: [1], // [1,2,3,4] // 0 for date
+ // axisLimit: [20201110, 20241104, 0, 30],
  // hasHeader: false,
  markerOn: true,
- isTimeSeries: true,
  marker: {
   size: Array(3).fill(6),
   fill: ['pink', 'lime', 'cyan'],
@@ -1050,16 +1051,7 @@ data.option = {
   strokeWidth: [2, 4, 4],
   strokeOpacity: [1, 1, 1],
   strokeDasharray: ['4', '1', '1']
- },
-
- title: 'Daily sugar and fat intake by country',
- titleX: 'Daily fat intake (g)',
- titleY: 'Daily sugar intake (g)',
- grid: {
-  majorNumX: 6,
-  majorNumY: 6
- },
- legend: { position: 'bottom' }
+ }
 };
 
 export default data;

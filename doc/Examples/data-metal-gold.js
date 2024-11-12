@@ -6,7 +6,7 @@ data.notes = '';
 data.source =
  '<a href="https://www.nasdaq.com/market-activity/commodities/gc-cmx/historical" target="_blank">Nasdaq</a>';
 
-data.csv = `Date,Close/Last,Volume,Open,High,Low
+data.csv = `Date,Close,Volume,Open,High,Low
 11/08/2024,2694.80,208112,2713.60,2717.80,2687.30
 11/07/2024,2705.80,265454,2667.70,2718.30,2650.30
 11/06/2024,2676.30,350399,2752.60,2758.80,2660.70
@@ -28,6 +28,19 @@ data.csv = `Date,Close/Last,Volume,Open,High,Low
 10/15/2024,2678.90,154633,2663.50,2685.90,2654.40
 `;
 
+// data.csv = data.csv.replace(/-/g, '');
+// console.log(data.csv);
+
+// const aaa = '10/12.2024/22.222 333 444,22,44';
+
+// date separators: / (slash); - (dash); . (period);  , (comma); (blank)
+
+// const bbb = aaa.replace(/[\/\.\s,]/g, '-');
+
+// console.log(aaa, bbb);
+
+// data.csv = data.csv.replace(/[\/]/g, '');
+
 data.layout = {
  divMainBox: {
   containerId: 'main',
@@ -39,18 +52,37 @@ data.layout = {
  clrH: 'maroon'
 };
 
+data.grid = {
+ majorNumX: 7,
+ majorNumY: 6,
+ title: { text: ' ' },
+ axisLabelX: { text: 'Day since launch' },
+ axisLabelY: { text: 'Earnings (USD million)' }
+};
+
 data.option = {
- x: 0,
- y: 0,
+ dateFormat: 'mm/dd/yyyy',
+ columnsToPlot: [1], // [1,2,3,4] // 0 for date
+ xOff: 0,
+ yOff: 0,
+ // axisLimit: [0, 15, -10, 90],
  // hasHeader: false,
- bubbleOn: true,
- bubbleSizeMin: 5,
- bubbleSizeMax: 30,
- stroke: 'black',
- strokeWidth: 4,
- strokeOpacity: 1,
- fill: 'none',
- fillOpacity: 1,
+ markerOn: true,
+ marker: {
+  size: Array(3).fill(6),
+  fill: ['pink', 'lime', 'cyan'],
+  stroke: ['blue', 'black', 'red'],
+  strokeWidth: [2, 4, 4],
+  strokeOpacity: [1, 1, 1],
+  fillOpacity: [0.5, 0.5, 0.5]
+ },
+ line: {
+  stroke: ['blue', 'maroon', 'purple'],
+  strokeWidth: [2, 4, 4],
+  strokeOpacity: [1, 1, 1],
+  strokeDasharray: ['4 10', '1', '1']
+ },
+
  title: 'Daily sugar and fat intake by country',
  titleX: 'Daily fat intake (g)',
  titleY: 'Daily sugar intake (g)',

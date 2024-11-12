@@ -1,6 +1,6 @@
 // =============================================================================
-// File Name  : Line.js
-// Description: JS Class to draw Line Chart using JS-SVG-Client
+// File Name  : TimeSeries.js
+// Description: JS Class to draw Time Series Plot using JS-SVG-Client
 // -----------------------------------------------------------------------------
 // Author     : Amit Manohar Manthanwar
 // Mailer     : manthanwar@hotmail.com
@@ -14,13 +14,13 @@
 // =============================================================================
 // Revision Log  | Author  | Description
 // --------------+---------+----------------------------------------------------
-// 07-Nov-2024   | AMM | Initial Version
+// 12-Nov-2024   | AMM | Initial Version
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 import * as mySvg from './svg.min.js';
 import Color from './Color.js';
 
-export default class Line {
+export default class TimeSeries {
  constructor(data) {
   this.init(data);
 
@@ -58,7 +58,7 @@ export default class Line {
    style: 'border: 2px solid red; padding:10px 10px;margin-top:0px;',
    width: 1520 + 'px',
    height: 420 + 'px',
-   height: 520 + 'px',
+   // height: 520 + 'px',
    transform: 'scale(1)'
   };
 
@@ -68,8 +68,8 @@ export default class Line {
    style: 'border: 2px solid green; margin: 0 20px; padding:10px;',
    width: 800 + 'px',
    height: 400 + 'px',
-   width: 1000 + 'px',
-   height: 500 + 'px',
+   // width: 1000 + 'px',
+   // height: 500 + 'px',
    transform: 'scale(1)'
   };
 
@@ -78,7 +78,7 @@ export default class Line {
    id: this.data.divMainObj.id + '-svgMain',
    width: '100%',
    height: '100%',
-   viewBox: '0 0 100% 100% ',
+   // vieBox: '0 0 100 100 ',
    style: `border: 2px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
   };
 
@@ -250,72 +250,6 @@ export default class Line {
   return dataArray.map((x) => this.linearScale(x, x1, x2, y1, y2));
  }
 
- createDataObjO() {
-  const dataArr = this.data.csv.split('\n').filter((n) => n);
-  const dataLen = dataArr.length;
-  const hasHead = this.data.option.hasHeader;
-
-  delete this.data.csv;
-
-  const obj = {};
-  obj.head = []; // data header row
-  obj.xVal = []; // val = x column values
-  obj.yVal = []; // Val = y column values
-  obj.zVal = []; // Val = z column values
-  obj.aVal = []; // Val = a column values
-  obj.bVal = []; // Val = b column values
-  obj.xSca = []; // x Values linearly scaled
-  obj.ySca = []; // y Values linearly scaled
-  obj.zSca = []; // z Values linearly scaled
-  obj.sLim = [65, 50]; // safe limit [fat, sugar] intake in gram
-  obj.sSca = []; // scaled safe limit [fat, sugar] intake in gram
-
-  if (hasHead) {
-   obj.head = dataArr[0].split(',').map((x) => x.trim());
-   dataArr.splice(0, 1);
-  } else obj.head = ['x', 'y', 'z', 'a', 'b'];
-
-  for (const val of dataArr) {
-   const valArr = val.split(',');
-   obj.xVal.push(parseFloat(valArr[0]));
-   obj.yVal.push(parseFloat(valArr[1]));
-   obj.zVal.push(parseFloat(valArr[2]));
-   obj.aVal.push(valArr[3].trim());
-   obj.bVal.push(valArr[4].trim());
-  }
-
-  const xMinG = 1; // minimum of x grid
-  const yMinG = 1; // minimum of y grid
-  const xMaxG = this.data.grid.majorNumX - 1; // maximum x grid
-  const yMaxG = this.data.grid.majorNumY - 1; // maximum of y grid
-  const zMinB = this.data.bubbleMin; // minimum bubble size
-  const zMaxB = this.data.bubbleMax; // maximum bubble size
-  const xMin = Math.floor(Math.min(...obj.xVal));
-  const xMax = Math.ceil(Math.max(...obj.xVal));
-  const yMin = Math.floor(Math.min(...obj.yVal));
-  const yMax = Math.ceil(Math.max(...obj.yVal));
-  const zMin = Math.floor(Math.min(...obj.zVal));
-  const zMax = Math.ceil(Math.max(...obj.zVal));
-  const xDel = (xMax - xMin) / (xMaxG - 1);
-  const yDel = (yMax - yMin) / (yMaxG - 1);
-  const xDelN = Math.ceil(xDel);
-  const xMaxN = xMin + xDelN * (xMaxG - 1);
-  const yDelN = Math.ceil(yDel);
-  const yMaxN = yMin + yDelN * (yMaxG - 1);
-
-  const xLim = this.linearScale(obj.sLim[0], xMin, xMaxN, xMinG, xMaxG);
-  const yLim = this.linearScale(obj.sLim[1], yMin, yMaxN, yMinG, yMaxG);
-
-  obj.sSca = [xLim, yLim];
-  obj.xSca = this.linearScaleArray(obj.xVal, xMin, xMaxN, xMinG, xMaxG);
-  obj.ySca = this.linearScaleArray(obj.yVal, yMin, yMaxN, yMinG, yMaxG);
-  obj.zSca = this.linearScaleArray(obj.zVal, zMin, zMax, zMinB, zMaxB);
-  obj.xLab = new Array(xMaxG + 2).fill(0).map((x, i) => xMin + (i - 1) * xDelN);
-  obj.yLab = new Array(yMaxG + 2).fill(0).map((x, i) => yMin + (i - 1) * yDelN);
-
-  return obj;
- }
-
  createDataObj() {
   const dArr = this.data.csv.split('\n').filter((n) => n);
   delete this.data.csv;
@@ -327,18 +261,50 @@ export default class Line {
    dArr.splice(0, 1);
   } else obj.head = dArr[0].split(',').map((v, i) => 'Column ' + i);
 
-  obj.key = obj.head.slice(1, obj.head.length);
-
   const rows = dArr.length;
-  const cols = dArr[0].split(',').length;
+  const plot = this.data.option.columnsToPlot;
+  const cols = plot.length + 1;
+
+  obj.key = [];
+  for (const i of plot) obj.key.push(obj.head[i]);
+
+  // obj.key = obj.head.slice(1, obj.head.length);
+  // const cols = dArr[0].split(',').length;
   // obj.matrix = new Array(cols).fill(0).map(() => new Array(rows).fill(0));
   // obj.matrix = [...Array(cols)].map((_) => Array(rows));
+
+  obj.timeSeriesX = [...Array(rows)].fill(0);
   obj.matrix = [...Array(cols)].map((_) => Array(rows).fill(0));
   obj.matrixScaled = [...Array(cols)].map((_) => Array(rows).fill(0));
 
+  const dtf = this.data.option.dateFormat.split(/[\/-]/g);
+  const dto = { mm: '', dd: '', yyyy: '' };
+  obj.dateSeparator = this.data.option.dateFormat.replace(/[a-z]/g, '')[0];
+
   for (const ix in dArr) {
-   const vxArr = dArr[ix].split(',');
-   for (const iy in vxArr) obj.matrix[iy][ix] = parseFloat(vxArr[iy]);
+   let vxArr = dArr[ix].split(',');
+   const dtArr = vxArr[0].split(/[\/\.-]/);
+   for (let i = 0; i < 3; i++) dto[dtf[i]] = dtArr[i];
+   obj.timeSeriesX[ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
+   // obj.matrix[cols][ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
+  }
+
+  // for (const ix in dArr) {
+  //  let vxArr = dArr[ix].split(',');
+  //  const dtArr = vxArr[0].split(/[\/\.-]/);
+  //  for (let i = 0; i < 3; i++) dto[dtf[i]] = dtArr[i];
+  //  obj.matrix[0][ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
+  //  for (let i = 1; i < cols; i++)
+  //   obj.matrix[i][ix] = parseFloat(vxArr[plot[i - 1]]);
+  // }
+
+  for (const ix in dArr) {
+   let vxArr = dArr[ix].split(',');
+   // const dtArr = vxArr[0].split(/[\/\.-]/);
+   // for (let i = 0; i < 3; i++) dto[dtf[i]] = dtArr[i];
+   obj.matrix[0][ix] = parseInt(ix);
+   for (let i = 1; i < cols; i++)
+    obj.matrix[i][ix] = parseFloat(vxArr[plot[i - 1]]);
   }
 
   const xGin = 0; // minimum of x grid
@@ -371,11 +337,14 @@ export default class Line {
    yAxisMax = this.data.option.axisLimit[3];
   }
 
+  obj.axisLimit = [xAxisMin, xAxisMax, yAxisMin, yAxisMax];
+
   const dx = (xAxisMax - xAxisMin) / xGax;
   const dy = (yAxisMax - yAxisMin) / yGax;
 
-  obj.xLab = [...Array(xGax + 1)].map((_, i) => (xAxisMin + i * dx).toFixed(1));
+  obj.xIdx = [...Array(xGax + 1)].map((_, i) => (xAxisMin + i * dx).toFixed());
   obj.yLab = [...Array(yGax + 1)].map((_, i) => (yAxisMin + i * dy).toFixed(1));
+  obj.xLab = obj.xIdx.map((v) => obj.timeSeriesX[parseInt(v)]);
 
   obj.matrixScaled[0] = this.linearScaleArray(
    obj.matrix[0],
@@ -495,25 +464,32 @@ export default class Line {
     ptA.push(pxy);
 
     if (this.data.option.markerOn) {
-     this.obj.marker[i][j] = this.drawCircle(pxy, rrr, i, style);
+     this.obj.marker[i][j] = this.drawCircle(pxy, rrr, j, style);
+
+     // const col = this.data.dataObj.matrix.length - 1;
+     // const dat = this.data.dataObj.matrix[col][j].toFixed();
+     const dat = this.data.dataObj.timeSeriesX[j].toFixed();
+     const sep = this.data.dataObj.dateSeparator;
+     const dap = [dat.slice(0, 4), dat.slice(4, 6), dat.slice(6, 8)].join(sep);
 
      // <h4 style="margin:0">Values</h4>
-     const str = `<table><tr><td>x:</td>   <td>${matX[j].toFixed(1)}</td></tr>
-     <tr><td>y:</td> <td>${matY[j].toFixed(1)}</td></tr></table>`;
+     // const str = `<table><tr><td>x:</td><td>${matX[j].toFixed(1)}</td></tr>
+     const str = `<table><tr><td>x:</td><td>${dap}</td></tr>
+     <tr><td>y:</td> <td>${matY[j].toFixed(4)}</td></tr></table>`;
      this.eventMouseOver(div, this.obj.marker[i][j].obj, str, style.fill);
     }
    }
 
-   const styleLine = {};
-   // styleLine.fill = this.data.option.line.fill[i];
-   styleLine.fill = 'none';
-   styleLine.stroke = this.data.option.line.stroke[i];
-   styleLine.strokeWidth = this.data.option.line.strokeWidth[i];
-   styleLine.strokeOpacity = this.data.option.line.strokeOpacity[i];
-   styleLine.strokeDasharray = this.data.option.line.strokeDasharray[i];
+   const line = this.data.option.line;
+   const styleL = {};
+   styleL.fill = 'none';
+   if (line.stroke) styleL.stroke = line.stroke[i];
+   if (line.strokeWidth) styleL.strokeWidth = line.strokeWidth[i];
+   if (line.strokeOpacity) styleL.strokeOpacity = line.strokeOpacity[i];
+   if (line.strokeDasharray) styleL.strokeDasharray = line.strokeDasharray[i];
 
    const ptS = ptA.join(',');
-   this.obj.line[i] = this.drawPolyline(ptS, i, styleLine);
+   this.obj.line[i] = this.drawPolyline(ptS, i, styleL);
   }
  }
 
@@ -544,26 +520,22 @@ export default class Line {
   const div = document.createElement('div');
   div.innerHTML = '';
   div.style.display = 'none';
-  // div.id = 'divShowValue';
+  div.id = this.data.divMainBox.id + '-divShowValue';
   div.classList.add('divShowValue');
   document.body.appendChild(div);
   return div;
  }
 
  eventMouseOver(div, element, data, color) {
-  div.innerHTML = data;
   element.onmouseover = (e) => {
-   // const left = e.clientX + 15 + 'px';
-   // const top = e.clientY + 120 + 'px';
    const left = e.pageX + 10 + 'px';
    const top = e.pageY + 10 + 'px';
+   div.innerHTML = data;
    div.style.left = left;
    div.style.top = top;
    div.style.display = 'block';
    element.style.fill = 'red';
-   element.style.color = 'teal';
   };
-
   element.onmouseout = (e) => {
    div.style.display = 'none';
    element.style.fill = color;
@@ -648,7 +620,7 @@ export default class Line {
   data.y = xy[1] + this.data.height + this.data.grid.padding.top + 16;
   data.text = text.toString();
   data.fontFamily = 'inherit';
-  data.fontSize = '16';
+  data.fontSize = '14';
   data.fontWeight = 'normal';
   data.containerId = this.data.divMainSvg.id;
   data.id = data.containerId + '-txt-axisLabelX-' + id;
@@ -667,7 +639,7 @@ export default class Line {
   data.y = xy[1] + this.data.grid.padding.top + 6;
   data.text = text.toString();
   data.fontFamily = 'inherit';
-  data.fontSize = '16';
+  data.fontSize = '14';
   data.fontWeight = 'normal';
   data.containerId = this.data.divMainSvg.id;
   data.id = data.containerId + '-txt-axisLabelY-' + id;

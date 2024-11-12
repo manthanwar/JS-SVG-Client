@@ -24,7 +24,7 @@ import Scatter from './Scatter.js';
 
 window.onload = (event) => {
  document.title = 'SVG';
- dataTemplate.renderBody('demo-plot-scats.html');
+ dataTemplate.renderBody('demo-plot-scatter.html');
 
  const data = {
   divMainBox: {
