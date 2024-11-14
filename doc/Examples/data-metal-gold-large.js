@@ -2560,11 +2560,12 @@ data.grid = {
 };
 
 data.option = {
+ xOff: 0,
+ yOff: 0,
  dateFormat: 'mm/dd/yyyy',
- columnsToPlot: [1, 3, 4,5], // [1,2,3,4] // 0 for date
- // xOff: 0,
- // yOff: 0,
- // axisLimit: [20131110, 20251108, 1049, 2801],
+ plotHeader: [1], // [1,2,3,4] // 0 for date
+ // xAxisLimit: ['9/10/2024', '11/10/2024'],
+ // yAxisLimit: [2590, 2810],
  // hasHeader: false,
  markerOn: false,
  marker: {

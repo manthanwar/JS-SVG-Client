@@ -46,7 +46,7 @@ data.option = {
  // isAscending: true,
  dateFormat: 'yyyy-mm-dd',
 
- columnsToPlot: [1], // [1,2,3,4] // 0 for date
+ plotHeader: [1], // [1,2,3,4] // 0 for date
  // axisLimit: [-1, 19, 1, 3],
  markerOn: true,
  marker: {

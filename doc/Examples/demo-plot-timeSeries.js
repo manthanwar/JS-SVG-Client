@@ -41,7 +41,7 @@ import dataMetalGold from './data-metal-gold.js';
 // import dataEnergyCrudeOilLarge from './data-energy-crude-oil-large.js';
 // import dataEnergyGasoline from './data-energy-gasoline.js';
 // import dataEnergyNaturalGas from './data-energy-natural-gas.js';
-import dataEnergyGasPrices from './data-energy-gas-prices.js';
+// import dataEnergyGasPrices from './data-energy-gas-prices.js';
 // import dataEnergyGasPricesLarge from './data-energy-gas-prices-large.js';
 
 window.onload = (event) => {
@@ -70,12 +70,18 @@ window.onload = (event) => {
  main.appendChild(foot);
 
  foot.innerHTML = '<h1 style="text-align:center">' + data.notes + '</h1>';
- foot.innerHTML += '<p style="text-align:center">' + data.source + '</p>';
+ foot.innerHTML +=
+  '<h6 style="text-align:center; font-weight:normal;">Data Source: ' +
+  data.source +
+  '</h6>';
 
  // const dataMin = plot.data.dataObj.vMin;
  // const dataMax = plot.data.dataObj.vMax;
- const axisLim = plot.data.dataObj.axisLimit;
+ // const axisLim = plot.data.dataObj.axisLimit;
  // console.log('dataMin = ' + dataMin);
  // console.log('dataMax = ' + dataMax);
- console.log('axisLim = ' + axisLim);
+ // console.log('axisLim = ' + axisLim);
+
+ console.log('xLim = ' + plot.data.dataObj.xAxisLimit);
+ console.log('yLim = ' + plot.data.dataObj.yAxisLimit);
 };

@@ -65,7 +65,7 @@ export default class TimeSeries {
   this.data.divMainObj = {
    containerId: this.data.divMainBox.id,
    id: this.data.divMainBox.id + '-divMainObj',
-   style: 'border: 2px solid green; margin: 0 20px; padding:10px;',
+   style: 'border: 2px solid green; margin: 0 20px 0 300px; padding:10px;',
    width: 800 + 'px',
    height: 400 + 'px',
    // width: 1000 + 'px',
@@ -251,145 +251,145 @@ export default class TimeSeries {
   return dataArray.map((x) => this.linearScale(x, x1, x2, y1, y2));
  }
 
- createDataObjOld() {
-  const dArr = this.data.csv.split('\n').filter((n) => n);
-  delete this.data.csv;
+ //  createDataObjOld() {
+ //   const dArr = this.data.csv.split('\n').filter((n) => n);
+ //   delete this.data.csv;
 
-  const obj = {};
+ //   const obj = {};
 
-  if (this.data.option.hasHeader) {
-   obj.head = dArr[0].split(',').map((x) => x.trim());
-   dArr.splice(0, 1);
-  } else obj.head = dArr[0].split(',').map((v, i) => 'Column ' + i);
+ //   if (this.data.option.hasHeader) {
+ //    obj.head = dArr[0].split(',').map((x) => x.trim());
+ //    dArr.splice(0, 1);
+ //   } else obj.head = dArr[0].split(',').map((v, i) => 'Column ' + i);
 
-  const rows = dArr.length;
-  const plot = this.data.option.columnsToPlot;
-  const cols = plot.length + 1;
+ //   const rows = dArr.length;
+ //   const plot = this.data.option.columnsToPlot;
+ //   const cols = plot.length + 1;
 
-  obj.key = [];
-  for (const i of plot) obj.key.push(obj.head[i]);
+ //   obj.key = [];
+ //   for (const i of plot) obj.key.push(obj.head[i]);
 
-  // obj.key = obj.head.slice(1, obj.head.length);
-  // const cols = dArr[0].split(',').length;
-  // obj.matrix = new Array(cols).fill(0).map(() => new Array(rows).fill(0));
-  // obj.matrix = [...Array(cols)].map((_) => Array(rows));
+ //   // obj.key = obj.head.slice(1, obj.head.length);
+ //   // const cols = dArr[0].split(',').length;
+ //   // obj.matrix = new Array(cols).fill(0).map(() => new Array(rows).fill(0));
+ //   // obj.matrix = [...Array(cols)].map((_) => Array(rows));
 
-  obj.timeSeriesX = [...Array(rows)].fill(0);
-  obj.matrix = [...Array(cols)].map((_) => Array(rows).fill(0));
-  obj.matrixScaled = [...Array(cols)].map((_) => Array(rows).fill(0));
+ //   obj.timeSeriesX = [...Array(rows)].fill(0);
+ //   obj.matrix = [...Array(cols)].map((_) => Array(rows).fill(0));
+ //   obj.matrixScaled = [...Array(cols)].map((_) => Array(rows).fill(0));
 
-  const dtf = this.data.option.dateFormat.split(/[\/-]/g);
-  const dto = { mm: '', dd: '', yyyy: '' };
-  obj.dateSeparator = this.data.option.dateFormat.replace(/[a-z]/g, '')[0];
+ //   const dtf = this.data.option.dateFormat.split(/[\/-]/g);
+ //   const dto = { mm: '', dd: '', yyyy: '' };
+ //   obj.dateSeparator = this.data.option.dateFormat.replace(/[a-z]/g, '')[0];
 
-  for (const ix in dArr) {
-   let vxArr = dArr[ix].split(',');
-   const dtArr = vxArr[0].split(/[\/\.-]/);
-   for (let i = 0; i < 3; i++) dto[dtf[i]] = dtArr[i];
-   obj.timeSeriesX[ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
-   // obj.matrix[cols][ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
-  }
+ //   for (const ix in dArr) {
+ //    let vxArr = dArr[ix].split(',');
+ //    const dtArr = vxArr[0].split(/[\/\.-]/);
+ //    for (let i = 0; i < 3; i++) dto[dtf[i]] = dtArr[i];
+ //    obj.timeSeriesX[ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
+ //    // obj.matrix[cols][ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
+ //   }
 
-  // console.log('aaa = ' + obj.timeSeriesX[0], obj.timeSeriesX[1]);
-  // const dateDiff = obj.timeSeriesX[0] - obj.timeSeriesX[1];
+ //   // console.log('aaa = ' + obj.timeSeriesX[0], obj.timeSeriesX[1]);
+ //   // const dateDiff = obj.timeSeriesX[0] - obj.timeSeriesX[1];
 
-  // console.log('ddd = ' + dateDiff);
+ //   // console.log('ddd = ' + dateDiff);
 
-  // if (this.data.option.orderAscending) {
-  //  dArr.reverse();
-  // }
-  // console.log('hh = ' + obj.head);
-  // console.log('aa = ' + dArr[0]);
+ //   // if (this.data.option.orderAscending) {
+ //   //  dArr.reverse();
+ //   // }
+ //   // console.log('hh = ' + obj.head);
+ //   // console.log('aa = ' + dArr[0]);
 
-  // for (const ix in dArr) {
-  //  let vxArr = dArr[ix].split(',');
-  //  const dtArr = vxArr[0].split(/[\/\.-]/);
-  //  for (let i = 0; i < 3; i++) dto[dtf[i]] = dtArr[i];
-  //  obj.matrix[0][ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
-  //  for (let i = 1; i < cols; i++)
-  //   obj.matrix[i][ix] = parseFloat(vxArr[plot[i - 1]]);
-  // }
+ //   // for (const ix in dArr) {
+ //   //  let vxArr = dArr[ix].split(',');
+ //   //  const dtArr = vxArr[0].split(/[\/\.-]/);
+ //   //  for (let i = 0; i < 3; i++) dto[dtf[i]] = dtArr[i];
+ //   //  obj.matrix[0][ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
+ //   //  for (let i = 1; i < cols; i++)
+ //   //   obj.matrix[i][ix] = parseFloat(vxArr[plot[i - 1]]);
+ //   // }
 
-  for (const ix in dArr) {
-   let vxArr = dArr[ix].split(',');
-   // const dtArr = vxArr[0].split(/[\/\.-]/);
-   // for (let i = 0; i < 3; i++) dto[dtf[i]] = dtArr[i];
-   obj.matrix[0][ix] = parseInt(ix);
-   for (let i = 1; i < cols; i++)
-    obj.matrix[i][ix] = parseFloat(vxArr[plot[i - 1]]);
-  }
+ //   for (const ix in dArr) {
+ //    let vxArr = dArr[ix].split(',');
+ //    // const dtArr = vxArr[0].split(/[\/\.-]/);
+ //    // for (let i = 0; i < 3; i++) dto[dtf[i]] = dtArr[i];
+ //    obj.matrix[0][ix] = parseInt(ix);
+ //    for (let i = 1; i < cols; i++)
+ //     obj.matrix[i][ix] = parseFloat(vxArr[plot[i - 1]]);
+ //   }
 
-  const xGin = 0; // minimum of x grid
-  const yGin = 0; // minimum of y grid
-  const xGax = this.data.grid.majorNumX; // maximum x grid
-  const yGax = this.data.grid.majorNumY; // maximum of y grid
+ //   const xGin = 0; // minimum of x grid
+ //   const yGin = 0; // minimum of y grid
+ //   const xGax = this.data.grid.majorNumX; // maximum x grid
+ //   const yGax = this.data.grid.majorNumY; // maximum of y grid
 
-  obj.vMin = []; // value minimum
-  obj.vMax = []; // value maximum
-  const vDel = []; // value delta
-  const vNel = []; // value delta new = vDelN
-  const vNax = []; // value max new = vMaxN
+ //   obj.vMin = []; // value minimum
+ //   obj.vMax = []; // value maximum
+ //   const vDel = []; // value delta
+ //   const vNel = []; // value delta new = vDelN
+ //   const vNax = []; // value max new = vMaxN
 
-  for (const row of obj.matrix) {
-   obj.vMin.push(Math.floor(Math.min(...row)));
-   obj.vMax.push(Math.ceil(Math.max(...row)));
-  }
-  if (!this.data.option.axisMin) this.data.option.axisMin = obj.vMin;
-  if (!this.data.option.axisMax) this.data.option.axisMax = obj.vMax;
+ //   for (const row of obj.matrix) {
+ //    obj.vMin.push(Math.floor(Math.min(...row)));
+ //    obj.vMax.push(Math.ceil(Math.max(...row)));
+ //   }
+ //   if (!this.data.option.axisMin) this.data.option.axisMin = obj.vMin;
+ //   if (!this.data.option.axisMax) this.data.option.axisMax = obj.vMax;
 
-  let xAxisMin = obj.vMin[0];
-  let xAxisMax = obj.vMax[0];
-  let yAxisMin = Math.min(...obj.vMin.slice(1, obj.vMin.length));
-  let yAxisMax = Math.max(...obj.vMax.slice(1, obj.vMax.length));
+ //   let xAxisMin = obj.vMin[0];
+ //   let xAxisMax = obj.vMax[0];
+ //   let yAxisMin = Math.min(...obj.vMin.slice(1, obj.vMin.length));
+ //   let yAxisMax = Math.max(...obj.vMax.slice(1, obj.vMax.length));
 
-  if (this.data.option.axisLimit) {
-   xAxisMin = this.data.option.axisLimit[0];
-   xAxisMax = this.data.option.axisLimit[1];
-   yAxisMin = this.data.option.axisLimit[2];
-   yAxisMax = this.data.option.axisLimit[3];
-  }
+ //   if (this.data.option.axisLimit) {
+ //    xAxisMin = this.data.option.axisLimit[0];
+ //    xAxisMax = this.data.option.axisLimit[1];
+ //    yAxisMin = this.data.option.axisLimit[2];
+ //    yAxisMax = this.data.option.axisLimit[3];
+ //   }
 
-  obj.axisLimit = [xAxisMin, xAxisMax, yAxisMin, yAxisMax];
+ //   obj.axisLimit = [xAxisMin, xAxisMax, yAxisMin, yAxisMax];
 
-  const dx = (xAxisMax - xAxisMin) / xGax;
-  const dy = (yAxisMax - yAxisMin) / yGax;
+ //   const dx = (xAxisMax - xAxisMin) / xGax;
+ //   const dy = (yAxisMax - yAxisMin) / yGax;
 
-  obj.xIdx = [...Array(xGax + 1)].map((_, i) => (xAxisMin + i * dx).toFixed());
-  obj.yLab = [...Array(yGax + 1)].map((_, i) => (yAxisMin + i * dy).toFixed(1));
-  obj.xLab = obj.xIdx.map((v) => obj.timeSeriesX[parseInt(v)]);
+ //   obj.xIdx = [...Array(xGax + 1)].map((_, i) => (xAxisMin + i * dx).toFixed());
+ //   obj.yLab = [...Array(yGax + 1)].map((_, i) => (yAxisMin + i * dy).toFixed(1));
+ //   obj.xLab = obj.xIdx.map((v) => obj.timeSeriesX[parseInt(v)]);
 
-  console.log('xid = ' + obj.xIdx);
-  console.log('xLb = ' + obj.xLab);
-  console.log('xmin = ' + xAxisMin + ' xmax = ' + xAxisMax);
-  if (xAxisMin < 0) {
-   console.log('xIdxMin = ' + obj.xIdx[0]);
-   console.log('xLabMin = ' + obj.xLab[1]);
-   //  console.log('xTimMin = ' + obj.timeSeriesX[0]);
-   //  const dtStr = obj.xLab[1].replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
-   //  const ddd = new Date(dtStr);
-   //  console.log('date = ' + ddd);
-  }
+ //   // console.log('xid = ' + obj.xIdx);
+ //   // console.log('xLb = ' + obj.xLab);
+ //   // console.log('xmin = ' + xAxisMin + ' xmax = ' + xAxisMax);
+ //   if (xAxisMin < 0) {
+ //    //  console.log('xIdxMin = ' + obj.xIdx[0]);
+ //    //  console.log('xLabMin = ' + obj.xLab[1]);
+ //    //  console.log('xTimMin = ' + obj.timeSeriesX[0]);
+ //    //  const dtStr = obj.xLab[1].replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
+ //    //  const ddd = new Date(dtStr);
+ //    //  console.log('date = ' + ddd);
+ //   }
 
-  obj.matrixScaled[0] = this.linearScaleArray(
-   obj.matrix[0],
-   xAxisMin,
-   xAxisMax,
-   xGin,
-   xGax
-  );
+ //   obj.matrixScaled[0] = this.linearScaleArray(
+ //    obj.matrix[0],
+ //    xAxisMin,
+ //    xAxisMax,
+ //    xGin,
+ //    xGax
+ //   );
 
-  for (let i = 1; i < obj.vMin.length; i++) {
-   obj.matrixScaled[i] = this.linearScaleArray(
-    obj.matrix[i],
-    yAxisMin,
-    yAxisMax,
-    yGin,
-    yGax
-   );
-  }
+ //   for (let i = 1; i < obj.vMin.length; i++) {
+ //    obj.matrixScaled[i] = this.linearScaleArray(
+ //     obj.matrix[i],
+ //     yAxisMin,
+ //     yAxisMax,
+ //     yGin,
+ //     yGax
+ //    );
+ //   }
 
-  return obj;
- }
+ //   return obj;
+ //  }
 
  //  sortObjArrayByKey(objArray, key) {
  //   return objArray.sort(function (a, b) {
@@ -525,8 +525,7 @@ export default class TimeSeries {
    dArr.splice(0, 1);
   } else obj.head = dArr[0].split(',').map((v, i) => 'column' + i);
 
-  const nr = dArr.length; //number of rows
-  const nc = dArr[0].split(',').length; //number of columns
+  const [nr, nc] = [dArr.length, dArr[0].split(',').length]; //number rows/cols
 
   obj.jar = [...Array(nr)]; // json object array
   obj.dsp = this.data.option.dateFormat.replace(/[a-z]/g, '')[0]; // date Sep
@@ -546,10 +545,10 @@ export default class TimeSeries {
   obj.jar = this.sortObjArrayByThreeKeys(obj.jar, 'yyyy', 'mm', 'dd');
 
   const xAxisLimit = this.data.option.xAxisLimit;
+  const yAxisLimit = this.data.option.yAxisLimit;
   const plotHeader = this.data.option.plotHeader;
 
-  let xAxisMin = 0;
-  let xAxisMax = 0;
+  let [xAxisMin, xAxisMax, yAxisMin, yAxisMax] = [0, 0, 0, 0];
 
   if (xAxisLimit) {
    xAxisMin = this.getDateStr(xAxisLimit[0]);
@@ -561,64 +560,55 @@ export default class TimeSeries {
    xAxisMax = jarL.yyyy + '-' + jarL.mm + '-' + jarL.dd;
   }
 
+  if (yAxisLimit) [yAxisMin, yAxisMax] = [yAxisLimit[0], yAxisLimit[1]];
+
   const dates = this.dateRangeObjArray(xAxisMin, xAxisMax);
   obj.jar = this.deepMergeObjArr(obj.jar, dates);
   obj.jar = this.sortObjArrayByThreeKeys(obj.jar, 'yyyy', 'mm', 'dd');
   obj.key = plotHeader.map((v) => obj.head[v]); // keys for legend
 
-  // const xArr = obj.jar.map((o) => parseInt(o.yyyy + '' + o.mm + '' + o.dd));
-
-  obj.xArr = [...Array(obj.jar.length).keys()];
-  obj.yArr = obj.jar.map((o) => o[obj.key[0]]);
-  const xGin = 0; // minimum of x grid
-  const yGin = 0; // minimum of y grid
+  const xArr = [...Array(obj.jar.length).keys()];
+  const yArr = obj.jar.map((o) => o[obj.key[0]]);
+  const [xGin, yGin] = [0, 0]; // minimum of grid x, y
   const xGax = this.data.grid.majorNumX + 1; // maximum x grid
   const yGax = this.data.grid.majorNumY + 1; // maximum of y grid
-  const xMin = Math.floor(Math.min(...obj.xArr));
-  const xMax = Math.ceil(Math.max(...obj.xArr));
-  const yMin = Math.floor(Math.min(...obj.yArr.filter((x) => x)));
-  const yMax = Math.ceil(Math.max(...obj.yArr.filter((x) => x)));
+  const xMin = Math.floor(Math.min(...xArr));
+  const xMax = Math.ceil(Math.max(...xArr));
+  let yMin = Math.floor(Math.min(...yArr.filter((x) => x)));
+  let yMax = Math.ceil(Math.max(...yArr.filter((x) => x)));
+
+  if (yAxisMin) yMin = yAxisMin;
+  if (yAxisMax) yMax = yAxisMax;
+
   const xDel = (xMax + 1 - xMin) / xGax;
   const yDel = (yMax - yMin) / yGax;
-
-  // console.log(obj.xArr);
-  // console.log(xMax, xMin, xGax, xDel, yMax, yMin, yGax, yDel);
 
   const xLab = obj.jar.map(
    (o) => o[dtf[0]] + obj.dsp + o[dtf[1]] + obj.dsp + o[dtf[2]]
   );
 
   obj.xIdx = [...Array(xGax)].map((v, i) => Math.round(i * xDel));
-  obj.xIdx[obj.xIdx.length - 1] = obj.xArr[obj.xArr.length - 1];
+  obj.xIdx[obj.xIdx.length - 1] = xArr[xArr.length - 1];
   obj.xLab = obj.xIdx.map((v) => xLab[v]);
   obj.yLab = [...Array(yGax)].map((_, i) => (yMin + i * yDel).toFixed(0));
 
-  const matR = obj.yArr.length;
+  const matR = xArr.length;
   const matC = obj.key.length + 1;
   obj.matrix = [...Array(matC)].map((_) => Array(matR));
   obj.matrixScaled = [...Array(matC)].map((_) => Array(matR));
-  // obj.matrixScaled = [...Array(cols)].map((_) => Array(rows).fill(0));
 
-  obj.matrix[0] = obj.xArr;
-  obj.matrix[1] = obj.yArr;
-
-  obj.matrixScaled[0] = this.linearScaleArray(
-   obj.matrix[0],
-   xMin,
-   xMax,
-   xGin,
-   xGax
-  );
+  obj.matrix[0] = xArr;
+  const vx = obj.matrix[0];
+  obj.matrixScaled[0] = this.linearScaleArray(vx, xMin, xMax, xGin, xGax - 1);
 
   for (let i = 1; i < matC; i++) {
-   obj.matrixScaled[i] = this.linearScaleArray(
-    obj.matrix[i],
-    yMin,
-    yMax,
-    yGin,
-    yGax
-   );
+   obj.matrix[i] = obj.jar.map((o) => o[obj.key[i - 1]]);
+   const vy = obj.matrix[i];
+   obj.matrixScaled[i] = this.linearScaleArray(vy, yMin, yMax, yGin, yGax - 1);
   }
+
+  obj.xAxisLimit = [xLab[0].toString(), xLab[xLab.length - 1]];
+  obj.yAxisLimit = [yMin, yMax];
 
   return obj;
  }
@@ -636,15 +626,17 @@ export default class TimeSeries {
  }
 
  drawLegend() {
+  let colors = this.data.option.line.stroke;
+  if (!this.data.option.line.stroke) colors = this.data.colors;
   this.obj.divMainKey = this.divMainKey();
   const div = document.getElementById(this.data.divMainKey.id);
   const data = this.data.dataObj.key;
   let tableStr = '<b>Key</b><table id="legend-key">';
-  tableStr += '<table id="legend-key">';
+  // tableStr += '<table id="legend-key">';
   // tableStr += '<th><td>' + 'sport' + '</td><td>' + 'val' + '</th>';
   data.forEach((v, i) => {
    const cls = 'class = "legend"';
-   const sty = 'style="background-color:' + this.data.colors[i] + '"';
+   const sty = 'style="background-color:' + colors[i] + '"';
    const div = '<div ' + cls + ' ' + sty + '></div>';
    tableStr += '<tr><td>' + div + '</td><td>' + v + '</td>';
   });
@@ -692,6 +684,7 @@ export default class TimeSeries {
  drawDataPoints() {
   const noLines = this.data.dataObj.key.length;
   const noMarks = this.data.dataObj.matrix[0].length;
+  const sep = this.data.dataObj.dsp;
 
   this.obj.marker = [...Array(noLines)].map((_) => Array(noMarks));
   this.obj.line = [];
@@ -705,52 +698,16 @@ export default class TimeSeries {
     strokeOpacity: this.data.option.marker.strokeOpacity[i]
    };
 
-   let matX = this.data.dataObj.matrix[0];
-   let matY = this.data.dataObj.matrix[1];
-
-   //  let matX = this.data.dataObj.xArr;
-
    let objX = this.data.dataObj.matrixScaled[0];
    let objY = this.data.dataObj.matrixScaled[i + 1];
-
-   console.log(matY);
-
-   //  matY = matY.map((v,i) => {
-   //   if(x){
-   //     matX[i]
-   //   }
-
-   //  })
-
-
+   let jarO = this.data.dataObj.jar;
 
    const keep = [];
-   for (let i = 0; i < noMarks; i++) if (matY[i]) keep.push(i);
+   for (let i = 0; i < noMarks; i++) if (objY[i]) keep.push(i);
 
-   console.log('keep == ' + keep);
-   matX = keep.map((v) => matX[v]);
-   matY = keep.map((v) => matY[v]);
-   objX = keep.map((v) => objY[v]);
+   objX = keep.map((v) => objX[v]);
    objY = keep.map((v) => objY[v]);
-
-   console.log('new mx = ' + matX);
-   console.log('new my = ' + matY);
-   console.log('new ox = ' + objX);
-   console.log('new oy = ' + objY);
-
-
-   //  matY = matY.filter(function (el) {
-   //   return toRemove.indexOf(el) < 0;
-   //  });
-
-   //  for (let i = 0; i < rem.length; i++) {
-   //   matX.splice(rem[i], 1);
-   //   matY.splice(rem[i], 1);
-   //   objX.splice(rem[i], 1);
-   //   objY.splice(rem[i], 1);
-   //  }
-
-   console.log(matY);
+   jarO = keep.map((v) => jarO[v]);
 
    const ptA = [];
    const rrr = this.data.option.marker.size[i];
@@ -763,21 +720,13 @@ export default class TimeSeries {
     if (this.data.option.markerOn) {
      this.obj.marker[i][j] = this.drawCircle(pxy, rrr, j, style);
 
-     // const col = this.data.dataObj.matrix.length - 1;
-     // const dat = this.data.dataObj.matrix[col][j].toFixed();
-     //  const dat = this.data.dataObj.timeSeriesX[j].toFixed();
-     //  const sep = this.data.dataObj.dateSeparator;
-     //  const dap = [dat.slice(0, 4), dat.slice(4, 6), dat.slice(6, 8)].join(sep);
-
-     const dap = this.data.dataObj.xArr;
-
-     //  console.log('oy = ' + matY[j]);
+     const date = jarO[j].yyyy + sep + jarO[j].mm + sep + jarO[j].dd;
+     const yVal = jarO[j][this.data.dataObj.head[1]];
 
      // <h4 style="margin:0">Values</h4>
      // const str = `<table><tr><td>x:</td><td>${matX[j].toFixed(1)}</td></tr>
-     //  <tr><td>y:</td> <td>${matY[j].toFixed(4)}</td></tr></table>`;
-     const str = `<table><tr><td>x:</td><td>${dap}</td></tr>
-     <tr><td>y:</td> <td>${matY[j].toFixed(4)}</td></tr></table>`;
+     const str = `<table><tr><td>x:</td><td>${date}</td></tr>
+     <tr><td>y:</td> <td>${yVal.toFixed(2)}</td></tr></table>`;
      this.eventMouseOver(div, this.obj.marker[i][j].obj, str, style.fill);
     }
    }
@@ -785,11 +734,11 @@ export default class TimeSeries {
    const line = this.data.option.line;
    const styleL = {};
    styleL.fill = 'none';
+   styleL.stroke = this.data.colors[i];
    if (line.stroke) styleL.stroke = line.stroke[i];
    if (line.strokeWidth) styleL.strokeWidth = line.strokeWidth[i];
    if (line.strokeOpacity) styleL.strokeOpacity = line.strokeOpacity[i];
    if (line.strokeDasharray) styleL.strokeDasharray = line.strokeDasharray[i];
-
    const ptS = ptA.join(',');
    this.obj.line[i] = this.drawPolyline(ptS, i, styleL);
   }
