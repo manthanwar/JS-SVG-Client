@@ -30,7 +30,7 @@ import TimeSeries from './TimeSeries.js';
 // import dataGbpUsd from './data-currency-gbp-usd.js';
 // import dataEurUsd from './data-currency-eur-usd.js';
 
-// import dataMetalGold from './data-metal-gold.js';
+import dataMetalGold from './data-metal-gold.js';
 // import dataMetalGoldLarge from './data-metal-gold-large.js';
 // import dataMetalSilver from './data-metal-silver.js';
 // import dataMetalPlatinum from './data-metal-platinum.js';
@@ -51,9 +51,9 @@ window.onload = (event) => {
 
  // const data = dataMovies;
  // const data = dataUsdInr;
- const data = dataEnergyGasPrices;
+ // const data = dataEnergyGasPrices;
  // const data = dataEnergyGasPricesLarge;
- // const data = dataMetalGold;
+ const data = dataMetalGold;
  // const data = dataMetalGoldLarge;
  // const data = dataEnergyCrudeOil;
  // const data = dataEnergyCrudeOilLarge;
@@ -63,7 +63,7 @@ window.onload = (event) => {
  // console.log(data.csv);
 
  main.innerHTML += '<h3 style="text-align:center">' + data.title + '</h3>';
- 
+
  const plot = new TimeSeries(data);
 
  const foot = document.createElement('div');
@@ -74,8 +74,8 @@ window.onload = (event) => {
 
  // const dataMin = plot.data.dataObj.vMin;
  // const dataMax = plot.data.dataObj.vMax;
- // const axisLim = plot.data.dataObj.axisLimit;
+ const axisLim = plot.data.dataObj.axisLimit;
  // console.log('dataMin = ' + dataMin);
  // console.log('dataMax = ' + dataMax);
- // console.log('axisLim = ' + axisLim);
+ console.log('axisLim = ' + axisLim);
 };

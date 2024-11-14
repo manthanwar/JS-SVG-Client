@@ -7,31 +7,17 @@ data.source =
  '<a href="https://developers.google.com/chart/interactive/docs/gallery/linechart" target="_blank">Google Material Charts</a>';
 
 //region data csv
-data.csv = `Date,Price
-2024-11-04,1.35
-2024-11-01,1.42
-2024-10-31,1.82
-2024-10-30,2.03
-2024-10-29,1.82
-2024-10-28,2.03
-2024-10-25,1.93
-2024-10-24,2.04
-2024-10-23,1.9
-2024-10-22,1.76
-2024-10-21,1.76
-2024-10-18,1.82
-2024-10-17,2.19
-2024-10-16,2.21
-2024-10-15,2.37
-2024-10-11,2.31
-2024-10-10,2.26
-2024-10-09,2.43
-2024-10-08,2.51
+data.csv = `Date,Price,Volume
+2024-11-04,1.35, 20
+2024-11-01,1.42,30
+2024-10-31,1.82, 20
+2024-10-30,2.03, 40
+
 
 `;
 //endregion data csv
 
-data.csv = data.csv.replace(/-/g, '');
+// data.csv = data.csv.replace(/-/g, '');
 // console.log(data.csv);
 
 data.layout = {
@@ -56,10 +42,12 @@ data.grid = {
 data.option = {
  // xOff: 0,
  // yOff: 0,
+ // hasHeader: true,
+ // isAscending: true,
  dateFormat: 'yyyy-mm-dd',
+
  columnsToPlot: [1], // [1,2,3,4] // 0 for date
- // axisLimit: [-1, 5, 1, 3],
- // hasHeader: false,
+ // axisLimit: [-1, 19, 1, 3],
  markerOn: true,
  marker: {
   size: Array(3).fill(10),

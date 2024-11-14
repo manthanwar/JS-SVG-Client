@@ -200,6 +200,7 @@ export default class TimeSeries {
   this.data.option = {
    xOff: 0, // x offset
    yOff: 0, // y offset,
+   //  isAscending: false,
    hasHeader: true,
    markerOn: true,
    marker: {
@@ -250,7 +251,7 @@ export default class TimeSeries {
   return dataArray.map((x) => this.linearScale(x, x1, x2, y1, y2));
  }
 
- createDataObj() {
+ createDataObjOld() {
   const dArr = this.data.csv.split('\n').filter((n) => n);
   delete this.data.csv;
 
@@ -288,6 +289,17 @@ export default class TimeSeries {
    obj.timeSeriesX[ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
    // obj.matrix[cols][ix] = parseInt(dto.yyyy + dto.mm + dto.dd);
   }
+
+  // console.log('aaa = ' + obj.timeSeriesX[0], obj.timeSeriesX[1]);
+  // const dateDiff = obj.timeSeriesX[0] - obj.timeSeriesX[1];
+
+  // console.log('ddd = ' + dateDiff);
+
+  // if (this.data.option.orderAscending) {
+  //  dArr.reverse();
+  // }
+  // console.log('hh = ' + obj.head);
+  // console.log('aa = ' + dArr[0]);
 
   // for (const ix in dArr) {
   //  let vxArr = dArr[ix].split(',');
@@ -346,6 +358,18 @@ export default class TimeSeries {
   obj.yLab = [...Array(yGax + 1)].map((_, i) => (yAxisMin + i * dy).toFixed(1));
   obj.xLab = obj.xIdx.map((v) => obj.timeSeriesX[parseInt(v)]);
 
+  console.log('xid = ' + obj.xIdx);
+  console.log('xLb = ' + obj.xLab);
+  console.log('xmin = ' + xAxisMin + ' xmax = ' + xAxisMax);
+  if (xAxisMin < 0) {
+   console.log('xIdxMin = ' + obj.xIdx[0]);
+   console.log('xLabMin = ' + obj.xLab[1]);
+   //  console.log('xTimMin = ' + obj.timeSeriesX[0]);
+   //  const dtStr = obj.xLab[1].replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
+   //  const ddd = new Date(dtStr);
+   //  console.log('date = ' + ddd);
+  }
+
   obj.matrixScaled[0] = this.linearScaleArray(
    obj.matrix[0],
    xAxisMin,
@@ -359,6 +383,238 @@ export default class TimeSeries {
     obj.matrix[i],
     yAxisMin,
     yAxisMax,
+    yGin,
+    yGax
+   );
+  }
+
+  return obj;
+ }
+
+ //  sortObjArrayByKey(objArray, key) {
+ //   return objArray.sort(function (a, b) {
+ //    return a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
+ //   });
+ //  }
+
+ sortObjArrayByKey(objArray, key) {
+  return objArray.sort((a, b) => a[key] - b[key]);
+ }
+
+ sortObjArrayByTwoKeys(objArray, key1, key2) {
+  return objArray.sort((a, b) => a[key1] - b[key1] || a[key2] - b[key2]);
+ }
+
+ /**
+  * Sort by ascending order
+  */
+ sortObjArrayByThreeKeys(objArray, key1, key2, key3) {
+  return objArray.sort(
+   (a, b) => a[key1] - b[key1] || a[key2] - b[key2] || a[key3] - b[key3]
+  );
+ }
+
+ /**
+  * Sort by descending order
+  */
+ sortObjArrayByThreeKeysDesc(objArray, key1, key2, key3) {
+  return objArray.sort(
+   (a, b) => b[key1] - a[key1] || b[key2] - a[key2] || b[key3] - a[key3]
+  );
+ }
+
+ dateRangeArray(startDate, endDate, steps = 1) {
+  const dateArray = [];
+  let currentDate = new Date(startDate);
+
+  while (currentDate <= new Date(endDate)) {
+   dateArray.push(new Date(currentDate));
+   // Use UTC date to prevent problems with time zones and DST
+   currentDate.setUTCDate(currentDate.getUTCDate() + steps);
+  }
+
+  return dateArray;
+ }
+
+ dateRangeObjArray(startDate, endDate, steps = 1) {
+  const dateArray = [];
+  let currentDate = new Date(startDate);
+
+  while (currentDate <= new Date(endDate)) {
+   const cy = currentDate.getUTCFullYear();
+   const cm = currentDate.getUTCMonth() + 1;
+   const cd = currentDate.getUTCDate();
+   dateArray.push({ yyyy: parseInt(cy), mm: parseInt(cm), dd: parseInt(cd) });
+   // Use UTC date to prevent problems with time zones and DST
+   currentDate.setUTCDate(currentDate.getUTCDate() + steps);
+  }
+
+  return dateArray;
+ }
+
+ filterObjByObj(obj, objFilter) {
+  return obj.filter((item) => {
+   for (var key in objFilter) {
+    if (item[key] === undefined || item[key] != objFilter[key]) return false;
+   }
+   return true;
+  });
+ }
+
+ /**
+  * filter the array of objects matching filter object
+  * returns array
+  */
+ filterObjByDate(obj, f) {
+  return obj.filter((o) => o.yyyy == f.yyyy && o.mm == f.mm && o.dd == f.dd);
+ }
+
+ getDateStr(dateStringGiven) {
+  const dta = dateStringGiven.split(/[\/\.-]/g);
+  const dtf = this.data.option.dateFormat.split(/[\/-]/g);
+  const dto = {};
+  for (let i = 0; i < 3; i++) dto[dtf[i]] = parseInt(dta[i]);
+  return [dto.yyyy, dto.mm, dto.dd].join('-');
+ }
+
+ deepMergeJson(obj1, obj2) {
+  const jsonString1 = JSON.stringify(obj1);
+  const jsonString2 = JSON.stringify(obj2);
+
+  const mergedJsonString = JSON.stringify({
+   ...JSON.parse(jsonString1),
+   ...JSON.parse(jsonString2)
+  });
+  const deepMergedObjJSON = JSON.parse(mergedJsonString);
+  return deepMergedObjJSON;
+ }
+
+ deepMergeObjects(obj1, obj2) {
+  for (let key in obj2) {
+   if (obj2.hasOwnProperty(key)) {
+    if (obj2[key] instanceof Object && obj1[key] instanceof Object) {
+     obj1[key] = this.deepMerge(obj1[key], obj2[key]);
+    } else {
+     obj1[key] = obj2[key];
+    }
+   }
+  }
+  return obj1;
+ }
+
+ /**
+  * Deep merge array of objects
+  * returns object
+  */
+ deepMergeObjArr(source, target) {
+  for (const obf of target) {
+   const res = this.filterObjByDate(source, obf);
+   if (res.length === 0) source.push(obf);
+  }
+  return source;
+ }
+
+ createDataObj() {
+  const dArr = this.data.csv.split('\n').filter((n) => n);
+  delete this.data.csv;
+
+  const obj = {};
+
+  if (this.data.option.hasHeader) {
+   obj.head = dArr[0].split(',').map((x) => x.trim());
+   dArr.splice(0, 1);
+  } else obj.head = dArr[0].split(',').map((v, i) => 'column' + i);
+
+  const nr = dArr.length; //number of rows
+  const nc = dArr[0].split(',').length; //number of columns
+
+  obj.jar = [...Array(nr)]; // json object array
+  obj.dsp = this.data.option.dateFormat.replace(/[a-z]/g, '')[0]; // date Sep
+
+  const dtf = this.data.option.dateFormat.split(/[\/-]/g);
+
+  for (let ix = 0; ix < nr; ix++) {
+   const vx = dArr[ix].split(',');
+   const dt = vx[0].split(/[\/\.-]/g);
+   const dto = {};
+   for (let id = 0; id < 3; id++) dto[dtf[id]] = parseInt(dt[id]);
+   obj.jar[ix] = dto;
+   //  obj.jar[ix].date = new Date(dto.yyyy, dto.mm, dto.dd);
+   for (let y = 1; y < nc; y++) obj.jar[ix][obj.head[y]] = parseFloat(vx[y]);
+  }
+
+  obj.jar = this.sortObjArrayByThreeKeys(obj.jar, 'yyyy', 'mm', 'dd');
+
+  const xAxisLimit = this.data.option.xAxisLimit;
+  const plotHeader = this.data.option.plotHeader;
+
+  let xAxisMin = 0;
+  let xAxisMax = 0;
+
+  if (xAxisLimit) {
+   xAxisMin = this.getDateStr(xAxisLimit[0]);
+   xAxisMax = this.getDateStr(xAxisLimit[1]);
+  } else {
+   const jarF = obj.jar[0];
+   const jarL = obj.jar[nr - 1];
+   xAxisMin = jarF.yyyy + '-' + jarF.mm + '-' + jarF.dd;
+   xAxisMax = jarL.yyyy + '-' + jarL.mm + '-' + jarL.dd;
+  }
+
+  const dates = this.dateRangeObjArray(xAxisMin, xAxisMax);
+  obj.jar = this.deepMergeObjArr(obj.jar, dates);
+  obj.jar = this.sortObjArrayByThreeKeys(obj.jar, 'yyyy', 'mm', 'dd');
+  obj.key = plotHeader.map((v) => obj.head[v]); // keys for legend
+
+  // const xArr = obj.jar.map((o) => parseInt(o.yyyy + '' + o.mm + '' + o.dd));
+
+  obj.xArr = [...Array(obj.jar.length).keys()];
+  obj.yArr = obj.jar.map((o) => o[obj.key[0]]);
+  const xGin = 0; // minimum of x grid
+  const yGin = 0; // minimum of y grid
+  const xGax = this.data.grid.majorNumX + 1; // maximum x grid
+  const yGax = this.data.grid.majorNumY + 1; // maximum of y grid
+  const xMin = Math.floor(Math.min(...obj.xArr));
+  const xMax = Math.ceil(Math.max(...obj.xArr));
+  const yMin = Math.floor(Math.min(...obj.yArr.filter((x) => x)));
+  const yMax = Math.ceil(Math.max(...obj.yArr.filter((x) => x)));
+  const xDel = (xMax + 1 - xMin) / xGax;
+  const yDel = (yMax - yMin) / yGax;
+
+  // console.log(obj.xArr);
+  // console.log(xMax, xMin, xGax, xDel, yMax, yMin, yGax, yDel);
+
+  const xLab = obj.jar.map(
+   (o) => o[dtf[0]] + obj.dsp + o[dtf[1]] + obj.dsp + o[dtf[2]]
+  );
+
+  obj.xIdx = [...Array(xGax)].map((v, i) => Math.round(i * xDel));
+  obj.xIdx[obj.xIdx.length - 1] = obj.xArr[obj.xArr.length - 1];
+  obj.xLab = obj.xIdx.map((v) => xLab[v]);
+  obj.yLab = [...Array(yGax)].map((_, i) => (yMin + i * yDel).toFixed(0));
+
+  const matR = obj.yArr.length;
+  const matC = obj.key.length + 1;
+  obj.matrix = [...Array(matC)].map((_) => Array(matR));
+  obj.matrixScaled = [...Array(matC)].map((_) => Array(matR));
+  // obj.matrixScaled = [...Array(cols)].map((_) => Array(rows).fill(0));
+
+  obj.matrix[0] = obj.xArr;
+  obj.matrix[1] = obj.yArr;
+
+  obj.matrixScaled[0] = this.linearScaleArray(
+   obj.matrix[0],
+   xMin,
+   xMax,
+   xGin,
+   xGax
+  );
+
+  for (let i = 1; i < matC; i++) {
+   obj.matrixScaled[i] = this.linearScaleArray(
+    obj.matrix[i],
+    yMin,
+    yMax,
     yGin,
     yGax
    );
@@ -434,13 +690,13 @@ export default class TimeSeries {
  } //drawObject
 
  drawDataPoints() {
-  const noLines = this.data.dataObj.matrix.length - 1;
+  const noLines = this.data.dataObj.key.length;
   const noMarks = this.data.dataObj.matrix[0].length;
 
   this.obj.marker = [...Array(noLines)].map((_) => Array(noMarks));
   this.obj.line = [];
 
-  for (let i = 0; i < this.data.dataObj.matrix.length - 1; i++) {
+  for (let i = 0; i < noLines; i++) {
    const style = {
     fill: this.data.option.marker.fill[i],
     fillOpacity: this.data.option.marker.fillOpacity[i],
@@ -449,11 +705,52 @@ export default class TimeSeries {
     strokeOpacity: this.data.option.marker.strokeOpacity[i]
    };
 
-   const matX = this.data.dataObj.matrix[0];
-   const matY = this.data.dataObj.matrix[i + 1];
+   let matX = this.data.dataObj.matrix[0];
+   let matY = this.data.dataObj.matrix[1];
 
-   const objX = this.data.dataObj.matrixScaled[0];
-   const objY = this.data.dataObj.matrixScaled[i + 1];
+   //  let matX = this.data.dataObj.xArr;
+
+   let objX = this.data.dataObj.matrixScaled[0];
+   let objY = this.data.dataObj.matrixScaled[i + 1];
+
+   console.log(matY);
+
+   //  matY = matY.map((v,i) => {
+   //   if(x){
+   //     matX[i]
+   //   }
+
+   //  })
+
+
+
+   const keep = [];
+   for (let i = 0; i < noMarks; i++) if (matY[i]) keep.push(i);
+
+   console.log('keep == ' + keep);
+   matX = keep.map((v) => matX[v]);
+   matY = keep.map((v) => matY[v]);
+   objX = keep.map((v) => objY[v]);
+   objY = keep.map((v) => objY[v]);
+
+   console.log('new mx = ' + matX);
+   console.log('new my = ' + matY);
+   console.log('new ox = ' + objX);
+   console.log('new oy = ' + objY);
+
+
+   //  matY = matY.filter(function (el) {
+   //   return toRemove.indexOf(el) < 0;
+   //  });
+
+   //  for (let i = 0; i < rem.length; i++) {
+   //   matX.splice(rem[i], 1);
+   //   matY.splice(rem[i], 1);
+   //   objX.splice(rem[i], 1);
+   //   objY.splice(rem[i], 1);
+   //  }
+
+   console.log(matY);
 
    const ptA = [];
    const rrr = this.data.option.marker.size[i];
@@ -468,12 +765,17 @@ export default class TimeSeries {
 
      // const col = this.data.dataObj.matrix.length - 1;
      // const dat = this.data.dataObj.matrix[col][j].toFixed();
-     const dat = this.data.dataObj.timeSeriesX[j].toFixed();
-     const sep = this.data.dataObj.dateSeparator;
-     const dap = [dat.slice(0, 4), dat.slice(4, 6), dat.slice(6, 8)].join(sep);
+     //  const dat = this.data.dataObj.timeSeriesX[j].toFixed();
+     //  const sep = this.data.dataObj.dateSeparator;
+     //  const dap = [dat.slice(0, 4), dat.slice(4, 6), dat.slice(6, 8)].join(sep);
+
+     const dap = this.data.dataObj.xArr;
+
+     //  console.log('oy = ' + matY[j]);
 
      // <h4 style="margin:0">Values</h4>
      // const str = `<table><tr><td>x:</td><td>${matX[j].toFixed(1)}</td></tr>
+     //  <tr><td>y:</td> <td>${matY[j].toFixed(4)}</td></tr></table>`;
      const str = `<table><tr><td>x:</td><td>${dap}</td></tr>
      <tr><td>y:</td> <td>${matY[j].toFixed(4)}</td></tr></table>`;
      this.eventMouseOver(div, this.obj.marker[i][j].obj, str, style.fill);
@@ -617,7 +919,8 @@ export default class TimeSeries {
  drawTextLabX(xy, text, id) {
   const data = {};
   data.x = xy[0] + +this.data.grid.padding.left;
-  data.y = xy[1] + this.data.height + this.data.grid.padding.top + 16;
+  data.y = xy[1] + this.data.height + this.data.grid.padding.top + 20;
+  if (!text) text = ' ';
   data.text = text.toString();
   data.fontFamily = 'inherit';
   data.fontSize = '14';
