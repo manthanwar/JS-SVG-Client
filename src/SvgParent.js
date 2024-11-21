@@ -57,6 +57,8 @@ export default class SvgParent {
   kv.fillOpacity = '1';
   kv.transform = '';
   kv.id = 'svgId';
+  kv.clipPath = '';
+  kv.mask = '';
   kv.style = '';
   kv.class = '';
   this.keys = Object.keys(kv);

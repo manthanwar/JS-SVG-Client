@@ -47,10 +47,13 @@ export default class Circle extends SvgParent {
   kv.fillOpacity = '1';
   kv.strokeLinecap = ''; // butt (default) | round | square
   kv.strokeDasharray = ''; // '20, 10, 5, 10'
+  kv.strokeDashoffset = '';
   kv.strokeLinejoin = ''; // arcs| bevel|miter (default)|miter-clip|round
   kv.paintOrder = ''; // normal (default) | [ fill || stroke }| markers]
   kv.transform = '';
   kv.id = 'circle';
+  kv.clipPath = '';
+  kv.mask = '';
   kv.style = '';
   kv.class = '';
   this.keys = Object.keys(kv);

@@ -59,6 +59,8 @@ export default class Rectangle extends SvgParent {
   kv.paintOrder = ''; // normal (default) | [ fill || stroke }| markers]
   kv.transform = '';
   kv.id = 'rectangle';
+  kv.clipPath = '';
+  kv.mask = '';
   kv.style = '';
   kv.class = '';
   this.keys = Object.keys(kv);

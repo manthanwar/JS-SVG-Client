@@ -86,6 +86,31 @@ data.navMenu = [
   ]
  },
  {
+  link: 'Gauges',
+  menu: [
+   {
+    link: 'Radial Progress',
+    page: 'Radial Progress',
+    href: 'demo-gauge-radial-progress.html'
+   },
+   {
+    link: 'Radial Gauge',
+    page: 'Radial Gauge',
+    href: 'demo-gauge-radial.html'
+   },
+   {
+    link: 'Linear Gauge',
+    page: 'Linear Gauge',
+    href: 'demo-gauge-linear.html'
+   },
+   {
+    link: 'Thermometer Gauge',
+    page: 'Thermometer Gauge',
+    href: 'demo-gauge-thermometer.html'
+   }
+  ]
+ },
+ {
   link: 'Manufacturing',
   menu: [
    {

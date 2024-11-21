@@ -47,6 +47,8 @@ export default class Polygon extends SvgParent {
   kv.paintOrder = ''; // normal (default) | [ fill || stroke }| markers]
   kv.transform = '';
   kv.id = 'polygon';
+  kv.clipPath = '';
+  kv.mask = '';
   kv.style = '';
   kv.class = '';
   this.keys = Object.keys(kv);

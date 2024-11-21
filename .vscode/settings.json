@@ -1289,7 +1289,7 @@
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.integrated.fontFamily": "Fira Code, Source Code Pro, Consolas, monospace",
-    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontWeight": "300",
     "terminal.integrated.profiles.windows": {
         "Git Bash": {

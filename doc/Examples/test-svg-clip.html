@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page Title</title>
+  <link rel="icon" href="#" sizes="any" type="image/svg+xml" />
+  <!-- <link rel="stylesheet" type="text/css" media="screen" href="demo-main.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" media="screen" href="demo-gauge-radial.css" /> -->
+  <!-- <script type="module" src="demo-gauge-radial.js"></script> -->
+ <style>
+  * {
+   box-sizing: border-box;
+  }
+
+ </style>
+ </head>
+ <body>
+  <div style="width:428px; height:228px; border:2px solid red; margin-left:200px; padding:10px">
+
+   <!-- <div style="width:428px; height:428px; border:2px solid red; margin-left:200px; padding:10px"> -->
+
+   <svg width="100%" height="100%" style="padding:0px;border:2px solid green">
+
+    <defs>
+     <clipPath id="cut-bottom">
+       <rect x="0" y="0" width="400" height="200" />
+     </clipPath>
+   </defs>
+
+   <rect x="0" y="0" width="400" height="200" fill="cyan"/>
+
+
+
+    <circle cx="200" cy="200" r="200" fill="whitesmoke" clip-path="url(#cut-bottom)"></circle>
+   </svg>
+
+   <div style="position: absolute; top:100px; left:100px;
+   width:10px; height:10px;"></div>
+
+   <div style="position: absolute; top:100px; left:100px;
+   width:10px; height:10px;"></div>
+
+  </div>
+  <div style="width:300px; border:2px solid blue; margin-left:200px; padding:0px">
+   hi amit
+  </div>
+ </body>
+</html>

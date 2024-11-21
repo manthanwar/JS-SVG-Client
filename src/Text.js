@@ -84,6 +84,8 @@ export default class Text extends SvgParent {
   kv.rotate = '';
   kv.transform = '';
   kv.id = 'text';
+  kv.clipPath = '';
+  kv.mask = '';
   kv.style = '';
   kv.class = '';
   this.keys = Object.keys(kv);

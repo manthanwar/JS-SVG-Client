@@ -47,6 +47,8 @@ export default class Path extends SvgParent {
   kv.paintOrder = ''; // normal (default) | [ fill || stroke }| markers]
   kv.transform = '';
   kv.id = 'path';
+  kv.clipPath = '';
+  kv.mask = '';
   kv.style = '';
   kv.class = '';
   this.keys = Object.keys(kv);

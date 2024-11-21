@@ -47,6 +47,8 @@ export default class Image extends SvgParent {
   obj.setAttributeNS(null, 'id', this.data.id);
   obj.setAttributeNS(null, 'style', this.data.style);
   obj.setAttributeNS(null, 'class', this.data.class);
+  obj.setAttributeNS(null, 'clip=path', this.data.clipPath);
+  obj.setAttributeNS(null, 'mask', this.data.mask);
   this.data.container.appendChild(obj);
   return obj;
  }
