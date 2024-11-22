@@ -29,16 +29,22 @@ export default class GaugeParent {
   this.obj.divMainObj = this.divMainObj();
   this.obj.svgMainSvg = this.svgMainSvg();
 
-  if (this.data.gridOn) {
-   this.obj.grid = this.drawGrid();
-   this.data.width = this.obj.grid.objSvg.width;
-   this.data.height = this.obj.grid.objSvg.height;
-   this.data.idSvg = this.data.grid.box.idSvg;
-  } else {
-   this.data.width = parseInt(this.obj.divMainObj.data.width);
-   this.data.height = parseInt(this.obj.divMainObj.data.height);
-   this.data.idSvg = this.data.svgMainSvg.id;
-  }
+  // this.data.gridOn = false;
+  this.obj.grid = this.drawGrid();
+  this.data.width = this.obj.grid.objSvg.width;
+  this.data.height = this.obj.grid.objSvg.height;
+  this.data.idSvg = this.data.grid.box.idSvg;
+
+  // if (this.data.gridOn) {
+  //  this.obj.grid = this.drawGrid();
+  //  this.data.width = this.obj.grid.objSvg.width;
+  //  this.data.height = this.obj.grid.objSvg.height;
+  //  this.data.idSvg = this.data.grid.box.idSvg;
+  // } else {
+  //  this.data.width = parseInt(this.obj.divMainObj.data.width);
+  //  this.data.height = parseInt(this.obj.divMainObj.data.height);
+  //  this.data.idSvg = this.data.svgMainSvg.id;
+  // }
 
   // this.obj.divOptions = this.divOptions();
   // this.drawObject();
@@ -317,21 +323,6 @@ export default class GaugeParent {
   // this.drawLineSafety();
  } //drawObject
 
- drawGaugeSkirt() {
-  const cxy = this.scalePoints([2, 0]);
-  const rrr = cxy[0];
-  const iii = 1;
-  const sty = {
-   fill: this.data.gaugeSkirt.fill,
-   fillOpacity: this.data.gaugeSkirt.fillOpacity,
-   stroke: this.data.gaugeSkirt.stroke,
-   strokeWidth: this.data.gaugeSkirt.strokeWidth,
-   strokeOpacity: this.data.gaugeSkirt.strokeOpacity,
-   strokeDasharray: this.data.gaugeSkirt.strokeDasharray
-  };
-  this.obj.gaugeSkirt = this.drawCircle(cxy, rrr, iii, sty);
- }
-
  drawDataPoints() {
   const noLines = this.data.dataObj.key.length;
   const noMarks = this.data.dataObj.matrix[0].length;
@@ -448,57 +439,141 @@ export default class GaugeParent {
  drawCircle(cxy, rrr, id, style) {
   const data = {};
   data.containerId = this.data.idSvg;
-  data.id = data.containerId + '-circle-' + id;
-  data.transform = this.transform();
+  data.id = data.containerId + '-circle-' + id.toString();
   data.cx = cxy[0];
   data.cy = cxy[1];
   data.r = rrr;
+  // data.transform = `rotate(${style.angle}, ${cxy[0]}, ${cxy[1]})`;
+  data.transform = style.transform;
   data.fill = style.fill;
-  data.fillOpacity = style.fillOpacity;
+  data.fillOpacity = style.fillOpacity.toString();
   data.stroke = style.stroke;
-  data.strokeWidth = style.strokeWidth;
-  data.strokeOpacity = style.strokeOpacity;
+  data.strokeWidth = style.strokeWidth.toString();
+  data.strokeOpacity = style.strokeOpacity.toString();
   data.strokeDasharray = style.strokeDasharray;
+  data.strokeDashoffset = style.strokeDashoffset;
   data.class = 'marker';
   // data.clipPath = 'url(#cut-bottom)';
   return new mySvg.Circle(data);
  }
 
+ drawLine(xy, id, style) {
+  const data = {};
+  data.containerId = this.data.idSvg;
+  data.id = data.containerId + '-line-' + id.toString();
+  data.transform = this.transform();
+  data.x1 = xy[0].toString();
+  data.y1 = xy[1].toString();
+  data.x2 = xy[2].toString();
+  data.y2 = xy[3].toString();
+  data.fill = 'none';
+  data.fillOpacity = '0';
+  data.stroke = style.stroke;
+  data.strokeWidth = style.strokeWidth.toString();
+  data.strokeOpacity = style.strokeOpacity.toString();
+  data.strokeDasharray = style.strokeDasharray;
+  // data.strokeLinecap = 'round'; // butt (default) | round | square
+  // data.strokeLinejoin = ''; // arcs| bevel|miter (default)|miter-clip|round
+  // data.class = '';
+  return new mySvg.Line(data);
+ }
+
  drawPolyline(points, id, style) {
   const data = {};
   data.containerId = this.data.idSvg;
-  data.id = data.containerId + '-line-' + id;
+  data.id = data.containerId + '-line-' + id.toString();
   data.transform = this.transform();
   data.points = points;
   data.fill = style.fill;
-  data.fillOpacity = style.fillOpacity;
+  data.fillOpacity = style.fillOpacity.toString();
   data.stroke = style.stroke;
-  data.strokeWidth = style.strokeWidth;
-  data.strokeOpacity = style.strokeOpacity;
+  data.strokeWidth = style.strokeWidth.toString();
+  data.strokeOpacity = style.strokeOpacity.toString();
   data.strokeDasharray = style.strokeDasharray;
   data.class = 'line';
   return new mySvg.Polyline(data);
  }
 
- drawLine(xy, id, clr) {
+ toRadians(degrees) {
+  return degrees * (Math.PI / 180);
+ }
+
+ toDegrees(radians) {
+  return radians * (180 / Math.PI);
+ }
+
+ toPolar(center, radius, angle) {
+  const ptx = center[0] + radius * Math.cos(this.toRadians(angle));
+  const pty = center[1] + radius * Math.sin(this.toRadians(angle));
+  return [ptx, pty];
+ }
+
+ toArcStringScaled(data) {
+  // A = [rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y];
+  const radius = data.slice(0, 2);
+  const points = data.slice(data.length - 2, data.length);
+  const rScale = this.scalePoints(radius);
+  const pScale = this.scalePoints(points);
+  const dScaled = data.slice();
+  dScaled.splice(0, 2, rScale);
+  dScaled.splice(data.length - 3, 2, pScale);
+  return 'A' + dScaled.slice().join(', ');
+ }
+
+ toArcString(data) {
+  // A = [rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y];
+  const radius = data.slice(0, 2);
+  const points = data.slice(data.length - 2, data.length);
+  // const rScale = this.scalePoints(radius);
+  // const pScale = this.scalePoints(points);
+  const dScaled = data.slice();
+  dScaled.splice(0, 2, rScale);
+  dScaled.splice(data.length - 3, 2, pScale);
+  return 'A' + dScaled.slice().join(', ');
+ }
+
+ drawCircleArc(center, radius, angleStart, angleEnd, id, style) {
+  const ptA = this.toPolar(center, radius, angleStart);
+  const ptB = this.toPolar(center, radius, angleEnd);
+  const arcS = [radius, radius, 0, 0, 0, ptB].join(', ');
+  const data = 'M' + ptA.toString() + ' A' + arcS;
+  return this.drawPath(data, id, style);
+ }
+
+ drawPath(data, id, style) {
+  const path = {};
+  path.d = data;
+  path.containerId = this.data.idSvg;
+  path.id = path.containerId + '-path-' + id.toString();
+  path.transform = style.transform;
+  path.fill = style.fill;
+  path.fillOpacity = style.fillOpacity.toString();
+  path.stroke = style.stroke;
+  path.strokeWidth = style.strokeWidth.toString();
+  path.strokeOpacity = style.strokeOpacity.toString();
+  path.strokeDasharray = style.strokeDasharray;
+  path.strokeDashoffset = style.strokeDashoffset;
+  return new mySvg.Path(path);
+ }
+
+ drawText(xy, text, id, style) {
   const data = {};
-  data.containerId = this.data.idSvg;
-  data.id = data.containerId + '-line-' + id;
-  data.transform = this.transform();
-  data.x1 = xy[0];
-  data.y1 = xy[1];
-  data.x2 = xy[2];
-  data.y2 = xy[3];
-  data.stroke = clr;
-  data.strokeWidth = 4;
-  data.strokeOpacity = '1';
-  data.strokeLinecap = 'round'; // butt (default) | round | square
-  data.strokeDasharray = '0, 10';
-  // data.strokeLinejoin = ''; // arcs| bevel|miter (default)|miter-clip|round
-  data.fill = 'none';
-  data.fillOpacity = '1';
+  data.containerId = this.data.svgMainSvg.id;
+  data.id = data.containerId + '-text-' + id.toString();
+  data.x = xy[0] + this.data.grid.padding.left;
+  data.y = xy[1] + this.data.grid.padding.top + style.fontSize / 3;
+  data.text = text;
+  data.fontFamily = style.fontFamily;
+  data.fontSize = style.fontSize;
+  data.fontWeight = style.fontWeight;
+  data.fill = style.fill;
+  data.fillOpacity = style.fillOpacity;
+  data.stroke = 'none';
+  data.strokeWidth = '0';
+  data.textAnchor = style.textAnchor;
+  data.alignmentBaseline = style.alignmentBaseline;
   data.class = '';
-  return new mySvg.Line(data);
+  return new mySvg.Text(data);
  }
 
  drawLabelAxisX() {
@@ -528,7 +603,7 @@ export default class GaugeParent {
   data.fontSize = '14';
   data.fontWeight = 'normal';
   data.containerId = this.data.divMainSvg.id;
-  data.id = data.containerId + '-txt-axisLabelX-' + id;
+  data.id = data.containerId + '-txt-axisLabelX-' + id.toString();
   data.fill = 'gray';
   data.fillOpacity = 1;
   data.stroke = 'none';
@@ -547,7 +622,7 @@ export default class GaugeParent {
   data.fontSize = '14';
   data.fontWeight = 'normal';
   data.containerId = this.data.divMainSvg.id;
-  data.id = data.containerId + '-txt-axisLabelY-' + id;
+  data.id = data.containerId + '-txt-axisLabelY-' + id.toString();
   data.fill = 'gray';
   data.fillOpacity = '1';
   data.stroke = 'none';
@@ -559,7 +634,7 @@ export default class GaugeParent {
  drawDivSafe(xy, text, id, clr) {
   const div = document.createElement('div');
   this.obj.divMainObj.obj.appendChild(div);
-  div.id = this.data.divMainObj.id + '-div-txt-' + id;
+  div.id = this.data.divMainObj.id + '-div-txt-' + id.toString();
   div.style.color = clr;
   div.style.textAlign = 'center';
   div.style.position = 'absolute';
@@ -577,6 +652,18 @@ export default class GaugeParent {
   const xOff = this.data.xOff;
   const yOff = this.data.yOff;
   return array.map((v, i) => (i % 2 ? (v + yOff) * yyy : (v + xOff) * xxx));
+ }
+
+ scalePointX(value) {
+  const xxx = this.data.width / this.data.grid.majorNumX;
+  const xOff = this.data.xOff;
+  return (value + xOff) * xxx;
+ }
+
+ scalePointY(value) {
+  const yyy = this.data.height / this.data.grid.majorNumY;
+  const yOff = this.data.yOff;
+  return (value + yOff) * yyy;
  }
 
  transform() {

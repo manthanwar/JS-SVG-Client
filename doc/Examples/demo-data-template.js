@@ -94,6 +94,11 @@ data.navMenu = [
     href: 'demo-gauge-radial-progress.html'
    },
    {
+    link: 'Radial Gauge Half',
+    page: 'Radial Gauge Half',
+    href: 'demo-gauge-radial-half.html'
+   },
+   {
     link: 'Radial Gauge',
     page: 'Radial Gauge',
     href: 'demo-gauge-radial.html'
