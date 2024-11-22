@@ -58,7 +58,11 @@ app.get('/', function (req, res) {
  res.sendFile(path.join(__dirname, 'demo-home.html'));
 });
 
-app.get('/resp', function (req, res) {
+app.get('/demo-artDesign.html', function (req, res) {
+ res.sendFile(path.join(__dirname, 'demo-artDesign.html'));
+});
+
+https: app.get('/resp', function (req, res) {
  res.sendFile(path.join(__dirname, 'demo-responsive.html'));
 });
 
