@@ -1,6 +1,6 @@
 // =============================================================================
-// File Name  : GaugeRadialHalf.js
-// Description: JS Class to draw Radial Gauge Progress using JS-SVG-Client
+// File Name  : GaugeRadial3Q.js
+// Description: JS Class to draw 3 Quarter Radial Gauge using JS-SVG-Client
 // -----------------------------------------------------------------------------
 // Author     : Amit Manohar Manthanwar
 // Mailer     : manthanwar@hotmail.com
@@ -14,14 +14,14 @@
 // =============================================================================
 // Revision Log  | Author  | Description
 // --------------+---------+----------------------------------------------------
-// 21-Nov-2024   | AMM | Initial Version
+// 22-Nov-2024   | AMM | Initial Version
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 
 import * as mySvg from './svg.min.js';
 import GaugeParent from './GaugeParent.js';
 
-export default class GaugeRadialHalf extends GaugeParent {
+export default class GaugeRadial3Q extends GaugeParent {
  constructor(data) {
   super(data);
   this.data.total = 100000;
@@ -47,11 +47,12 @@ export default class GaugeRadialHalf extends GaugeParent {
   const idGear = this.obj.needleGear.id;
   document.getElementById(idLine).remove();
   document.getElementById(idGear).remove();
-  // delete this.obj.needleLine;
  }
 
  drawGaugeSkirt() {
-  const style = {
+  const cxy = this.scalePoints([2, 2]);
+  const [aA, aB] = [225, 315];
+  const sty = {
    fill: 'none',
    fillOpacity: '0',
    stroke: this.data.option.gaugeSkirt.stroke,
@@ -59,19 +60,16 @@ export default class GaugeRadialHalf extends GaugeParent {
    strokeOpacity: this.data.option.gaugeSkirt.strokeOpacity,
    transform: this.transform()
   };
-
-  const cxy = this.scalePoints([2, 0]);
-  const radius = this.scalePointX(1.9) + style.strokeWidth / 2;
-  // const circumference = Math.PI * radius;
-  // const offset = 0;
-  // style.strokeDasharray = `${circumference} ${circumference}`;
-  // style.strokeDashoffset = offset;
-
-  this.obj.gaugeSkirt = this.drawCircle(cxy, radius, 0, style);
+  const rr = this.scalePointX(1.9) + sty.strokeWidth / 2;
+  const id = 'gaugeSkirt';
+  const fg = [0, 1, 0]; // flag = [xAxisRotation, largeArcFlag, sweepFlag]
+  this.obj.gaugeSkirt = this.drawCircleArc(cxy, rr, aA, aB, id, sty, fg);
  }
 
  drawGaugeAreaZ() {
-  const style = {
+  const cxy = this.scalePoints([2, 2]);
+  const [aA, aB] = [225, 315];
+  const sty = {
    fill: 'none',
    fillOpacity: '0',
    stroke: this.data.option.gaugeAreaZ.stroke,
@@ -79,21 +77,16 @@ export default class GaugeRadialHalf extends GaugeParent {
    strokeOpacity: this.data.option.gaugeAreaZ.strokeOpacity,
    transform: this.transform()
   };
-
-  const cxy = this.scalePoints([2, 0]);
-  const radius = this.scalePointX(1.65) + style.strokeWidth / 2;
-  // const circumference = Math.PI * radius;
-  // const offset = 0;
-  // style.strokeDasharray = `${circumference} ${circumference}`;
-  // style.strokeDashoffset = offset;
-
-  this.obj.gaugeSkirt = this.drawCircle(cxy, radius, 0, style);
+  const rr = this.scalePointX(1.6) + sty.strokeWidth / 2;
+  const id = 'gaugeAreaZ';
+  const fg = [0, 1, 0]; // flag = [xAxisRotation, largeArcFlag, sweepFlag]
+  this.obj.gaugeAreaZ = this.drawCircleArc(cxy, rr, aA, aB, id, sty, fg);
  }
 
  drawGaugeAreaS() {
-  const cxy = this.scalePoints([2, 0]);
+  const cxy = this.scalePoints([2, 2]);
   const num = this.data.option.gaugeAreaS.stroke.length;
-  const ang = [...this.data.option.gaugeAreaS.angle, 0];
+  const ang = [...this.data.option.gaugeAreaS.angle, 315];
   this.obj.gaugeAreaS = [];
   for (let i = 0; i < num; i++) {
    const [anA, anB] = [ang[i], ang[i + 1]];
@@ -105,19 +98,20 @@ export default class GaugeRadialHalf extends GaugeParent {
     strokeOpacity: this.data.option.gaugeAreaS.strokeOpacity[i],
     transform: this.transform()
    };
-   const rrr = this.scalePointX(1.67) - sty.strokeWidth / 2;
-   const flg = [0, 0, 0]; // flag = [xAxisRotation, largeArcFlag, sweepFlag]
-   this.obj.gaugeAreaS[i] = this.drawCircleArc(cxy, rrr, anA, anB, i, sty, flg);
+   const rrr = this.scalePointX(1.6) - sty.strokeWidth / 2;
+   const laf = this.data.option.gaugeAreaS.largeArcFlag[i];
+   const fg = [0, laf, 0]; // flag = [xAxisRotation, largeArcFlag, sweepFlag]
+   this.obj.gaugeAreaS[i] = this.drawCircleArc(cxy, rrr, anA, anB, i, sty, fg);
   }
  }
 
  drawTicksMajor() {
-  const cxy = this.scalePoints([2, 0]);
+  const cxy = this.scalePoints([2, 2]);
   const raA = this.scalePointX(1.9);
   const raB = this.scalePointX(1.7);
   const num = 16;
-  const ang = 180 / num;
-
+  const ang = 270 / num;
+  let maxAngle = 315;
   this.obj.ticksMajor = [];
   for (let i = 0; i < num + 1; i++) {
    const style = {
@@ -126,25 +120,20 @@ export default class GaugeRadialHalf extends GaugeParent {
     strokeOpacity: this.data.option.ticksMajor.strokeOpacity,
     transform: this.transform()
    };
-
-   if (i === 0 || i === num) cxy[1] = style.strokeWidth + 2;
-   else cxy[1] = 0;
-
-   const ptA = this.toPolar(cxy, raA, ang * i);
-   const ptB = this.toPolar(cxy, raB, ang * i);
+   const ptA = this.toPolar(cxy, raA, ang * i + maxAngle);
+   const ptB = this.toPolar(cxy, raB, ang * i + maxAngle);
    const pts = [...ptA, ...ptB];
-
    this.obj.ticksMajor[i] = this.drawLine(pts, i, style);
   }
  } //drawTicksMajor
 
  drawTicksMinor() {
-  const cxy = this.scalePoints([2, 0]);
+  const cxy = this.scalePoints([2, 2]);
   const raA = this.scalePointX(1.9);
   const raB = this.scalePointX(1.75);
   const num = 16 * 5;
-  const ang = 180 / num;
-
+  const ang = 270 / num;
+  const maxAngle = 315;
   this.obj.ticksMinor = [];
   for (let i = 0; i < num + 1; i++) {
    if (i % 5) {
@@ -154,28 +143,23 @@ export default class GaugeRadialHalf extends GaugeParent {
      strokeOpacity: this.data.option.ticksMinor.strokeOpacity,
      transform: this.transform()
     };
-
-    if (i === 0 || i === num) cxy[1] = style.strokeWidth + 2;
-    else cxy[1] = 0;
-
-    const ptA = this.toPolar(cxy, raA, ang * i);
-    const ptB = this.toPolar(cxy, raB, ang * i);
+    const ptA = this.toPolar(cxy, raA, ang * i + maxAngle);
+    const ptB = this.toPolar(cxy, raB, ang * i + maxAngle);
     const pts = [...ptA, ...ptB];
-
     this.obj.ticksMinor[i] = this.drawLine(pts, i, style);
    }
   }
  } //drawTicksMinor
 
  drawGaugeRange() {
-  const cxy = this.scalePoints([2, 0]);
+  const cxy = this.scalePoints([2, 2]);
   const rof = this.data.option.gaugeRange.offset;
-  const raA = this.scalePointX(1.57 - rof / 10);
+  const raA = this.scalePointX(1.45 - rof / 10);
   const num = 16;
-  const ang = 180 / num;
+  const ang = 270 / num;
   const rng = this.data.option.gaugeRange.range;
   const del = (rng[1] - rng[0]) / num;
-
+  const maxAngle = 315;
   this.obj.gaugeRange = [];
   for (let i = 0; i < num + 1; i++) {
    if (!(i % 2)) {
@@ -186,19 +170,12 @@ export default class GaugeRadialHalf extends GaugeParent {
      fontWeight: this.data.option.gaugeRange.fontWeight,
      fontSize: this.data.option.gaugeRange.fontSize
     };
-
-    if (i === 0 || i === num) cxy[1] = style.fontSize / 2;
-    else cxy[1] = 0;
-
     if (i === num / 2) style.textAnchor = 'middle';
     else if (i < num / 2) style.textAnchor = 'end';
     else style.textAnchor = 'start';
-
-    const ptA = this.toPolar(cxy, raA, ang * i);
-
+    const ptA = this.toPolar(cxy, raA, ang * i + maxAngle);
     const text = Math.round(rng[1] - del * i).toString();
     ptA[1] = this.data.height - ptA[1];
-
     this.obj.gaugeRange[i] = this.drawText(ptA, text, i, style);
    }
   }
@@ -226,26 +203,29 @@ export default class GaugeRadialHalf extends GaugeParent {
  }
 
  drawNeedleLine(angle) {
-  const cxy = this.scalePoints([2, 0]);
+  const cxy = this.scalePoints([2, 2]);
   const rof = this.data.option.needleLine.offset / 10;
   const rrr = this.scalePointX(1.75 - rof);
-  const ang = 180 - angle;
   const [vMin, vMax] = this.data.option.gaugeRange.range;
+  if (angle < 0) angle = 0;
+  if (angle > 270) angle = 270;
   const style = {
    stroke: this.data.option.needleLine.stroke,
    strokeWidth: this.data.option.needleLine.strokeWidth,
    strokeOpacity: this.data.option.needleLine.strokeOpacity,
-   transform: this.transform()
+   transform: `rotate(${angle}, ${cxy[0]}, ${cxy[1]})`
+   // transform:'rotate(90deg)'
   };
-  const ptB = this.toPolar(cxy, rrr, ang);
-  const pts = [...cxy, ...ptB];
+  const ptA = this.toPolar(cxy, this.scalePointX(-0.25), 135);
+  const ptB = this.toPolar(cxy, rrr, 135);
+  // const pts = [...cxy, ...ptB];
+  const pts = [...ptA, ...ptB];
   this.obj.needleLine = this.drawLine(pts, 'needle', style);
 
-  const valScaled = Math.round(this.linearScale(angle, 0, 180, vMin, vMax));
-  // console.log(valScaled)
-  // const value = angle.toString().padStart(3, '0').split('').join(' ');
+  const valScaled = Math.round(this.linearScale(angle, 0, 270, vMin, vMax));
+
+  // const value = valScaled.toString().padStart(3, '0').split('').join(' ');
   const value = valScaled.toString().padStart(3, ' ').split('').join(' ');
-  // this.data.total += angle;
   this.data.total += valScaled;
   const total = this.data.total.toString().padStart(7, '0').split('').join(' ');
   document.getElementById('gaugeValue').innerHTML = value;
@@ -261,7 +241,7 @@ export default class GaugeRadialHalf extends GaugeParent {
    strokeOpacity: this.data.option.needleGear.strokeOpacity,
    transform: this.transform()
   };
-  const cxy = this.scalePoints([2, 0]);
+  const cxy = this.scalePoints([2, 2]);
   const rrr = this.data.option.needleGear.size;
   this.obj.needleGear = this.drawCircle(cxy, rrr, 'gear', style);
  }

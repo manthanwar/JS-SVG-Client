@@ -19,16 +19,16 @@
 // =============================================================================
 
 import dataTemplate from './demo-data-template.js';
-import GaugeRadial from './GaugeRadial.js';
-import gaugeRadialData from './demo-gauge-radial-data.js';
+import GaugeRadial3Q from './GaugeRadial3Q.js';
+import gaugeRadial3qData from './demo-gauge-radial-3quarter-data.js';
 
 window.onload = (event) => {
- dataTemplate.renderBody('demo-gauge-radial.html');
+ dataTemplate.renderBody('demo-gauge-radial-3quarter.html');
  const main = document.getElementsByTagName('main')[0];
 
- const data = gaugeRadialData;
+ const data = gaugeRadial3qData;
  main.innerHTML += '<h3 style="text-align:center">' + data.title + '</h3>';
- const gauge = new GaugeRadial(data);
+ const gauge = new GaugeRadial3Q(data);
  // gauge.drawObject(80);
 
  function getValue() {

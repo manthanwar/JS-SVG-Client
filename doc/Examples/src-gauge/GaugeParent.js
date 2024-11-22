@@ -436,6 +436,19 @@ export default class GaugeParent {
   };
  }
 
+ /**
+  * Linear Scaling using 2 point equation of line
+  * xx = data value
+  * x1 = data minimum
+  * x2 = data maximum
+  * y1 = grid minimum
+  * y2 = grid maximum
+  * yy = data scaled
+  */
+ linearScale(x, x1, x2, y1, y2) {
+  return ((x - x1) * (y2 - y1)) / (x2 - x1) + y1;
+ }
+
  drawCircle(cxy, rrr, id, style) {
   const data = {};
   data.containerId = this.data.idSvg;
@@ -461,7 +474,8 @@ export default class GaugeParent {
   const data = {};
   data.containerId = this.data.idSvg;
   data.id = data.containerId + '-line-' + id.toString();
-  data.transform = this.transform();
+  // data.transform = this.transform();
+  data.transform = style.transform;
   data.x1 = xy[0].toString();
   data.y1 = xy[1].toString();
   data.x2 = xy[2].toString();
@@ -482,7 +496,8 @@ export default class GaugeParent {
   const data = {};
   data.containerId = this.data.idSvg;
   data.id = data.containerId + '-line-' + id.toString();
-  data.transform = this.transform();
+  // data.transform = this.transform();
+  data.transform = style.transform;
   data.points = points;
   data.fill = style.fill;
   data.fillOpacity = style.fillOpacity.toString();
@@ -532,10 +547,22 @@ export default class GaugeParent {
   return 'A' + dScaled.slice().join(', ');
  }
 
- drawCircleArc(center, radius, angleStart, angleEnd, id, style) {
+ // drawCircleArc(center, radius, angleStart, angleEnd, id, style) {
+ //  const ptA = this.toPolar(center, radius, angleStart);
+ //  const ptB = this.toPolar(center, radius, angleEnd);
+ //  const arcS = [radius, radius, 0, 0, 0, ptB].join(', ');
+ //  const data = 'M' + ptA.toString() + ' A' + arcS;
+ //  return this.drawPath(data, id, style);
+ // }
+
+ /**
+  * flags = [xAxisRotation, largeArcFlag, sweepFlag]
+  */
+ drawCircleArc(center, radius, angleStart, angleEnd, id, style, flags) {
   const ptA = this.toPolar(center, radius, angleStart);
   const ptB = this.toPolar(center, radius, angleEnd);
-  const arcS = [radius, radius, 0, 0, 0, ptB].join(', ');
+  // const arcS = [radius, radius, 0, 1, 0, ptB].join(', ');
+  const arcS = [radius, radius, flags, ptB].join(', ');
   const data = 'M' + ptA.toString() + ' A' + arcS;
   return this.drawPath(data, id, style);
  }

@@ -99,6 +99,11 @@ data.navMenu = [
     href: 'demo-gauge-radial-half.html'
    },
    {
+    link: 'Radial Gauge 3 Quarter',
+    page: 'Radial Gauge 3 Quarter',
+    href: 'demo-gauge-radial-3quarter.html'
+   },
+   {
     link: 'Radial Gauge',
     page: 'Radial Gauge',
     href: 'demo-gauge-radial.html'
