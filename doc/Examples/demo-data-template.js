@@ -21,7 +21,7 @@ data.navMenu = [
    {
     link: 'Art-Dolphin',
     page: 'Dolphin Design',
-    href: 'demo-artDesign.html'
+    href: 'demo-art-design.html'
    },
    {
     link: 'Industrial Fan',
