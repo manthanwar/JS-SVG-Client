@@ -15,7 +15,7 @@ window.onload = (event) => {
   },
   divMainSvg: {
    style:
-    'border: 0px solid blue; padding:10px; margin:-10px; animation: spin 0s linear infinite;'
+    'border: 0px solid blue; padding:10px; margin:-10px; animation: spin 3s linear infinite;'
   },
   divOptions: {
    style: 'display: none;'
@@ -25,7 +25,7 @@ window.onload = (event) => {
   // optionsOn: false,
   numB: 3,
   clrB: 'pink',
-  clrH: 'maroon'
+  clrH: 'DodgerBlue'
  };
 
  const fan = new Fan(data);

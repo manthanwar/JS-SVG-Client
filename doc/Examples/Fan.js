@@ -88,7 +88,7 @@ export default class Fan {
    containerId: data.divMainBox.id,
    id: data.divMainBox.id + '-divOptions',
    style:
-    'border: 2px solid blue; border-radius:10px; padding:20px; margin:20px 50px;',
+    'border: 1px solid blue; border-radius:10px; padding:20px; margin:20px 50px;',
    width: '300px',
    height: '400px',
    transform: 'scale(1)'

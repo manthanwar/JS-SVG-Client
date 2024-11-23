@@ -6,23 +6,23 @@ const [width, height] = [100 * 4 + 24, 100 * 4 + 24];
 data.divMainBox = {
  containerId: 'main',
  id: 'divMainBox',
- style: 'border: 2px solid red; padding:10px 10px;margin-top:10px;',
- width: width + 24 * 2 + 'px',
- height: height + 24 * 2 + 'px',
+ style: 'border: 1px solid red; padding:10px 10px;margin-top:10px;',
+ width: width + 22 * 2 + 'px',
+ height: height + 22 * 2 + 'px',
  transform: 'scale(1)'
 };
 
 data.divMainObj = {
- style: 'border: 2px solid green; padding:10px; margin: 0px;',
- width: width + 24 + 'px',
- height: height + 24 + 'px'
+ style: 'border: 1px solid green; padding:10px; margin: 0px;',
+ width: width + 22 + 'px',
+ height: height + 22 + 'px'
 };
 
 data.svgMainSvg = {
  width: '100%',
  height: '100%',
  // vieBox: '0 0 100 100 ',
- style: `border: 2px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box; background-color: none;`
+ style: `border: 1px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box; background-color: none;`
 };
 
 data.gridOn = true;

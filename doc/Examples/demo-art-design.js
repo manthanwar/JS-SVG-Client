@@ -22,7 +22,7 @@ function drawDolphinUsingClass() {
  data.divMain = {
   containerId: 'body',
   id: 'divMainBox',
-  style: 'border: 4px solid red; border-radius:10px; padding:10px;',
+  style: 'border: 1px solid red; border-radius:10px; padding:10px;',
   width: '1140px',
   height: '450px',
   transform: 'scale(1.2)'
@@ -31,7 +31,7 @@ function drawDolphinUsingClass() {
  data.divDolphin = {
   // containerId: 'divMainBox',
   // id: 'divDolphin',
-  style: 'border: 2px solid green; border-radius:10px; padding:10px;',
+  style: 'border: 1px solid green; border-radius:10px; padding:10px;',
   width: 700 + 'px',
   height: 700 * (3 / 5) + 'px',
   transform: 'scale(1)'
@@ -40,7 +40,7 @@ function drawDolphinUsingClass() {
   // containerId: 'divMainBox',
   // id: 'divOptions',
   style:
-   'border: 2px solid blue; border-radius:10px; padding:20px; margin:20px 50px;',
+   'border: 1px solid blue; border-radius:10px; padding:20px; margin:20px 50px;',
   width: '300px',
   height: '300px',
   transform: 'scale(1)'
@@ -51,7 +51,7 @@ function drawDolphinUsingClass() {
   width: '100%',
   height: '100%',
   viewBox: '0 0 100% 100% ',
-  style: `background-color: rgba(0,200,0,0); border: 1px solid green; padding:10px; box-sizing:border-box;`
+  style: `border: 1px solid green; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
  };
  data.gridOn = false;
  data.grid = {

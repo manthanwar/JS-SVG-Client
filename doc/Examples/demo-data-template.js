@@ -1,5 +1,7 @@
 const data = {};
 
+data.cloudHost = 'https://js-svg-client.onrender.com/';
+
 data.home = {
  logo: 'image',
  text: 'Dolphin',
@@ -16,23 +18,23 @@ data.navMenu = [
  },
  {
   link: 'Art',
-  page: 'Art Design',
+  // page: 'Art Design',
   menu: [
    {
-    link: 'Art-Dolphin',
-    page: 'Dolphin Design',
+    link: 'Art Design',
+    page: 'Art Design - Dolphin',
     href: 'demo-art-design.html'
    },
    {
-    link: 'Industrial Fan',
-    page: 'Fan Design',
+    link: 'Industrial Design',
+    page: 'Industrial Design - Fan',
     href: 'demo-art-fan.html'
-   },
-   {
-    link: 'Logo Design',
-    page: 'Logo Design',
-    href: 'demo-art-logo.html'
    }
+   //  {
+   //   link: 'Logo Design',
+   //   page: 'Logo Design',
+   //   href: 'demo-art-logo.html'
+   //  }
   ]
  },
  {
@@ -94,30 +96,30 @@ data.navMenu = [
     href: 'demo-gauge-radial-progress.html'
    },
    {
-    link: 'Radial Gauge Half',
+    link: 'Radial Half',
     page: 'Radial Gauge Half',
     href: 'demo-gauge-radial-half.html'
    },
    {
-    link: 'Radial Gauge 3 Quarter',
+    link: 'Radial 3 Quarter',
     page: 'Radial Gauge 3 Quarter',
     href: 'demo-gauge-radial-3quarter.html'
    },
    {
-    link: 'Radial Gauge',
+    link: 'Radial Full',
     page: 'Radial Gauge',
     href: 'demo-gauge-radial.html'
-   },
-   {
-    link: 'Linear Gauge',
-    page: 'Linear Gauge',
-    href: 'demo-gauge-linear.html'
-   },
-   {
-    link: 'Thermometer Gauge',
-    page: 'Thermometer Gauge',
-    href: 'demo-gauge-thermometer.html'
    }
+   //  {
+   //   link: 'Linear Gauge',
+   //   page: 'Linear Gauge',
+   //   href: 'demo-gauge-linear.html'
+   //  },
+   //  {
+   //   link: 'Thermometer Gauge',
+   //   page: 'Thermometer Gauge',
+   //   href: 'demo-gauge-thermometer.html'
+   //  }
   ]
  },
  {
@@ -195,7 +197,7 @@ data.createHeader = () => {
  const home = document.createElement('div');
  const homeSpan = document.createElement('span');
 
- console.log(data.header.home.logo);
+ //  console.log(data.header.home.logo);
 
  header.innerHTML = data.headerText;
 
