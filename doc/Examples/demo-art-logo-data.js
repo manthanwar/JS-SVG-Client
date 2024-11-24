@@ -6,17 +6,16 @@ const [width, height] = [100 * 4 + 24, 100 * 4 + 24];
 data.divMainBox = {
  containerId: 'main',
  id: 'divMainBox',
- style: `border: 0px solid red; padding:10px 10px;margin-top:10px;
- box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius:50px;`,
- // style: `border: 1px solid red; padding:10px 10px;margin-top:10px;`,
- width: width + 24 * 2 + 'px',
+ style: `border: 0px solid red; padding:10px 10px;margin-top:10px;`,
+ width: width + 500 + 24 * 2 + 'px',
  height: height + 24 * 2 + 'px',
- // height: 350 + 24 * 2 + 'px',
  transform: 'scale(1)'
 };
 
 data.divMainObj = {
- style: 'border: 0px solid green; padding:10px; margin: 0px;',
+ // style: 'border: 0px solid green; padding:10px; margin: 0px;',
+ style: `border: 0px solid red; padding:10px 10px;margin-top:10px;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius:50px;`,
  width: width + 24 + 'px',
  height: height + 24 + 'px',
  class: 'divMainObj'
@@ -27,6 +26,17 @@ data.svgMainSvg = {
  height: '100%',
  vieBox: '0 0 400 10',
  style: `border: 0px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box; background-color: none;`
+};
+
+// data.optionsOn = true;
+data.divOptions = {
+ containerId: data.divMainBox.id,
+ id: data.divMainBox.id + '-divOptions',
+ width: '300px',
+ height: '400px',
+ transform: 'scale(1)',
+ // style: 'border: 1px solid blue; padding:20px;',
+ class: 'divOption'
 };
 
 // data.gridOn = true;
@@ -40,10 +50,10 @@ data.grid = {
  // axisLabelOnY: true,
  // axisNumOnX: true,
  // axisNumOnY: true,
- majorOnX: true,
- majorOnY: true,
- minorOnX: true,
- minorOnY: true,
+ // majorOnX: true,
+ // majorOnY: true,
+ // minorOnX: true,
+ // minorOnY: true,
  // boxOn: true,
  // axesOn: true,
  major: {
@@ -58,96 +68,85 @@ data.grid = {
 
 data.option = {
  drawCircleBgM: {
-  fill: 'pink',
+  fill: 'white',
   fillOpacity: 1,
-  stroke: 'gray',
-  strokeWidth: 1,
-  strokeOpacity: 0.5
+  stroke: 'none',
+  strokeWidth: 10,
+  strokeOpacity: 1
+ },
+
+ drawPathCircR1: {
+  fill: '#ee1745',
+  fillOpacity: 1,
+  stroke: '#ee1745',
+  strokeWidth: 10,
+  strokeOpacity: 1,
+  sweepFlag: 0
  },
 
  drawPathLineB1: {
-  fill: 'cyan',
+  fill: '#1958a8',
   fillOpacity: 1,
-  stroke: 'gray',
-  strokeWidth: 1,
-  strokeOpacity: 0.5
+  stroke: 'white',
+  strokeWidth: 4,
+  strokeOpacity: 1
  },
 
  drawPathLineY1: {
-  fill: 'yellow',
+  fill: '#fdbb2a',
+  fillOpacity: 1,
+  stroke: 'white',
+  strokeWidth: 4,
+  strokeOpacity: 1
+ },
+
+ drawPathLineR1: {
+  fill: '#ee1745',
+  fillOpacity: 1,
+  stroke: 'white',
+  strokeWidth: 4,
+  strokeOpacity: 1
+ },
+
+ drawPathLineR2: {
+  fill: 'none',
+  fillOpacity: 1,
+  stroke: '#ee1745',
+  strokeWidth: 10,
+  strokeOpacity: 1
+ },
+
+ drawPathLineG1: {
+  fill: '#18b04b',
+  fillOpacity: 1,
+  stroke: 'white',
+  strokeWidth: 4,
+  strokeOpacity: 1
+ },
+
+ drawPathLineG2: {
+  fill: '#18b04b',
   fillOpacity: 1,
   stroke: 'gray',
   strokeWidth: 1,
   strokeOpacity: 0.5
  },
 
- gaugeSkirt: {
-  stroke: 'gray',
-  strokeWidth: 7.5, // 0 - 7.5
-  strokeOpacity: 0.3
- },
-
- gaugeAreaZ: {
-  stroke: 'white',
-  strokeWidth: 30, // 0 - 30
-  strokeOpacity: 1
- },
-
- gaugeAreaS: {
-  stroke: ['green', 'orange', 'red', 'dodgerBlue'],
-  angle: [0, 270, 180, 90],
-  largeArcFlag: [0, 0, 0, 0],
-  strokeWidth: Array(4).fill(1.5), // 7.5 - 30
-  strokeOpacity: Array(4).fill(1)
- },
-
- ticksMajor: {
-  stroke: 'black',
-  strokeWidth: 2,
-  strokeOpacity: 1
- },
- ticksMinor: {
-  stroke: 'black',
-  strokeWidth: 1,
-  strokeOpacity: 1
- },
- ticksMicro: {
-  stroke: 'black',
-  strokeWidth: 0.4,
-  strokeOpacity: 1
- },
- gaugeRange: {
-  range: [0, 60],
-  offset: 0.5,
-  fill: 'black',
-  fillHighlight: 'Crimson',
-  fillOpacity: '1',
-  fontFamily: 'sans-serif',
-  fontWeight: 'normal',
-  fontSize: 24
- },
- gaugeTitle: {
-  // text: 'TIMER',
-  text: '\u2103'
-  // fill: 'dodgerBlue',
-  // fillOpacity: 1,
-  // fontFamily: 'sans-serif',
-  // fontWeight: 'bold',
-  // fontSize: 100
- },
- needleLine: {
-  offset: 0,
-  stroke: 'Crimson',
-  strokeWidth: 4,
-  strokeOpacity: 1
- },
- needleGear: {
-  size: 10,
-  fill: 'white',
+ drawPathLineG3: {
+  fill: 'none',
   fillOpacity: 1,
-  stroke: 'black',
-  strokeWidth: 4,
+  stroke: '#18b04b',
+  strokeWidth: 10,
   strokeOpacity: 1
+ },
+
+ divLogoTitle: {
+  text: '',
+  fill: 'dodgerBlue',
+  fillOpacity: 1,
+  fontFamily: 'sans-serif',
+  fontWeight: 'bold',
+  fontSize: 24
  }
 };
 

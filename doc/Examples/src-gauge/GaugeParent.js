@@ -451,13 +451,13 @@ export default class GaugeParent {
 
  drawCircle(cxy, rrr, id, style) {
   const data = {};
+  if (style.transform) data.transform = style.transform;
+  else data.transform = this.transform();
   data.containerId = this.data.idSvg;
   data.id = data.containerId + '-circle-' + id.toString();
   data.cx = cxy[0];
   data.cy = cxy[1];
   data.r = rrr;
-  // data.transform = `rotate(${style.angle}, ${cxy[0]}, ${cxy[1]})`;
-  data.transform = style.transform;
   data.fill = style.fill;
   data.fillOpacity = style.fillOpacity.toString();
   data.stroke = style.stroke;
@@ -535,17 +535,17 @@ export default class GaugeParent {
   return 'A' + dScaled.slice().join(', ');
  }
 
- toArcString(data) {
-  // A = [rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y];
-  const radius = data.slice(0, 2);
-  const points = data.slice(data.length - 2, data.length);
-  // const rScale = this.scalePoints(radius);
-  // const pScale = this.scalePoints(points);
-  const dScaled = data.slice();
-  dScaled.splice(0, 2, rScale);
-  dScaled.splice(data.length - 3, 2, pScale);
-  return 'A' + dScaled.slice().join(', ');
- }
+ // toArcString(data) {
+ //  // A = [rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y];
+ //  const radius = data.slice(0, 2);
+ //  const points = data.slice(data.length - 2, data.length);
+ //  // const rScale = this.scalePoints(radius);
+ //  // const pScale = this.scalePoints(points);
+ //  const dScaled = data.slice();
+ //  dScaled.splice(0, 2, rScale);
+ //  dScaled.splice(data.length - 3, 2, pScale);
+ //  return 'A' + dScaled.slice().join(', ');
+ // }
 
  // drawCircleArc(center, radius, angleStart, angleEnd, id, style) {
  //  const ptA = this.toPolar(center, radius, angleStart);
@@ -569,10 +569,11 @@ export default class GaugeParent {
 
  drawPath(data, id, style) {
   const path = {};
+  if (style.transform) path.transform = style.transform;
+  else path.transform = this.transform();
   path.d = data;
   path.containerId = this.data.idSvg;
   path.id = path.containerId + '-path-' + id.toString();
-  path.transform = style.transform;
   path.fill = style.fill;
   path.fillOpacity = style.fillOpacity.toString();
   path.stroke = style.stroke;

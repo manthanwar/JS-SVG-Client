@@ -22,6 +22,7 @@
 # -------------+---------+------------------------------------------------------
 # ------------------------------------------------------------------------------
 # ref: https://www.geeksforgeeks.org/most-efficient-way-to-find-the-intersection-of-a-line-and-a-circle-in-python/
+# https://www.mathportal.org/calculators/analytic-geometry/circle-line-intersection-calculator.php
 # ==============================================================================
 
 import math
@@ -61,8 +62,19 @@ m, c = 0, 3        # Line y = x
 h, k, r, m, c = 0, 0, 7, 0, 5
 
 # Example 3
-h, k, r, m, c = 2,2,1.4, 1.3333, 0.5333
+h, k, r, m, c = 2, 2, 1.4, 1.3333, 0.5333
+
+# Example 4
+# https://www.bbc.co.uk/bitesize/guides/z9pssbk/revision/5
+# ans = [(-3.0, -2.0), (-17.0, -16.0)]
+h, k, r, m, c = -9, -10, 10, 1, 1
+
+# Example 5
+# https://www.bbc.co.uk/bitesize/guides/z9pssbk/revision/5
+# ans = [(-3.0, -2.0), (-17.0, -16.0)]
+h, k, r, m, c = -9, -10, 10, 1, 0
 
 
+h, k, r, m, c = 2, 2, 1.4, 1.3333, 0.5333
 intersections = find_intersections(h, k, r, m, c)
 print(intersections)

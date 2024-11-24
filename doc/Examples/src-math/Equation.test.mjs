@@ -16,6 +16,7 @@
 // --------------+---------+----------------------------------------------------
 // 23-Nov-2024   | AMM     | Initial Version
 // --------------+---------+----------------------------------------------------
+// https://www.mathportal.org/calculators/analytic-geometry/circle-line-intersection-calculator.php
 // =============================================================================
 
 import Equation from './Equation.js';

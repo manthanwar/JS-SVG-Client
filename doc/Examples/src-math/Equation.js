@@ -34,19 +34,23 @@ export default class Equation {
  } //solveQuadratic
 
  solveCircleLine(h, k, r, m, c) {
+  const hn = h * -1; // shift origin x
+  const kn = k * -1; // shift origin y
   const A = 1 + m ** 2;
-  const B = 2 * (m * (c - k) - h);
-  const C = h ** 2 + (c - k) ** 2 - r ** 2;
+  const B = 2 * (m * (c - kn) - hn);
+  const C = hn ** 2 + (c - kn) ** 2 - r ** 2;
+  // const B = 2 * (m * (c - k) - h);
+  // const C = h ** 2 + (c - k) ** 2 - r ** 2;
   const roots = this.solveQuadratic(A, B, C);
   if (roots.length === 0) return [];
   else if (roots.length === 1) {
    const x = roots[0];
    const y = m * x + c;
-   return [x, y];
+   return [-x, -y];
   } else {
    const [x1, x2] = roots;
    const [y1, y2] = [m * x1 + c, m * x2 + c];
-   return [x1, y1, x2, y2];
+   return [-x1, -y1, -x2, -y2];
   }
  } //solveCircleLine
 
