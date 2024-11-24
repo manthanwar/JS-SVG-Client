@@ -23,12 +23,15 @@ import Fan from './Fan.js';
 
 window.onload = (event) => {
  document.title = 'SVG';
- dataTemplate.renderBody('demo-fan.html');
+const data ={};
+data.title = 'amit'
+
+ dataTemplate.renderBody('demo-art-fan.html');
 
  // const main = document.getElementsByTagName('main')[0];
  // main.innerHTML = 'Hello World';
 
- const data = {
+ const dataFan = {
   divMainBox: {
    containerId: 'main',
    id: 'divMainBox'
@@ -39,5 +42,5 @@ window.onload = (event) => {
   clrH: 'maroon'
  };
 
- const fan = new Fan(data);
+ const fan = new Fan(dataFan);
 };

@@ -1,8 +1,8 @@
 // import * as mySvg from '../../dist/svg.min.js';
 import * as mySvg from './svg.min.js';
-import dolphinData from './demo-dolphin-data.js';
+import dolphinData from './demo-art-design-data.js';
 
-import Dolphin from './demo-dolphin.js';
+import Dolphin from './Dolphin.js';
 
 window.onload = (event) => {
  document.title = 'SVG';
@@ -50,7 +50,7 @@ function drawDolphinUsingClass() {
   // id: 'divDolphin-svgMain',
   width: '100%',
   height: '100%',
-  viewBox: '0 0 100% 100% ',
+  // viewBox: '0 0 100% 100% ',
   style: `border: 1px solid green; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
  };
  data.gridOn = false;

@@ -18,23 +18,22 @@ data.navMenu = [
  },
  {
   link: 'Art',
-  // page: 'Art Design',
   menu: [
    {
     link: 'Art Design',
-    page: 'Art Design - Dolphin',
+    page: 'Art Design',
     href: 'demo-art-design.html'
    },
    {
     link: 'Industrial Design',
     page: 'Industrial Design - Fan',
     href: 'demo-art-fan.html'
+   },
+   {
+    link: 'Logo Design',
+    page: 'Logo Design',
+    href: 'demo-art-logo.html'
    }
-   //  {
-   //   link: 'Logo Design',
-   //   page: 'Logo Design',
-   //   href: 'demo-art-logo.html'
-   //  }
   ]
  },
  {
