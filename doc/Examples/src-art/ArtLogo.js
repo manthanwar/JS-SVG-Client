@@ -47,7 +47,45 @@ export default class ArtLogo extends GaugeParent {
   if (this.data.optionsOn) {
    this.obj.divOptions = this.divOptions();
   }
+
+  this.localStorage();
  } //constructor
+
+ localStorage() {
+  // localStorage.setItem('namea', 'Amita');
+  // localStorage.setItem('data', JSON.stringify(this.data.option));
+
+  // localStorage.removeItem('name');
+  // localStorage.removeItem('data');
+  // localStorage.clear();
+
+  // this.setLocalStorage('name', 'amit');
+
+  // const option = JSON.parse(localStorage.getItem('data'));
+  // console.log(option.drawPathCircR1);
+ }
+
+ setLocalStorage(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+ }
+
+ getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+ }
+
+ setLocalData(data) {
+  localStorage.setItem('data', JSON.stringify(data));
+ }
+
+ getLocalData() {
+  let data;
+  if (localStorage.getItem('data') === null) {
+   data = {};
+  } else {
+   data = JSON.parse(localStorage.getItem('data'));
+  }
+  return data;
+ }
 
  divOptions() {
   const divOption = new mySvg.Div(this.data.divOptions);
