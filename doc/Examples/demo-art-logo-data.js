@@ -98,7 +98,7 @@ data.option = {
   fill: '#fdbb2a',
   fillOpacity: 1,
   stroke: 'white',
-  strokeWidth: 8,
+  strokeWidth: 10,
   strokeOpacity: 1
  },
 
@@ -106,7 +106,7 @@ data.option = {
   fill: '#ee1745',
   fillOpacity: 1,
   stroke: 'white',
-  strokeWidth: 8,
+  strokeWidth: 0,
   strokeOpacity: 1
  },
 
@@ -122,7 +122,7 @@ data.option = {
   fill: '#18b04b',
   fillOpacity: 1,
   stroke: 'white',
-  strokeWidth: 8,
+  strokeWidth: 0,
   strokeOpacity: 1
  },
 
