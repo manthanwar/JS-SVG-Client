@@ -1,3 +1,4 @@
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 // import webpack from 'webpack';
@@ -16,6 +17,10 @@ module.exports = {
  },
  stats: {
   colors: true
+ },
+ optimization: {
+  minimize: true,
+  minimizer: [new TerserPlugin()]
  },
  mode: 'development',
  mode: 'production'
