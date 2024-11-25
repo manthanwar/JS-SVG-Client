@@ -25,7 +25,9 @@ data.svgMainSvg = {
  width: '100%',
  height: '100%',
  vieBox: '0 0 400 10',
- style: `border: 0px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box; background-color: none;`
+ style: `border: 0px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box; background-color: none;
+ paint-order: stroke;
+ `
 };
 
 // data.optionsOn = true;
@@ -88,7 +90,7 @@ data.option = {
   fill: '#1958a8',
   fillOpacity: 1,
   stroke: 'white',
-  strokeWidth: 4,
+  strokeWidth: 8,
   strokeOpacity: 1
  },
 
@@ -96,7 +98,7 @@ data.option = {
   fill: '#fdbb2a',
   fillOpacity: 1,
   stroke: 'white',
-  strokeWidth: 4,
+  strokeWidth: 8,
   strokeOpacity: 1
  },
 
@@ -104,7 +106,7 @@ data.option = {
   fill: '#ee1745',
   fillOpacity: 1,
   stroke: 'white',
-  strokeWidth: 4,
+  strokeWidth: 8,
   strokeOpacity: 1
  },
 
@@ -112,7 +114,7 @@ data.option = {
   fill: 'none',
   fillOpacity: 1,
   stroke: '#ee1745',
-  strokeWidth: 10,
+  strokeWidth: 8,
   strokeOpacity: 1
  },
 
@@ -120,7 +122,7 @@ data.option = {
   fill: '#18b04b',
   fillOpacity: 1,
   stroke: 'white',
-  strokeWidth: 4,
+  strokeWidth: 8,
   strokeOpacity: 1
  },
 
@@ -136,7 +138,7 @@ data.option = {
   fill: 'none',
   fillOpacity: 1,
   stroke: '#18b04b',
-  strokeWidth: 10,
+  strokeWidth: 8,
   strokeOpacity: 1
  },
 
