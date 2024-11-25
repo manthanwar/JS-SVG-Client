@@ -10,7 +10,7 @@
   "scripts": {
     "build-node": "webpack --config webpack.config.js",
     "build": "webpack --config webpack.config.web.js",
-    "testa": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
     "dev": "nodemon ./doc/Examples/demo-express.cjs",
     "start": "node --watch ./doc/Examples/demo-express.cjs"
   },

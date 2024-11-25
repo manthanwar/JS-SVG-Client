@@ -23,7 +23,7 @@ import ArtLogo from './ArtLogo.js';
 import artLogoData from './demo-art-logo-data.js';
 
 window.onload = (event) => {
- dataTemplate.renderBody('demo-art-logo-data.html');
+ dataTemplate.renderBody('demo-art-logo.html');
  const main = document.getElementsByTagName('main')[0];
 
  const data = artLogoData;
