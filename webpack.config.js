@@ -20,7 +20,7 @@ module.exports = {
  },
  optimization: {
   minimize: true,
-  minimizer: [new TerserPlugin({ parallel: true })]
+  minimizer: [new TerserPlugin()]
  },
  mode: 'development',
  mode: 'production'
