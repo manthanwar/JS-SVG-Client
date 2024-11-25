@@ -1,0 +1,103 @@
+%===============================================================================
+% File Name     : <demo-art-logo.tex>
+% Description   : User Guide or LaTeX package <pst-art-logo.sty>
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Mailer        : manthanwar@hotmail.com
+% Mobile        : +91.853.081.3398
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2024 Amit Manohar Manthanwar
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%===============================================================================
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 25-Nov-2024   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+\documentclass{pst-icon}
+\usepackage{pst-art-logo}
+% \usepackage{FiraSans}
+% \title{\Huge\textsc{Dynamic Art Design Using \LaTeX}\\[-2mm]}
+% \author{\small{Amit M. Manthanwar}\\[0mm]\footnotesize{\today}}
+% \date{}
+\title{Dynamic Logo Art Design Using \LaTeX}
+\author{Amit M. Manthanwar}
+%===============================================================================
+\begin{document}
+\maketitle
+
+%===============================================================================
+\begin{figure}[!h]
+\centering%
+\resizebox{0.6\textwidth}{!}{%\sffamily
+% \psset{unit=1mm}
+\begin{pspicture}(0,0)(4,4)
+% \psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20, gridlabels=4pt, gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm] % griddots=4, subgriddots=10,
+%
+\rput(0,0.2){\psLogoJapanLady[iconWidth=20]}%
+%
+\end{pspicture}}%
+% \caption{text box label}%
+% \label{box Caption Label}%
+\end{figure}%===============================================================================
+
+\section{Construction}
+%===============================================================================
+\begin{figure}[!h]
+\centering%
+\resizebox{0.6\textwidth}{!}{%\sffamily
+% \psset{unit=1mm}
+\begin{pspicture}(0,0)(4,4)
+\psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20, gridlabels=4pt, gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm] % griddots=4, subgriddots=10,
+%
+\rput(0,0.2){\psLogoJapanLady[iconWidth=20]}%
+%
+\newcommand{\abox}[1]{\psset{fillstyle=solid,fillcolor=black,linestyle=none,linewidth=0}\pscircle(0,0){0.1}\rput(0,0){\color{white}{\tiny{#1}}}}%
+\rput(2.7,1.7){\abox{1}}%
+\rput(1.3,2.9){\abox{2}}%
+\rput(2.6,4.0){\abox{3}}%
+\rput(2.0,2.15){\abox{4}}%
+\rput(3.25,4.0){\abox{5}}%
+\rput(0.55,0.0){\abox{6}}%
+\rput(3.75,4.0){\abox{7}}%
+\rput(2.6,0.7){\abox{8}}%
+\rput(3.6,2.2){\abox{9}}%
+%
+% drawCircleBgM
+% drawPathCircR1
+%
+\end{pspicture}}%
+% \caption{text box label}%
+% \label{box Caption Label}%
+\end{figure}%===============================================================================
+\rput[rc](15.5,6){\begin{minipage}{40mm}
+\begin{enumerate}
+\item drawCircleBgM
+\item drawPathCircR1
+\item drawPathLineB1
+\item drawPathLineY1
+\item drawPathLineR1
+\item drawPathLineG1
+\item drawPathLineG2
+\item drawPathLineG3
+\item drawPathLineR2
+\end{enumerate}%
+\end{minipage}}
+
+%===============================================================================
+%===============================================================================
+\end{document}
+%===============================================================================
+
+
+%===============================================================================
+%===============================================================================
+
+
+
+

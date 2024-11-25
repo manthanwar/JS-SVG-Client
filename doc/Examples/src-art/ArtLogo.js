@@ -54,13 +54,10 @@ export default class ArtLogo extends GaugeParent {
  localStorage() {
   // localStorage.setItem('namea', 'Amita');
   // localStorage.setItem('data', JSON.stringify(this.data.option));
-
   // localStorage.removeItem('name');
   // localStorage.removeItem('data');
   // localStorage.clear();
-
   // this.setLocalStorage('name', 'amit');
-
   // const option = JSON.parse(localStorage.getItem('data'));
   // console.log(option.drawPathCircR1);
  }
@@ -136,6 +133,14 @@ export default class ArtLogo extends GaugeParent {
   const ptsLY2 = eq.solveCircleLine2Pt(...circle, ...lineY2);
   const ptsLG1 = eq.solveCircleLine2Pt(...circle, ...lineG1);
   const ptsLG2 = eq.solveCircleLine2Pt(...circle, ...lineG2);
+  const angLYaa = this.toDegrees(Math.atan2(ptsLY1[1] - 2, ptsLY1[0] - 2));
+  const angLYab = this.toDegrees(Math.atan2(ptsLY1[3] - 2, ptsLY1[2] - 2));
+  const angLYba = this.toDegrees(Math.atan2(ptsLY2[1] - 2, ptsLY2[0] - 2));
+  const angLYbb = this.toDegrees(Math.atan2(ptsLY2[3] - 2, ptsLY2[2] - 2));
+  const angLGaa = this.toDegrees(Math.atan2(ptsLG1[1] - 2, ptsLG1[0] - 2));
+  const angLGab = this.toDegrees(Math.atan2(ptsLG1[3] - 2, ptsLG1[2] - 2));
+  const angLGba = this.toDegrees(Math.atan2(ptsLG2[1] - 2, ptsLG2[0] - 2));
+  const angLGbb = this.toDegrees(Math.atan2(ptsLG2[3] - 2, ptsLG2[2] - 2));
   this.data.dataObj = {
    lineB1: lineB1,
    circle: circle,
@@ -169,7 +174,8 @@ export default class ArtLogo extends GaugeParent {
  drawPathCircR1() {
   const sty = this.merge({}, this.data.option.drawPathCircR1);
   const ptA = this.data.dataObj.ptsLY1s.slice(0, 2);
-  const ptB = this.data.dataObj.ptsLY2s.slice(2, 4);
+  // const ptB = this.data.dataObj.ptsLY2s.slice(2, 4);
+  const ptB = this.data.dataObj.ptsLY1s.slice(2, 4);
   const cxy = this.data.dataObj.circles.slice(0, 2);
   const rrr = this.data.dataObj.circles[2] - sty.strokeWidth / 2;
   const [xA, yA] = [ptA[0] - cxy[0], ptA[1] - cxy[1]];

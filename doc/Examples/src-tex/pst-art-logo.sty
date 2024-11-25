@@ -1,0 +1,271 @@
+% region Header
+%===============================================================================
+% File Name     : <pst-icon-sport-olympic-2024.sty>
+% Description   : LaTeX package for postscript Olympic 2024 icons using PSTricks
+% Documentation : pst-icon-sports-olympic-2024.tex
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Locale        : Pune, Maharashtra, India
+% Mailer        : manthanwar@hotmail.com
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2024 Amit Manohar Manthanwar
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%===============================================================================
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 05-Aug-2024   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+% Units in mm, origin at center
+%===============================================================================
+\NeedsTeXFormat{LaTeX2e}[2023/11/01]%
+\ProvidesPackage{pst-icon-sports-olympic-2024-tools}[2024-08-05 Elements of Olympic 2024 Pictograms (c) Amit M. Manthanwar]
+%===============================================================================
+% region Packages
+% \RequirePackage{pstricks}%
+% \RequirePackage{pst-all}%
+% \RequirePackage{multido}%
+\RequirePackage{pst-icon-macros}%
+% \RequirePackage{pst-icon-macros-csv}%
+% \RequirePackage{pst-icon-macros-csv}%
+% \RequirePackage{pst-icon-sports-olympic-2024-tools}%
+% endregion Packages
+%===============================================================================
+% region Colors
+\definecolor{logoRed}{HTML}{ee1745}
+\definecolor{logoBlue}{HTML}{1958a8}
+\definecolor{logoYellow}{HTML}{fdbb2a}
+\definecolor{logoGreen}{HTML}{18b04b}
+% endregion Colors
+%===============================================================================
+% PST           - SVG Terminology Translation
+% fillStyle     -
+% fillColor     - fill
+% opacity       - fillOpacity
+% linestyle     -
+% lineColor     - stroke
+% lineWidth     - stroke-width
+% lineDash      - stroke-dasharray
+% fill = f
+%===============================================================================
+% region Key Value
+\def\kvf{pst-art-logo}% key value family
+% \input{pst-art-logo-kvp.tex}%
+
+% Default Style
+\kv{iconWidth}{20}%
+\kv{fillStyle}{solid}%
+\kv{fillColor}{white}%
+\kv{lineStyle}{none}%
+\kv{lineColor}{black}%
+\kv{lineWidth}{0.2}%
+\kv{lineDashA}{1 1}%
+
+% drawCircleBgM
+\kv{fillStyleCircBg}{solid}%
+\kv{fillColorCircBg}{white}%
+\kv{lineStyleCircBg}{none}%
+\kv{lineColorCircBg}{logoRed}%
+\kv{lineWidthCircBg}{0.2}%
+\kv{lineDashACircBg}{1}%
+
+% drawPathCircR1
+\kv{fillStyleCircRa}{solid}%
+\kv{fillColorCircRa}{logoRed}%
+\kv{lineStyleCircRa}{none}%
+\kv{lineColorCircRa}{logoRed}%
+\kv{lineWidthCircRa}{0.2}%
+\kv{lineDashACircRa}{1}%
+
+% line B1 - drawPathLineB1 - background
+\kv{fillStyleLineBaBg}{solid}%
+\kv{fillColorLineBaBg}{white}%
+\kv{lineStyleLineBaBg}{solid}%
+\kv{lineColorLineBaBg}{white}%
+\kv{lineWidthLineBaBg}{0.8}%
+\kv{lineDashALineBaBg}{1}%
+
+% line B1 - drawPathLineB1
+\kv{fillStyleLineBa}{solid}%
+\kv{fillColorLineBa}{logoBlue}%
+\kv{lineStyleLineBa}{none}%
+\kv{lineColorLineBa}{white}%
+\kv{lineWidthLineBa}{0.2}%
+\kv{lineDashALineBa}{1}%
+
+% line Y1 - drawPathLineY1 - background
+\kv{fillStyleLineYaBg}{solid}%
+\kv{fillColorLineYaBg}{logoYellow}%
+\kv{lineStyleLineYaBg}{solid}%
+\kv{lineColorLineYaBg}{white}%
+\kv{lineWidthLineYaBg}{0.8}%
+\kv{lineDashALineYaBg}{1}%
+
+% line Y1 - drawPathLineY1
+\kv{fillStyleLineYa}{solid}%
+\kv{fillColorLineYa}{logoYellow}%
+\kv{lineStyleLineYa}{none}%
+\kv{lineColorLineYa}{white}%
+\kv{lineWidthLineYa}{0.4}%
+\kv{lineDashALineYa}{1}%
+
+% line R1 - drawPathLineR1
+\kv{fillStyleLineRa}{solid}%
+\kv{fillColorLineRa}{logoRed}%
+\kv{lineStyleLineRa}{none}%
+\kv{lineColorLineRa}{black}%
+\kv{lineWidthLineRa}{0.2}%
+\kv{lineDashALineRa}{1}%
+
+% line R2 - drawPathLineR2
+\kv{fillStyleLineRb}{none}%
+\kv{fillColorLineRb}{logoRed}%
+\kv{lineStyleLineRb}{solid}%
+\kv{lineColorLineRb}{logoRed}%
+\kv{lineWidthLineRb}{0.8}%
+\kv{lineDashALineRb}{1}%
+
+% line G1 - drawPathLineG1
+\kv{fillStyleLineGa}{solid}%
+\kv{fillColorLineGa}{logoGreen}%
+\kv{lineStyleLineGa}{none}%
+\kv{lineColorLineGa}{black}%
+\kv{lineWidthLineGa}{0.2}%
+\kv{lineDashALineGa}{1}%
+
+% line G2 - drawPathLineG2
+\kv{fillStyleLineGb}{solid}%
+\kv{fillColorLineGb}{logoGreen}%
+\kv{lineStyleLineGb}{none}%
+\kv{lineColorLineGb}{black}%
+\kv{lineWidthLineGb}{0.2}%
+\kv{lineDashALineGb}{1}%
+
+% line G3 - drawPathLineG3
+\kv{fillStyleLineGc}{none}%
+\kv{fillColorLineGc}{pink}%
+\kv{lineStyleLineGc}{solid}%
+\kv{lineColorLineGc}{logoGreen}%
+\kv{lineWidthLineGc}{0.8}%
+\kv{lineDashALineGc}{1}%
+
+
+% endregion Key Value
+% endregion Header
+%===============================================================================
+%===============================================================================
+% Logo by Japan Lady in London for Malaysian Company
+%-------------------------------------------------------------------------------
+\newcommand{\psLogoJapanLady}[1][]{\setkeys{\kvf}{#1}%
+\FPeval{\wide}{round(\iconWidth/20:3)}\psscalebox{\wide}{%
+\psset{unit=1mm,dimen=middle,cornersize=absolute,linearc=0,framearc=0,linejoin=1,fillstyle=none}%
+%
+\FPeval{\sqrtA}{\fpeval{sqrt(8)}}%
+\FPset{\angYaa}{-130.1457}% \FPset{\angA}{-130.14572660564244}%
+\FPset{\angYab}{56.4059}% \FPset{\angB}{56.40593131395438}%
+\FPset{\angYba}{-120.8726}% \FPset{\angYba}{-120.87260037810255}%
+\FPset{\angYbb}{47.1328}% \FPset{\angYbb}{47.13280508641449}%
+\FPset{\lineYaax}{4}%
+\FPset{\lineYaay}{0}%
+\FPset{\lineYabx}{31}%
+\FPset{\lineYaby}{36}%
+\FPeval{\lineYbax}{\fpeval{\lineYaax+\sqrtA}}%
+\FPset{\lineYbay}{\lineYaay}%
+\FPeval{\lineYbbx}{\fpeval{\lineYabx+\sqrtA}}%
+\FPset{\lineYbby}{\lineYaby}%
+\FPset{\angGaa}{-113.6569}% \FPset{\angGaa}{-113.65691728568544}%
+\FPset{\angGab}{39.9171}% \FPset{\angGab}{39.917121993997384}%
+\FPset{\angGba}{-103.9032}% \FPset{\angGba}{-103.90321222846676}%
+\FPset{\angGbb}{30.1634}% \FPset{\angGbb}{30.163416936778685}%
+\FPset{\lineGaax}{9}%
+\FPset{\lineGaay}{0}%
+\FPset{\lineGabx}{36}%
+\FPset{\lineGaby}{36}%
+\FPeval{\lineGbax}{\fpeval{\lineGaax+\sqrtA}}%
+\FPset{\lineGbay}{\lineGaay}%
+\FPeval{\lineGbbx}{\fpeval{\lineGabx+\sqrtA}}%
+\FPset{\lineGbby}{\lineGaby}%
+%
+% drawCircleBgM
+\psset{fillstyle=\fillStyleCircBg,fillcolor=\fillColorCircBg,linestyle=\lineStyleCircBg,linecolor=\lineColorCircBg,linewidth=\lineWidthCircBg}%
+\pscircle(20,20){14}%
+% drawPathCircR1
+\psset{fillstyle=\fillStyleCircRa,fillcolor=\fillColorCircRa,linestyle=\lineStyleCircRa,linecolor=\lineColorCircRa,linewidth=\lineWidthCircRa}%
+\rput(0,0){\psarc(20,20){14}{\angYab}{\angYaa}}%
+%
+% drawPathLineB1
+\newcommand{\lineBa}{\pscustom{%
+\psline(1, 16)(1, 14)%
+\psbezier(11, 14)(12, 14)(\fpeval{25 + \sqrtA}, 36)%
+\psline(\fpeval{25 + \sqrtA}, 36)(25, 36)%
+\psbezier(11, 16)(9, 16)(1, 16)%
+\closepath}}%
+%
+\psset{fillstyle=\fillStyleLineBaBg,fillcolor=\fillColorLineBaBg,linestyle=\lineStyleLineBaBg,linecolor=\lineColorLineBaBg,linewidth=\lineWidthLineBaBg,dimen=outer}%
+\rput(0,0){\lineBa}%
+%
+\psset{fillstyle=\fillStyleLineBa,fillcolor=\fillColorLineBa,linestyle=\lineStyleLineBa,linecolor=\lineColorLineBa,linewidth=\lineWidthLineBa,dimen=outer}%
+\rput(0,0){\lineBa}%
+% drawPathLineY1-background
+\psset{fillstyle=\fillStyleLineYaBg,fillcolor=\fillColorLineYaBg,linestyle=\lineStyleLineYaBg,linecolor=\lineColorLineYaBg,linewidth=\lineWidthLineYaBg}%
+\rput(20,20){\pscustom{%
+\psarc(0,0){14}{\angYbb}{\angYab}%
+\psline(14;\angYab)(14;\angYaa)%
+\psarc(0,0){14}{\angYaa}{\angYaa}%
+\psline(14;\angYba)(14;\angYbb)%
+\closepath}}%
+% drawPathLineY1
+\psset{fillstyle=\fillStyleLineYa,fillcolor=\fillColorLineYa,linestyle=\lineStyleLineYa,linecolor=\lineColorLineYa,linewidth=\lineWidthLineYa}%
+\rput(20,20){\pscustom{%
+\psarc(0,0){14}{\angYbb}{\angYab}%
+\psline(14;\angYab)(14;\angYaa)%
+\psarc(0,0){14}{\angYaa}{\angYaa}%
+\psline(14;\angYba)(14;\angYbb)%
+\closepath}}%
+% drawPathLineR1
+\psset{fillstyle=\fillStyleLineRa,fillcolor=\fillColorLineRa,linestyle=\lineStyleLineRa,linecolor=\lineColorLineRa,linewidth=\lineWidthLineRa}%
+\rput(20,20){\pscustom{%
+\psarc(0,0){14}{\angYbb}{\angYab}%
+\psline(14;\angYab)(\fpeval{\lineYabx-20},\fpeval{\lineYaby-20})
+(\fpeval{\lineYbbx-20},\fpeval{\lineYbby-20})(14;\angYbb)%
+\closepath}}%
+% drawPathLineG1
+\psset{fillstyle=\fillStyleLineGa,fillcolor=\fillColorLineGa,linestyle=\lineStyleLineGa,linecolor=\lineColorLineGa,linewidth=\lineWidthLineGa}%
+\rput(20,20){\pscustom{%
+\psarcn(0,0){14}{\angYba}{\angYaa}%
+\psline(14;\angYaa)(\fpeval{\lineYaax-20},\fpeval{\lineYaay-20})
+(\fpeval{\lineYbax-20},\fpeval{\lineYbay-20})(14;\angYba)%
+\closepath}}%
+% drawPathLineG2
+\psset{fillstyle=\fillStyleLineGb,fillcolor=\fillColorLineGb,linestyle=\lineStyleLineGb,linecolor=\lineColorLineGb,
+linewidth=\lineWidthLineGb}%
+\rput(20,20){\pscustom{%
+\psarc(0,0){14}{\angGaa}{\angGba}%
+\psline(14;\angGba)(\fpeval{\lineGbbx-20},\fpeval{\lineGbby-20})
+(\fpeval{\lineGabx-20},\fpeval{\lineGaby-20})(14;\angGaa)%
+\closepath}}%
+% drawPathLineG3
+\psset{fillstyle=\fillStyleLineGc,fillcolor=\fillColorLineGc,linestyle=\lineStyleLineGc,linecolor=\lineColorLineGc,linewidth=\lineWidthLineGc}%
+\rput(20,20){\psarc(0,0){14}{\angGaa}{-30}}%
+% drawPathLineR2
+\psset{fillstyle=\fillStyleLineRb,fillcolor=\fillColorLineRb,linestyle=\lineStyleLineRb,linecolor=\lineColorLineRb,linewidth=\lineWidthLineRb}%
+\rput(20,20){\psarc(0,0){14}{-25}{\fpeval{\angGbb-2}}}%
+}}% \psLogoJapanLady
+%===============================================================================
+
+
+
+
+%===============================================================================
+
+
+%===============================================================================
+
+%===============================================================================
+%===============================================================================
+\endinput
+%===============================================================================

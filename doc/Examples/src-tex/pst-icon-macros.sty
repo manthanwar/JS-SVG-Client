@@ -1,0 +1,99 @@
+%===============================================================================
+% File Name     : <pst-icon-macros.sty>
+% Description   : Utility Macros for LaTeX and Graphics Using PSTricks
+% Documentation : <pst-icon-macros.tex>
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Locale        : Pune, Maharashtra, India
+% Mailer        : manthanwar@hotmail.com
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : (c) 2024 Amit Manohar Manthanwar <manthanwar@hotmail.com>
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%===============================================================================
+% Revision Log  | Author  | Description
+%---------------+---------+-----------------------------------------------------
+% 23-Jul-2024   | AMM     | Initial Version
+%---------------+---------+-----------------------------------------------------
+%===============================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pst-icon-macros}[2024/07/26 PST-Icons-Macros (c) Amit M. Manthanwar]
+%-------------------------------------------------------------------------------
+\RequirePackage{fp,xfp}
+\RequirePackage{xkeyval}
+\RequirePackage{pstricks}%
+% \RequirePackage{xstring}
+%===============================================================================
+
+%===============================================================================
+% key value family
+% \define@key{amm-pst-water}{iconWidth}[4]{\newcommand{\iconWidth}{#1}}
+%-------------------------------------------------------------------------------
+\makeatletter
+\def\kvf{pst-river}% key value family
+\def\kv#1#2{\define@key{\kvf}{#1}[#2]{\expandafter\def\csname#1\endcsname{##1}}%
+\presetkeys{\kvf}{#1}{}}%
+\def\psSet#1{\presetkeys{\kvf}{#1}{}}%
+\makeatother
+%===============================================================================
+
+%===============================================================================
+% Trigonometry
+\def\fpasin#1#2#3{\FPeval{#1}{\fpeval{round(asind(#2/#3),4)}}}%
+\def\aSin#1#2{\fpeval{round(asind(#1/#2),4)}}%
+\def\aCos#1#2{\fpeval{round(acosd(#1/#2),4)}}%
+\def\aTan#1#2{\fpeval{round(atand(#1/#2),4)}}%
+
+% #1 = center, #2 = radius, #3 = theta
+\newcommand{\sind}[3]{\fpeval{round(#1 + #2 * sind(#3),4)}}%
+\newcommand{\cosd}[3]{\fpeval{round(#1 + #2 * cosd(#3),4)}}%
+\newcommand{\tand}[3]{\fpeval{round(#1 + #2 * tand(#3),4)}}%
+
+% polar coordinates
+\newcommand{\polarX}[3]{\fpeval{round(#1 + #2 * cosd(#3),4)}}%
+\newcommand{\polarY}[3]{\fpeval{round(#1 + #2 * sind(#3),4)}}%
+
+%===============================================================================
+
+%-------------------------------------------------------------------------------
+
+%===============================================================================
+\def\fontFiraHeavy#1{\usefont{OT1}{FiraSans-LF}{heavy}{n}{#1}}
+\def\fontFiraBoldExtra#1{\usefont{OT1}{FiraSans-LF}{extrabold}{n}{#1}}
+\def\fontFiraBold#1{\usefont{OT1}{FiraSans-LF}{bold}{n}{#1}}
+\def\fontFiraBoldSemi#1{\usefont{OT1}{FiraSans-LF}{semibold}{n}{#1}}
+\def\fontFiraMedium#1{\usefont{OT1}{FiraSans-LF}{medium}{n}{#1}}
+\def\fontFiraRegular#1{\usefont{OT1}{FiraSans-LF}{regular}{n}{#1}}
+\def\fontFiraBook#1{\usefont{OT1}{FiraSans-LF}{book}{n}{#1}}
+\def\fontFiraLight#1{\usefont{OT1}{FiraSans-LF}{light}{n}{#1}}
+\def\fontFiraLightExtra#1{\usefont{OT1}{FiraSans-LF}{extralight}{n}{#1}}
+\def\fontFiraLightUltra#1{\usefont{OT1}{FiraSans-LF}{ultralight}{n}{#1}}
+\def\fontFiraThin#1{\usefont{OT1}{FiraSans-LF}{thin}{n}{#1}}
+%===============================================================================
+
+\newcommand{\iconSize}[1]{\fpeval{round(#1,4)}}%
+% \newcommand{\iconSizeWidth}{\fpeval{round(\iconWidth/20,4)}}%
+
+\newcommand{\setIcon}[2]{\setkeys{\kvf}{#1}\psset{style=psIcon}%
+\psscalebox{\iconSize{#2}}}%
+
+\newcommand{\setIconA}[1]{\psset{style=psIcon}\psscalebox{\iconSize{#1}}}%
+
+
+% Grid Object
+\newpsobject{psGrid}{psgrid}{subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20, gridlabels=8pt,gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm}% griddots=4, subgriddots=10,
+
+% Figure fillStyle
+\newpsstyle{psIcon}{unit=1mm,dimen=middle,cornersize=absolute,linearc=0,framearc=0,linejoin=1}%
+
+
+
+%===============================================================================
+%-------------------------------------------------------------------------------
+%===============================================================================
+\endinput
+
