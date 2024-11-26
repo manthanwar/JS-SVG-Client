@@ -1,0 +1,60 @@
+\documentclass{ammArt}
+\usepackage{amm-pst-currencies}
+\usepackage{amm-pst-invoice}
+\usepackage{pst-art-logo}
+%===============================================================================
+\begin{document}
+%===============================================================================
+% \renewcommand{\invoiceLogoOwn}{Manthanwar}
+\renewcommand{\invoiceLogoOwn}{\rput(0.3,-2){\psLogoJapanLady[iconWidth=15] }}
+\renewcommand{\invoiceCompany}{Dolphin Corporation}
+\renewcommand{\invoiceAddress}{Kensington Hign Street}
+\renewcommand{\invoiceStation}{London}
+\renewcommand{\invoicePinCode}{W8 1RS}
+\renewcommand{\invoiceCountry}{United Kingdom}
+\renewcommand{\invoicePhoneNo}{202.123.1234}
+\renewcommand{\invoiceEmailID}{info@dolphin.com}
+% \renewcommand{\invoiceWebsite}{\href{https://materich.com}{materich.com}}
+\renewcommand{\invoiceWebsite}{\href{https://js-svg-client.onrender.com/}{Dolphin.com}}
+\renewcommand{\invoiceAccount}{USTXAT-E001-P01Q}
+\renewcommand{\invoiceAccName}{First Middle Las}
+\renewcommand{\invoiceAccBank}{Bank of Country}
+\renewcommand{\invoiceTaxIDNo}{Tax Number}
+%-------------------------------------------------------------------------------
+\renewcommand{\invoicePartyName}{First Second Last}
+\renewcommand{\invoiceAddressTo}{Address Line}
+\renewcommand{\invoiceStationTo}{City}
+\renewcommand{\invoicePinCodeTo}{Post Code}
+\renewcommand{\invoiceCountryTo}{Country}
+\renewcommand{\invoicePhoneNoTo}{Phone}
+\renewcommand{\invoiceEmailIDTo}{Email}
+%===============================================================================
+% \renewcommand{\invoiceFormat}{INVOICE}
+\renewcommand{\invoiceFormat}{Quotation}
+% \renewcommand{\invoiceFormat}{RECEIPT}
+%-------------------------------------------------------------------------------
+\renewcommand{\invoiceNumber}{USTXATE001Q}
+\renewcommand{\invoiceIssued}{21 Nov 2022}
+\renewcommand{\invoiceDuesOn}{11 Dec 2022}
+\renewcommand{\invoiceCashIn}{\rput(0,0.12){\currencyEuro[0.12]{white}}}
+\renewcommand{\tableCurrency}{\rput(0,0.12){\currencyEuro[0.12]{black}}}
+\renewcommand{\invoiceAmount}{10000.00}
+%===============================================================================
+\renewcommand{\invoiceRowSep}{1.8}
+%-------------------------------------------------------------------------------
+\tableParticipants{
+1 & Software License & 1 & 200 & 20   & 220 \\
+\rowcolor{teal!4}2 & Software License & 1 & 200 & 20 & 220 \\
+3 & Software License & 1 & 200 & 20 & 220 \\
+\rowcolor{teal!4}4 & Software License & 1 & 200 & 20 & 220 \\
+5 & Software License & 1 & 200 & 20 & 220 \\[1mm] \hline
+\rowcolor{gray!4}\multicolumn{2}{|r}{Total} & 5 &  &  & 1220 \\[1mm]\hline
+%\multicolumn{4}{c}{} & \multicolumn{1}{|r}{Sub Total} & 1200\\
+\multicolumn{4}{c}{} & \multicolumn{1}{|r}{Tax} &  20\\
+\multicolumn{4}{c}{} & \multicolumn{1}{|r}{Discount} &  20\\
+\multicolumn{4}{c}{} & \multicolumn{1}{|r}{\cellcolor{gray!10} Grand Total} &  \cellcolor{gray!10} \textbf{1220}\\[1mm]
+%\cline{5-6}
+}
+%===============================================================================
+\end{document}
+%===============================================================================

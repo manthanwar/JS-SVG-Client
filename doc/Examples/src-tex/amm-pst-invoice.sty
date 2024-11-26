@@ -1,0 +1,298 @@
+%===============================================================================
+% File Name     : <amm-pst-invoice.sty>
+% Description   : LaTeX package for invoice using PSTricks
+% Documentation : amm-pst-invoice-guide.tex
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Indian        : Warje, Pune, Maharashtra, India
+% Mailer        : manthanwar@hotmail.com
+% Caller        : Skype ID: mnthanwar@hotmail.com
+% Mobile        : +91.853.081.3398
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Office        : Imperial College London
+% Mailer        : amit@imperial.ac.uk
+% Caller        : +44.207.594.6632
+% Mobile        : +44.795.461.7111
+% WebURL        : www.imperial.ac.uk
+%-------------------------------------------------------------------------------
+% Copyright     : ©2022 Amit Manohar Manthanwar
+% License       : Restricted
+%-------------------------------------------------------------------------------
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+%%===============================================================================
+%---------------+---------+----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 21-Nov-2022   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+% 12-Dec-2022   | AMM     | Converted to package
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+%-------------------------------------------------------------------------------
+%===============================================================================
+%-------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[2022/12/12]
+\ProvidesPackage{amm-pst-invoice}
+[2022/12/12 v0.01 LaTeX package for invoice]
+%-------------------------------------------------------------------------------
+%===============================================================================
+\RequirePackage{amm-pst-currencies}
+%===============================================================================
+%===============================================================================
+% Number = CC-SS-CT-ET-ID-OT-ON
+% Number = CC-SS-CT + ET--ES-ID + OT-ON-RT
+% Sample = 911602-12220-1
+% Sample = USTXAT-E001-P01Q
+% Sample = 01-52-10-2-99-1-12
+%
+% CC = Alp-2 ISO Country Code = converted to 2 digits
+% SS = Alp-2 ISO state code = converted to 2 digits
+% CT = City code
+% ET = Entity/Customer Type
+% ES = Entity Sub Type
+% ID = Entity/Customer ID
+% OT = Offering Type
+% ON = Offering Number = e.g. Product Number
+% RT = Document Type
+% NT = Number pf Times Offered = count dates
+%
+% ET = Entity Type
+% B2A = 1 = Government Agency
+% B2B = 2 = Business
+% B2C = 3 = Corporate
+% B2D = 4 = Donation
+% B2E = 5 = Education
+%
+% ES = Entity Sup = 0 - 9 - A - Z = 1260 Unique
+%
+% ID = Entity ID = 0 - 9 - A - Z = 1260 Unique
+%
+% RT = Record/Document Type
+% Q = 1 = Quotation
+% I - 2 = Invoice
+% R = 3 = Receipt
+% B = 4 = Budget for Proposal
+%
+% OT = Type of Offering
+% P = 1 = Product - Hardware
+% S = 2 = Support
+% C = 3 = Consultancy
+% T = 4 = Training
+% A = 5 = Application Software
+% M = 6 = Membership
+% L = 7 = License for Subscription
+%
+% January
+% February
+% March
+% April
+% May
+% June
+% July
+% August
+% September
+% October
+% November
+% December
+%===============================================================================
+%\hrule height 2mm width 170 mm
+%===============================================================================
+%\rput(0,0){
+%\psset{fillstyle=solid,linestyle=none}
+%\rput(-2,0.2){\psframe[fillcolor=red](0,0)(2,0.2)}
+%\rput(0,0){\psframe[fillcolor=cyan](0,0)(17,0.2)}
+%\rput(17,0.2){\psframe[fillcolor=red](0,0)(2,0.2)}
+%\rput(0,0){\psframe[fillcolor=blue](0,0)(0.2,2)}
+%}
+%===============================================================================
+\newcommand{\invoiceFormat}{INVOICE}
+%\newcommand{\invoiceFormat}{Quotation}
+%\newcommand{\invoiceFormat}{RECEIPT}
+
+\newcommand{\invoicePrintDocType}[1]{%
+\rput(14.8,0.2){\pspolygon[fillstyle=solid,fillcolor=gray!20,linestyle=none] (0,0)(-2.2,0.6)(-2.2,2.2)(2.2,2.2)(2.2,0.6)%
+\rput(0,1.2){\textcolor{gray}{\huge{\textbf{\textsf{\invoiceFormat}}}}}}}
+%===============================================================================
+% Owner Logo
+\newcommand{\invoiceLogoOwn}{MATERICH}
+\newcommand{\invoicePrintLogoOwn}{\rput[lt](0,1) {\Huge{\textsf{\textbf{\textcolor{teal}{\invoiceLogoOwn}}}}}}
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\newcommand{\invoiceCompany}{Company}
+\newcommand{\invoiceStation}{City}
+\newcommand{\invoiceAddress}{Address Line}
+\newcommand{\invoicePinCode}{Post Code}
+\newcommand{\invoiceCountry}{Country}
+\newcommand{\invoicePhoneNo}{Phone}
+\newcommand{\invoiceEmailID}{Email}
+\newcommand{\invoiceWebsite}{\href{https://materich.com}{materich.com}}
+%-------------------------------------------------------------------------------
+\newcommand{\invoicePrintAddress}{\rput[lt](3.4,1.7){
+\begin{minipage}[h]{70mm}
+{\textcolor{teal}{\large{\textbf{\invoiceCompany}}}}\\[2mm]
+\small{\invoiceAddress}\\[1mm]
+\small{\invoiceStation, \invoicePinCode, \invoiceCountry}\\[2mm]
+\footnotesize{\invoicePhoneNo $\;\;\bullet\;$ \invoiceEmailID}\\[1mm]
+\invoiceWebsite
+\end{minipage}}}
+%===============================================================================
+%-------------------------------------------------------------------------------
+\newcommand{\invoicePartyName}{First Second Last}
+\newcommand{\invoiceStationTo}{City}
+\newcommand{\invoiceAddressTo}{Address Line}
+\newcommand{\invoicePinCodeTo}{Post Code}
+\newcommand{\invoiceCountryTo}{Country}
+\newcommand{\invoicePhoneNoTo}{Phone}
+\newcommand{\invoiceEmailIDTo}{Email}
+%-------------------------------------------------------------------------------
+\newcommand{\invoicePrintAddressTo}{\rput[lt](0,0){
+\begin{minipage}[h]{60mm}
+\vspace{24mm}
+\textbf{\invoicePartyName}\\
+\invoiceAddressTo\\
+\invoiceStationTo, \invoicePinCodeTo, \invoiceCountryTo\\
+\invoicePhoneNoTo $\;\;\bullet\;$ \invoiceEmailIDTo
+\end{minipage}}}
+%===============================================================================
+%-------------------------------------------------------------------------------
+\newcommand{\invoiceNumber}{USTXATE001Q}
+\newcommand{\invoiceIssued}{21 Nov 2022}
+\newcommand{\invoiceDuesOn}{11 Dec 2022}
+%-------------------------------------------------------------------------------
+\newcommand{\invoicePrintNumbers}{\vspace{0mm}\begin{flushright}\texttt{%
+Number: \invoiceNumber\\
+Issued: \invoiceIssued\\
+Due On: \invoiceDuesOn\\}\end{flushright}\vspace{6mm}}
+%===============================================================================
+\newcommand{\invoiceCashIn}{\rput(0,0.18){\currencyEuro[0.18]{white}}}
+\newcommand{\tableCurrency}{\rput(0,0.12){\currencyEuro[0.12]{black}}}
+\newcommand{\invoiceAmount}{100000.00}
+%-------------------------------------------------------------------------------
+\newcommand{\invoicePrintTotal}[1]{%
+\rput[l](11.6,0.5){{Balance Due: }}
+\rput(13.8,0){%
+\psframe[dimen=middle,fillstyle=solid,fillcolor=teal,linestyle=none](0,0)(3.2,1)%
+\rput(1.6,0.5){\psscalebox{1.2}{{\textbf{\textcolor{white}{\;\invoiceCashIn
+\;\;\invoiceAmount}}}}}}}
+%-------------------------------------------------------------------------------
+
+\newcommand{\textPhv}[1]{\fontfamily{phv}\selectfont{#1}}
+%===============================================================================
+\newcommand{\invoicePrintHeaders}{%
+\invoicePrintLogoOwn%
+\invoicePrintAddress%
+\invoicePrintDocType%
+
+\invoicePrintAddressTo%
+
+\invoicePrintNumbers%
+
+\invoicePrintTotal
+}
+%===============================================================================
+\newcommand{\invoiceAccount}{USTXAT-E001-P01Q}
+\newcommand{\invoiceAccName}{First Middle Las}
+\newcommand{\invoiceAccBank}{Bank of Country}
+\newcommand{\invoiceTaxIDNo}{Tax Number}
+%===============================================================================
+
+\newcommand{\invoicePrintPayInfo}{%
+
+Thank you for your business
+
+\textbf{Payment Information}\texttt{%
+\begin{itemize}[nosep, label=$\bullet$,left=2mm,topsep=-4mm]
+\item Account Number: \invoiceAccount
+\item Account Holder: \invoiceAccName
+\item Account Banker: \invoiceAccBank
+\item Account Tax No: \invoiceTaxIDNo\\
+\end{itemize}}}
+
+\newcommand{\invoicePrintTermsAC}{%
+\begin{footnotesize}
+\textbf{Terms and Conditions}\\[-6mm]
+\input{amm-invoice-terms.tex}
+\end{footnotesize}
+}
+%===============================================================================
+%===============================================================================
+\newcolumntype{T}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{M}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{B}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+\newcolumntype{G}[1]{>{\columncolor{gray!10}\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+\newcommand{\invoiceRowSep}{2}
+%===============================================================================
+% New Environment - Table Participants
+\newcommand{\tableParticipants}[1]{%
+\invoicePrintHeaders%
+
+\vspace{10mm}
+%------------------------------------------------------------------------------
+\begin{table}[!ht]
+\setlength\arrayrulewidth{0.mm}
+\arrayrulecolor{teal}
+%\arrayrulecolor{gray!70}
+% !{\color{green}\vrule}
+% c!{\vrule width 1.6pt}
+%\renewcommand{\arraystretch}{2}
+\renewcommand{\arraystretch}{\invoiceRowSep}
+%\setlength{\extrarowheight}{3mm}
+\setlength{\tabcolsep}{2mm}
+\centering
+\noindent\resizebox{\textwidth}{!}{%
+%------------------------------------------------------------------------------
+\begin{tabular}{|C{10mm}L{64mm}C{10mm}C{20mm}C{20mm}C{20mm}|}
+%\begin{tabular}{|C{10mm}L{60mm}C{10mm}C{15mm}C{15mm}C{15mm}|C{15mm}|}
+\hline
+\rowcolor{gray!10}
+\textbf{No} &
+\textbf{Item Description} &
+%\textbf{Quantity} &
+\textbf{Qty} &
+\textbf{Rate \; \tableCurrency} &
+\textbf{Tax \%} &
+%\textbf{Tax  \; \tableCurrency} &
+%\textbf{Discount \%} &
+%\textbf{Discount  \; \tableCurrency} &
+\textbf{Price \; \tableCurrency} \\[1mm]\hline
+%------------------------------------------------------------------------------
+#1
+%------------------------------------------------------------------------------
+%1 & Software License & 1 & 200 & 20 & 220 \\
+%2 & Software License & 1 & 200 & 20 & 220 \\
+%3 & Software License & 1 & 200 & 20 & 220 \\
+%4 & Software License & 1 & 200 & 20 & 220 \\
+%5 & Software License & 1 & 200 & 20 & 220 \\[1mm] \hline
+%\rowcolor{gray!10}\multicolumn{2}{|c|}{Total} & 5 & 1000 & 20 & 1220
+%------------------------------------------------------------------------------
+%\\[1mm] %\hline
+\end{tabular}}
+\end{table}
+
+\invoicePrintPayInfo
+
+\invoicePrintTermsAC
+}
+%===============================================================================
+
+
+
+%===============================================================================
+%-------------------------------------------------------------------------------
+\endinput
+%%
+%% End of file amm-pst-invoices.sty.
+%-------------------------------------------------------------------------------
+%===============================================================================
