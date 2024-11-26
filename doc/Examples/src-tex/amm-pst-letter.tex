@@ -1,0 +1,153 @@
+%===============================================================================
+% File Name     : <letterMaterichTemplate.tex>
+% Description   : Materich Letter using <letterMaterich.cls>
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Office        : Imperial College London
+% Mailer        : amit@imperial.ac.uk
+% Caller        : +44.207.594.6632
+% Mobile        : +44.795.461.7111
+% WebURL        : www.imperial.ac.uk
+%-------------------------------------------------------------------------------
+% Copyright     : ©2022 Amit Manohar Manthanwar
+% License       : Restricted Confidential
+%===============================================================================
+%---------------+---------+----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 11-Sep-2022   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+% \documentclass{materichLetter}
+\documentclass{amm-pst-letter}
+\usepackage{pst-art-logo}
+%-------------------------------------------------------------------------------
+%\title{\LaTeX{} Letter\thanks{}}
+%\author{Amit M. Manthanwar}
+%\date{\today}
+%===============================================================================
+\begin{document}
+%-------------------------------------------------------------------------------
+%\maketitle
+\thispagestyle{letterhead}
+\pagestyle{fancy}
+%===============================================================================
+% \renewcommand{\letterHead}{\rput(1,-1){MATERICH}}
+\renewcommand{\letterLogo}{\rput(0,-1.5){\psLogoJapanLady[iconWidth=10]}}
+\renewcommand{\letterHead}{\rput[lc](4,-0.5){\textsc{Dolphin}}}
+\renewcommand{\fromName}{Mother Theresa}
+\renewcommand{\fromRank}{PhD MBA}
+\renewcommand{\fromDuty}{Chief Executive Officer}
+\renewcommand{\fromDept}{Global Research Center}
+\renewcommand{\fromPost}{Markt 11, 12345 Berlin\\Brandenburg,
+Germany}
+\renewcommand{\fromFone}{+44.123.123.1234}
+\renewcommand{\fromMail}{ceoh@dolphin.com}
+%\renewcommand{\fromSite}{\urlColor{teal}\href{http://materich.herokuapp.com/team/pwp?id=2}{materich.com}}
+\renewcommand{\fromSite}{\urlColor{teal}\href{https://js-svg-client.onrender.com/}{Dolphin.com}}
+\renewcommand{\fromSize}{36mm}
+%-------------------------------------------------------------------------------
+\renewcommand{\letterDate}{11 September 2022}
+\renewcommand{\concerning}{Participation in Global Project}
+%-------------------------------------------------------------------------------
+\renewcommand{\toName}{Professor Dr. Albert Einstein}
+\renewcommand{\toRank}{}
+\renewcommand{\toDuty}{Head of Research}
+\renewcommand{\toDept}{Global Research and Development}
+\renewcommand{\toPost}{Building 1234, Innovation Center 123 \\123453
+Berlin, Germany}
+\renewcommand{\toFone}{}
+\renewcommand{\toMail}{}%hubertus.pietsch@bayer.com}
+
+
+%===============================================================================
+\printAddress
+\par
+%-------------------------------------------------------------------------------
+\baselineskip = 15pt
+
+%\fontfamily{ppl}\selectfont
+%\fontfamily{phv}\selectfont
+%\sffamily
+%\renewcommand{\baselinestretch}{1}\normalsize
+
+%===============================================================================
+Dear Einstein,
+
+We are leading a collaborative multidisciplinary research project to
+address the global climate challenges for carbon and nitrogen management and valorisation. Our research consortium is comprised of established academic researchers from various research universities and technology experts from around the world with a proven track record of delivering successful research projects and technology solutions. We are in a process of submitting our collaborative proposal to this challenge due on 31 December 2030 with an
+expected budget of EUR 11.2 million.
+
+Our proposed project aims to develop breakthrough materials, novel
+processes, and integrated technology solutions for effectively
+managing a variety of N-base molecules by converting them into
+value-added products such as net zero commodities, chemicals, fuels,
+and energy vectors. Our research underpins renewable energy as a
+primary driver for innovation in N-conversion materials and
+technologies by delivering the following work packages.
+
+\begin{enumerate}
+\item Material discovery for N-base interspecies conversion
+\item Material optimisation for photocatalytic activities
+\item System design, operation, and Industry 4.0 integration
+\item Circular economy for sustainable process manufacturing
+\item Knowledge and technology transfer to industry and academia
+\end{enumerate}
+
+Our novel materials and a suite of state-of-the-art process
+technology solutions will address in an integrated manner:
+environmental, industrial, agricultural, socioeconomic, and logistic
+issues. We strongly believe that our research efforts will
+significantly advance science and its key benefits to the industry.
+Therefore we cordially invite you to join us in this undertaking of
+high societal importance.
+
+Please let me know your expression of interest to join the project and a suitable date for further discussions. I look forward to further discussing call of action towards attaining environmental sustainability.
+
+%===============================================================================
+\par
+\bigskip
+%-------------------------------------------------------------------------------
+Yours sincerely,\\[2mm]
+Mother Theresa
+%===============================================================================
+\end{document}
+%===============================================================================
+
+%-------------------------------------------------------------------------------
+\bigskip
+%===============================================================================
+%\renewcommand{\refname}{Attachments:}
+%-------------------------------------------------------------------------------
+\begin{thebibliography}{99}
+%===============================================================================
+\setlength{\itemindent}{2em}
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\bibitem{Project Website}:
+    \href{}{Global challenge}
+%-------------------------------------------------------------------------------
+\bibitem{The Challenge} Link to pdf:
+    \href{}{challenge guide on carbon dioxide and nitrogen}
+
+%-------------------------------------------------------------------------------
+\bibitem{Additional} Link to pdf:
+    \href{}{work programme}
+%-------------------------------------------------------------------------------
+\bibitem{Materich-pubs} Link to site:
+    \href{https://materich.herokuapp.com/publications/}
+    {Materich research work}
+%===============================================================================
+\end{thebibliography}
+%===============================================================================
+\end{document}
+%===============================================================================
+
+\begin{thebibliography}{9}
+\bibitem[Doe]{doe} \emph{First and last \LaTeX{} example.},
+John Doe 50 B.C.
+
+\bibitem{doee} \emph{First and last \LaTeX{} example.},
+John Doe 50 B.C.
