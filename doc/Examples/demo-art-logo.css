@@ -110,17 +110,115 @@ main {
  flex-direction: column;
  align-items: flex-start;
  margin-left: 40px;
- padding: 40px;
- border: 2px solid red;
+ padding: 0px;
+ /* border: 2px solid red; */
  font-size: 24px;
- div{
-    margin-bottom: 10px;
-    div{
-        margin-top: 10px;
-    }
- }
- button{
-    font-size: 24px;
-    padding: 4px 20px;
- }
+}
+
+/**
+* Dat.GUI css
+* https://github.com/dataarts/dat.gui
+*/
+
+#gui {
+ height: 100%;
+ /* border: 2px solid green; */
+}
+
+#gui ul {
+ font-size: 18px;
+ /* margin: 5px 0; */
+ margin-bottom: 10px;
+ color: white;
+}
+
+#gui .dg .cr {
+ /* font-size: 18px; */
+ /* margin: 0px 10px; */
+ /* margin-bottom: 10px; */
+ /* color: white; */
+ height: 40px;
+ line-height: 40px;
+ border-left: none;
+ /* background-color: gray; */
+}
+
+#gui .dg .closed .cr {
+ height: 0px;
+}
+
+#gui .dg li.title {
+ padding-left: 16px;
+ height: 40px;
+ line-height: 40px;
+ background: black;
+ cursor: pointer;
+ border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#gui .dg .closed li.title {
+ height: 40px;
+ line-height: 40px;
+ background: black;
+}
+
+#gui .dg li.title::before {
+ /* content: "\25BE"; */
+ content: '\25BC';
+ color: white;
+ display: inline-block;
+ margin-right: 6px;
+}
+
+#gui .dg .closed li.title::before {
+ /* content: "\25B8"; */
+ content: '\25B6';
+ color: white;
+ display: inline-block;
+ margin-right: 6px;
+}
+
+#gui .c .property-name {
+ height: 40px;
+}
+
+#gui .cr .property-name {
+ font-size: 18px;
+ /* color: ; */
+}
+
+#gui .property-name::before {
+ content: '';
+ margin-left: 10px;
+}
+
+#gui input {
+ height: 30px;
+ font-size: 18px;
+ /* font-weight: bold; */
+ text-align: center;
+ color: white;
+}
+
+#gui .dg .c .slider {
+ border: 1px solid gray;
+ height: 30px;
+}
+
+#gui .dg .color input {
+ /* height: 30px; */
+}
+
+#gui .dg.main .close-button {
+ margin-bottom: 20px;
+ height: 40px;
+ line-height: 40px;
+ font-size: 18px;
+ background-color: teal;
+ color: white;
+}
+
+#gui .dg.main .close-button:hover {
+ background-color: teal;
+ opacity: 0.9;
 }

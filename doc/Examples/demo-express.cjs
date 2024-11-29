@@ -27,6 +27,7 @@ app.use(express.static('doc/Examples/src-art'));
 app.use(express.static('doc/Examples/src-plot'));
 app.use(express.static('doc/Examples/src-gauge'));
 app.use(express.static('doc/Examples/src-math'));
+app.use(express.static('doc/Examples/src-lib'));
 
 // app.use('/src-gauge/', express.static(__dirname + 'doc/Examples/src-plot'));
 // app.use(express.static('doc/Examples/src-gauge'));

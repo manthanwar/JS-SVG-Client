@@ -18,6 +18,7 @@
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 
+// import * as dat from './dat.gui.js';
 import * as mySvg from './svg.min.js';
 import GaugeParent from './GaugeParent.js';
 import Equation from './Equation.js';
@@ -26,9 +27,8 @@ const eq = new Equation();
 export default class ArtLogo extends GaugeParent {
  constructor(data) {
   super(data);
-  this.drawGaugeLabel();
-  this.createDataObj();
-  this.drawCircleBgM(); //circle background main
+  this.computeDataObj();
+  this.drawCircleMain(); //circle background main
   this.drawPathCircR1();
   this.drawPathLineB1(); // line blue 1
   this.drawPathLineY1();
@@ -44,9 +44,8 @@ export default class ArtLogo extends GaugeParent {
   const svgMainSvg = document.getElementById(this.obj.svgMainSvg.id);
   svgMainSvg.style.marginTop = -this.scalePointY(0.4) + 'px';
 
-  if (this.data.optionsOn) {
-   this.obj.divOptions = this.divOptions();
-  }
+  if (this.data.optionsOn) this.obj.divOptions = this.drawDivOptions();
+  if (this.data.option.divLogoCaption.isVisible) this.drawLogoCaption();
 
   this.localStorage();
  } //constructor
@@ -84,37 +83,67 @@ export default class ArtLogo extends GaugeParent {
   return data;
  }
 
- divOptions() {
+ drawDivOptions() {
+  const gui = new dat.GUI({ autoPlace: false, width: 400, closeOnTop: true });
   const divOption = new mySvg.Div(this.data.divOptions);
-  divOption.obj.innerHTML = `
-  <div id="slideContainer">
-  <input type="range" min="2" max="4.0" step="0.1" value="3.5"  id="sliderX" />
-  <div id="sliderValueX">Point 1 x = 1.2 </div>
-  </div>
+  divOption.obj.append(gui.domElement);
+  divOption.obj.style.width = '0px';
+  divOption.id = 'gui';
+  gui.close();
+  gui.hide();
 
-  <div id="slideContainer">
-  <input type="range" min="0.5" max="5" step="0.1" value="1"  id="sliderY" /> <div id="sliderValueY">Point 1 y = 1 </div>
-  </div>
+  const element = [
+   'drawCircleMain',
+   'drawPathCircR1',
+   'drawPathLineB1',
+   'drawPathLineY1',
+   'drawPathLineR1',
+   'drawPathLineR2',
+   'drawPathLineG1',
+   'drawPathLineG2',
+   'drawPathLineG3'
+   //  'divLogoCaption'
+  ];
 
-  <div id="slideContainer">
-  <input type="range" min="1" max="40" step="1" value="3"  id="sliderN" />
-  <div id="sliderValueN">Number of Blades = 3 </div>
-  </div>
+  const thisObj = this;
+  const doStyle = (ele, key, val) => thisObj.obj[ele].attr(key, val);
 
-  <div id="divBladeColor">
-  <label for="bladeColor">Blade color: </label>
-  <input type="color" id="bladeColor" name="bladeColor" value="#ff0000">
-  </div>
+  for (const ele of element) {
+   const group = gui.addFolder(ele);
+   const state = this.data.option[ele];
+   group.addColor(state, 'fill').onChange((val) => {
+    doStyle(ele, 'fill', val);
+   });
+   group.add(state, 'fillOpacity', 0, 1, 0.1).onChange((val) => {
+    doStyle(ele, 'fill-opacity', val);
+   });
+   group.addColor(state, 'stroke').onChange((val) => {
+    doStyle(ele, 'stroke', val);
+   });
+   group.add(state, 'strokeWidth', 0, 10, 1).onChange((val) => {
+    doStyle(ele, 'stroke-width', val);
+   });
+   group.add(state, 'strokeOpacity', 0, 1, 0.1).onChange((val) => {
+    doStyle(ele, 'stroke-opacity', val);
+   });
+  }
 
-  <button type="button" id="submitBtn">Submit</button>
+  const btn = document.querySelector('.close-button');
+  btn.onclick = () => {
+   gui.hide();
+   divOption.obj.style.width = '0px';
+  };
 
-  <div id="alertBox"></div>
-`;
+  this.obj.svgMainSvg.obj.onclick = () => {
+   gui.open();
+   gui.show();
+   divOption.obj.style.width = '400px';
+  };
 
   return divOption;
  }
 
- createDataObj() {
+ computeDataObj() {
   const xo = 0;
   const yo = 0.2;
   const sqrt = Math.sqrt(0.08);
@@ -164,11 +193,11 @@ export default class ArtLogo extends GaugeParent {
   };
  }
 
- drawCircleBgM() {
-  const sty = this.merge({}, this.data.option.drawCircleBgM);
+ drawCircleMain() {
+  const sty = this.merge({}, this.data.option.drawCircleMain);
   const cxy = this.data.dataObj.circles.slice(0, 2);
   const rrr = this.data.dataObj.circles[2] - sty.strokeWidth / 2;
-  this.obj.drawCircleBgM = this.drawCircle(cxy, rrr, 'drawCircleBgM', sty);
+  this.obj.drawCircleMain = this.drawCircle(cxy, rrr, 'drawCircleMain', sty);
  }
 
  drawPathCircR1() {
@@ -296,21 +325,21 @@ export default class ArtLogo extends GaugeParent {
   document.getElementById(idGear).remove();
  }
 
- drawGaugeLabel() {
+ drawLogoCaption() {
   const divLabel = document.createElement('div');
   const divTitle = document.createElement('div');
   divLabel.classList.add('divLogoLabel');
-  divTitle.classList.add('divLogoTitle');
+  divTitle.classList.add('divLogoCaption');
   divLabel.id = 'divLogoLabel';
-  divTitle.id = 'divLogoTitle';
+  divTitle.id = 'divLogoCaption';
   divLabel.appendChild(divTitle);
   document.getElementById(this.obj.divMainObj.id).appendChild(divLabel);
-  divTitle.innerHTML = this.data.option.divLogoTitle.text;
-  divTitle.style.color = this.data.option.divLogoTitle.fill;
-  divTitle.style.opacity = this.data.option.divLogoTitle.fillOpacity;
-  divTitle.style.fontFamily = this.data.option.divLogoTitle.fontFamily;
-  divTitle.style.fontWeight = this.data.option.divLogoTitle.fontWeight;
-  divTitle.style.fontSize = this.data.option.divLogoTitle.fontSize + 'px';
+  divTitle.innerHTML = this.data.option.divLogoCaption.text;
+  divTitle.style.color = this.data.option.divLogoCaption.fill;
+  divTitle.style.opacity = this.data.option.divLogoCaption.fillOpacity;
+  divTitle.style.fontFamily = this.data.option.divLogoCaption.fontFamily;
+  divTitle.style.fontWeight = this.data.option.divLogoCaption.fontWeight;
+  divTitle.style.fontSize = this.data.option.divLogoCaption.fontSize + 'px';
  }
 } //class
 

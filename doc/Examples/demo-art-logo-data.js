@@ -30,11 +30,11 @@ data.svgMainSvg = {
  `
 };
 
-// data.optionsOn = true;
+data.optionsOn = true;
 data.divOptions = {
  containerId: data.divMainBox.id,
  id: data.divMainBox.id + '-divOptions',
- width: '300px',
+ width: '400px',
  height: '400px',
  transform: 'scale(1)',
  // style: 'border: 1px solid blue; padding:20px;',
@@ -69,11 +69,15 @@ data.grid = {
 };
 
 data.option = {
- drawCircleBgM: {
-  fill: 'white',
+ drawDivOptions: {
+  isVisible: true
+ },
+
+ drawCircleMain: {
+  fill: '#ffffff',
   fillOpacity: 1,
-  stroke: 'none',
-  strokeWidth: 10,
+  stroke: '#ffffff',
+  strokeWidth: 0,
   strokeOpacity: 1
  },
 
@@ -89,7 +93,7 @@ data.option = {
  drawPathLineB1: {
   fill: '#1958a8',
   fillOpacity: 1,
-  stroke: 'white',
+  stroke: '#ffffff',
   strokeWidth: 8,
   strokeOpacity: 1
  },
@@ -97,7 +101,7 @@ data.option = {
  drawPathLineY1: {
   fill: '#fdbb2a',
   fillOpacity: 1,
-  stroke: 'white',
+  stroke: '#ffffff',
   strokeWidth: 10,
   strokeOpacity: 1
  },
@@ -105,14 +109,14 @@ data.option = {
  drawPathLineR1: {
   fill: '#ee1745',
   fillOpacity: 1,
-  stroke: 'white',
+  stroke: '#ffffff',
   strokeWidth: 0,
   strokeOpacity: 1
  },
 
  drawPathLineR2: {
-  fill: 'none',
-  fillOpacity: 1,
+  fill: '#ffffff',
+  fillOpacity: 0,
   stroke: '#ee1745',
   strokeWidth: 8,
   strokeOpacity: 1
@@ -121,7 +125,7 @@ data.option = {
  drawPathLineG1: {
   fill: '#18b04b',
   fillOpacity: 1,
-  stroke: 'white',
+  stroke: '#ffffff',
   strokeWidth: 0,
   strokeOpacity: 1
  },
@@ -129,23 +133,27 @@ data.option = {
  drawPathLineG2: {
   fill: '#18b04b',
   fillOpacity: 1,
-  stroke: 'gray',
-  strokeWidth: 1,
+  stroke: '#ffffff',
+  strokeWidth: 0,
   strokeOpacity: 0.5
  },
 
  drawPathLineG3: {
-  fill: 'none',
-  fillOpacity: 1,
+  fill: '#ffffff',
+  fillOpacity: 0,
   stroke: '#18b04b',
   strokeWidth: 8,
   strokeOpacity: 1
  },
 
- divLogoTitle: {
-  text: '',
-  fill: 'dodgerBlue',
+ divLogoCaption: {
+  isVisible: false,
+  text: 'Logo',
+  fill: '#1e90ff',
   fillOpacity: 1,
+  stroke: '#fff',
+  strokeWidth: 0,
+  strokeOpacity: 1,
   fontFamily: 'sans-serif',
   fontWeight: 'bold',
   fontSize: 24
