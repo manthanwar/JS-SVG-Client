@@ -34,6 +34,7 @@ export default class GaugeRadial3Q extends GaugeParent {
   this.drawGaugeRange();
   this.drawNeedleLine(0);
   this.drawNeedleGear();
+  if (this.data.optionsOn) this.obj.divOptions = this.drawDivOptions();
  } //constructor
 
  drawObject(angle) {
@@ -244,6 +245,92 @@ export default class GaugeRadial3Q extends GaugeParent {
   const cxy = this.scalePoints([2, 2]);
   const rrr = this.data.option.needleGear.size;
   this.obj.needleGear = this.drawCircle(cxy, rrr, 'gear', style);
+ }
+
+ drawDivOptions() {
+  const gui = new dat.GUI({ autoPlace: false, width: 400, closeOnTop: true });
+  const divOption = new mySvg.Div(this.data.divOptions);
+  divOption.obj.append(gui.domElement);
+  divOption.obj.style.width = '0px';
+  divOption.id = 'gui';
+  gui.close();
+  gui.hide();
+
+  const element = [
+   'gaugeSkirt',
+   'gaugeAreaZ',
+   // 'gaugeAreaS',
+   'needleLine',
+   'needleGear'
+   // 'gaugeRange'
+   // 'gaugeTitle'
+  ];
+
+  const thisObj = this;
+  const doStyle = (ele, key, val) => thisObj.obj[ele].attr(key, val);
+
+  for (const ele of element) {
+   const group = gui.addFolder(ele);
+   const state = this.data.option[ele];
+   if (state.fill) {
+    group.addColor(state, 'fill').onChange((val) => {
+     doStyle(ele, 'fill', val);
+    });
+   }
+
+   if (state.fillOpacity) {
+    group.add(state, 'fillOpacity', 0, 1, 0.1).onChange((val) => {
+     doStyle(ele, 'fill-opacity', val);
+    });
+   }
+
+   if (state.stroke) {
+    group.addColor(state, 'stroke').onChange((val) => {
+     doStyle(ele, 'stroke', val);
+    });
+   }
+
+   if (state.strokeWidth) {
+    const min = state.strokeWidthRange ? state.strokeWidthRange[0] : 0;
+    const max = state.strokeWidthRange ? state.strokeWidthRange[1] : 10;
+    const stp = state.strokeWidthRange ? state.strokeWidthRange[2] : 1;
+    group.add(state, 'strokeWidth', min, max, stp).onChange((val) => {
+     doStyle(ele, 'stroke-width', val);
+    });
+   }
+
+   if (state.strokeOpacity) {
+    group.add(state, 'strokeOpacity', 0, 1, 0.1).onChange((val) => {
+     doStyle(ele, 'stroke-opacity', val);
+    });
+   }
+
+   if (state.size) {
+    group.add(state, 'size', 0, 20, 0.1).onChange((val) => {
+     doStyle(ele, 'r', val);
+    });
+   }
+
+   if (state.fontSize) {
+    group.add(state, 'fontSize', 0, 99, 1).onChange((val) => {
+     doStyle(ele, 'font-size', val);
+    });
+   }
+  }
+
+  const btn = document.querySelector('.close-button');
+  btn.onclick = () => {
+   gui.hide();
+   divOption.obj.style.width = '0px';
+  };
+
+  this.obj.svgMainSvg.obj.onclick = () => {
+   gui.open();
+   gui.show();
+   divOption.obj.style.width = '420px';
+  };
+
+  return divOption;
  }
 } //class
 

@@ -12,7 +12,12 @@ window.onload = (event) => {
  dataTemplate.renderBody('demo-reporting.html');
 
  const main = document.getElementsByTagName('main')[0];
+ const article = document.createElement('article');
+ const artHead = document.createElement('h1');
+ main.appendChild(article);
+ article.appendChild(artHead);
 
- main.innerHTML = 'Hello World';
+ artHead.innerHTML = 'Brand Identity';
+
  // main.style.border = '2px solid red;';
 };

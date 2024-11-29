@@ -138,23 +138,25 @@ data.navMenu = [
  },
  {
   link: 'Publications',
-  menu: [
-   {
-    link: 'Data-Driven Reporting',
-    page: 'Data-Driven Reporting and Publication Automation',
-    href: 'demo-reporting.html'
-   },
-   {
-    link: 'Brand Identity',
-    page: 'Brand Identity, House Style, and Communications Automation',
-    href: 'demo-reporting.html'
-   },
-   {
-    link: 'E-Commerce',
-    page: 'E-Commerce Applications',
-    href: 'demo-reporting.html'
-   }
-  ]
+  page: 'Data-Driven Reporting and Publication Automation',
+  href: 'demo-pub-branding.html'
+  // menu: [
+  //  {
+  //   link: 'Data-Driven Reporting',
+  //   page: 'Data-Driven Reporting and Publication Automation',
+  //   href: 'demo-reporting.html'
+  //  },
+  //  {
+  //   link: 'Brand Identity',
+  //   page: 'Brand Identity, House Style, and Communications Automation',
+  //   href: 'demo-pub-branding.html'
+  //  },
+  //  {
+  //   link: 'E-Commerce',
+  //   page: 'E-Commerce Applications',
+  //   href: 'demo-reporting.html'
+  //  }
+  // ]
  },
  {
   link: 'Map',

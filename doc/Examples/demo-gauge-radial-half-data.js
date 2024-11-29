@@ -6,14 +6,17 @@ const [width, height] = [150 * 4 + 24, 75 * 4 + 24];
 data.divMainBox = {
  containerId: 'main',
  id: 'divMainBox',
- style: 'border: 1px solid red; padding:10px 10px;margin-top:10px;',
- width: width + 22 * 2 + 'px',
+ style: 'border: 0px solid red; padding:10px 10px;margin-top:10px;',
+ width: width * 2.4 + 22 * 2 + 'px',
  height: height + 22 * 2 + 'px',
  transform: 'scale(1)'
 };
 
 data.divMainObj = {
- style: 'border: 1px solid green; padding:10px; margin: 0px;',
+ style: `border: 0px solid green; padding:10px; margin: 0px;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+ border-radius:20px;
+ `,
  width: width + 22 + 'px',
  height: height + 22 + 'px',
  class: 'divMainObj'
@@ -23,7 +26,18 @@ data.svgMainSvg = {
  width: '100%',
  height: '100%',
  // vieBox: '0 0 100 100 ',
- style: `border: 1px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box; background-color: none;`
+ style: `border: 0px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box; background-color: none;`
+};
+
+data.optionsOn = true;
+data.divOptions = {
+ containerId: data.divMainBox.id,
+ id: data.divMainBox.id + '-divOptions',
+ width: '400px',
+ height: '400px',
+ transform: 'scale(1)',
+ style: 'border: 0px solid blue; padding:10px;',
+ class: 'divOption'
 };
 
 // data.gridOn = true;
@@ -55,14 +69,16 @@ data.grid = {
 
 data.option = {
  gaugeSkirt: {
-  stroke: 'white',
+  stroke: '#ffffff',
   strokeWidth: 15, // 0 - 15
-  strokeOpacity: '1'
+  strokeOpacity: '1',
+  strokeWidthRange: [0, 15, 0.5] // [min, max, step]
  },
  gaugeAreaZ: {
-  stroke: 'white',
+  stroke: '#ffffff',
   strokeWidth: 37.5, // 0 - 37.5
-  strokeOpacity: '0.5'
+  strokeOpacity: '0.5',
+  strokeWidthRange: [0, 37.5, 0.5] // [min, max, step]
  },
  gaugeAreaS: {
   stroke: ['green', 'orange', 'red'],
@@ -71,19 +87,19 @@ data.option = {
   strokeOpacity: Array(3).fill(0.6)
  },
  ticksMajor: {
-  stroke: 'black',
+  stroke: '#000000',
   strokeWidth: 2,
   strokeOpacity: 1
  },
  ticksMinor: {
-  stroke: 'black',
+  stroke: '#000000',
   strokeWidth: 1,
   strokeOpacity: 1
  },
  gaugeRange: {
   range: [0, 160],
   offset: 0.5,
-  fill: 'dodgerBlue',
+  fill: '#1e90ff',
   fillOpacity: '1',
   fontFamily: 'sans-serif',
   fontWeight: 'normal',
@@ -91,7 +107,7 @@ data.option = {
  },
  gaugeTitle: {
   text: 'MPH',
-  fill: 'dodgerBlue',
+  fill: '#1e90ff',
   fillOpacity: 1,
   fontFamily: 'sans-serif',
   fontWeight: 'bold',
@@ -99,17 +115,19 @@ data.option = {
  },
  needleLine: {
   offset: 0,
-  stroke: 'red',
+  stroke: '#ff0000',
   strokeWidth: 6,
-  strokeOpacity: 1
+  strokeOpacity: 1,
+  strokeWidthRange: [0, 10, 0.5] // [min, max, step]
  },
  needleGear: {
   size: 15,
-  fill: 'black',
+  fill: '#000000',
   fillOpacity: 1,
-  stroke: 'pink',
+  stroke: '#ffc0cb',
   strokeWidth: 1,
-  strokeOpacity: 1
+  strokeOpacity: 1,
+  strokeWidthRange: [0, 15, 0.5] // [min, max, step]
  }
 };
 
