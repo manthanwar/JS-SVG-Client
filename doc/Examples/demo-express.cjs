@@ -302,6 +302,8 @@ app.post('/pub-business-card', function (req, res, next) {
   place: req.body.place.split('\n')
  };
 
+ // res.write('Thank you ' + req.body.nameF + '. Your card is loading...');
+
  const name = data.nameF + ' ' + data.nameM[0] + ' ' + data.nameL;
  const rank = data.rankT;
  const mail = data.email;
@@ -379,8 +381,6 @@ app.get('/pub-business-card-pdf', (req, res) => {
   pdf: req.query.pdf ? req.query.pdf : '#'
  });
 });
-
-
 
 // console.log('reqIP = ', JSON.parse(req.body.weather));
 // console.dir(req.body)
