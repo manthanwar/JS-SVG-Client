@@ -129,6 +129,7 @@ app.use(express.static('doc/Examples/src-lib'));
 app.use(express.static('doc/Examples/src-math'));
 app.use(express.static('doc/Examples/src-plot'));
 app.use(express.static('doc/Examples/src-tex'));
+app.use(express.static('doc/Examples/src-tex-data'));
 
 // app.use('/src-gauge/', express.static(__dirname + 'doc/Examples/src-plot'));
 // app.use(express.static('doc/Examples/src-gauge'));
@@ -174,7 +175,8 @@ app.get('/test', function (req, res) {
  res.sendFile(path.join(__dirname, 'test.html'));
 });
 
-app.post('/pub-business-card-spawn', function (req, res, next) {
+//region app.post /pub-business-card-spawn
+app.post('/pub-business-card-spawn', (req, res, next) => {
  const data = {
   nameF: req.body.nameF,
   nameM: req.body.nameM,
@@ -280,12 +282,14 @@ app.post('/pub-business-card-spawn', function (req, res, next) {
     }
    }
   );
- });
+ }); //fs.write
 
  // res.setHeader('Content-type', 'text/html');
  // res.send('welcome, ' + req.body.nameF + '\n' + message);
 });
+//endregion app.post /pub-business-card-spawn
 
+//region app.post /pub-business-card
 app.post('/pub-business-card', function (req, res, next) {
  const data = {
   nameF: req.body.nameF,
@@ -305,17 +309,10 @@ app.post('/pub-business-card', function (req, res, next) {
  const call = data.phone;
  const addA = data.place[0] ? data.place[0].trim() : ' ';
  const addB = data.place[1] ? data.place[1].trim() : ' ';
-
- // console.log(data.place);
-
- // console.log('reqIP = ', data);
- // console.log('len = ' + data.place.length);
-
  const fileName = data.email.replace(/[@,.]/g, '-') + '.tex';
  const filePath = path.join(__dirname, '/src-tex-data/' + fileName);
- // console.log(fileName);
- // console.log(filePath);
-
+ const tex = fileName.slice(0, -4);
+ const pdf = tex + '.pdf';
  const fileContent = `\\documentclass{../src-tex/amm-pst-business-card}
 \\RequirePackage\{../src-tex/pst-art-logo\}%
 \\begin{document}%
@@ -330,55 +327,60 @@ app.post('/pub-business-card', function (req, res, next) {
 \\end{document\}
  `;
 
- // console.log(fileContent);
- let message = '';
- let pdf = '';
-
  fs.writeFile(filePath, fileContent, (err) => {
   if (err) {
-   res.write('Error generating your card. Resubmit with correct data.');
+   // res.write('Error generating your card. Resubmit with correct data.');
    console.log(`error: ${error.message}`);
    return;
   }
-  // res.write('Thank you ' + req.body.nameF + '. Your card is loading...');
+  // res.write('Thank you ' + req.body.nameF + '. Your card is printing...');
 
-  const tex = fileName.slice(0, -4);
-  pdf = tex + '.pdf';
   const src = path.join(__dirname, '/src-tex-data/');
   const mak = path.join(__dirname, '/src-tex/makefile');
-
-  exec(
-   `cd ${src} && make -f ${mak} latexruns file=${tex}`,
-   (error, stdout, stderr) => {
-    if (error) {
-     message = 'Error generating your card. Resubmit with correct data.';
-     console.log(`error: ${error.message}`);
-     return;
-    }
-    if (stderr) {
-     message = 'Error generating your card. Resubmit with correct data.';
-     console.log(`stderr: ${stderr}`);
-     return;
-    }
-    // res.write('Thank you ' + req.body.nameF + '. Your card is loading...');
-    if (stdout) {
-     message = `<a href="${pdf}" target="_blank">Here is your business card</a>`;
-     // res.send(message);
-     console.log(`stdout: ${stdout}`);
-     console.log(message);
-     console.log('mmmm = ' + message);
-     res.setHeader('Content-type', 'text/html');
-     // res.send('welcome, ' + req.body.nameF + '\n' + message);
-
-     stdout.pipe(res);
-    }
+  // const cmd = `cd ${src} && make -f ${mak} latexruns file=${tex}`;
+  // const cmd = `cd ${src} && make -f ../src-tex/makefile latexruns file=${tex}`;
+  const cmd = `cd ${src} && latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.out ${tex}.ps`;
+  exec(cmd, (error, stdout, stderr) => {
+   if (error) {
+    const message = 'Error generating your card. Resubmit with correct data.';
+    console.log(`my error: ${error.message}`);
+    // console.log('error = ' + error.message);
+    // res.write('welcome, ' + req.body.nameF + '\n' + message);
+    return;
    }
-  );
- });
+   if (stderr) {
+    const message = 'Error generating your card. Resubmit with correct data.';
+    console.log(`my stderr: ${stderr}`);
+    // console.log('error = ' + error.message);
+    // res.write('welcome, ' + req.body.nameF + '\n' + message);
+    return;
+   }
+   // res.write('Thank you ' + req.body.nameF + '. Your card is loading...');
+   if (stdout) {
+    const message = `<a href="${pdf}" target="_blank">Here is your business card</a>`;
+    // res.write('Thank you ' + req.body.nameF + '. Your card is' + message);
+    // res.redirect(`/pub-business-card-pdf?pdf=${pdf}`);
+   }
+  }); //exec
+ }); //fs.writeFile
 
- // res.setHeader('Content-type', 'text/html');
- // res.send('welcome, ' + req.body.nameF + '\n' + message);
+ // res.send(
+ //  `<h3> ${name}, here is your card <a href="/pub-business-card-pdf?pdf=${pdf}&name=${name}">${pdf}</a></h3>`
+ // );
+
+ res.redirect(`/pub-business-card-pdf?pdf=${pdf}&name=${name}`);
 });
+//endregion app.post /pub-business-card
+
+app.get('/pub-business-card-pdf', (req, res) => {
+ res.render('pub-business-card-pdf', {
+  layout: false,
+  name: req.query.name ? req.query.name : '#',
+  pdf: req.query.pdf ? req.query.pdf : '#'
+ });
+});
+
+
 
 // console.log('reqIP = ', JSON.parse(req.body.weather));
 // console.dir(req.body)
