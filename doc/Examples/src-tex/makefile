@@ -19,7 +19,7 @@
 #---------------+---------+-----------------------------------------------------
 #---------------+---------+-----------------------------------------------------
 #-------------------------------------------------------------------------------
-# Usage: make latexrun file=texfilebasename -f $makefile
+# Usage: make -f $makefile latexrun file=texfilebasename
 #===============================================================================
 
 # file := pst-icons-water
@@ -27,6 +27,7 @@
 # pass file as command line arguments
 # make latex file=pst-fonts
 
+python   := python
 makefile := /d/GitHub/Publications/TeXMF/scripts/makefile
 dirpath  := $(shell pwd)
 dirname  := $(shell basename ${dirpath})
@@ -38,7 +39,7 @@ all: clean dvi ps pdf run
 
 TIMES = @date '+%s%3N' > $@_time
 TIMEE = @read started < $@_time ; stopped=$$((`date '+%s%3N'`));\
-python -c "print('time elapsed = \033[1;31m',\
+${python} -c "print('time elapsed = \033[1;31m',\
 '{:6.2f}'.format(($$((stopped))-$$((started)))/1000,2)\
 ,'s \033[0m for $@')";\
 rm $@_time
@@ -58,6 +59,11 @@ latex: ${file}.tex
 	@latex -output-directory=${dirout} -quiet -synctex=-1 -time-statistics --shell-escape ${file}.tex
 	$(TIMEE)
 
+latexv: ${file}.tex
+	$(TIMES)
+	@latex -time-statistics --shell-escape ${file}.tex
+	$(TIMEE)
+
 dvi: ${file}.tex
 	mkdir -p ${diraux}
 	latex -time-statistics -output-directory=. -aux-directory=${diraux} -quiet -synctex=-1 -job-name=${file} ${file}.tex
@@ -74,7 +80,7 @@ ps: ${file}.dvi
 
 pdf: ${file}.ps
 	$(TIMES)
-	@ps2pdf -dNOSAFER ${file}.ps ${file}.pdf
+	@ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${file}.ps ${file}.pdf
 	@rm -f ${file}.ps ${file}.dvi
 	$(TIMEE)
 
@@ -96,7 +102,7 @@ latexbibtex: ${file}.tex
 	bibtex ${file}
 	latex -time-statistics -output-directory=. -quiet -synctex=-1 ${file}.tex
 	dvips -q ${file}.dvi -o ${file}.ps
-	ps2pdf -dNOSAFER ${file}.ps ${file}.pdf
+	ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${file}.ps ${file}.pdf
 	@make clean
 	@make cleanall
 	@start sumatrapdf ${file}.pdf &
@@ -116,7 +122,7 @@ latexbiber: ${file}.tex
 	@echo 'running dvips...'
 	@dvips -q ${file}.dvi -o ${file}.ps
 	@echo 'running ps2pdf...'
-	@ps2pdf -dNOSAFER ${file}.ps ${file}.pdf
+	@ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${file}.ps ${file}.pdf
 	$(TIMEE)
 
 # @latex -time-statistics -output-directory=. -quiet -synctex=-1 --shell-escape ${file}.tex
@@ -126,7 +132,7 @@ latex2pdf: ${file}.tex
 	$(TIMES)
 	@latex -time-statistics -output-directory=${dirout} -quiet -synctex=-1 ${file}.tex
 	@dvips -q ${file}.dvi -o ${file}.ps
-	@ps2pdf -dNOSAFER ${file}.ps ${file}.pdf
+	@ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${file}.ps ${file}.pdf
 	$(TIMEE)
 
 latex2pdf2x: ${file}.tex
@@ -135,12 +141,14 @@ latex2pdf2x: ${file}.tex
 	@latex -time-statistics -output-directory=${dirout} -quiet -synctex=-1 ${file}.tex
 	@latex -time-statistics -output-directory=${dirout} -quiet -synctex=-1 ${file}.tex
 	@dvips -q ${file}.dvi -o ${file}.ps
-	@ps2pdf -dNOSAFER ${file}.ps ${file}.pdf
+	@ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${file}.ps ${file}.pdf
 	$(TIMEE)
 
 latexrun2x: latex2pdf2x clean viewpdf
 
 latexrun: latex2pdf clean viewpdf
+
+latexruns: latex2pdf cleanall
 
 biberrun: latexbiber cleanall viewpdf
 

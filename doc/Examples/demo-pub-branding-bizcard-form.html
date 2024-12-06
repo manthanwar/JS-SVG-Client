@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link
+   rel="stylesheet"
+   type="text/css"
+   media="screen"
+   href="demo-pub-branding-bizcard.css"
+  />
+ </head>
+ <body>
+  <div class="formContainer">
+   <h1>Create Your Business Card</h1>
+
+   <form action="/pub-business-card" method="POST" autocomplete="on">
+    <div class="floating-label-group-group">
+     <div class="floating-label-group">
+      <input
+       type="text"
+       id="nameF"
+       name="nameF"
+       size="12"
+       required
+       autofocus
+       placeholder="First Name"
+      />
+     </div>
+
+     <div class="floating-label-group">
+      <input
+       type="text"
+       id="nameM"
+       name="nameM"
+       size="10"
+       placeholder="Middle Name"
+      />
+     </div>
+
+     <div class="floating-label-group">
+      <input
+       type="text"
+       id="nameL"
+       name="nameL"
+       size="14"
+       required
+       placeholder="Last Name"
+      />
+     </div>
+    </div>
+
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="rankT"
+      name="rankT"
+      size="27"
+      required
+      placeholder="Chief Executive Officer"
+     />
+    </div>
+
+    <div class="floating-label-group-group">
+     <div class="floating-label-group">
+      <input
+       type="email"
+       id="email"
+       name="email"
+       size="27"
+       required
+       placeholder="user@email.com"
+      />
+     </div>
+
+     <div class="floating-label-group">
+      <input
+       type="tel"
+       id="phone"
+       name="phone"
+       size="14"
+       placeholder="+91-123-123-1234"
+       required
+      />
+     </div>
+    </div>
+
+    <div class="floating-label-group">
+     <textarea
+      id="place"
+      name="place"
+      rows="2"
+      cols="58"
+      placeholder="House No, Street Name&#10;City, State Postcode"
+     ></textarea>
+    </div>
+
+    <div class="floating-label-group-group">
+     <input type="submit" value="Submit" />
+     <input type="reset" value="Clear" />
+    </div>
+   </form>
+  </div>
+ </body>
+</html>

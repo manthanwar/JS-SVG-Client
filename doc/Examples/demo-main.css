@@ -4,6 +4,9 @@ html {
 
 body {
  font-size: 20rem;
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
 }
 
 * {
@@ -215,7 +218,8 @@ nav a {
 }
 
 footer {
- margin-top: 270px;
+    margin-top: auto;
+ /* margin-top: 270px; */
  padding: 10px 20px;
  font-size: 16rem;
  background-color: whitesmoke;

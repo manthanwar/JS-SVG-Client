@@ -27,6 +27,7 @@ window.onload = (event) => {
 <li><a href="amm-pst-letter.pdf" target="_blank">Formal Letter</a></li>
 <li><a href="amm-pst-talk.pdf" target="_blank">Presentation</a></li>
 <li><a href="amm-pst-business-card.pdf" target="_blank">Business Card</a></li>
+<li><a href="demo-pub-branding-bizcard.html">Business Card Personal</a></li>
 </ul>
 
 <h3>E-Commerce Applications</h3>

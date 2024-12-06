@@ -1,0 +1,73 @@
+% region Header
+%===============================================================================
+% File Name     : <amm-pst-plot.sty>
+% Description   : LaTeX package for Plotting and Charting using PSTricks
+% Documentation : amm-pst-plot.tex
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Locale        : Pune, Maharashtra, India
+% Mailer        : manthanwar@hotmail.com
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2024 Amit Manohar Manthanwar
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%===============================================================================
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 02-Dec-2024   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+% Units in mm, origin at center
+%===============================================================================
+\NeedsTeXFormat{LaTeX2e}[2024/12/02]%
+\ProvidesPackage{amm-pst-plot}[2024/12/02 PostScript Plot (c) Amit M. Manthanwar]
+%===============================================================================
+% region Packages
+\RequirePackage{pst-icon-macros}%
+% endregion Packages
+%===============================================================================
+% region Colors
+% \definecolor{logoRed}{HTML}{ee1745}
+% endregion Colors
+%===============================================================================
+% region Key Value
+\def\kvf{amm-pst-plot}% key value family
+% \input{pst-art-logo-kvp.tex}%
+%-------------------------------------------------------------------------------
+% Default Style
+\kv{iconWidth}{20}%
+\kv{fillStyle}{solid}%
+\kv{fillColor}{white}%
+\kv{lineStyle}{none}%
+\kv{lineColor}{black}%
+\kv{lineWidth}{0.2}%
+\kv{lineDashA}{1 1}%
+%-------------------------------------------------------------------------------
+% endregion Key Value
+% endregion Header
+%===============================================================================
+%===============================================================================
+% Logo by Japan Lady in London for Malaysian Company
+%-------------------------------------------------------------------------------
+\newcommand{\psPlotBar}[1][]{\setkeys{\kvf}{#1}%
+\FPeval{\wide}{round(\iconWidth/20:3)}\psscalebox{\wide}{%
+\psset{unit=1mm,dimen=middle,cornersize=absolute,linearc=0,framearc=0,linejoin=1,fillstyle=none}%
+%
+}}% \psLogoJapanLady
+%===============================================================================
+
+
+
+
+%===============================================================================
+
+
+%===============================================================================
+
+%===============================================================================
+%===============================================================================
+\endinput
+%===============================================================================

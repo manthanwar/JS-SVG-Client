@@ -315,6 +315,10 @@ data.renderBody = (htmlPage) => {
  const subPage = data.findPage(data.navMenu, htmlPage);
  document.title = subPage;
  if (subPage) document.getElementById('page').innerHTML = subPage;
+
+//  const footer = document.getElementsByTagName('footer')[0];
+//  footer.style.position = 'relative';
+//  if (footer.getBoundingClientRect().top < 600) footer.style.top = 240 + 'px';
 };
 
 data.renderTemplate = () => {
