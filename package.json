@@ -2,6 +2,7 @@
   "name": "js-svg-client",
   "version": "2024.09.08",
   "type": "module",
+  "help-build": "remove type: module to build webpack",
   "description": "Client Side SVG using JavaScript",
   "author": "Amit M. Manthanwar",
   "homepage": "https://github.com/manthanwar/JS-SVG-Client",
@@ -12,7 +13,10 @@
     "build": "webpack --config webpack.config.web.js",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
     "dev": "nodemon ./doc/Examples/demo-express.cjs",
-    "start": "node --watch ./doc/Examples/demo-express.cjs"
+    "node": "node --watch ./doc/Examples/demo-express.cjs",
+    "start": "pm2 start ./doc/Examples/demo-express.cjs --name dolphin",
+    "stop": "pm2 stop dolphin",
+    "delete": "pm2 delete dolphin"
   },
   "repository": {
     "type": "git",
