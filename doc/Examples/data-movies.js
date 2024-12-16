@@ -23,10 +23,10 @@ data.csv = `Day, 'Guardians of the Galaxy','The Avengers', 'Transformers: Age of
 14,  4.2,  6.2,  3.4
 `;
 
+data.containerId = 'main';
 data.layout = {
  divMainBox: {
-  containerId: 'main',
-  id: 'divMainBox'
+  // id: 'divMainBox'
  },
  // gridOn: false,
  numB: 3,
@@ -48,6 +48,8 @@ data.option = {
  axisLimit: [0, 15, -10, 90],
  // hasHeader: false,
  markerOn: true,
+ xAxisLabelOn: true,
+ yAxisLabelOn: true,
  marker: {
   size: Array(3).fill(6),
   fill: ['pink', 'lime', 'cyan'],

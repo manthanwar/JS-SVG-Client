@@ -22,8 +22,9 @@ import Color from './Color.js';
 
 export default class Line {
  constructor(data) {
+  this.containerId = data.containerId;
+  this.title = data.title;
   this.init(data);
-
   this.obj = {};
   this.obj.divMainBox = this.divMainBox();
   this.obj.divMainObj = this.divMainObj();
@@ -53,9 +54,12 @@ export default class Line {
   this.data.yOff = 0; // y offset
 
   this.data.divMainBox = {
-   containerId: 'main',
-   id: 'divMainBox',
-   style: 'border: 2px solid red; padding:10px 10px;margin-top:0px;',
+   // containerId: 'main',
+   // id: 'divMainBox',
+   containerId: this.containerId,
+   id: this.containerId + '-divMainBox',
+   style: `border: 0px solid red; padding:10px 10px;margin-top:0px;
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;`,
    width: 1520 + 'px',
    height: 420 + 'px',
    height: 520 + 'px',
@@ -65,7 +69,7 @@ export default class Line {
   this.data.divMainObj = {
    containerId: this.data.divMainBox.id,
    id: this.data.divMainBox.id + '-divMainObj',
-   style: 'border: 2px solid green; margin: 0 20px; padding:10px;',
+   style: `border: 0px solid green; margin: 0 20px; padding:10px;`,
    width: 800 + 'px',
    height: 400 + 'px',
    width: 1000 + 'px',
@@ -78,8 +82,8 @@ export default class Line {
    id: this.data.divMainObj.id + '-svgMain',
    width: '100%',
    height: '100%',
-   viewBox: '0 0 100% 100% ',
-   style: `border: 2px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
+   // viewBox: '0 0 100% 100% ',
+   style: `border: 0px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
   };
 
   this.data.divMainKey = {
@@ -459,8 +463,8 @@ export default class Line {
 
  drawObject() {
   this.drawDataPoints();
-  this.drawLabelAxisX();
-  this.drawLabelAxisY();
+  if (this.data.option.xAxisLabelOn) this.drawLabelAxisX();
+  if (this.data.option.yAxisLabelOn) this.drawLabelAxisY();
   // this.drawLineSafety();
  } //drawObject
 

@@ -30,10 +30,12 @@ window.onload = (event) => {
  // main.innerHTML = 'Hello World';
 
  const data = {
-  divMainBox: {
-   containerId: 'main',
-   id: 'divMainBox'
-  },
+  containerId: 'main',
+  // divMainBox: { transform: 'scale(1.5)' },
+  // divMainObj: { style: 'border: 1px solid green;' },
+  // divMainSvg: { style: 'border: 1px solid blue;' },
+  // divMainKey: { style: 'border: 1px solid red;' },
+
   // gridOn: false,
   numB: 3,
   clrB: 'pink',
@@ -43,7 +45,7 @@ window.onload = (event) => {
  // data.dataHasHeader = false;
  data.data = `Sport,Votes
 Polo,5
-Hockey,15
+Hockey,35
 Cricket,30
 Football,20
 Basketball,20

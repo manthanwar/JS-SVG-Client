@@ -27,9 +27,10 @@ window.onload = (event) => {
  dataTemplate.renderBody('demo-plot-scatter.html');
 
  const data = {
+  containerId: 'main',
   divMainBox: {
-   containerId: 'main',
-   id: 'divMainBox'
+   // containerId: 'main',
+   // id: 'divMainBox'
   }
  };
 
@@ -128,14 +129,34 @@ window.onload = (event) => {
  data.csvDataSet_5 = dataset.map((item) => item.join(',')).join('\n');
  //endregion
 
- data.csv = data.csvDataSet_1;
-
- data.title =
-  "<a href='https://en.wikipedia.org/wiki/Anscombe%27s_quartet' target='_blank'>Dataset of Anscombe's quartet</a>";
+ data.title = `
+ <h3><a href='https://en.wikipedia.org/wiki/Anscombe%27s_quartet' target='_blank'>Dataset of Anscombe's quartet</a></h3>
+ <div>
+ <a href="demo-plot-scatter.html?set=1">Dataset I</a>
+ <a href="demo-plot-scatter.html?set=2">Dataset II</a>
+ <a href="demo-plot-scatter.html?set=3">Dataset III</a>
+ <a href="demo-plot-scatter.html?set=4">Dataset IV</a>
+ </div>
+  `;
  data.notes = "Anscombe's quartet";
 
- const main = document.getElementsByTagName('main')[0];
- main.innerHTML += '<h3 style="text-align:center">' + data.title + '</h3>';
+ const urlParams = new URLSearchParams(window.location.search);
+ let paramSet = urlParams.get('set');
 
- const bar = new Scatter(data);
+ const main = document.getElementsByTagName('main')[0];
+ main.innerHTML += '<div id="title">' + data.title + '</div>';
+
+ if (!paramSet) paramSet = 1;
+ data.csv = data['csvDataSet_' + paramSet];
+
+ data.style = {
+  fill: 'pink',
+  fillOpacity: 1,
+  stroke: 'blue',
+  strokeWidth: 3,
+  strokeOpacity: 1,
+  size: 8
+ };
+
+ const scatter = new Scatter(data);
 };

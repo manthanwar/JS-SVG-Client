@@ -23,8 +23,9 @@ import Color from './Color.js';
 
 export default class Scatter {
  constructor(data) {
+  this.containerId = data.containerId;
+  this.title = data.title;
   this.init(data);
-
   this.obj = {};
   this.obj.divMainBox = this.divMainBox();
   this.obj.divMainObj = this.divMainObj();
@@ -54,9 +55,11 @@ export default class Scatter {
   this.data.yOff = 0; // y offset
 
   this.data.divMainBox = {
-   containerId: 'main',
-   id: 'divMainBox',
-   style: 'border: 2px solid red; padding:10px 10px;margin-top:0px;',
+   // containerId: 'main',
+   // id: 'divMainBox',
+   containerId: this.containerId,
+   id: this.containerId + '-divMainBox',
+   style: `border: 0px solid red; padding:10px 10px;margin-top:0px;`,
    width: 1520 + 'px',
    height: 420 + 'px',
    transform: 'scale(1)'
@@ -65,7 +68,8 @@ export default class Scatter {
   this.data.divMainObj = {
    containerId: this.data.divMainBox.id,
    id: this.data.divMainBox.id + '-divMainObj',
-   style: 'border: 2px solid green; margin: 0 20px; padding:10px;',
+   style: `border: 0px solid green; margin: 0 20px; padding:10px;
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;`,
    width: 800 + 'px',
    height: 400 + 'px',
    transform: 'scale(1)'
@@ -76,8 +80,8 @@ export default class Scatter {
    id: this.data.divMainObj.id + '-svgMain',
    width: '100%',
    height: '100%',
-   viewBox: '0 0 100% 100% ',
-   style: `border: 2px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
+   // viewBox: '0 0 100% 100% ',
+   style: `border: 0px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
   };
 
   this.data.divMainKey = {
@@ -92,7 +96,7 @@ export default class Scatter {
   this.data.divOptions = {
    containerId: this.data.divMainBox.id,
    id: this.data.divMainBox.id + '-divOptions',
-   style: 'border: 2px solid blue; padding:20px; margin:20px 50px;',
+   style: 'border: 0px solid blue; padding:20px; margin:20px 50px;',
    width: '300px',
    height: '340px',
    transform: 'scale(1)'
@@ -341,9 +345,11 @@ export default class Scatter {
  drawDataPoints() {
   this.obj.circ = []; // data points drawn as circles
   const obj = this.data.dataObj;
+  const style = this.data.style;
   for (let i = 0; i < obj.xSca.length; i++) {
    const circ = this.scalePoints([obj.xSca[i], obj.ySca[i]]);
-   this.obj.circ[i] = this.drawCircles(circ, i, this.data.colors[i]);
+   // this.obj.circ[i] = this.drawCircles(circ, i, this.data.colors[i]);
+   this.obj.circ[i] = this.drawCircles(circ, i, style);
    this.showValueOnHover(this.obj.circ[i], [obj.xVal[i], obj.yVal[i]]);
   }
  }
@@ -372,19 +378,25 @@ export default class Scatter {
   };
  }
 
- drawCircles(cxy, id, clr) {
+ drawCircles(cxy, id, style) {
   const data = {};
   data.containerId = this.data.idSvg;
   data.id = data.containerId + '-circle-' + id;
   data.transform = this.transform();
   data.cx = cxy[0];
   data.cy = cxy[1];
-  data.r = this.data.dotSize;
-  data.stroke = 'blue';
-  data.strokeWidth = 2;
-  data.fill = 'pink';
-  data.fillOpacity = '1';
-  data.strokeOpacity = '1';
+  data.r = style.size;
+  data.fill = style.fill;
+  data.fillOpacity = style.fillOpacity;
+  data.stroke = style.stroke;
+  data.strokeWidth = style.strokeWidth;
+  data.strokeOpacity = style.strokeOpacity;
+  // data.r = this.data.dotSize;
+  // data.stroke = 'blue';
+  // data.strokeWidth = 2;
+  // data.fill = 'pink';
+  // data.fillOpacity = '1';
+  // data.strokeOpacity = '1';
   data.class = 'bar';
   const eye = new mySvg.Circle(data);
   return eye;

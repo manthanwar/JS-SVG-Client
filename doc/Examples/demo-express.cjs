@@ -366,10 +366,6 @@ app.post('/pub-business-card', function (req, res, next) {
   }); //exec
  }); //fs.writeFile
 
- // res.send(
- //  `<h3> ${name}, here is your card <a href="/pub-business-card-pdf?pdf=${pdf}&name=${name}">${pdf}</a></h3>`
- // );
-
  res.redirect(`/pub-business-card-pdf?pdf=${pdf}&name=${name}`);
 });
 //endregion app.post /pub-business-card

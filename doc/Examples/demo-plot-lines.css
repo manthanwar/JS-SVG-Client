@@ -1,4 +1,10 @@
-#divMainBox {
+main {
+ margin: auto;
+ margin: -30px 0 100px 0;
+ transform: scale(1);
+}
+
+#main-divMainBox {
  display: flex;
  flex-direction: row;
  /* justify-content: space-evenly; */
@@ -69,7 +75,20 @@
  text-align: right;
 }
 
-main {
- margin-top: -50px;
- transform: scale(1);
+#title {
+ margin: -20px 0 20px 0;
+ text-align: center;
+ div a {
+  color: gray;
+  margin-right: 20px;
+ }
+ div a:hover {
+  color: teal;
+ }
+}
+
+#titleSource {
+ margin-top: 20px;
+ text-align: center;
+ font-size: 16px;
 }

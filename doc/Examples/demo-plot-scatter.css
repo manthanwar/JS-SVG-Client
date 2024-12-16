@@ -1,4 +1,4 @@
-#divMainBox {
+#main-divMainBox {
  display: flex;
  flex-direction: row;
  /* justify-content: space-evenly; */
@@ -52,4 +52,16 @@
  color: white;
  background-color: teal;
  /* border-radius: 0 0 20px 0; */
+}
+
+#title {
+ margin: -20px 0 20px 0;
+ text-align: center;
+ div a {
+  color: gray;
+  margin-right: 20px;
+ }
+ div a:hover {
+  color: teal;
+ }
 }

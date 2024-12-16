@@ -1,17 +1,22 @@
-<!DOCTYPE html>
 <html>
-<head>
- <meta charset='utf-8'>
- <meta http-equiv='X-UA-Compatible' content='IE=edge'>
- <link rel="icon" href="./icon.svg" sizes="any" type="image/svg+xml" />
- <title>Page Title</title>
- <meta name='viewport' content='width=device-width, initial-scale=1'>
- <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
- <!-- <script src='main.js'></script> -->
+ <head>
+  <meta charset='utf-8' />
+  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+  <link rel='icon' href='./icon.svg' sizes='any' type='image/svg+xml' />
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
   <script> var name = name.name</script>
-</head>
-<body>
- <h1>Your Business Card</h1>
- <p>Hi {{name}}, here is your business card <a href="{{pdf}}">{{pdf}}</a>.</p>
-</body>
+ </head>
+ <body>
+  <h1>Your Business Card</h1>
+  <p id='ppp'>Hi {{name}}, your card is printing...</p>
+  <script>
+   let time = 1; const ppp = document.getElementById('ppp'); const interval =
+   setInterval(() => { if (time <= 5) { ppp.innerHTML = `Hi
+   {{name}}, your card is printing in ` + time + ' seconds.'; time++; } else {
+   ppp.innerHTML = `Hi
+   {{name}}, here is your card <a href="{{pdf}}">{{pdf}}</a>.`;
+   clearInterval(interval); } }, 1000);
+  </script>
+ </body>
 </html>

@@ -45,10 +45,22 @@ window.onload = (event) => {
  dataTemplate.renderBody('demo-plot-lines.html');
  const main = document.getElementsByTagName('main')[0];
  // main.innerHTML = 'Hello World';
+ // main.innerHTML += '<h3 style="text-align:center">' + data.title + '</h3>';
 
  // data.csv = gasPrices.csv;
 
- const data = dataMovies;
+ // const urlParams = new URLSearchParams(window.location.search);
+ // let paramSet = urlParams.get('set');
+
+ let data = dataMovies;
+
+ // if (!paramSet) data = dataMovies;
+ // if (paramSet == 'dataMovies') data = dataMovies;
+ // if (paramSet == 'dataObesity') data = dataObesity;
+
+ // data.csv = data['csvDataSet_' + paramSet];
+ // const data = dataMovies;
+ // const data = paramSet;
 
  // const data = dataUsdInr;
 
@@ -57,9 +69,22 @@ window.onload = (event) => {
  // console.log(data.title);
  // console.log(data.csv);
 
- main.innerHTML += '<h3 style="text-align:center">' + data.title + '</h3>';
+ const title = `
+ <h3><a href='#'>${data.title}</a></h3>
+ <p style="color:gray;">${data.subtitle}</p>
+  `;
+ // <div>
+ // <a href="demo-plot-lines.html?set=dataMovies">Movies</a>
+ // <a href="demo-plot-lines.html?set=dataObesity">Obesity</a>
+ // <a href="demo-plot-lines.html?set=3">Dataset III</a>
+ // <a href="demo-plot-lines.html?set=4">Dataset IV</a>
+ // </div>
+
+ main.innerHTML += '<div id="title">' + title + '</div>';
 
  const line = new Line(data);
 
- console.log(line.data.dataObj.vMin, line.data.dataObj.vMax);
+ main.innerHTML += '<div id="titleSource">' + data.source + '</div>';
+
+ // console.log(line.data.dataObj.vMin, line.data.dataObj.vMax);
 };

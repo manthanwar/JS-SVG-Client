@@ -22,6 +22,8 @@ import * as mySvg from './svg.min.js';
 
 export default class Pie {
  constructor(data) {
+  this.containerId = data.containerId;
+  this.title = data.title;
   this.data = this.init();
   this.merge(this.data, data);
 
@@ -58,15 +60,20 @@ export default class Pie {
   data.yMax = 6; // y axis max
   data.xOff = 0; // x offset
   data.yOff = 0; // y offset
+  data.title = this.title ? this.title : 'Pie Chart';
 
   data.divMainBox = {
-   containerId: 'main',
-   id: 'divMainBox',
-   style: 'border: 2px solid red; padding:10px 10px;margin-top:0px;',
+   // containerId: 'main',
+   // id: 'divMainBox',
+   containerId: this.containerId,
+   id: this.containerId + '-divMainBox',
+   style: 'border: 0px solid red; padding:10px 10px;margin-top:0px;',
    width: 1520 + 'px',
    height: 420 + 'px',
-   transform: 'scale(1)'
+   // transform: 'scale(1)'
   };
+  // data.divMainBox.containerId = 'main';
+  // data.divMainBox.id = data.divMainBox.containerId + '-divMainBox';
 
   data.divMainObj = {
    containerId: data.divMainBox.id,
@@ -74,7 +81,7 @@ export default class Pie {
    style: 'border: 0px solid green; margin: 0 20px; padding:10px;',
    width: 400 + 'px',
    height: 400 + 'px',
-   transform: 'scale(1)'
+   // transform: 'scale(1)'
   };
 
   data.divMainSvg = {
@@ -82,7 +89,7 @@ export default class Pie {
    id: data.divMainObj.id + '-svgMain',
    width: '100%',
    height: '100%',
-   viewBox: '0 0 100% 100% ',
+   // viewBox: '0 0 100% 100% ',
    style: `border: 0px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
   };
 
@@ -92,7 +99,7 @@ export default class Pie {
    style: 'border: 0px solid cyan; margin: 0px; padding:10px;',
    width: 200 + 'px',
    height: 250 + 'px',
-   transform: 'scale(1)'
+   // transform: 'scale(1)'
   };
 
   data.divOptions = {
@@ -102,7 +109,7 @@ export default class Pie {
     'border: 2px solid blue; border-radius:10px; padding:20px; margin:20px 50px;',
    width: '300px',
    height: '340px',
-   transform: 'scale(1)'
+   // transform: 'scale(1)'
   };
 
   data.gridOn = true;
@@ -146,7 +153,7 @@ export default class Pie {
   };
 
   data.grid.title = {
-   text: 'Pie Chart',
+   text: data.title,
    x: '50%',
    y: '15',
    dx: '0',

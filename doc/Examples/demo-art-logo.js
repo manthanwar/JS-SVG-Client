@@ -30,6 +30,8 @@ window.onload = (event) => {
  main.innerHTML += '<h3 style="text-align:center">' + data.title + '</h3>';
  const logo = new ArtLogo(data);
 
+
+
  // function getValue() {
  //  const [min, max] = [0, 270];
  //  const val = Math.floor(Math.random() * (max - min + 1)) + min;

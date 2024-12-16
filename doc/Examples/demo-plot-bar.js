@@ -27,9 +27,9 @@ window.onload = (event) => {
  dataTemplate.renderBody('demo-plot-bar-axisY.html');
 
  const data = {
+  containerId: 'main',
   divMainBox: {
-   containerId: 'main',
-   id: 'divMainBox'
+   // id: 'divMainBox'
   }
  };
 
@@ -55,7 +55,7 @@ window.onload = (event) => {
  //  'rgb(201, 203, 207)'
  // ];
 
- // data.strokeWidth = 1;
+ data.strokeWidth = 1;
  data.clrP = 'white';
  // data.clrV = 'black';
 

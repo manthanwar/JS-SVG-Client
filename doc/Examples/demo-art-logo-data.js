@@ -9,7 +9,8 @@ data.divMainBox = {
  style: `border: 0px solid red; padding:10px 10px;margin-top:10px;`,
  width: width + 500 + 24 * 2 + 'px',
  height: height + 24 * 2 + 'px',
- transform: 'scale(1)'
+ // transform: 'scale(1) rotate'
+ // transform: 'rotate(45deg)'
 };
 
 data.divMainObj = {

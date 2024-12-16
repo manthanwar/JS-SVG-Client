@@ -23,6 +23,8 @@ import * as mySvg from './svg.min.js';
 
 export default class Bar {
  constructor(data) {
+  this.containerId = data.containerId;
+  this.title = data.title;
   this.data = this.init(data);
   this.merge(this.data, data);
 
@@ -61,9 +63,11 @@ export default class Bar {
   data.gridOn = true;
 
   data.divMainBox = {
-   containerId: 'main',
-   id: 'divMainBox',
-   style: 'border: 2px solid red; padding:10px 10px;margin-top:0px;',
+   // containerId: 'main',
+   // id: 'divMainBox',
+   containerId: this.containerId,
+   id: this.containerId + '-divMainBox',
+   style: 'border: 0px solid red; padding:10px 10px;margin-top:0px;',
    width: 1520 + 'px',
    height: 420 + 'px',
    transform: 'scale(1)'
@@ -72,7 +76,8 @@ export default class Bar {
   data.divMainObj = {
    containerId: data.divMainBox.id,
    id: data.divMainBox.id + '-divMainObj',
-   style: 'border: 2px solid green; margin: 0 20px; padding:10px;',
+   style: `border: 0px solid green; margin: 0 20px; padding:10px;
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;`,
    width: 800 + 'px',
    height: 400 + 'px',
    transform: 'scale(1)'
@@ -83,8 +88,8 @@ export default class Bar {
    id: data.divMainObj.id + '-svgMain',
    width: '100%',
    height: '100%',
-   viewBox: '0 0 100% 100% ',
-   style: `border: 2px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
+   // viewBox: '0 0 100% 100% ',
+   style: `border: 0px solid blue; background-color: rgba(0,200,0,0); padding:10px; box-sizing:border-box;`
   };
 
   data.divMainKey = {

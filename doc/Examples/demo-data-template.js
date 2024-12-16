@@ -69,16 +69,16 @@ data.navMenu = [
     page: 'Line Chart',
     href: 'demo-plot-lines.html'
    },
-   {
-    link: 'Stair Plot',
-    page: 'Stair Plot',
-    href: 'demo-plot-steps.html'
-   },
-   {
-    link: 'Area Chart',
-    page: 'Area Chart',
-    href: 'demo-plot-areas.html'
-   },
+   //  {
+   //   link: 'Stair Plot',
+   //   page: 'Stair Plot',
+   //   href: 'demo-plot-steps.html'
+   //  },
+   //  {
+   //   link: 'Area Chart',
+   //   page: 'Area Chart',
+   //   href: 'demo-plot-areas.html'
+   //  },
    {
     link: 'Time-Series',
     page: 'Time-Series Plot',
@@ -316,9 +316,9 @@ data.renderBody = (htmlPage) => {
  document.title = subPage;
  if (subPage) document.getElementById('page').innerHTML = subPage;
 
-//  const footer = document.getElementsByTagName('footer')[0];
-//  footer.style.position = 'relative';
-//  if (footer.getBoundingClientRect().top < 600) footer.style.top = 240 + 'px';
+ //  const footer = document.getElementsByTagName('footer')[0];
+ //  footer.style.position = 'relative';
+ //  if (footer.getBoundingClientRect().top < 600) footer.style.top = 240 + 'px';
 };
 
 data.renderTemplate = () => {
@@ -467,15 +467,12 @@ data.footerInnerHtml = `
 data.plotContainerInnerHTML = `
  <div id="plot-Container">
  <div><main><h1>Pie Basic</h1><article id="pie-basic"></article></main></div>
+ <div><main><h1>Pie Basic2</h1><article id="pie-basic2"></article></main></div>
 
  <div><main><h1>Bar axis y</h1><article id="bar-axisY"></article></main></div>
 
 <div><main><h1>Plot Scatter </h1><article id="plt-scats"></article></main></div>
 <div><main><h1>Plot Lines   </h1><article id="plt-lines"></article></main></div>
-<div><main><h1>Plot Steps   </h1><article id="plt-steps"></article></main></div>
-<div><main><h1>Plot Areas   </h1><article id="plt-areas"></article></main></div>
-<div><main><h1>Time Series  </h1><article id="plt-times"></article></main></div>
-<div><main><h1>Bubble Chart </h1><article id="plt-blobs"></article></main></div>
 
 </div>
 `;
@@ -515,6 +512,11 @@ data.plotContainerInnerHTMLAll = `
 <div><main><h1>Gauge Round  </h1><article id="gag-round"></article></main></div>
 <div><main><h1>Gauge Bar-x  </h1><article id="gag-barsX"></article></main></div>
 <div><main><h1>Gauge Bar-y  </h1><article id="gag-barsY"></article></main></div>
+
+<div><main><h1>Gauge Progress </h1><article id="gag-progress"></article></main></div>
+<div><main><h1>Gauge Half   </h1><article id="gag-half"></article></main></div>
+<div><main><h1>Gauge ThreeQ </h1><article id="gag-threeQ"></article></main></div>
+<div><main><h1>Gauge Round  </h1><article id="gag-round"></article></main></div>
 
 </div>
 `;
