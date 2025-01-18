@@ -229,7 +229,7 @@
   \chead{
     %\psline[unit=1mm,linecolor=ABrown,linewidth=2mm,origin={-150,15}](0,0)(300,0)
   }
-  \rhead{\rput(-2.8,-1.3){\psLogoJapanLady[iconWidth=14]}}
+  % \rhead{\rput(-2.8,-1.3){\psLogoJapanLady[iconWidth=14]}}
   % \lfoot{\textcolor{teal}{\psCopyright{\copyYear} \textsf{\copyAuth}}}
   % \rfoot{\large{\thepage}}
   \lfoot{\psframe[fillstyle=solid,fillcolor=teal,linestyle=none](-2,-1)(37,0.3)%
@@ -280,7 +280,8 @@
 \newcommand{\talkNote}{Virtual meeting with Princeton University}
 \newcommand{\talkLine}{111mm}
 %===============================================================================
-\title{\rput(-2,0.5){\psLogoJapanLady[iconWidth=20]}\\[0mm]\Huge{\textcolor{teal}{\textbf{\textcolor{ICBlueDark}\talkPart\\[0mm]
+% \title{\rput(-2,0.5){\psLogoJapanLady[iconWidth=20]}\\[0mm]\Huge{\textcolor{teal}{\textbf{\textcolor{ICBlueDark}\talkPart\\[0mm]
+\title{\Huge{\textcolor{teal}{\textbf{\textcolor{ICBlueDark}\talkPart\\[0mm]
 {\textcolor{ABrown}{\rule[2mm]{\talkLine}{0.1mm}}}
 {\textcolor{ABrown}{$\star$}}
 {\textcolor{ABrown}{$\star$}}

@@ -21,9 +21,18 @@ window.onload = (event) => {
  // main.style.border = '2px solid red;';
 
  article.innerHTML = `
+
+<h3>Art Designs</h3>
+<ul>
+<li><a href="amm-pst-art-dolphin.pdf" target="_blank">Dolphin Dynamic Art Design</a></li>
+<li><a href="amm-pst-talk.pdf" target="_blank">Vector Icons</a></li>
+<li><a href="pst-icon-sports-olympic-2024.pdf" target="_blank">Olympic Pictograms</a></li>
+<li><a href="pst-icon-sports-olympic-2024-talk.pdf" target="_blank">Olympic Pictograms Presentation</a></li>
+</ul>
+
 <h3>Brand Identity and House Style</h3>
 <ul>
-<li><a href="demo-art-logo.pdf" target="_blank">Logo Art Design</a></li>
+<li><a href="demo-art-logo.pdf" target="_blank">Logo Design</a></li>
 <li><a href="amm-pst-letter.pdf" target="_blank">Formal Letter</a></li>
 <li><a href="amm-pst-talk.pdf" target="_blank">Presentation</a></li>
 <li><a href="amm-pst-business-card.pdf" target="_blank">Business Card</a></li>
@@ -51,5 +60,12 @@ window.onload = (event) => {
 <li><a href="#" target="_blank">Certificate of Award</a></li>
 <li><a href="#" target="_blank">Certificate of Training</a></li>
 </ul>
+
+<h3>Infrastructure Networks <i style="font-size:16px">coming soon...</i></h3>
+<ul>
+<li><a href="amm-pst-business-card.pdf" target="_blank">River Network</a></li>
+<li><a href="demo-pub-branding-bizcard.html">Delhi Metro - Current Official Version</a></li>
+<li><a href="demo-pub-branding-bizcard.html">Delhi Metro - Proposed</a></li></ul>
+
 `;
 };

@@ -1,0 +1,124 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{pstricks}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{listings-macros}
+
+%-------------------------------------------------------------------------------
+\paperwidth     = 210mm     %% 597pt     %% = 8.5in
+\paperheight    = 297mm     %% 845pt     %% = 11in
+\oddsidemargin  = 0mm       %% Real leftmargin = 1.0 in
+\evensidemargin = 0mm       %% Real leftmargin = 1.0 in
+\topmargin      = 0mm       %% Real topmargin = (140 - 68) / 144 = 0.5in
+\hoffset        = -5.4mm    %% offset for printer's left margin
+\voffset        = -35.4mm   %% offset for printer's top margin
+\headheight     = 15mm      %% Height of the header
+\headsep        = 5mm       %% Separation between header and main text
+\footskip       = 7mm       %% Separation between footer and main text
+\textwidth      = 170mm     %% 432pt = 6in = 152.4mm
+\textheight     = 272mm     %% 10in
+%% Letter Paper = 8.5 x 11'' = 612 x 792 pt
+%% A4 Paper     = 8.27 x 11.69'' = 597 x 845 pt = 210 x 297 mm
+%% 72pt = 1in = 25.4mm
+\pdfpagewidth  = \paperwidth  %% Width of the PDF page to create
+\pdfpageheight = \paperheight %% Height of the PDF page to create
+%-------------------------------------------------------------------------------
+\begin{document}
+\setlength{\parskip}{0mm}
+\vspace*{-15mm}
+\section*{\centering{Dolphin Dynamic Art}}
+\begin{figure}[!h]
+\begin{pspicture}(0,0)(17,10)
+\psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20,
+gridlabels=8pt, gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm]%
+
+\psset{unit = 1mm}%
+
+\newcommand{\myDol}[5][1]{\psscalebox{#1}{%
+% Draw Body
+\psset{linewidth=0.1mm, linecolor=black}%
+\psbezier[linestyle=dashed, dash={0.4mm 0.4mm}](0,0)(6,16)(31,4)(33,-5)%
+\psset{linewidth=0.4mm, linecolor=red}%
+\psbezier(0,0)(#2,#3)(#4,#5)(33,-5)
+\psset{linecolor=Green}%
+\psbezier(33,-5)(33,-5)(39,-7)(38,-10)
+\psset{linecolor=blue}%
+\psbezier (38,-10)(34,-7)(30,-13)(30,-13)
+\psset{linecolor=black}%
+\psbezier(30,-13)(28,-12)(31,-6)(31,-6)
+\psset{linecolor=Maroon}%
+\psbezier(31,-6)(21,2)(6,2)(1,-2)
+\psset{linecolor=purple}%
+\psbezier(1,-2)(-1,-3)(-1,-2)(0,0)%
+% Fin Top
+\psset{linecolor=cyan}%
+\psbezier(14,8)(14,8)(18,12)(24,10)%
+\psbezier(24,10)(24,10)(19,10)(21,6)%
+% Fin Bottom
+\psset{linecolor=green}%
+\psbezier(7,0)(7,0)(12,-5)(14,-4)%
+\psbezier(14,-4)(15,-3)(12,1)(12,1)%
+% Eye
+\psset{fillstyle=solid,fillcolor=lime,linecolor=cyan}%
+\pscircle(2.5,1.5){1}%
+}}
+
+\rput(10,76){\myDol[2]{6}{16}{31}{4}}
+\rput(10,26){\myDol[2]{-2}{20}{31}{4}}
+\rput(90,76){\myDol[2]{-4}{24}{31}{4}}
+\rput(90,26){\myDol[2]{6}{17}{13}{5}}
+\end{pspicture}
+\end{figure}
+
+\listingsTeX
+%
+% \section{Data}
+% \textbf{Data}
+\vspace{6mm}
+\begin{figure}[!h]
+\centering%
+\begin{lstlisting}
+% Body
+B01: (0,0)(6,16)(31,4)(33,-5)
+B02: (33,-5)(33,-5)(39,-7)(38,-10)
+B03: (38,-10)(34,-7)(30,-13)(30,-13)
+B04: (30,-13)(28,-12)(31,-6)(31,-6)
+B05: (31,-6)(21,2)(6,2)(1,-2)
+B06: (1,-2)(-1,-3)(-1,-2)(0,0)
+% Fin Top
+B07: (14,8)(14,8)(18,12)(24,10)
+B08: (24,10)(24,10)(19,10)(21,6)
+% Fin Bottom
+B09: (7,0)(7,0)(12,-5)(14,-4)
+B10: (14,-4)(15,-3)(12,1)(12,1)
+% Eye
+C01: (2.5,1.5){1}
+\end{lstlisting}
+\end{figure}
+% \vspace{-10mm}
+
+% \clearpage
+% \section{\LaTeX\ Program}
+% \textbf{\LaTeX\ Program}
+\begin{figure}[!h]
+\centering%
+\begin{lstlisting}
+% Draw Body
+\psbezier[linecolor=red](0,0)(#2,#3)(#4,#5)(33,-5)
+\psbezier[linecolor=Green](33,-5)(33,-5)(39,-7)(38,-10)
+\psbezier[linecolor=blue](38,-10)(34,-7)(30,-13)(30,-13)
+\psbezier[linecolor=black](30,-13)(28,-12)(31,-6)(31,-6)
+\psbezier[linecolor=Maroon](31,-6)(21,2)(6,2)(1,-2)
+\psbezier[linecolor=purple](1,-2)(-1,-3)(-1,-2)(0,0)%
+% Fin Top
+\psbezier[linecolor=cyan](14,8)(14,8)(18,12)(24,10)%
+\psbezier[linecolor=cyan](24,10)(24,10)(19,10)(21,6)%
+% Fin Bottom
+\psbezier[linecolor=green](7,0)(7,0)(12,-5)(14,-4)%
+\psbezier[linecolor=green](14,-4)(15,-3)(12,1)(12,1)%
+% Eye
+\pscircle[fillstyle=solid,fillcolor=lime,linecolor=cyan](2.5,1.5){1}
+\end{lstlisting}
+\end{figure}
+
+\end{document}

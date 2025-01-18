@@ -163,6 +163,11 @@ data.navMenu = [
   page: 'Geographical Information System',
   href: 'https://bapfoundation.org/',
   target: '_blank'
+ },
+ {
+  link: 'Product Brochure',
+  page: 'Product Brochure',
+  href: '#'
  }
 ];
 

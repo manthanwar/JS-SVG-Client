@@ -1,0 +1,270 @@
+%===============================================================================
+% File Name     : <amm-pst-product-talk.tex>
+% Description   : Presentation using <ammTalk.cls>
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar (AMM)
+% Locale        : Pune, Maharashtra, India
+% Mailer        : manthanwar@hotmail.com
+% Caller        : Skype: mnthanwar@hotmail.com
+% Mobile        : +91.853.081.3398
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : Restricted Confidential
+%===============================================================================
+%---------------+---------+-----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+-----------------------------------------------------
+% 18-Jan-2025   | AMM     | Initial Version
+%---------------+---------+-----------------------------------------------------
+%---------------+---------+-----------------------------------------------------
+%---------------+---------+-----------------------------------------------------
+% make latexrun file=amm-pst-talk
+%===============================================================================
+\documentclass{ammTalk}
+\usepackage{pst-art-logo}
+% \usepackage{amm-wbs}
+%-------------------------------------------------------------------------------
+\DeclareSIUnit\ppl{inhabitants}
+\sisetup{per-mode=symbol}
+%-------------------------------------------------------------------------------
+% \usepackage{pstricks-add}
+% \usepackage{psfrag}
+% \usepackage{amm-pst-icons-heritage}
+% \usepackage{amm-pst-icons-mobile}
+%===============================================================================
+\begin{document}
+
+%===============================================================================
+\renewcommand{\talkLine}{140mm}
+\renewcommand{\talkPart}{On the Holistic Approaches to Design Transformations}% in urban areas
+\renewcommand{\talkHead}{Dolphin: A Dynamic Visualization Studio}
+\renewcommand{\talkName}{\\[5mm]Dolphin Development Team}
+\renewcommand{\talkHost}{Strategic Vision {\rm{\emph{\&}}} Implementation Roadmap}
+\renewcommand{\talkDate}{\today}
+\renewcommand{\talkNote}{A Proposal for Discussions and Further Actions}
+\renewcommand{\copyAuth}{Dolphin}
+%-------------------------------------------------------------------------------
+\newcommand{\myDol}[5][1]{\psscalebox{#1}{%
+% Draw Body
+\psset{linewidth=0.1mm, linecolor=black}%
+\psbezier[linestyle=dashed, dash={0.4mm 0.4mm}](0,0)(6,16)(31,4)(33,-5)%
+\psset{linewidth=5mm, linecolor=red}%
+\psbezier(0,0)(#2,#3)(#4,#5)(33,-5)
+\psset{linecolor=Green}%
+\psbezier(33,-5)(33,-5)(39,-7)(38,-10)
+\psset{linecolor=blue}%
+\psbezier (38,-10)(34,-7)(30,-13)(30,-13)
+\psset{linecolor=black}%
+\psbezier(30,-13)(28,-12)(31,-6)(31,-6)
+\psset{linecolor=Maroon}%
+\psbezier(31,-6)(21,2)(6,2)(1,-2)
+\psset{linecolor=purple}%
+\psbezier(1,-2)(-1,-3)(-1,-2)(0,0)%
+% Fin Top
+\psset{linecolor=cyan}%
+\psbezier(14,8)(14,8)(18,12)(24,10)%
+\psbezier(24,10)(24,10)(19,10)(21,6)%
+% Fin Bottom
+\psset{linecolor=Green}%
+\psbezier(7,0)(7,0)(12,-5)(14,-4)%
+\psbezier(14,-4)(15,-3)(12,1)(12,1)%
+% Eye
+\psset{fillstyle=solid,fillcolor=lime,linecolor=cyan}%
+\pscircle(2.5,1.5){1}%
+}}
+% \author{\Large{\rput(-3.4,0){\myDol[0.2]{6}{16}{31}{4}}}}
+\author{\Large{\rput(-3.4,0){\myDol[0.2]{-4}{20}{31}{4}}}}
+% \author{\Large{\rput(-3.4,0){\myDol[0.2]{-4}{24}{31}{4}}}}
+% \author{\Large{\rput(-3.4,0){\myDol[0.2]{6}{17}{13}{5}}}}
+
+%-------------------------------------------------------------------------------
+\maketitle
+\clearpage
+\pagestyle{slideDesign}
+% \pagestyle{fancy}
+\confidential{}
+%===============================================================================
+\baselineskip = 18pt
+%===============================================================================
+\slideTitle{Outline}
+\begin{itemize}[before=\LARGE\normalfont]
+ \item Introduction and Background
+ \item Key Challenges of Static Designs
+ \item Proposed Creative and Innovative Solutions % What is Dolphin Studio?
+ \item Capabilities and Value Propositions
+ \item Our Intellectual Property
+ \item Potential Beneficiaries % Who are the Targeted Customers?
+ \item Case Study 1: Consumer Products Industry
+ \item Case Study 2: Manufacturing Digital Twin Dashboards
+ \item Product Development Roadmap and Key Tasks % Timeline
+\end{itemize}
+%===============================================================================
+
+%===============================================================================
+\slideTitle{Introduction}
+\begin{itemize}[itemsep=6mm]\LARGE
+\item \textbf{What is Data Visualization?}
+\begin{itemize}\Large
+\item Data visualization deals with the graphic representations of information, data, or knowledge intended to communicate and improve cognition about information derived from variety of data sources quickly, clearly and effectively via visual or graphical means.
+\item Data Visualization help understand complex ideas, patterns and trends hidden in the data to derive meaningful insights for informed data-driven decision making.
+\end{itemize}
+\item \textbf{Current State-of-the-Art}
+\begin{itemize}\Large
+\item Consumer Art Design - Adobe Illustrator, Inkscape, Canva
+\item Industrial Design - SolidWorks, AutoCAD
+\item Collaborative Design - Figma
+\item Data Visualization - Power BI, Tableau, D3.js, Chart.js
+\item Technologies Options - SVG, HTML Canvas, WebGL
+\end{itemize}
+\end{itemize}
+%===============================================================================
+
+%===============================================================================
+\slideTitle{Key Challenges of Static Designs}
+\begin{itemize}[itemsep=6mm]\LARGE
+\item Bulky Requiring Large Data Storage
+\item Low Performance with Slow Loading Time
+\item Not Configurable and Personalizable
+\item Not Easy to Search and Retrieve
+\item Difficult to Version Control and Traceability
+\item Not Collaborative and Interactive
+\item High software licencing costs
+\end{itemize}
+%===============================================================================
+
+
+%===============================================================================
+\slideTitle{Our Innovative Solution - The Dolphin Studio}
+\begin{itemize}[itemsep=6mm]\LARGE
+\item Dolphin Studio is a data-driven vector visualization platform designed to empower users to create:
+\begin{itemize}\Large
+\item Visually Appealing Consumer Art Designs
+\item Business Intelligence Dashboards
+\item Automated Reporting and Publications
+\end{itemize}
+\item Our designs are dynamic, interactive, and vector-based, enabling on-the-fly design customization to meet changing requirements.
+\item Our pioneering innovation in art design and data visualization blends mathematics with the computing technology.
+\item With Dolphin, you can achieve significant size reduction without compromising quality, ensuring high performance, and contributing to environmental sustainability.
+\item Dolphin is a cloud-native solution that is available as a lightweight, stand-alone, client-side application as well as the most efficient server-side data visualization engine.
+\end{itemize}
+%===============================================================================
+
+%===============================================================================
+\slideTitle{Key Features and Core Capabilities}
+\begin{itemize}[itemsep=6mm]\LARGE
+\item \textbf{Powerful Possibilities to Create}
+\begin{itemize}\Large
+\item High Quality Graphic Designs that are Configurable, Collaborative and Engaging
+\item Rich Data Visualizations with Animation and Personalization
+\item High performing Business Intelligence dashboard
+\item Digital Twins for Manufacturing Plants, Systems, Processes
+\item Automated Reporting and Publications for digital and print media
+\end{itemize}
+\item \textbf{Core Capabilities}
+\begin{itemize}\Large
+\item Raster to Vector Transformation for Size Reduction, High Quality, and High Performance
+\item Static to Dynamic Vector Enhancements for Real-Time Design Configuration and customization
+\item Data Management and Traceability using Attribution, Labeling and Tagging for Efficient Searching and Retrieval
+\item Image Generation using DNA Evolution Principles
+\item Design Intelligence for Image Analysis such as Size, Material, and Costing, etc.
+\end{itemize}
+\end{itemize}
+%===============================================================================
+
+%===============================================================================
+\slideTitle{Intellectual Property and Value Propositions}
+\begin{itemize}[itemsep=6mm]\LARGE
+\item \textbf{Intellectual Property}
+\begin{itemize}\Large
+\item Dynamic Data Visualization for Any Medium
+\item Robust Data Security
+\item Digital Twinning
+\item Publication Automation
+\end{itemize}
+\item \textbf{Value Proposition}
+\begin{itemize}\Large
+\item Significant Reduction in Storage Requirements
+\item Significant Reduction in Computational Resources
+\item High-Performing Solution with Minimal Latency
+\item Visually Appealing and Aesthetically Pleasing Designs
+\item Contribution to Environmental Sustainability
+\end{itemize}
+\end{itemize}
+%===============================================================================
+
+%===============================================================================
+\slideTitle{Deployment Offerings}
+\begin{itemize}[itemsep=6mm]\LARGE
+\item \textbf{Flexible Software Deployment Options}
+\begin{itemize}\Large
+\item Lightweight Client-side Library
+\item Most Efficient Server-side Visualization Engines, tailored to your business needs
+\item Cloud-Native and Enterprise-Ready Applications
+\end{itemize}
+\item \textbf{Targeted Customers}
+\begin{itemize}\Large
+\item Consumer Products Industry
+\item Business Intelligence Solutions
+\item E-Commerce and Digital Publications
+\item Image Processing Community
+\item Training and Skill Development
+\end{itemize}
+\end{itemize}
+%===============================================================================
+
+%===============================================================================
+\slideTitle{Case Studies and Product Demonstrations}
+\begin{itemize}[itemsep=6mm]\LARGE
+\item \textbf{Consumer Industry}
+\begin{itemize}\Large
+\item Icons and Logos
+\item \href{http://54.205.5.132:3000/demo-pub-branding.html}{Olympic 2024 Pictograms} - \href{http://54.205.5.132:3000/pst-icon-sports-olympic-2024-talk.pdf}{Presentation} and \href{http://54.205.5.132:3000/pst-icon-sports-olympic-2024.pdf}{Brochure}
+\item \href{https://ctan.org/pkg/pst-flags?lang=en}{Flags of Countries}
+\end{itemize}
+\item \textbf{Manufacturing Industry}
+\begin{itemize}\Large
+\item Physical System - Mass Spring System
+\item Mechanical System - Boiler Drum
+\item Building Automation
+\item Wave Energy System
+\item Process Automation
+\end{itemize}
+\item \textbf{Infrastructure Management}
+\begin{itemize}\Large
+\item Metro Rail Network Management - \href{https://backend.delhimetrorail.com/documents/1030/smartcard.pdf}{Low Quality Delhi Metro Map Needs Redesigning}
+\item \href{http://54.205.5.132:3000/pst-icons-river-krishna.pdf}{River Network Management}
+\item \href{https://bapfoundation.org/}{Public Healthcare}
+\end{itemize}
+\item \href{http://54.205.5.132:3000/}{Dolphin Studio Website}
+\end{itemize}
+%===============================================================================
+%===============================================================================
+\clearpage
+\pagestyle{contact}
+\slideTitle{Contact}
+\begin{listII}
+ \large \ttfamily
+ %\item Post: Markt 2, 1234 Brandenburg, Germany
+%  \item Find: \href{http://maps.google.com/?q=Berlin, Germany}{Brandenburg, Germany}
+ \item Email: \href{mailto:info@problemx.in}{info@problemx.in}
+ \item \href{https://github.com/manthanwar/JS-SVG-Client}{GitHub Repository} %materich@outlook.de
+%  \item Call: +91.123.123.1234
+ %\item Talk: \href{https://twitter.com/MaterichUG}{Twitter}, \href{https://www.facebook.com/people/Materich/100075876893601/}{Facebook}
+%  \item Surf: \href{http://materich.com}{materich.com}
+%  \item Read: \href{http://materich.com/publications}{materich.com/publications}
+\end{listII}
+
+\vspace{-5mm}
+\setlength{\fboxsep}{4mm}
+\hypersetup{urlcolor=teal!75}
+\centering{
+ \rput(-1.5,-7){
+  \rput(1.5,1.5){\qrcode[hyperlink,height=26mm]{http://54.205.5.132:3000/}}
+  \psframe[linecolor=teal](0,0)(3,3)
+  \rput(1.5,-0.4){%
+   \href{https://js-svg-client.onrender.com}{\textcolor{teal}{\textbf{Dolphin.js}}}}
+ }}
+%===============================================================================
+\end{document}
+%===============================================================================
