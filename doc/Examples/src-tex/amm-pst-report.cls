@@ -26,15 +26,17 @@
 \ProvidesClass{amm-pst-report}[2024/12/02 Report by Amit M. Manthanwar]
 \LoadClass[oneside,11pt,a4paper]{article}
 %-------------------------------------------------------------------------------
-\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage[dvipsnames,svgnames]{xcolor}
 \RequirePackage{colortbl}
-\RequirePackage{lastpage}
 \RequirePackage{fancyhdr}                           % Header & Footer
 \RequirePackage{hyperref}
+% \RequirePackage{lastpage}
+\RequirePackage{siunitx}
 \RequirePackage{amsmath,amssymb,mathrsfs}
 \RequirePackage{enumitem}
-\RequirePackage{pstricks}
 \RequirePackage{graphicx}
+\RequirePackage{pstricks}
+\RequirePackage{qrcode}
 %\RequirePackage{eurosym}
 %\RequirePackage{fontspec}
 %\RequirePackage{frcursive}
@@ -156,15 +158,89 @@
 \fancypagestyle{plain}{\fancyhf{}
 \renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}}
 %-------------------------------------------------------------------------------
-\fancypagestyle{title}{\fancyhf{}
+\newcommand{\myArt}{%
+\psset{fillstyle=solid,fillcolor=teal,linestyle=none}%
+\pscustom{%
+\psbezier(-2,-3)(3,4)(15,-5)(19,0.35)%
+\psline(19,0.35)(-2,0.35)(-2,-3)%
+\closepath%
+}}
+
+% \newcommand{\thePageBox}{\rput(-0.3,0){\psframe[fillstyle=solid,fillcolor=red,linestyle=none](-0.25,-0.15)(0.25,0.3)}}
+
+\newcommand{\theCopyBox}{\rput(0,0){\psframe[fillstyle=solid,fillcolor=teal,linestyle=none](-0.2,-0.115)(16,0.315)}}
+
+\newcommand{\thePageBox}{\rput(0.07,0){\pscircle[fillstyle=solid,fillcolor=teal,linestyle=none](0,0.1){0.2}}}
+
+
+\fancypagestyle{titlePage}{\fancyhf{}
+\lhead{\myArt}
+% \cfoot{\color{teal}{\scriptsize{\thepage}}}
+\lfoot{\theCopyBox\rput[lm](0,0.1){\scriptsize{\color{white}{\copyright \the\year\ Dolphin}}}}
+\rfoot{\thePageBox\scriptsize{\color{white}{\thepage}}}
 \renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}}
 %-------------------------------------------------------------------------------
 \fancypagestyle{fancy}{\fancyhf{}
-\lhead{\scriptsize{\textsf{}}}
-\lfoot{\scriptsize{}}
-\cfoot{\scriptsize{\textsf{}}}
-\rfoot{\scriptsize{\textsf{{\thepage} of \pageref{LastPage}}}}
+\lhead{\scriptsize{\textsf{}}}%
+% \lfoot{\scriptsize{\copyright \the\year\ Dolphin}}
+% \lfoot{\psframebox[fillstyle=solid,fillcolor=teal,linestyle=none,framesep=0.1]{\scriptsize{\color{white}{\copyright \the\year\ Dolphin\hspace{138mm}}}}}%
+\lfoot{\theCopyBox\rput[lm](0,0.1){\scriptsize{\color{white}{\copyright \the\year\ Dolphin}}}}
+% \cfoot{\scriptsize{\textsf{}}}
+% \rfoot{\scriptsize{\textsf{{\thepage} of \pageref{LastPage}}}}
+% \pscirclebox[fillstyle=solid,fillcolor=teal,linestyle=none,framesep=0.1]{
+\rfoot{\thePageBox\scriptsize{\color{white}{\thepage}}}
+% \rfoot{\psframebox[fillstyle=solid,fillcolor=red,linestyle=none,framesep=0.1]{\scriptsize{\color{white}{\thepage}}}}
+% \rfoot{\pscirclebox[fillstyle=solid,fillcolor=red,linestyle=none,framesep=0.1]{\scriptsize{\color{white}{\thepage}}}}%
 \renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}}
 %-------------------------------------------------------------------------------
 %-------------------------------------------------------------------------------
-%==============================================================================
+%===============================================================================
+% \renewcommand{\section}{\@startsection{name}{level}{indent}{before-skip}{after-skip}{style}}
+
+\definecolor{myBlue}{HTML}{9A6735}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+{\parskip}{0.2\parskip}{\normalfont\LARGE\color{teal}}}% from \Large
+
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+{0.5\parskip}{0.2\parskip}{\normalfont\Large\color{teal!60!blue}}}% from \large
+
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+{0.2\parskip}{0.2\parskip}{\normalfont\large}}% from \normalsize
+\makeatother
+%-------------------------------------------------------------------------------
+% \makeatletter
+% \renewcommand{\section}{\@startsection{section}{1}{\z@}%
+% {-3.5ex \@plus -1ex \@minus -.2ex}{2.3ex \@plus.2ex}%
+% {\normalfont\Large\bfseries}}% from \Large
+
+% \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+% {-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}%
+% {\normalfont\large\bfseries}}% from \large
+
+% \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+% {-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}%
+% {\normalfont\normalsize\bfseries}}% from \normalsize
+
+% \renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}{-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}{\normalfont\normalsize}}
+
+% \renewcommand{\subparagraph}{\@startsection{subparagraph}{5}{\z@}{-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}{\normalfont\normalsize}}
+
+% \makeatother
+%===============================================================================
+
+\renewcommand{\familydefault}{\sfdefault}
+
+%===============================================================================
+\newcommand{\maketitles}{\maketitle%
+\setlength{\parskip}{10pt}%
+\thispagestyle{titlePage}%
+\pagestyle{fancy}}
+%===============================================================================
+\newcommand{\version}{\fpeval{\the\year-2000}.\num[detect-family,minimum-integer-digits=2]{\the\month}}
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
