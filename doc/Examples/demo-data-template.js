@@ -137,6 +137,12 @@ data.navMenu = [
   ]
  },
  {
+  link: 'Public Healthcare',
+  page: 'Geographical Information System',
+  href: 'https://bapfoundation.org/',
+  target: '_blank'
+ },
+ {
   link: 'Publications',
   page: 'Data-Driven Reporting and Publication Automation',
   href: 'demo-pub-branding.html'
@@ -159,15 +165,9 @@ data.navMenu = [
   // ]
  },
  {
-  link: 'Map',
-  page: 'Geographical Information System',
-  href: 'https://bapfoundation.org/',
-  target: '_blank'
- },
- {
-  link: 'Product Brochure',
-  page: 'Product Brochure',
-  href: '#'
+  link: 'Products',
+  page: 'Products',
+  href: 'demo-products.html'
  }
 ];
 
@@ -421,7 +421,7 @@ data.bodyInnerHtml = `
 <a href="twitter.html">Twitter</a>
 <a href="instagram.html">Instagram</a>
 </menu>
-<copy>&copy; Copyright 2024 by Manthanwar. All Rights Reserved.</copy>
+<copy>&copy; Copyright 2024 Dolphin. All Rights Reserved.</copy>
 </footer>
 `;
 
