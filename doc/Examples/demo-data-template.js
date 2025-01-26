@@ -404,7 +404,8 @@ data.bodyInnerHtml = `
 <nav></nav>
 <main id="main"></main>
 <footer>
-<div>Dolphin is a data-driven vector visualization studio. It is available as a lightweight stand-alone client-side application as well as the most efficient server-side data visualization engine.<br>Thank you for choosing Dolphin for your data visualization needs.
+<br>
+<div>Dolphin is a data-driven vector visualization studio. It is available as a lightweight stand-alone client-side application as well as the most efficient server-side data visualization engine. Thank you for choosing Dolphin for your data visualization needs.
 </div>
 <menu>
 <a href="aboutUs.html">About Us</a>
@@ -414,6 +415,7 @@ data.bodyInnerHtml = `
 <a href="service.html">Terms of Service</a>
 <a href="careers.html">Careers</a>
 </menu>
+<!--
 <menu>
 <a href="linkedin.html">LinkedIn</a>
 <a href="facebook.html">YouTube</a>
@@ -421,6 +423,7 @@ data.bodyInnerHtml = `
 <a href="twitter.html">Twitter</a>
 <a href="instagram.html">Instagram</a>
 </menu>
+-->
 <copy>&copy; Copyright 2024 Dolphin. All Rights Reserved.</copy>
 </footer>
 `;

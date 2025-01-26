@@ -2,7 +2,7 @@ import * as mySvg from './svg.min.js';
 import dataTemplate from './demo-data-template.js';
 
 window.onload = (event) => {
- document.title = 'SVG';
+ document.title = 'Products';
  dataTemplate.renderBody('demo-products.html');
 
  const main = document.getElementsByTagName('main')[0];
@@ -17,10 +17,17 @@ window.onload = (event) => {
 <li><a href="amm-pst-product-talk.pdf" target="_blank">Product Presentation</a></li>
 </ul>
 
-<h3>Art Designs</h3>
+<h3>Software Libraries</h3>
+<ul>
+<li><a href="https://www.npmjs.com/package/js-svg-client" target="_blank">JavaScript Library</a></li>
+<li><a href="https://ctan.org/pkg/pst-flags" target="_blank">PostScript Library</a></li>
+</ul>
+
+<h3>Art Design Applications</h3>
 <ul>
 <li><a href="amm-pst-art-dolphin.pdf" target="_blank">Dolphin Dynamic Art Design</a></li>
-<li><a href="amm-pst-icons.pdf" target="_blank">Vector Icons and Artifacts</a></li>
+<li><a href="amm-pst-icons.pdf" target="_blank">Vector Icons and Artifacts</a></
+li>
 <li><a href="pst-icon-sports-olympic-2024.pdf" target="_blank">Olympic Pictograms</a></li>
 <li><a href="pst-icon-sports-olympic-2024-talk.pdf" target="_blank">Olympic Pictograms Presentation</a></li>
 </ul>
@@ -32,7 +39,7 @@ window.onload = (event) => {
 <li><a href="amm-pst-receipt.pdf" target="_blank">Receipt</a></li>
 </ul>
 
-<h3>Infrastructure Management</h3>
+<h3>Infrastructure Management Solutions</h3>
 <ul>
 <li><a href="pst-icons-river-krishna.pdf" target="_blank">River Krishna Network </a></li>
 <li><a href="https://backend.delhimetrorail.com/documents/1030/smartcard.pdf" target="_blank">Delhi Metro Map</a><br><i style="font-size:16px"> This map drawn by Indian Railway needs redesigning to optimize quality and size</i></li>
