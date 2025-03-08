@@ -14,7 +14,6 @@
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
     "dev": "nodemon ./doc/Examples/demo-express.cjs",
     "node": "node --watch ./doc/Examples/demo-express.cjs",
-    "install": "node --watch ./doc/Examples/demo-express.cjs",
     "start": "pm2 start ./doc/Examples/demo-express.cjs --name dolphin",
     "stop": "pm2 stop dolphin",
     "delete": "pm2 delete dolphin"
