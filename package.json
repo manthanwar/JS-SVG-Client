@@ -5,6 +5,7 @@
   "help-build": "remove type: module to build webpack",
   "description": "Client Side SVG using JavaScript",
   "author": "Amit M. Manthanwar",
+  "website": "http://54.205.5.132:3000",
   "homepage": "https://github.com/manthanwar/JS-SVG-Client",
   "license": "https://github.com/manthanwar/JS-SVG-Client/blob/main/LICENSE.md",
   "private": false,
