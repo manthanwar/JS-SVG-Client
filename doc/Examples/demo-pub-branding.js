@@ -24,7 +24,8 @@ window.onload = (event) => {
 
 <h3>Brand Identity and House Style</h3>
 <ul>
-<li><a href="demo-art-logo.pdf" target="_blank">Logo Design</a></li>
+<li><a href="amm-pst-art-logo-jps.pdf" target="_blank">Logo Design Example 1</a></li>
+<li><a href="amm-pst-art-logo-bapatla.pdf" target="_blank">Logo Design Example 2</a></li>
 <li><a href="amm-pst-letter.pdf" target="_blank">Formal Letter</a></li>
 <li><a href="amm-pst-talk.pdf" target="_blank">Presentation</a></li>
 <li><a href="amm-pst-business-card.pdf" target="_blank">Business Card</a></li>

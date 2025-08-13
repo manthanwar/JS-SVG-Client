@@ -158,7 +158,13 @@
 % endregion Header
 %===============================================================================
 %===============================================================================
-% Logo by Japan Lady in London for Malaysian Company
+% Logo by Japan Lady in London for Japanese Photovoltaic Society
+% HITOMI TERAKAWA, % HITOMI DESIGN STUDIO CO., % https://www.hitomidesigns.com/
+% Concept 2: Green energy created by sunlight and wisdom. Powerful lines express powerful sunlight and sustainable power generation
+% The dynamic circle represents the sun and its inexhaustible, "eternal" energy, with green evoking vitality, hope, and environmental awareness, and bright yellow evoking intelligence and a bright future.
+% The design also expresses the properties of light by using a method of mixing the three primary colors of light -- the RGB color law -- the composition, in which red light mixes with green and transforms into yellow, metaphorically represents the process of energy conversion. The primary color lines blend with the color of the central circle and change color according to the RGB color mixing law. This represents the dynamic sunlight (RGB lines) transforming into warm, "green" energy. The blue, red, and yellow lines represent the thoughts and wisdom of each researcher, and the green represents how that thought and wisdom is transformed into earth-friendly energy.
+% The design aims to attract attention and interest by creating a casual and cheerful atmosphere that is somewhat unrelated to images of chemistry, academic societies, and research.
+% This design metaphorically expresses the efforts of many people and the culmination of diverse academic research, making solar power generation possible. The three dynamic lines create a dignified impression within the bright image.
 %-------------------------------------------------------------------------------
 \newcommand{\psLogoJapanLady}[1][]{\setkeys{\kvf}{#1}%
 \FPeval{\wide}{round(\iconWidth/20:3)}\psscalebox{\wide}{%
@@ -257,6 +263,72 @@ linewidth=\lineWidthLineGb}%
 }}% \psLogoJapanLady
 %===============================================================================
 
+%===============================================================================
+% Logo Bapatla Foundation
+% created by Hitomi Terakawa of Hitomi Design Studio Co
+% https://www.hitomidesigns.com/
+% Colors: Dark Orange/Deep Saffron, Persian Green, Ocean
+% https://colors.artyclick.com/color-name-finder/
+%------------------------------------------------------------------------------
+\definecolor{bapatlaRed}{HTML}{f39700}%
+\definecolor{bapatlaGreen}{HTML}{02aaaa}%
+\definecolor{bapatlaBlue}{HTML}{0d7d93}%
+%-------------------------------------------------------------------------------
+% % origin: bottom left
+% % width: 40 mm, height: 40 mm, actual width 42 mm, height 41 mm
+% % petal left
+% \psbezier(12,5)(15,6)(19,12)(19,12)%
+% \psbezier(19,12)(19,12)(15,22)(1,29)%
+% \psbezier(1,29)(8,20)(7,15)(12,10)%
+% \psbezier(12,10)(12,10)(12,5)(12,5)%
+% % petal center
+% \psbezier(20,13)(20,14)(28,23)(28,23)%
+% \psbezier(28,23)(28,23)(30,26)(20,37)%
+% \psbezier(20,37)(10,26)(12,23)(12,23)%
+% \psbezier(12,23)(12,23)(20,14)(20,13)%
+% % petal right
+% \psbezier(4,0)(40,12)(25,10)(39,29)%
+% \psbezier(39,29)(20,20)(25,8)(4,0)%
+% % Circles
+% \pscircle(0,30){1}%
+% \pscircle(20,40){1}%
+% \pscircle(40,30){1}%
+%-------------------------------------------------------------------------------
+\newcommand{\psLogoBapatla}[1]{%
+\FPeval{\wide}{round(#1/42:3)}\psscalebox{\wide}{%
+\psset{unit=1mm,dimen=middle,cornersize=absolute,linearc=0,framearc=0,linejoin=1,fillstyle=solid,linestyle=none}%
+%
+% petal left
+\newcommand{\pstLogoBapatlaPetalLeft}{\pscustom{%
+\psbezier(12,5)(15,6)(19,12)(19,12)%
+(19,12)(15,22)(1,29)%
+(8,20)(7,15)(12,10)%
+(12,10)(12,5)(12,5)%
+}}%
+% petal center
+\newcommand{\pstLogoBapatlaPetalCenter}{\pscustom{%
+\psbezier(20,13)(20,14)(28,23)(28,23)%
+(28,23)(30,26)(20,37)%
+(10,26)(12,23)(12,23)%
+(12,23)(20,14)(20,13)%
+}}%
+% petal right
+\newcommand{\pstLogoBapatlaPetalRight}{\pscustom{%
+\psbezier(4,0)(40,12)(25,10)(39,29)(20,20)(25,8)(4,0)}}%
+%
+\rput(1,0){%
+\psset{fillcolor=bapatlaRed}%
+\rput(0,0){\pstLogoBapatlaPetalLeft}%
+\pscircle(0,30){1}%
+\psset{fillcolor=bapatlaGreen}%
+\rput(0,0){\pstLogoBapatlaPetalCenter}%
+\pscircle(20,40){1}%
+\psset{fillcolor=bapatlaBlue}%
+\rput(0,0){\pstLogoBapatlaPetalRight}%
+\pscircle(40,30){1}%
+%
+}}}% \psLogo
+%===============================================================================
 
 
 
@@ -268,4 +340,31 @@ linewidth=\lineWidthLineGb}%
 %===============================================================================
 %===============================================================================
 \endinput
+%===============================================================================
+
+
+%===============================================================================
+%
+%-------------------------------------------------------------------------------
+\newcommand{\psLogo}[1]{%
+\FPeval{\wide}{round(#1/20:3)}\psscalebox{\wide}{%
+\psset{unit=1mm,dimen=middle,cornersize=absolute,linearc=0,framearc=0,linejoin=1,fillstyle=none}%
+%
+
+%
+}}% \psLogo
+%===============================================================================
+
+
+
+%===============================================================================
+%
+%-------------------------------------------------------------------------------
+\newcommand{\psLogo}[1][]{\setkeys{\kvf}{#1}%
+\FPeval{\wide}{round(\iconWidth/20:3)}\psscalebox{\wide}{%
+\psset{unit=1mm,dimen=middle,cornersize=absolute,linearc=0,framearc=0,linejoin=1,fillstyle=none}%
+%
+
+%
+}}% \psLogo
 %===============================================================================

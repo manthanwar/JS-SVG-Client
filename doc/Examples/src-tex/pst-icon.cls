@@ -106,7 +106,12 @@
 %\RequirePackage{pst-arrow}
 %\RequirePackage{pst-bezier}%\renewcommand{\dateseparator}{--}
 %-------------------------------------------------------------------------------
-\RequirePackage[pagebackref,colorlinks=false]{hyperref}
+\RequirePackage[pagebackref,hidelinks]{hyperref}
+% \hypersetup{
+% colorlinks=true, % Ensures links are colored
+% urlcolor=blue,   % Sets the color of URL links (adjust as desired)
+% pdfborderstyle={/S/U/W 1} % Underlines links
+% }
 %-------------------------------------------------------------------------------
 \renewcommand*{\backref}[1]{}
 \renewcommand*{\backrefalt}[4]{%

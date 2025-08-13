@@ -1,0 +1,83 @@
+%===============================================================================
+% File Name     : <amm-pst-art-logo-bapatla.tex>
+% Description   : Logo of Bapatla Foundation
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Mailer        : manthanwar@hotmail.com
+% Mobile        : +91.853.081.3398
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%===============================================================================
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 13-Aug-2025   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+\documentclass{pst-icon}
+%-------------------------------------------------------------------------------
+\usepackage{pst-art-logo}
+\usepackage{listings-macros}
+% \usepackage{FiraSans}
+%-------------------------------------------------------------------------------
+\title{Dynamic Logo Art Design Using \LaTeX}
+\author{Amit M. Manthanwar}
+%===============================================================================
+\begin{document}
+\maketitle
+%===============================================================================
+\begin{figure}[!h]
+\centering%
+\resizebox{0.6\textwidth}{!}{%\sffamily
+% \psset{unit=1mm}
+\begin{pspicture}(0,0)(4,4)
+\psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20, gridlabels=4pt, gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm] % griddots=4, subgriddots=10,
+%
+% \psset{unit=1mm,dimen=middle,cornersize=absolute,linearc=0,framearc=0,linejoin=1,fillstyle=none}%
+%
+\rput(0,0){\psLogoBapatla{40}}%
+%
+\end{pspicture}}%
+% \caption{text box label}%
+% \label{box Caption Label}%
+\end{figure}%===============================================================================
+% \section{Construction}
+%===============================================================================
+\listingsTeX
+\begin{figure}[!h]
+\centering%
+\begin{lstlisting}[basicstyle=\normalsize, title=\large{Construction},aboveskip=15mm,belowskip=10mm,abovecaptionskip=0mm,belowcaptionskip=4mm]
+% petal left
+\psbezier(12,05)(15,06)(19,12)(19,12)
+\psbezier(19,12)(19,12)(15,22)(01,29)
+\psbezier(01,29)(08,20)(07,15)(12,10)
+\psbezier(12,10)(12,10)(12,05)(12,05)
+
+% petal center
+\psbezier(20,13)(20,14)(28,23)(28,23)
+\psbezier(28,23)(28,23)(30,26)(20,37)
+\psbezier(20,37)(10,26)(12,23)(12,23)
+\psbezier(12,23)(12,23)(20,14)(20,13)
+
+% petal right
+\psbezier(04,00)(40,12)(25,10)(39,29)
+\psbezier(39,29)(20,20)(25,08)(04,00)
+
+% circles
+\pscircle(00,30){1}
+\pscircle(20,40){1}
+\pscircle(40,30){1}
+\end{lstlisting}
+\end{figure}
+%===============================================================================
+\end{document}
+%===============================================================================
+
+
+
+
