@@ -136,12 +136,12 @@ data.navMenu = [
    }
   ]
  },
- {
-  link: 'Public Healthcare',
-  page: 'Geographical Information System',
-  href: 'https://bapfoundation.org/',
-  target: '_blank'
- },
+//  {
+//   link: 'Public Healthcare',
+//   page: 'Geographical Information System',
+//   href: 'https://bapfoundation.org/',
+//   target: '_blank'
+//  },
  {
   link: 'Publications',
   page: 'Data-Driven Reporting and Publication Automation',
