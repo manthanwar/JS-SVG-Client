@@ -1,5 +1,26 @@
+/*
+// =============================================================================
+// File Name     : demo-products.js
+// Date Created  : 2025-09-20 19:16 UTC +02:00
+// description   : Products Page
+// -----------------------------------------------------------------------------
+// Author        : Amit Manohar Manthanwar
+// Mailer        : manthanwar@hotmail.com
+// WebURL        : https://manthanwar.github.io
+// -----------------------------------------------------------------------------
+// Copyright     : (c) 2025 Amit Manohar Manthanwar
+// License       : LICENSE.md
+// =============================================================================
+// Revision Log  | Author  | Description
+// --------------+---------+----------------------------------------------------
+// 20-Sep-2025   | AMM     | Initial Version
+// --------------+---------+----------------------------------------------------
+// =============================================================================
+*/
+
 import * as mySvg from './svg.min.js';
 import dataTemplate from './demo-data-template.js';
+import { Utils } from './Utils.js';
 
 window.onload = (event) => {
  document.title = 'Products';
@@ -19,31 +40,69 @@ window.onload = (event) => {
 
 <h3>Software Libraries</h3>
 <ul>
-<li><a href="https://www.npmjs.com/package/js-svg-client" target="_blank">JavaScript Library</a></li>
-<li><a href="https://ctan.org/pkg/pst-flags" target="_blank">PostScript Library</a></li>
+${Utils.createListItem(
+ 'https://www.npmjs.com/package/js-svg-client',
+ 'JavaScript Library'
+)}
+${Utils.createListItem('https://ctan.org/pkg/pst-flags', 'PostScript Library')}
 </ul>
 
 <h3>Art Design Applications</h3>
 <ul>
-<li><a href="amm-pst-art-dolphin.pdf" target="_blank">Dolphin Dynamic Art Design</a></li>
-<li><a href="amm-pst-icons.pdf" target="_blank">Vector Icons and Artifacts</a></
-li>
-<li><a href="pst-icon-sports-olympic-2024.pdf" target="_blank">Olympic Pictograms</a></li>
-<li><a href="pst-icon-sports-olympic-2024-talk.pdf" target="_blank">Olympic Pictograms Presentation</a></li>
+${Utils.createListItem('amm-pst-art-dolphin.pdf', 'Dolphin Dynamic Art Design')}
+${Utils.createListItem('amm-pst-icons.pdf', 'Vector Icons and Artifacts')}
+${Utils.createListItem(
+ 'pst-icon-sports-olympic-2024.pdf',
+ 'Paris Olympic Pictograms Elements'
+)}
+${Utils.createListItem(
+ 'pst-icon-sports-olympic-2024-talk.pdf',
+ 'Paris Olympic Pictograms Presentation'
+)}
+${Utils.createListItem(
+ 'https://in.mirrors.cicku.me/ctan/graphics/pstricks/contrib/pst-flags/doc/pst-flags-doc.pdf',
+ 'National Flags of Countries'
+)}
 </ul>
 
-<h3>E-Commerce Applications</h3>
+<h3>Geometric Art Design Applications</h3>
 <ul>
-<li><a href="amm-pst-quotation.pdf" target="_blank">Quotation</a></li>
-<li><a href="amm-pst-invoice.pdf" target="_blank">Invoice</a></li>
-<li><a href="amm-pst-receipt.pdf" target="_blank">Receipt</a></li>
+${Utils.createListItem(
+ 'pst-art-geometric-fold-04-construction.pdf',
+ 'Construction of Four Fold Geometric Art Patterns'
+)}
+${Utils.createListItem(
+ 'pst-art-geometric-fold-06-04-construction.pdf',
+ 'Construction of Combined Four and Six Fold Pattern'
+)}
+${Utils.createListItem(
+ 'pst-art-geometric-fold-04.pdf',
+ 'Examples of Auto-Generated Four Fold Patterns'
+)}
+${Utils.createListItem('pst-art-geometric.pdf', 'Use Cases of Geometric Art')}
 </ul>
 
 <h3>Infrastructure Management Solutions</h3>
 <ul>
-<li><a href="pst-icons-river-krishna.pdf" target="_blank">River Krishna Network </a></li>
-<li><a href="https://backend.delhimetrorail.com/documents/1030/smartcard.pdf" target="_blank">Delhi Metro Map</a><br><i style="font-size:16px"> This map drawn by Indian Railway needs redesigning to optimize quality and size</i></li>
+${Utils.createListItem('pst-icons-river-krishna.pdf', 'River Krishna Network')}
 </ul>
+
+<h3>Examples that can benefit from Dolphin Design Intelligence</h3>
+<ul>
+${Utils.createListItemNote(
+ 'https://indianculture.gov.in/kumbh-maps',
+ 'Maha Kumbh Map of the Indian Ministry of Culture',
+ 'The names of streets are illegible. This map needs redesigning to optimize quality and size'
+)}
+${Utils.createListItemNote(
+ 'https://backend.delhimetrorail.com/documents/1030/smartcard.pdf',
+ 'Delhi City Metro Map of the Indian Railways',
+ 'This map needs redesigning to optimize quality and size'
+)}
+</ul>
+
+
+
 
 `;
 };

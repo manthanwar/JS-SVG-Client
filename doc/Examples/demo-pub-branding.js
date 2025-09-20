@@ -6,6 +6,7 @@ import * as mySvg from './svg.min.js';
 // import dolphinData from './demo-dolphin-data.js';
 // import Dolphin from './demo-dolphin.js';
 import dataTemplate from './demo-data-template.js';
+import { Utils } from './Utils.js';
 
 window.onload = (event) => {
  document.title = 'SVG';
@@ -47,12 +48,21 @@ window.onload = (event) => {
 </ul>
 
 
-<h3>Awards and Certificates</h3>
+<h3>Certificates and Invitations</h3>
 <ul>
 <li><a href="marksheet-pune-university.pdf" target="_blank">University Marksheet</a></li>
 <li><a href="certificate-tcs-hackathon.pdf" target="_blank">Certificate of Award</a></li>
 <li><a href="certificate-shane.pdf" target="_blank">Certificate of Training</a></li>
+${Utils.createListItem('pst-art-geometric.pdf', 'Invitations Using Geometric Art')}
 </ul>
+
+<h3>E-Commerce Applications</h3>
+<ul>
+<li><a href="amm-pst-quotation.pdf" target="_blank">Quotation</a></li>
+<li><a href="amm-pst-invoice.pdf" target="_blank">Invoice</a></li>
+<li><a href="amm-pst-receipt.pdf" target="_blank">Receipt</a></li>
+</ul>
+
 
 
 
