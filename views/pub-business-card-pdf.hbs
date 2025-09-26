@@ -11,9 +11,10 @@
   <h1>Your Business Card</h1>
   <p id='ppp'>Hi {{name}}, your card is printing...</p>
   <script>
+   let delay = 10;
    let time = 1; const ppp = document.getElementById('ppp'); const interval =
-   setInterval(() => { if (time <= 5) { ppp.innerHTML = `Hi
-   {{name}}, your card is printing in ` + time + ' seconds.'; time++; } else {
+   setInterval(() => { if (time <= delay) { ppp.innerHTML = `Hi
+   {{name}}, your card is printing in ` + (delay - time) + ' seconds.'; time++; } else {
    ppp.innerHTML = `Hi
    {{name}}, here is your card <a href="{{pdf}}">{{pdf}}</a>.`;
    clearInterval(interval); } }, 1000);
