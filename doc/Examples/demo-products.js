@@ -32,10 +32,11 @@ window.onload = (event) => {
 
  article.innerHTML = `
 
-<h3>Vector Visualization Studio</h3>
+<h3>Dolphin Design Intelligence Studio</h3>
 <ul>
-<li><a href="amm-pst-product-brochure.pdf" target="_blank">Product Brochure</a></li>
-<li><a href="amm-pst-product-talk.pdf" target="_blank">Product Presentation</a></li>
+${Utils.createListItem('dolphin-DI-proposal.pdf', 'Product Proposal')}
+${Utils.createListItem('amm-pst-product-brochure.pdf', 'Product Brochure')}
+${Utils.createListItem('amm-pst-product-talk.pdf', 'Product Presentation')}
 </ul>
 
 <h3>Software Libraries</h3>

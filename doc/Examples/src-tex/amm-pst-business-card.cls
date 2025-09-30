@@ -24,6 +24,7 @@
 \ProvidesClass{amm-pst-business-card}[2024/01/06 Business Card (c) Amit Manohar Manthanwar]
 \LoadClass[oneside,11pt]{article}
 %-------------------------------------------------------------------------------
+\RequirePackage[utf8]{inputenc}
 \RequirePackage[dvipsnames,svgnames]{xcolor}
 \RequirePackage{pstricks}
 \RequirePackage{pstricks-add}
