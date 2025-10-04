@@ -35,6 +35,7 @@ window.onload = (event) => {
 <h3>Dolphin Design Intelligence Studio</h3>
 <ul>
 ${Utils.createListItem('dolphin-DI-proposal.pdf', 'Product Proposal')}
+${Utils.createListItem('dolphin-proposal-smb.pdf', 'Product Proposal for SMBs')}
 ${Utils.createListItem('amm-pst-product-brochure.pdf', 'Product Brochure')}
 ${Utils.createListItem('amm-pst-product-talk.pdf', 'Product Presentation')}
 ${Utils.createListItem('dolphin-DI-faqs.pdf', 'Frequently Asked Questions')}
