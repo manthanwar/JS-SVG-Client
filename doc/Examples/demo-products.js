@@ -37,6 +37,7 @@ window.onload = (event) => {
 ${Utils.createListItem('dolphin-DI-proposal.pdf', 'Product Proposal')}
 ${Utils.createListItem('dolphin-proposal-smb.pdf', 'Product Proposal for SMBs')}
 ${Utils.createListItem('amm-pst-product-brochure.pdf', 'Product Brochure')}
+${Utils.createListItem('dolphin-one-pager.pdf', 'Product One Pager')}
 ${Utils.createListItem('amm-pst-product-talk.pdf', 'Product Presentation')}
 ${Utils.createListItem('dolphin-DI-faqs.pdf', 'Frequently Asked Questions')}
 </ul>
