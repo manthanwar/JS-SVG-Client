@@ -26,6 +26,29 @@
   ]
  },
 
+ "file": {
+  "scope": "javascript",
+  "prefix": ["file"],
+  "body": ["${TM_FILENAME}"],
+  "description": "get the file name"
+ },
+
+ "date-created": {
+  "scope": "javascript",
+  "prefix": ["date-created"],
+  "body": [
+   "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE UTC $CURRENT_TIMEZONE_OFFSET"
+  ],
+  "description": "get the date"
+ },
+
+ "date-version": {
+  "scope": "javascript",
+  "prefix": ["date-revision"],
+  "body": ["$CURRENT_DATE-$CURRENT_MONTH_NAME_SHORT-$CURRENT_YEAR"],
+  "description": "get the date for version revision"
+ },
+
  "jsdoc class": {
   "scope": "javascript",
   "description": "Insert JS Doc Comment for Class",

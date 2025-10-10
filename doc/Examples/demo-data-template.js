@@ -136,12 +136,12 @@ data.navMenu = [
    }
   ]
  },
-//  {
-//   link: 'Public Healthcare',
-//   page: 'Geographical Information System',
-//   href: 'https://bapfoundation.org/',
-//   target: '_blank'
-//  },
+ //  {
+ //   link: 'Public Healthcare',
+ //   page: 'Geographical Information System',
+ //   href: 'https://bapfoundation.org/',
+ //   target: '_blank'
+ //  },
  {
   link: 'Publications',
   page: 'Data-Driven Reporting and Publication Automation',
@@ -168,6 +168,11 @@ data.navMenu = [
   link: 'Products',
   page: 'Products',
   href: 'demo-products.html'
+ },
+ {
+  link: 'Education',
+  page: 'Education and Training',
+  href: 'demo-education.html'
  }
 ];
 
