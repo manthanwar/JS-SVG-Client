@@ -1,7 +1,7 @@
 {
   "name": "js-svg-client",
   "version": "2024.12.16",
-  "type": "module",
+  "typea": "module",
   "help-build": "remove type: module to build webpack",
   "description": "Client Side SVG using JavaScript",
   "author": "Amit M. Manthanwar",
@@ -42,6 +42,7 @@
   "dependencies": {
     "express": "^4.21.1",
     "express-handlebars": "^8.0.1",
-    "pm2": "^5.4.3"
+    "multer": "^2.0.2",
+    "pm2": "^6.0.13"
   }
 }

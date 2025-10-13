@@ -144,25 +144,30 @@ data.navMenu = [
  //  },
  {
   link: 'Publications',
-  page: 'Data-Driven Reporting and Publication Automation',
-  href: 'demo-pub-branding.html'
-  // menu: [
-  //  {
-  //   link: 'Data-Driven Reporting',
-  //   page: 'Data-Driven Reporting and Publication Automation',
-  //   href: 'demo-reporting.html'
-  //  },
-  //  {
-  //   link: 'Brand Identity',
-  //   page: 'Brand Identity, House Style, and Communications Automation',
-  //   href: 'demo-pub-branding.html'
-  //  },
-  //  {
-  //   link: 'E-Commerce',
-  //   page: 'E-Commerce Applications',
-  //   href: 'demo-reporting.html'
-  //  }
-  // ]
+  // page: 'Data-Driven Reporting and Publication Automation',
+  // href: 'demo-pub-branding.html'
+  menu: [
+   //  {
+   //   link: 'Data-Driven Reporting',
+   //   page: 'Data-Driven Reporting and Publication Automation',
+   // href: 'demo-reporting.html'
+   //  },
+   {
+    link: 'Brand Identity',
+    page: 'Brand Identity, House Style, and Communications Automation',
+    href: 'demo-pub-branding.html'
+   },
+   {
+    link: 'Certificates and Awards',
+    page: 'Certificates and Awards',
+    href: 'demo-pub-certificate.html'
+   }
+   //  {
+   //   link: 'E-Commerce',
+   //   page: 'E-Commerce Applications',
+   //   href: 'demo-reporting.html'
+   //  }
+  ]
  },
  {
   link: 'Products',

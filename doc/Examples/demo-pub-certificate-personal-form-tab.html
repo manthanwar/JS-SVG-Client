@@ -1,0 +1,152 @@
+<div class="tab">
+ <button class="tablinks">Individual</button>
+ <button class="tablinks">Group</button>
+</div>
+
+<!-- First Tab -->
+<div id="London" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Certificate</h2>
+
+  <form action="certificate/printOne" method="POST" autocomplete="on">
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="nameF"
+      name="nameF"
+      size="12"
+      required
+      autofocus
+      placeholder="First Name"
+     />
+    </div>
+
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="nameM"
+      name="nameM"
+      size="10"
+      placeholder="Middle Name"
+     />
+    </div>
+
+    <div class="floating-label-group">
+     <input
+      type="text"
+      d="nameL"
+      name="nameL"
+      size="13"
+      required
+      placeholder="Last Name"
+     />
+    </div>
+
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="nameN"
+      name="nameN"
+      size="11"
+      required
+      placeholder="ID Number"
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="examN"
+      name="examN"
+      size="27"
+      required
+      placeholder="Examination Name"
+     />
+    </div>
+
+    <div class="floating-label-group">
+     <select id="examR" name="examR" placeholder="Exam Result" required>
+      <option value="" disabled selected>Exam Result</option>
+      <option value="First Class With Distinction">
+       First Class With Distinction
+      </option>
+      <option value="First Class">First Class</option>
+      <option value="Second Class">Second Class</option>
+      <option value="Third Class">Third Class</option>
+      <option value="Pass">Conceded Pass</option>
+      <option value="Fail">Fail</option>
+     </select>
+    </div>
+
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="examD"
+      name="examD"
+      placeholder="Exam Date"
+      onfocus="this.type='date'; this.style.width='240px';"
+      onblur="this.type='text'; this.style.width='240px'"
+      size="10"
+      style="width: 240px"
+      required
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="certN"
+      name="certN"
+      size="27"
+      required
+      placeholder="Certificate Number"
+     />
+    </div>
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="certD"
+      name="certD"
+      placeholder="Certificate Date"
+      onfocus="(this.type='date')"
+      onblur="(this.type='text');"
+      size="10"
+      style="width: 240px"
+      required
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>
+
+<!-- Second Tab -->
+<div id="Mumbai" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Group Certificate</h2>
+
+  <form action="certificate/printMany" method="POST" enctype="multipart/form-data">
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <label for="file">Select Excel File </label>
+     <input type="file" id="file" name="file" />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>

@@ -10,6 +10,7 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const router = express.Router();
 const app = express();
+const certificate = require('./routes/certificate');
 
 //support parsing of application/x-www-form-urlencoded post data
 app.use(express.urlencoded({ extended: true }));
@@ -28,6 +29,9 @@ const hbsOptions = {
 // app.engine('hbs', handlebars.engine(hbsOptions));
 // app.set('view engine', 'hbs');
 // app.set('views', './views');
+
+
+app.use('/certificate', certificate);
 
 // Create Custom Helpers
 
