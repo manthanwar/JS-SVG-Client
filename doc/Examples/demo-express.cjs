@@ -134,6 +134,7 @@ app.use(express.static('doc/Examples/src-math'));
 app.use(express.static('doc/Examples/src-plot'));
 app.use(express.static('doc/Examples/src-tex'));
 app.use(express.static('doc/Examples/src-tex-data'));
+app.use(express.static('doc/Examples/data-certificates'));
 
 // app.use('/src-gauge/', express.static(__dirname + 'doc/Examples/src-plot'));
 // app.use(express.static('doc/Examples/src-gauge'));

@@ -1,0 +1,101 @@
+{
+ "file": {
+  "scope": "tex,bibtex,latex,latex-class",
+  "prefix": ["file"],
+  "body": ["${TM_FILENAME}"],
+  "description": "get the file name"
+ },
+
+ "date-created": {
+  "scope": "tex,bibtex,latex,latex-class",
+  "prefix": ["date-created"],
+  "body": [
+   "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE UTC $CURRENT_TIMEZONE_OFFSET"
+  ],
+  "description": "get the date"
+ },
+
+ "date-version": {
+  "scope": "tex,bibtex,latex,latex-class",
+  "prefix": ["date-revision"],
+  "body": ["$CURRENT_DATE-$CURRENT_MONTH_NAME_SHORT-$CURRENT_YEAR"],
+  "description": "get the date for version revision"
+ },
+
+"class": {
+  "scope": "latex-class",
+  "prefix": ["class"],
+  "body": [
+   "%===============================================================================",
+   "\\NeedsTeXFormat{LaTeX2e}[2023-11-01]",
+   "\\ProvidesClass{$1}[$CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $2 (c) Amit Manohar Manthanwar]",
+   "\\DeclareOption*{\\PassOptionsToClass{\\CurrentOption}{book}}",
+   "\\ProcessOptions\\relax",
+   "\\LoadClass{book}"
+   "%==============================================================================="
+  ],
+  "description": "provide class .cls"
+ },
+
+
+ "package": {
+  "scope": "tex,latex",
+  "prefix": ["package"],
+  "body": [
+   "%===============================================================================",
+   "\\NeedsTeXFormat{LaTeX2e}[2023-11-01]",
+   "\\ProvidesPackage{$1}[$CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $2 (c) Amit Manohar Manthanwar]",
+   "%==============================================================================="
+  ],
+  "description": "provide package .sty"
+ },
+
+
+ "Front Matter": {
+  "scope": "tex,bibtex,latex,latex-class",
+  "prefix": ["header", "front", "fm", "matter"],
+  "body": [
+   "%===============================================================================",
+   "% File Name     : ${TM_FILENAME}",
+   "% File Created  : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE UTC $CURRENT_TIMEZONE_OFFSET",
+   "% Description   : $1",
+   "%-------------------------------------------------------------------------------",
+   "% Author        : Amit Manohar Manthanwar",
+   "% Address       : Pune, Maharashtra, India",
+   "% Email         : manthanwar@hotmail.com",
+   "% Phone         : +91.853.081.3398",
+   "% Website       : https://manthanwar.github.io",
+   "%-------------------------------------------------------------------------------",
+   "% Copyright     : ©$CURRENT_YEAR Amit Manohar Manthanwar",
+   "% License       : Restricted",
+   "% License       : LaTeX Project Public License",
+   "%-------------------------------------------------------------------------------",
+   "% This program can be redistributed and/or modified under the terms",
+   "% of the LaTeX Project Public License Distributed from CTAN archives",
+   "% in directory macros/latex/base/lppl.txt.",
+   "%---------------+---------+-----------------------------------------------------",
+   "% Revision Log  | Author  | Description",
+   "%---------------+---------+-----------------------------------------------------",
+   "% $CURRENT_DATE-$CURRENT_MONTH_NAME_SHORT-$CURRENT_YEAR   | AMM     | Initial Version                                     ",
+   "%---------------+---------+-----------------------------------------------------",
+   "%===============================================================================",
+   "",
+   "$0"
+  ],
+  "description": "Insert front matter with current date and title based on file name."
+ },
+
+ "eqnarray": {
+  "scope": "tex,latex",
+  "prefix": ["eqn"],
+  "body": ["\\begin{eqnarray}", "\t$0", "\\end{eqnarray}"],
+  "description": "Insert eqnarray environment."
+ },
+
+ "eqnarray starred": {
+  "scope": "tex,latex",
+  "prefix": ["eqns"],
+  "body": ["\\begin{eqnarray*}", "\t$0", "\\end{eqnarray*}"],
+  "description": "Insert eqnarray starred environment."
+ }
+}

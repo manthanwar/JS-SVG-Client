@@ -49,7 +49,7 @@ window.onload = (event) => {
  function tabClick() {
   var i, tabcontent, tablinks, tabs;
   tablinks = document.getElementsByClassName('tablinks');
-  tabs = ['London', 'Mumbai'];
+  tabs = ['London', 'Mumbai', 'Pune'];
   for (i = 0; i < tablinks.length; i++) {
    const city = tabs[i];
    tablinks[i].onclick = function (event) {

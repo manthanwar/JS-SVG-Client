@@ -1,25 +1,22 @@
-<!DOCTYPE html>
 <html>
  <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="./icon.svg" sizes="any" type="image/svg+xml" />
-  <link rel="stylesheet" type="text/css" media="screen" href="../demo-main.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="../demo-pub-branding.css" />
-  <script type="module" src="demo-pub-certificate.js"></script>
+  <meta charset='utf-8' />
+  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+  <link rel='icon' href='./icon.svg' sizes='any' type='image/svg+xml' />
+  <title>Certificate</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <script> var name = name.name</script>
  </head>
  <body>
-
-hi amit {{name}}
-
+  <div style="margin:100px">
+  <h1>Your Certificate</h1><br>
+  <div style="font-size: 30px;">Hi {{name}}, <span id='ppp'>your certificate is printing in </span></div>
+  </div>
+  <script>
+   let delay = 10; let time = 1; const ppp = document.getElementById('ppp');
+   const interval = setInterval(() => { if (time <= delay) { ppp.innerHTML =
+   `your certificate is printing in ${(delay - time)}
+   seconds`; time++; } else { ppp.innerHTML = `here is your certificate <a href="/data-certificates/{{pdf}}">{{pdf}}</a>.`; clearInterval(interval); } }, 1000);
+  </script>
  </body>
-
- {{> footer}}
 </html>
-
-<!-- {{> header}} -->
-
-
-
-
-

@@ -1325,7 +1325,8 @@
         "editorBracketHighlight.foreground3": "#fffc67",
         "editorBracketHighlight.foreground4": "#66ff00",
         "editorBracketHighlight.foreground5": "#edff67",
-        "editorBracketHighlight.foreground6": "#ff8ff6",
+        "editorBracketHighlight.foreground6": "#66ff00",
+        // "editorBracketHighlight.foreground6": "#ff8ff6",
 
         "editorBracketHighlight.unexpectedBracket.foreground": "#ff0000",
 
