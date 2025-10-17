@@ -1,13 +1,13 @@
 {
  "file": {
-  "scope": "tex,bibtex,latex,latex-class",
+  // "scope": "tex,bibtex,latex,latex-class",
   "prefix": ["file"],
   "body": ["${TM_FILENAME}"],
   "description": "get the file name"
  },
 
  "date-created": {
-  "scope": "tex,bibtex,latex,latex-class",
+  // "scope": "tex,bibtex,latex,latex-class",
   "prefix": ["date-created"],
   "body": [
    "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE UTC $CURRENT_TIMEZONE_OFFSET"
@@ -16,7 +16,7 @@
  },
 
  "date-version": {
-  "scope": "tex,bibtex,latex,latex-class",
+  // "scope": "tex,bibtex,latex,latex-class",
   "prefix": ["date-revision"],
   "body": ["$CURRENT_DATE-$CURRENT_MONTH_NAME_SHORT-$CURRENT_YEAR"],
   "description": "get the date for version revision"

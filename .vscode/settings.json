@@ -102,7 +102,7 @@
         "editor.formatOnSave": false,
     },
     "markdownlint.config": { "extends": ".vscode/markdownlint.json" },
-    "markdown.preview.fontSize": 14,
+    "markdown.preview.fontSize": 24,
     "markdown.preview.lineHeight": 1.5,
     "markdown.preview.scrollPreviewWithEditor": true,
     "markdown.preview.scrollEditorWithPreview": true,

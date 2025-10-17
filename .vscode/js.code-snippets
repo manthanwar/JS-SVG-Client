@@ -1,8 +1,8 @@
 {
- "js header": {
+ "header": {
   "scope": "javascript",
   "description": "Create File Header Comment",
-  "prefix": ["js header"],
+  "prefix": ["header"],
   "body": [
    "/*",
    "// =============================================================================",

@@ -1,0 +1,29 @@
+# TOML: Tom's Obvious Minimal Language
+[project]
+name = "pyexcel2tex"
+version = "0.1.0"
+description = "This Python Package Converts Excel to LaTeX"
+keywords = ["python package", "excel to latex"]
+dependencies = ["numpy>=1.20.0", "pandas; python_version < '3.12'"]
+readme = "README.md"
+license = "Proprietary"
+license-files = ["LICEN[CS]E*"]
+authors = [
+    { name = "Amit Manohar Manthanwar", email = "manthanwar@hotmail.com" },
+]
+maintainers = [
+    { name = "Amit Manohar Manthanwar", email = "manthanwar@hotmail.com" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: Free For Educational Use",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+homepage = "https://github.com/manthanwar/JS-SVG-Client"
+repository = "https://github.com/manthanwar/JS-SVG-Client"
+documentation = "https://github.com/manthanwar/JS-SVG-Client/doc"
+"Bug Tracker" = "https://github.com/manthanwar/JS-SVG-Client/issues"
