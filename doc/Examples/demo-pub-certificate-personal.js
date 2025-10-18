@@ -59,12 +59,28 @@ window.onload = (event) => {
   }
  }
 
+ function toggleInputField() {
+  var dataType = document.getElementById('dataType');
+  var dataList = document.getElementById('dataList');
+  var dataRows = document.getElementById('dataRows');
+  dataType.onchange = () => {
+   if (dataType.value === 'indices') {
+    dataList.style.display = 'block';
+    dataRows.style.display = 'none';
+   } else {
+    dataList.style.display = 'none';
+    dataRows.style.display = 'block';
+   }
+  };
+ }
+
  fetch('demo-pub-certificate-personal-form-tab.html')
   .then((response) => response.text())
   .then((data) => {
    article.innerHTML = data;
    tabClose();
    tabClick();
+   toggleInputField();
    document.getElementById('London').style.display = 'block';
    document.getElementsByClassName('tablinks')[0].click();
   });

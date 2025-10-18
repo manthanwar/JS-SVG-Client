@@ -116,6 +116,11 @@ hbsOptions.helpers = {
 
   let str = [...arguments].slice(0, -1);
   return str.join('');
+ },
+
+ json: function (){
+  const queryParams = this.query || {};
+  return JSON.stringify(queryParams);
  }
 };
 

@@ -166,8 +166,8 @@
       <option value="First Class">First Class</option>
       <option value="Second Class">Second Class</option>
       <option value="Third Class">Third Class</option>
-      <option value="Pass">Conceded Pass</option>
-      <option value="Pass">c</option>
+      <option value="Pass">Pass</option>
+      <option value="Conceded Pass">Conceded Pass</option>
      </select>
     </div>
 
@@ -237,21 +237,77 @@
 <!-- Second Tab -->
 <div id="Mumbai" class="tabcontent">
  <div class="formContainer">
-  <h2>Create Your Certificate Using Excel File</h2>
+  <h2>Create Your Certificate Using Excel</h2>
 
   <form
    action="certificate/printMany"
    method="POST"
    enctype="multipart/form-data"
   >
-   <div class="floating-label-group-group">
+   <div class="floating-label-group-group" style="margin-top: 20px">
+
     <div class="floating-label-group">
-     <label for="file">Select File </label>
-     <input type="file" id="file" name="file" required />
+     <input
+      type="text"
+      id="nameF"
+      name="nameF"
+      size="12"
+      required
+      placeholder="Name"
+     />
+     <input type="email" id="email" name="email" placeholder="email" required />
+    </div>
+
+   </div>
+   <div class="floating-label-group-group" style="margin-top: 40px">
+    <div class="floating-label-group">
+     <label for="file" style="margin-top: -20px; margin-right: -20px"
+      >Select File:</label
+     >
+     <input type="file" id="file" name="file" required accept=".xlsx, .xls"/>
     </div>
    </div>
 
    <div class="floating-label-group-group">
+    <div class="floating-label-group" style="margin-top: -20px">
+     <select
+      id="dataType"
+      name="dataType"
+      placeholder="Selection Type"
+      style="max-width: 300px"
+     >
+      <option value="" disabled selected>Selection Type</option>
+      <option value="head">Top Rows</option>
+      <option value="tail">Bottom Rows</option>
+      <option value="random">Randomly Selected</option>
+      <option value="indices">Specify Indices</option>
+     </select>
+     <select
+      id="dataRows"
+      name="dataRows"
+      placeholder="No of Rows to Print"
+      style="width: 260px"
+      style="display: none"
+     >
+      <option value="" disabled selected>No of Rows to Print</option>
+      <option value="1">&nbsp; 1</option>
+      <option value="2">&nbsp; 2</option>
+      <option value="3">&nbsp; 3</option>
+      <option value="4">&nbsp; 4</option>
+      <option value="5">&nbsp; 5</option>
+     </select>
+     <input
+      type="text"
+      id="dataList"
+      name="dataList"
+      size="20"
+      placeholder="1, 2, 3, 4, 5"
+      style="display: none"
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group" style="margin-top: 40px">
     <input type="submit" value="Submit" />
     <input type="reset" value="Clear" />
    </div>

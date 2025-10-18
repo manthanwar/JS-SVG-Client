@@ -25,6 +25,7 @@ import subprocess
 import pandas as pd
 from .Utility import Utility as util
 from typing import List
+import random
 
 # code = open in vscode editor with command: code filename
 
@@ -77,9 +78,47 @@ class ExcelToTexCertificate:
 \end{{document}}"""
         return lines
 
-    def createPdf(self, sheet: str = 'data', isCode: bool = False) -> None:
+    def get_random_int_array(self, arraySize: int, lower_bound: int, upper_bound: int) -> List[int]:
+        """
+        Generates a list containing 4 random integers within the specified range.
+
+        Args:
+            lower_bound (int): The inclusive lower limit of the random integers.
+            upper_bound (int): The inclusive upper limit of the random integers.
+
+        Returns:
+            list: A list containing 4 random integers.
+        """
+        random_integers = []
+        for _ in range(arraySize):
+            random_integers.append(random.randint(lower_bound, upper_bound))
+        return random_integers
+
+    def getDfRows(self, df: pd.DataFrame, how: str = 'head', dataRows: str = '3') -> pd.DataFrame:
+        if how == 'head':
+            df = df.head(int(dataRows))
+
+        if how == 'tail':
+            df = df.tail(int(dataRows))
+
+        if how == 'indices':
+            desired_indices = list(map(int, dataRows.split(',')))
+            if len(desired_indices) > 5:
+                desired_indices = desired_indices[:5]
+
+            desired_indices = list(set(desired_indices))
+            df = df.iloc[desired_indices]
+
+        if how == 'rand':
+            size: int = len(df)
+            desired_indices = self.get_random_int_array(int(dataRows), 0, size)
+            df = df.iloc[desired_indices]
+
+        return df
+
+    def createPdf(self, sheet: str = 'data', dataType: str = 'head', dataRows: str = '3', isCode: bool = False) -> None:
         df = pd.read_excel(io=self.excelFile, sheet_name=sheet)
-        # print(df)
+        df = self.getDfRows(df, how=dataType, dataRows=dataRows)
         self.fileListTex: List[str] = list()
         self.fileListPdf: List[str] = list()
         self.fileList: List[str] = list()
