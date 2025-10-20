@@ -154,7 +154,7 @@ data.navMenu = [
    //  },
    {
     link: 'Brand Identity',
-    page: 'Brand Identity, House Style, and Communications Automation',
+    page: 'Design Intelligence and Document Automation',
     href: 'demo-pub-branding.html'
    },
    {

@@ -39,21 +39,19 @@ window.onload = (event) => {
 
 <h3>Brand Identity and House Style</h3>
 <ul>
-<li><a href="amm-pst-art-logo-jps.pdf" target="_blank">Logo Design Example 1</a></li>
-<li><a href="amm-pst-art-logo-bapatla.pdf" target="_blank">Logo Design Example 2</a></li>
+${Utils.createListItemNoUrl('Brand Logo Design')}
+<ul>
+${Utils.createListItem('amm-pst-art-logo-jps.pdf', 'Logo Design 1')}
+${Utils.createListItem('amm-pst-art-logo-bapatla.pdf', 'Logo Design 2')}
+</ul>
 <li><a href="amm-pst-letter.pdf" target="_blank">Formal Letter</a></li>
 <li><a href="amm-pst-talk.pdf" target="_blank">Presentation</a></li>
-<li><a href="amm-pst-business-card.pdf" target="_blank">Business Card</a></li>
-<li><a href="demo-pub-branding-bizcard.html">Business Card Personal</a></li>
-</ul>
 
-
-<h3>Certificates and Invitations</h3>
+${Utils.createListItemNoUrl('Business Card')}
 <ul>
-<li><a href="marksheet-pune-university.pdf" target="_blank">University Marksheet</a></li>
-<li><a href="certificate-tcs-hackathon.pdf" target="_blank">Certificate of Award</a></li>
-<li><a href="certificate-shane.pdf" target="_blank">Certificate of Training</a></li>
-${Utils.createListItem('pst-art-geometric.pdf', 'Invitations Using Geometric Art')}
+<li><a href="amm-pst-business-card.pdf" target="_blank">Business Card</a></li>
+<li><a href="demo-pub-branding-bizcard.html"  target="_blank">Intelligent Business Card Generator</a></li>
+</ul>
 </ul>
 
 <h3>E-Commerce Applications</h3>
@@ -62,9 +60,6 @@ ${Utils.createListItem('pst-art-geometric.pdf', 'Invitations Using Geometric Art
 <li><a href="amm-pst-invoice.pdf" target="_blank">Invoice</a></li>
 <li><a href="amm-pst-receipt.pdf" target="_blank">Receipt</a></li>
 </ul>
-
-
-
 
 `;
 };

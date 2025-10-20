@@ -32,6 +32,11 @@ export class Utils {
   return item;
  }
 
+ static createListItemNoUrl(name) {
+  const item =`<li> ${name} </li>`;
+  return item;
+ }
+
  static createListItemNote(url, name, note) {
   const item =
    '<li><a href="' +

@@ -33,10 +33,10 @@
 %===============================================================================
 % \listfiles% To check the versions of files used
 %===============================================================================
-\usepackage{amm-pst-art-university-pune}% Art Design of University of Pune
 %===============================================================================
 \RequirePackage{amsmath,amsthm,amssymb,amsfonts}
-\RequirePackage{fp,xfp} %floating point arithmatic
+\RequirePackage[nomessages]{fp} %floating point arithmetic
+\RequirePackage{xfp} %floating point arithmetic
 \RequirePackage{textcomp}               % Copyleft Symbol
 \RequirePackage{fix-cm}             % Huge font size
 \RequirePackage[svgnames,dvipsnames]{xcolor}

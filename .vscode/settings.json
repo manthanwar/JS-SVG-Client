@@ -49,7 +49,6 @@
     "[javascript]": {
         // "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.tabSize": 1,
-        "editor.insertSpaces": true,
     },
     "[json][jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",

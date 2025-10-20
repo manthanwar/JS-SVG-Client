@@ -1,0 +1,138 @@
+%===============================================================================
+% File Name     : amm-pst-art-maharashtra-hsc-1995.sty
+% Description   : Pstricks Art Package - Maharashtra Board HSC/Class 12 - 1995
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Locale        : Pune, Maharashtra, India
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%===============================================================================
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 08-Aug-2025   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+% 20-Oct-2025   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+\NeedsTeXFormat{LaTeX2e}[2023-11-01]
+\ProvidesPackage{amm-pst-art-maharashtra-hsc-1995}[Version 20.10.2025 Postscript Marksheet Designs (c) Amit M. Manthanwar]
+%===============================================================================
+\RequirePackage{pstricks}
+\RequirePackage{pst-all}
+\RequirePackage{multido}
+%===============================================================================
+
+%===============================================================================
+% region key value family
+\RequirePackage{xkeyval}
+%-------------------------------------------------------------------------------
+% \define@key{amm-pst-water}{iconWidth}[4]{\newcommand{\iconWidth}{#1}}
+%-------------------------------------------------------------------------------
+\makeatletter
+\def\kvf{amm-pst-art-maharashtra-hsc-1995}
+\providecommand{\kv}[2]{%
+\define@key{\kvf}{#1}[#2]{\expandafter\newcommand\csname #1\endcsname{##1}}%
+\presetkeys{\kvf}{#1}{}}
+\providecommand{\pstset}[1]{\presetkeys{\kvf}{#1}{}}
+\makeatother
+% endregion key value family
+%===============================================================================
+
+
+%===============================================================================
+% region key value pairs
+%-------------------------------------------------------------------------------
+\kv{iconWidth}{10}
+% \kv{LineStyle}{solid}
+% \kv{LineColor}{black}
+% \kv{LineWidth}{0.3}
+% \kv{FillStyle}{none}
+% \kv{FillColor}{white}
+%-------------------------------------------------------------------------------
+% endregion key value pairs
+%===============================================================================
+
+%===============================================================================
+% region Maharashtra Board Secondary School Certificate Marksheet Year 1993
+%-------------------------------------------------------------------------------
+% \definecolor{mahaHscColor}{HTML}{c68172}
+% \definecolor{mahaHscColor}{HTML}{aa7066}
+% \psbezier(2,0)(5,0)(10,10)(12,2)%
+% \psbezier(12,2)(13,0)(14,0)(16,4)%
+% \psbezier(16,4)(11,4)(15,17)(20,17)%
+% \psbezier(20,17)(16,12)(24,4)(17,4)%
+% \psbezier(17,4)(15,1)(15,-1)(17,-4)%
+% \psbezier(17,-4)(24,-4)(16,-12)(20,-17)%
+% \psbezier(20,-17)(15,-17)(11,-4)(16,-4)%
+% \psbezier(16,-4)(14,0)(13,0)(12,-2)%
+% \psbezier(12,-2)(10,-10)(5,0)(2,0)%
+\newcommand{\motifBasic}{\pscustom{\psbezier(2,0)(5,0)(10,10)(12,2)%
+(13,0)(14,0)(16,4)%
+(11,4)(15,17)(20,17)%
+(16,12)(24,4)(17,4)%
+(15,1)(15,-1)(17,-4)%
+(24,-4)(16,-12)(20,-17)%
+(15,-17)(11,-4)(16,-4)%
+(14,0)(13,0)(12,-2)%
+(10,-10)(5,0)(2,0)%
+}%
+\pscircle(18.5,0){1.5}%
+}%
+%-------------------------------------------------------------------------------
+\psset{fillstyle=solid,fillcolor=teal,linestyle=none}%
+\newcommand{\motifMain}[1][]{\setkeys{\kvf}{#1}%
+\FPeval{\wide}{round(\iconWidth/40:3)}\psscalebox{\wide}{%
+\rput{0}(0,0){\motifBasic}%
+\rput{90}(0,0){\motifBasic}%
+\rput{180}(0,0){\motifBasic}%
+\rput{270}(0,0){\motifBasic}%
+}}% end \psscalebox % end \waterWheel
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+% endregion Maharashtra Board Secondary School Certificate Marksheet Year 1993
+%===============================================================================
+
+%===============================================================================
+% region \certificateBorder
+\newcommand{\certificateBorder}{%
+\psset{unit=1mm,dimen=middle,fillstyle=solid,linestyle=solid,linewidth=0}%
+\psset{fillcolor=\certificateColor,linecolor=\certificateColor}%
+\pstset{iconWidth=9}%
+\multirput{0}(-5,-5)(10,0){30}{\motifMain}%
+\multirput{0}(-5,195)(10,0){30}{\motifMain}%
+\multirput{90}(-5,5)(0,10){19}{\motifMain}%
+\multirput{90}(285,5)(0,10){19}{\motifMain}%
+}%
+% endregion \certificateBorder
+%===============================================================================
+
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%-------------------------------------------------------------------------------
+\endinput
+%% End of file
+%===============================================================================
+%===============================================================================
+%===============================================================================
+
+\newcommand{\iconWaterWheel}[1][]{\setkeys{\kvf}{#1}%
+\FPeval{\wide}{round(\iconWidth/4:3)}\psscalebox{\wide}{%
+\psset{linestyle=solid}%
+\pscircle(0,0){2}%
+}}% end \psscalebox % end \waterWheel
+%-------------------------------------------------------------------------------
+% \rput(2,2){\waterWheel[iconWidth=4,colorWheel=red]}
+% \rput(2,2){\waterWheel}
+% \rput(13,18.5){Cloths @ \number\inputlineno}
+%===============================================================================

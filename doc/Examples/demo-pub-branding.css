@@ -16,6 +16,29 @@ article h3:not(:first-child) {
  margin-top: 30px;
 }
 
+article ul  {
+ margin-top: 30px;
+}
+
+article ul ul {
+ margin-top: 10px;
+}
+
+
 article ul li:not(:last-child) {
- margin-bottom: 10px;
+ margin-bottom: 5px;
+}
+
+article ul ul li:not(:last-child) {
+ margin-bottom: 5px;
+}
+article ul ul li:last-child {
+ margin-bottom: 15px;
+}
+
+article ul li{
+    margin-left: 0px;
+}
+article ul ul li{
+    margin-left: -20px;
 }

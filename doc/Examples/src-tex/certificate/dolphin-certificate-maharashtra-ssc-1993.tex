@@ -1,0 +1,82 @@
+%===============================================================================
+% File Name     : dolphin-certificate.tex
+% File Created  : 2025-10-14 11:17 UTC +02:00
+% Description   : dolphin certificate automation
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Website       : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%---------------+---------+-----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+-----------------------------------------------------
+% 14-Oct-2025   | AMM     | Initial Version
+%---------------+---------+-----------------------------------------------------
+% 20-Oct-2025   | AMM     | Added SSC Logo
+%---------------+---------+-----------------------------------------------------
+%===============================================================================
+\documentclass{amm-pst-certificate}
+\usepackage{amm-pst-certificate}
+\usepackage{amm-pst-art-maharashtra-ssc-1993}% Maharashtra Board - 10th Grade
+\begin{document}
+\defineColor{c68172}%
+\defineCertificate{University of Earth}{0020250808}{1 August 2025}%
+\defineStudent{Title}{Name}{Middle}{Surname}{A12345678}%
+\defineExam{Bachelor of Computer Engineering}{May 2025}{First Class}%
+\end{document}
+%==============================================================================
+\clearpage
+hi
+\end{document}
+%==============================================================================
+% region \makeCertificate
+\begin{figure}[!ht]
+% \vspace*{-0.1mm}%
+% \begin{center}
+% \hspace*{-16.5mm}%
+% \hspace*{-19.5mm}%
+% \resizebox{1\textwidth}{!}{
+% \resizebox{278.4mm}{!}{%
+\resizebox{278.3mm}{189.9mm}{%
+% \psset{unit=10mm}%\sffamily
+% \begin{pspicture}(0,0)(29,21)
+\begin{pspicture}(0,0)(28,19)
+\psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20]%,griddots=4,subgriddots=10] %,gridlabels=8pt,gridlabelcolor=red]
+%-------------------------------------------------------------------------------
+% \rput(0,0){\testPageSize}%
+\psset{unit=1mm,dimen=middle,fillstyle=solid,linestyle=solid,linewidth=0.4}%
+%-------------------------------------------------------------------------------
+\def\motifColor{teal}%
+%-------------------------------------------------------------------------------
+\rput(50,50){\psset{fillcolor=\motifColor,linecolor=\motifColor}%
+\pstset{iconWidth=9}%
+\psset{linewidth=1}%
+\multirput(0,0)(10,0){1}{\rput(-5,-5){\motifCorner}}%
+\rput(10,0){\rput(-5,-5){\motifMain}}%
+
+% \rput{180}(0,0){\motifCurve}%
+}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\end{pspicture}
+}% \resizebox
+% \caption{}
+% \label{fig:}
+% \end{center}
+\end{figure}
+% ps2pdf -dNOSAFER fileName.ps
+% endregion \makeCertificate
+%==============================================================================
+
+
+
+\end{document}
