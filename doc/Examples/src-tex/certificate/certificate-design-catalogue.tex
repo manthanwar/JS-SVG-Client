@@ -1,0 +1,115 @@
+%===============================================================================
+% File Name     : <marksheet-pune-university.tex
+% Description   : marksheet of pune university
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Locale        : Pune, Maharashtra, India
+% Mailer        : manthanwar@hotmail.com
+% WebURL        : https://manthanwar.github.io/
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : Restricted
+%===============================================================================
+%---------------+---------+-----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+-----------------------------------------------------
+% 08-Aug-2025   | AMM     | Initial Version
+%---------------+---------+-----------------------------------------------------
+% 20-Oct-2025   | AMM     | Initial Version
+%---------------+---------+-----------------------------------------------------
+%---------------+---------+-----------------------------------------------------
+%---------------+---------+-----------------------------------------------------
+%---------------+---------+-----------------------------------------------------
+%===============================================================================
+% \documentclass[12pt]{ammCertificate}
+\documentclass{amm-pst-certificate-doc}
+%-------------------------------------------------------------------------------
+\usepackage{dolphin-fonts}
+\usepackage{amm-pst-marksheet}
+% \setlength{\textwidth}{210mm}
+% \setlength{\textwidth}{210mm}
+\usepackage{amm-pst-art-maharashtra-ssc-1993}
+\let\certificateBorder\certificateBorderMahaSSC
+% \let\certificateBorder\certificateBorderMahaSSC
+\usepackage{amm-pst-art-maharashtra-hsc-1995}
+% \let\motifMainMahaHSC\motifMain
+\usepackage{listings-macros}
+% \usepackage{avant}r
+% \usepackage{helvet}
+% \usepackage[scaled=0.92]{helvet}
+% \renewcommand{\familydefault}{\sfdefault}
+%===============================================================================
+\title{\huge{\fontNunitoUb{Dolphin Design Intelligence}}\\[2mm]
+\LARGE\textbf{Certificate Design Catalogue}}
+% \author{Amit Manohar Manthanwar}
+\author{Dolphin Development Team}
+\date{\today}
+%-------------------------------------------------------------------------------
+%===============================================================================
+\begin{document}%
+\maketitle
+\baselineskip = 20pt%
+\thispagestyle{empty}%
+% \pagestyle{empty}
+\setlength{\parskip}{10pt}%
+%===============================================================================
+% \testPageSize%
+% \rput(0,0){\psset{unit=1mm}%
+% \psframe[linewidth=4mm,linecolor=gray!0,origin={-20,17}](0,0)(297,-210)%
+% \psframe[linewidth=2pt,linecolor=red!0](0,0)(257,-175)}
+%-------------------------------------------------------------------------------
+%===============================================================================
+% \usefont {⟨encoding⟩} {⟨family⟩} {⟨series⟩} {⟨shape⟩}
+%===============================================================================
+\input{fig-catalogue-marksheet-maharashtra-ssc-1993.tex}
+\input{fig-catalogue-marksheet-maharashtra-hsc-1995.tex}
+\input{fig-catalogue-marksheet-pune-university-1999.tex}
+%===============================================================================
+%===============================================================================
+
+
+%-------------------------------------------------------------------------------
+
+%===============================================================================
+
+%===============================================================================
+% region back cover
+\clearpage
+\thispagestyle{empty}
+\begin{figure}[!h]
+\centering%
+\resizebox{\textwidth}{!}{%
+\sffamily\tiny%\scriptsize\tiny%
+%\psset{unit=10mm}
+\begin{pspicture}(0,0)(17,25.5)%[saveNodeCoors]
+% \psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20, gridlabels=8pt, gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm] % griddots=4, subgriddots=10,
+%-------------------------------------------------------------------------------
+\psset{unit=1mm,fillstyle=none,linestyle=solid,linecolor=teal!80!blue,linewidth=1,linecap=1,linejoin=1}%
+%-------------------------------------------------------------------------------
+\hypersetup{colorlinks=true,urlcolor=teal}%
+%-------------------------------------------------------------------------------
+\rput(85,150){\psset{fillstyle=solid,fillcolor=white}
+\psframe[linecolor=teal,linewidth=0.3](-20,-20)(20,20)%
+\rput(0,1.5){\qrcode[hyperlink,height=25mm]{https://js-svg-client.onrender.com/}}%
+\rput(0,-15){\href{https://js-svg-client.onrender.com/}{\resizebox{25mm}{!}{\large\textbf{DOLPHIN}}}}%
+}% \rput
+%-------------------------------------------------------------------------------
+% \rput[rb](170,15){\resizebox{!}{6mm}{\fontMontserratSb{Looking For An}}}%
+% \rput[rb](170,0){\resizebox{!}{8mm}{\fontMontserratEb{Answer?}}}%
+% \rput[rb](170,15){\resizebox{!}{6mm}{\fontPhv{Looking For An}}}%
+% \rput[rb](170,0){\resizebox{!}{8mm}{\fontPhvB{Answer?}}}%
+\rput[rb](170,20){\resizebox{!}{6mm}{\fontNunitoL{\color{black!80}{Looking to contribute}}}}%
+\rput[rb](170,8){\resizebox{!}{6mm}{\fontNunitoSb{\color{colorMahaSSC}{New Designs?}}}}%
+%-------------------------------------------------------------------------------
+\end{pspicture}%
+}%\resizebox
+% \caption{Pattern six and four fold combined tile with open endings}
+\end{figure}
+%-------------------------------------------------------------------------------
+% endregion back cover
+%===============================================================================
+
+%===============================================================================
+\end{document}
+%===============================================================================
+%===============================================================================

@@ -33,7 +33,7 @@ export class Utils {
  }
 
  static createListItemNoUrl(name) {
-  const item =`<li> ${name} </li>`;
+  const item = `<li> ${name} </li>`;
   return item;
  }
 

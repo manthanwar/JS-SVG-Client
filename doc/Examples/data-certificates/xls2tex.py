@@ -48,12 +48,13 @@ if __name__ == "__main__":
     timeStarted = util.tic()
 
     current_datetime = datetime.now()
-    print("\nCurrent Date and Time:", current_datetime, '\n')
+    # print("Current Date and Time:", current_datetime, '\n')
+    print("Current Date and Time:", current_datetime)
 
     # print('Python Version ', sys.version)
     # print('Pandas Version ', pd.__version__)
-    print('Current Working Directory:',  os.getcwd(), '')
-    print('Creating LaTeX Input Files from Excel Tables...\n')
+    # print('Current Working Directory:',  os.getcwd(), '')
+    # print('Creating LaTeX Input Files from Excel Tables...\n')
 
     if len(sys.argv) > 1:
         # The first argument after the script name is at index 1
@@ -92,6 +93,9 @@ if __name__ == "__main__":
     xt.createPdf(sheet='data', dataType=dataType,
                  dataRows=dataRows, isCode=False)
 
+    # del xt
+    # cmd = 'rm ' + excelFile
+    # util.runCmd(cmd)
     util.toc(timeStarted)
 
     # sys.exit(0)  # Exit with a success status code

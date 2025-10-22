@@ -3,7 +3,7 @@ import * as mySvg from './svg.min.js';
 // import * as mySvg from './dist/svg.min.js';
 
 // import * as mySvg from '../../dist/svg.min.js';
-// import dolphinData from './demo-dolphin-data.js';
+// import dolphinData from './demo-data.js';
 // import Dolphin from './demo-dolphin.js';
 import dataTemplate from './demo-data-template.js';
 import { Utils } from './Utils.js';
@@ -20,28 +20,13 @@ window.onload = (event) => {
 
 <h3>Certificates and Awards</h3>
 <ul>
-${Utils.createListItemNoUrl('Degree Certificates or Marksheets')}
+${Utils.createListItemNoUrl('Academic Certificates')}
 <ul>
-${Utils.createListItem(
- 'dolphin-certificate-university-pune-1999.pdf',
- 'Certificate Design 1'
-)}
-${Utils.createListItem(
- 'dolphin-certificate-maharashtra-hsc-1995.pdf',
- 'Certificate Design 2'
-)}
-${Utils.createListItem(
- 'dolphin-certificate-maharashtra-ssc-1993.pdf',
- 'Certificate Design 3'
-)}
-${Utils.createListItem(
- 'certificat-design-catalogue.pdf',
- 'Certificate Design Catalogue'
-)}
-${Utils.createListItem(
- 'demo-pub-certificate-personal.html',
- 'Intelligent Certificate Generator'
-)}
+${Utils.createListItem('certificate-uop-1999.pdf', 'Design 1')}
+${Utils.createListItem('certificate-hsc-1995.pdf', 'Design 2')}
+${Utils.createListItem('certificate-ssc-1993.pdf', 'Design 3')}
+${Utils.createListItem('certificate-cat-2025.pdf', 'Design Catalogue')}
+${Utils.createListItem('demo-pub-certificate-personal.html', 'Design Personal')}
 </ul>
 ${Utils.createListItem('certificate-shane.pdf', 'Training Certificate')}
 ${Utils.createListItem(

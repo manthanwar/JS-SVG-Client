@@ -1,6 +1,6 @@
 /*
 // =============================================================================
-// File Name     : certificate.js
+// File Name     : certificate.cjs
 // Date Created  : 2025-10-13 02:50 UTC +02:00
 // description   : certificate route
 // -----------------------------------------------------------------------------
@@ -15,6 +15,8 @@
 // --------------+---------+----------------------------------------------------
 // 13-Oct-2025   | AMM     | Initial Version
 // --------------+---------+----------------------------------------------------
+// 22-Oct-2025   | AMM     | Initial Version
+// --------------+---------+----------------------------------------------------
 // =============================================================================
 */
 
@@ -26,6 +28,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const cookieParser = require('cookie-parser');
+const util = require('./Utility.cjs');
 
 const storage = multer.diskStorage({
  destination: (req, file, cb) => {
@@ -172,12 +175,6 @@ router.get('/printManyPdf', (req, res) => {
  });
 });
 
-// function sleep(ms) {
-//  return new Promise((resolve) => setTimeout(resolve, ms));
-// }
-
-// Helper function for artificial delay
-// const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function runCommand(cmd) {
  return new Promise((resolve, reject) => {
@@ -203,15 +200,6 @@ function runCommand(cmd) {
  }); //Promise
 }
 
-// const data = {
-//  file: req.file.filename,
-//  name: req.body.nameF,
-//  mail: req.body.email,
-//  rows: req.body.dataRows,
-//  type: req.body.dataType,
-//  list: req.body.dataList
-// };
-
 //region app.post /printMany
 router.post('/printMany', upload.single('file'), (req, res, next) => {
  if (!req.file || Object.keys(req.file).length === 0) {
@@ -219,16 +207,26 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  }
 
  const nam = req.body.nameF;
+ const eml = req.body.email;
+ const dtm = new Date().toISOString(); // YYYY-MM-DDTHH:mm:ss.sssZ, 'Z' => UTC
+ const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}`;
  const typ = req.body.dataType;
- const csv = typ == 'indices' ? req.body.dataList : req.body.dataRows;
+ const row = req.body.dataRows;
+ const lst = req.body.dataList;
+ const lAr = lst.split(',');
+ const csv = typ == 'indices' ? lst : row;
  const src = path.join(__dirname, '../data-certificates');
  const xls = req.file.filename;
  const ext = path.extname(xls);
  const idx = xls.lastIndexOf('.');
- const pdf = xls.substring(0, idx) + '.zip';
- const del = typ == 'indices' ? 60 : 10 * req.body.dataRows; //delay
- const cmd = `cd ${src} && nohup ./xls2tex.py ${xls} ${typ} ${csv} > output.log 2>&1 &`;
-
+ const bas = xls.substring(0, idx);
+ const pdf = bas + '.zip';
+ const tfl = bas + '.txt';
+ const log = bas + '.log';
+ const txt = path.join(__dirname, '../data-certificates', tfl);
+ const del = typ == 'indices' ? 10 * lAr.length : 10 * row; //delay
+ const cmd = `cd ${src} && nohup ./xls2tex.py ${xls} ${typ} ${csv} > ${log} 2>&1 && rm ${xls} ${log} &`;
+ util.writeFile(txt, msg);
  // if (ext != '.xlsx' || ext != '.xls') {
  //  res.send(`<div style="margin:100px;">
  //  <h1 style="color:maroon;">File Error</h1><h1>Upload .xlsx or .xls file.</h1></div>`);

@@ -1,0 +1,73 @@
+%===============================================================================
+% File Name     : <EU-Horizon-EDU-2023-Education.tex
+% Description   : Proposal on Education
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Office        : Imperial College London
+% Mailer        : manthanwar@hotmail.com
+% WebURL        : https://manthanwar.github.io/
+%-------------------------------------------------------------------------------
+% Copyright     : ©2023 Amit Manohar Manthanwar
+% License       : Restricted
+%===============================================================================
+%---------------+---------+----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 06-Mar-2023   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+\documentclass[12pt]{ammCertificate}
+%-------------------------------------------------------------------------------
+% \usepackage{avant}
+% \usepackage{helvet}
+% \usepackage[scaled=0.92]{helvet}
+% \renewcommand{\familydefault}{\sfdefault}%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%===============================================================================
+\begin{document}%
+% \maketitle
+\baselineskip = 20pt%
+\thispagestyle{empty}%
+% \pagestyle{empty}
+\setlength{\parskip}{10pt}%
+%==============================================================================
+% \testPageSize%
+%------------------------------------------------------------------------------
+% \usefont {⟨encoding⟩} {⟨family⟩} {⟨series⟩} {⟨shape⟩}
+%==============================================================================
+\rput(0,0){\psset{unit=1mm}%
+\psframe[linewidth=4mm,linecolor=gray!0,origin={-20,17}](0,0)(297,-210)%
+\psframe[linewidth=2pt,linecolor=red!0](0,0)(257,-175)}
+%==============================================================================
+\input{logo-shane-academy.tex}
+%==============================================================================
+\newcommand{\textCert}[2]{\fontfamily{phv}\fontsize{#1}{27}\selectfont{#2}}
+%==============================================================================
+
+\vspace*{-5mm}
+% \fontfamily{cmss}
+% \fontfamily{phv}
+\centering
+\begin{tabular}{C{240mm}}
+% \fontsize{50}{75}\selectfont{Shane Academy}\\[10mm]
+\textCert{15}{Email: info@shaneacademy.org $\|$ Website: shaneacademy.org}\\[10mm]
+\textCert{26}{\uppercase{Certificate}}\\[15mm]
+\textCert{18}{This is to Certify That}\\[12mm]
+\textCert{20}{\textbf{\textit{Title First Middle Last}}}\\[12mm]
+\textCert{18}{Participated as an examiner in the Mock FRANZCR exam conducted on 24th May and examined 7 candidates with cases and feedback. Duration: 4 hours}\\[25mm]
+\hspace{180mm}\psscalebox{2 1.5}{\psset{fillcolor=black}\input{fig-signature.tex}}\\[5mm]
+\multicolumn{1}{r}{\textCert{20}{Course Coordinator}}
+\end{tabular}
+
+
+
+%------------------------------------------------------------------------------
+
+%==============================================================================
+%=========================================================================
+\end{document}
+%=========================================================================
+%=========================================================================

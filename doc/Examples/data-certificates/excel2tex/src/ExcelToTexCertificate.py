@@ -101,17 +101,16 @@ class ExcelToTexCertificate:
         if how == 'tail':
             df = df.tail(int(dataRows))
 
+        if how == 'random':
+            size: int = len(df)
+            desired_indices = self.get_random_int_array(int(dataRows), 0, size)
+            df = df.iloc[desired_indices]
+
         if how == 'indices':
             desired_indices = list(map(int, dataRows.split(',')))
             if len(desired_indices) > 5:
                 desired_indices = desired_indices[:5]
-
             desired_indices = list(set(desired_indices))
-            df = df.iloc[desired_indices]
-
-        if how == 'rand':
-            size: int = len(df)
-            desired_indices = self.get_random_int_array(int(dataRows), 0, size)
             df = df.iloc[desired_indices]
 
         return df
@@ -131,7 +130,6 @@ class ExcelToTexCertificate:
             self.fileList.append(fileName)  # without extension
             self.fileListTex.append(filePath)
             self.fileListPdf.append(fileName + '.pdf')
-
         self.createZip()
         return None
 
@@ -139,11 +137,10 @@ class ExcelToTexCertificate:
         pdfFile = " ".join(self.fileListPdf)
         texFile = " ".join(self.fileListTex)
         zipFile = os.path.splitext(self.excelFile)[0]
-        pdfXlsx = pdfFile + ' ' + self.excelFile
+        txtFile = zipFile + '.txt'
+        pdfXlsx = f'{pdfFile} {txtFile} {self.excelFile}'
+        elapsed = f'\nDone: {util.toc(util.timeStarted):.4f} sec'
+        util.appendFile(fileName=txtFile, lines=elapsed)
         util.zip(archive=zipFile, filePath=pdfXlsx)
-        # allFile = pdfFile + ' ' + texFile + ' ' + self.excelFile
-        allFile = pdfFile + ' ' + texFile
-        # util.createDirectory(zipFile)
-        # cmd = f'mv {pdfFile} {zipFile}'
-        cmd = 'rm ' + allFile
+        cmd = f'rm {texFile} {pdfFile} {txtFile}'
         util.runCmd(cmd)

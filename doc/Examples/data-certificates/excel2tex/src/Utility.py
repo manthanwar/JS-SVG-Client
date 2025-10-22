@@ -26,6 +26,8 @@ import os
 import sys
 import subprocess
 import pandas as pd
+from typing import Any
+import gc
 
 # code = open in vscode editor with command: code filename
 
@@ -61,8 +63,14 @@ class Utility:
     def toc(timeStarted: float) -> float:
         timeStopped = time.time()
         timeElapsed = timeStopped - timeStarted
-        print(f'\ntime elapsed = {timeElapsed:.4f} seconds')
+        # print(f'\ntime elapsed = {timeElapsed:.4f} seconds')
         return timeElapsed
+
+    @staticmethod
+    def cleanAny(df: Any) -> None:
+        del df
+        gc.collect()
+        return None
 
     @staticmethod
     def runCmd(cmd: str) -> str:
@@ -84,13 +92,20 @@ class Utility:
     @staticmethod
     def printSuccess(fileName: str, isCode: bool = False) -> None:
         if isCode:
-            print(f'Created file {fileName}')
+            # print(f'Created file {fileName}')
             Utility.code(fileName)
         return None
 
     @staticmethod
     def writeFile(fileName: str, lines: str, isCode: bool = False) -> None:
         with open(fileName, 'w', encoding='utf-8') as file:
+            file.write(lines)
+            Utility.printSuccess(fileName=fileName, isCode=isCode)
+        return None
+
+    @staticmethod
+    def appendFile(fileName: str, lines: str, isCode: bool = False) -> None:
+        with open(fileName, 'a', encoding='utf-8') as file:
             file.write(lines)
             Utility.printSuccess(fileName=fileName, isCode=isCode)
         return None
