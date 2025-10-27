@@ -8,7 +8,6 @@
 # description   : Utility Class with Uility Functions
 # ------------------------------------------------------------------------------
 # Author        : Amit Manohar Manthanwar
-# Mailer        : manthanwar@hotmail.com
 # WebURL        : https:#manthanwar.github.io
 # ------------------------------------------------------------------------------
 # Copyright     : (c) 2025 Amit Manohar Manthanwar
@@ -113,7 +112,7 @@ class Utility:
     @staticmethod
     def makePdf(file: str) -> None:
         cmd = f"latex  -quiet {file}.tex && "
-        # cmd += f"latex  -quiet {file}.tex && "
+        cmd += f"latex  -quiet {file}.tex && "
         cmd += f"dvips -q {file}.dvi && "
         cmd += f"ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY {file}.ps && "
         cmd += f"rm {file}.aux {file}.dvi {file}.log "

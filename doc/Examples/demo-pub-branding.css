@@ -13,11 +13,11 @@ article h3 {
 }
 
 article h3:not(:first-child) {
- margin-top: 30px;
+ margin-top: 40px;
 }
 
 article ul  {
- margin-top: 30px;
+ margin-top: 20px;
 }
 
 article ul ul {

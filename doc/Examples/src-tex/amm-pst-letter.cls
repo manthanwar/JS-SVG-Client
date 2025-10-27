@@ -4,17 +4,7 @@
 %-------------------------------------------------------------------------------
 % Author        : Amit Manohar Manthanwar
 % Indian        : Warje, Pune, Maharashtra, India
-% Mailer        : manthanwar@hotmail.com
-% Caller        : Skype ID: mnthanwar@hotmail.com
-% Mobile        : +91.853.081.3398
 % WebURL        : https://manthanwar.github.io
-%-------------------------------------------------------------------------------
-% Author        : Amit Manohar Manthanwar
-% Office        : Imperial College London
-% Mailer        : amit@imperial.ac.uk
-% Caller        : +44.207.594.6632
-% Mobile        : +44.795.461.7111
-% WebURL        : www.imperial.ac.uk
 %-------------------------------------------------------------------------------
 % Copyright     : ©2022 Amit Manohar Manthanwar
 % License       : Restricted

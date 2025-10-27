@@ -3,7 +3,6 @@
 // Description: Draw Art Logo using JS-SVG-Client and Gauge.js
 // -----------------------------------------------------------------------------
 // Author     : Amit Manohar Manthanwar
-// Mailer     : manthanwar@hotmail.com
 // WebURL     : https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright  : (c) 2024 Amit Manohar Manthanwar

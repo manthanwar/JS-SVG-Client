@@ -5,7 +5,6 @@
 // description   : Testing of Package js-svg-client
 // -----------------------------------------------------------------------------
 // Author        : Amit Manohar Manthanwar
-// Mailer        : manthanwar@hotmail.com
 // WebURL        : https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright     : (c) 2024 Amit Manohar Manthanwar

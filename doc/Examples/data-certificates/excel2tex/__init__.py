@@ -5,4 +5,5 @@
 
 from .src import CreateTexFromExcel
 from .src import ExcelToTexCertificate
+from .src import ExcelToTexArticle
 from .src import Utility

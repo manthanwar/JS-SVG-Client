@@ -3,7 +3,6 @@
 // Description: Draw Line Plot using JS-SVG-Client and Plot.js
 // -----------------------------------------------------------------------------
 // Author     : Amit Manohar Manthanwar
-// Mailer     : manthanwar@hotmail.com
 // WebURL     : https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright  : (c) 2024 Amit Manohar Manthanwar

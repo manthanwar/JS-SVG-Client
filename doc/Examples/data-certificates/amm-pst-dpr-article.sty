@@ -1,0 +1,207 @@
+%===============================================================================
+% File Name     : amm-pst-dpr-article.sty
+% File Created  : 2025-10-26 07:52 UTC +01:00
+% Description   : Package: Detailed Project Report
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Address       : Pune, Maharashtra, India
+% Website       : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : Restricted
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%---------------+---------+-----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+-----------------------------------------------------
+% 26-Oct-2025   | AMM     | Initial Version
+%---------------+---------+-----------------------------------------------------
+%===============================================================================
+
+%===============================================================================
+\NeedsTeXFormat{LaTeX2e}[2023-11-01]
+\ProvidesPackage{amm-pst-dpr-article}[2025/10/26 Detailed Project Report (c) Amit Manohar Manthanwar]
+%===============================================================================
+% \renewcommand{\familydefault}{\sfdefault}
+% \renewcommand{\seriesdefault}{l}
+% \usepackage{nunito}
+% \usepackage{noto-serif}
+% \usepackage{noto-sans}
+% \usepackage{noto-mono}
+% \renewcommand*\rmdefault{cmdh}
+\usepackage{fouriernc}% URW Schoolbook L
+% \usepackage{tgschola}% TeXGyreSchola based on URWSchoolbookL-heavily extended
+%===============================================================================
+
+%===============================================================================
+%-------------------------------------------------------------------------------
+\def\monthName{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi}%
+%===============================================================================
+
+
+%===============================================================================
+% region make title
+\makeatletter
+%-------------------------------------------------------------------------------
+% \renewcommand*{\maketitle}{%
+% \begin{center}%
+% % \huge\textsc{\@title}\\[6mm]%
+% \huge{\@title}\par\vspace*{-0.5\parskip}%
+% % \LARGE{\@title}\\[8mm]%
+% % \normalsize{\@author}\\[2mm]%
+% \small{\@author}\par\vspace*{-0.5\parskip}%
+% % \scriptsize{\number\day\ \monthName\ \number\year}%
+% % \pdfAuthor{\@author}%
+% \pdfAuthor{Amit Manohar Manthawar}%
+% \pdfTitle{\@title}%
+% \end{center}}%
+%-------------------------------------------------------------------------------
+\renewcommand*{\maketitle}{%
+\begin{center}%
+% \huge\textsc{\@title}\\[6mm]%
+\LARGE\textbf{\@title}\\[8mm]%
+% \LARGE{\@title}\\[8mm]%
+% \normalsize{\@author}\\[2mm]%
+\small{\@author}\\[2mm]%
+\scriptsize{\number\day\ \monthName\ \number\year}%
+\pdfAuthor{\@author}%
+\pdfTitle{\@title}%
+\end{center}}%
+%-------------------------------------------------------------------------------
+\makeatother
+% endregion make title
+%===============================================================================
+
+\authorCopyright{Dolphin}
+
+\title{Design Intelligence for Detailed Project Report}
+\titleShort{Intelligent DPR}
+\author{Dolphin Design Team}
+
+
+\pagestyle{fancy}
+
+\setlength{\baselineskip}{14pt}%
+\setlength{\parskip}{15pt}%
+
+\def\fpEval#1{\fpeval{round(#1,3)}}%
+
+%===============================================================================
+% region \meansFinance
+\def\sponsorNameA{Government of MH}%
+\def\sponsorNameB{Government of AP}%
+\def\sponsorNameC{Government of India}%
+\def\totalAmount{100}%
+%===============================================================================
+\newcommand{\meanFinance}[6]{%
+\section{Means of Finance}
+\begin{table}[!ht]
+\begin{center}
+\end{center}
+\end{table}
+\resizebox{1\textwidth}{!}{%
+\setlength{\tabcolsep}{2mm}%
+% \renewcommand{\arraystretch}{4.0}%
+\setlength\extrarowheight{2mm}%
+\def\rowSpa{2mm}%
+\arrayrulecolor{Silver}%
+% \setlength{\arrayrulewidth}{1pt}
+%-------------------------------------------------------------------------------
+\begin{tabular}{|M{2cm}|L{7cm}|N{4cm}{4.2}|N{4cm}{3.2}|}\hline
+%
+\rowcolor{teal!70!black}\textcolor{white}{\textbf{Sr No}} & \multicolumn{1}{|c|}{\textcolor{white}{\textbf{Means of Finance}}} & \textcolor{white}{\textbf{Amount in lakhs}} &
+\textcolor{white}{\textbf{\% of Project Cost}}\\[\rowSpa]\hline
+%-------------------------------------------------------------------------------
+% 1 & SPV & 377.89 & 15.00\\[\rowSpa]\hline
+% 2 & Govt. Of Andhra Pradesh & 377.89 & 15.00\\[\rowSpa]\hline
+% 3 & Govt. of India & 1763.48 & 70.00\\[\rowSpa]\hline
+%-------------------------------------------------------------------------------
+#1\\[\rowSpa]\hline
+#2\\[\rowSpa]\hline
+#3\\[\rowSpa]\hline
+%-------------------------------------------------------------------------------
+\rowcolor{Maroon!70!black}\multicolumn{2}{|c|}{\textcolor{white}{Total Means of Finance}} & \textcolor{white}{\totalAmount} & \textcolor{white}{100.00}\\[\rowSpa]\hline
+%-------------------------------------------------------------------------------
+\end{tabular}
+}% end \resizebox
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\subsection{{Funding Pattern}}
+%-------------------------------------------------------------------------------
+\begin{figure}[!h]
+\centering
+\resizebox{1\textwidth}{!}{\sffamily% \psset{unit=1mm}
+\begin{pspicture}(0,0)(17,6)
+% \psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20, gridlabels=8pt, gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm] % griddots=4, subgriddots=10,
+%-------------------------------------------------------------------------------
+\psset{unit=1mm,dimen=middle,linestyle=solid,fillstyle=solid}
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+% \def\pieA{\fpEval{81.89 * 3.6}}%
+% \def\pieB{\fpEval{7.30 * 3.6}}\def\pieBa{\fpEval{\pieA}}%
+% \def\pieC{\fpEval{4.24 * 3.6}}\def\pieCa{\fpEval{\pieB + \pieBa}}%
+% \def\pieA{\fpEval{70 * 3.6}}%
+% \def\pieB{\fpEval{15 * 3.6}}\def\pieBa{\fpEval{\pieA}}%
+% \def\pieC{\fpEval{15 * 3.6}}\def\pieCa{\fpEval{\pieB + \pieBa}}%
+%-------------------------------------------------------------------------------
+\def\pieA{\fpEval{#4 * 3.6}}%
+\def\pieB{\fpEval{#5 * 3.6}}\def\pieBa{\fpEval{\pieA}}%
+\def\pieC{\fpEval{#6 * 3.6}}\def\pieCa{\fpEval{\pieB + \pieBa}}%
+%-------------------------------------------------------------------------------
+% \def\pieD{\fpEval{1.79 * 3.6}}\def\pieDa{\fpEval{\pieC + \pieCa}}%
+% \def\pieE{\fpEval{1.79 * 3.6}}\def\pieEa{\fpEval{\pieD + \pieDa}}%
+% \def\pieF{\fpEval{1.79 * 3.6}}\def\pieFa{\fpEval{\pieE + \pieEa}}%
+% \def\pieG{\fpEval{1.22 * 3.6}}\def\pieGa{\fpEval{\pieF + \pieFa}}%
+\def\pieR{30}%
+%-------------------------------------------------------------------------------
+\rput(50,30){\psset{linestyle=none,linecolor=white,linewidth=0.06}%
+\pswedge[fillcolor=teal!20](0,0){\pieR}{0}{\pieBa}%
+\pswedge[fillcolor=teal!50](0,0){\pieR}{\pieBa}{\pieCa}%
+% \pswedge[fillcolor=teal!45](0,0){\pieR}{\pieCa}{\pieDa}%
+% \pswedge[fillcolor=teal!60](0,0){\pieR}{\pieDa}{\pieEa}%
+% \pswedge[fillcolor=teal!75](0,0){\pieR}{\pieEa}{\pieFa}%
+% \pswedge[fillcolor=teal!90](0,0){\pieR}{\pieFa}{\pieGa}%
+% \pswedge[fillcolor=teal!100](0,0){\pieR}{\pieGa}{0}%
+\pswedge[fillcolor=teal!100](0,0){\pieR}{\pieCa}{0}%
+}%
+%-------------------------------------------------------------------------------
+\psset{linestyle=none}%
+\def\pieRec##1{\psframe[fillcolor=##1](-1.5,-1.5)(1.5,1.5)}%
+\def\pieKey##1##2{\rput[l](0,0){\pieRec{##1}}\rput[l](5,0){##2}}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\rput(95,0){%
+\rput(0,36){\pieKey{teal!20}{\sponsorNameA}}%
+\rput(0,30){\pieKey{teal!50}{\sponsorNameB}}%
+\rput(0,24){\pieKey{teal!100}{\sponsorNameC}}%
+%-------------------------------------------------------------------------------
+% \rput(95,0){%
+% \rput(0,36){\pieKey{teal!20}{SPV}}%
+% \rput(0,30){\pieKey{teal!50}{Govt. of Andhra Pradesh}}%
+% \rput(0,24){\pieKey{teal!100}{Govt. of India}}%
+% \rput(0,36){\pieKey{teal!20}{Plant and Machineries}}%
+% \rput(0,30){\pieKey{teal!30}{Buildings-10800 Sq. Feet}}%
+% \rput(0,24){\pieKey{teal!45}{Provision for Contingencies}}%
+% \rput(0,18){\pieKey{teal!60}{Land Cost 0.5 Acres for 30 years Lease}}%
+% \rput(0,12){\pieKey{teal!75}{Miscl Fixed Assets}}%
+% \rput(0,6){\pieKey{teal!90}{Pre-operative expenses}}%
+% \rput(0,0){\pieKey{teal!100}{Margin Money}}%
+}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\end{pspicture}}%
+% \caption{text box label}%
+% \label{box Caption Label}%
+\end{figure}
+%===============================================================================
+
+%===============================================================================
+}% end \meansFinance
+% endregion \meansFinance
+%===============================================================================

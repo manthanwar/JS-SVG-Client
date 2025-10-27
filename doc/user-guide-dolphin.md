@@ -4,7 +4,6 @@
 % Description: User guide for Dolphin website
 % ------------------------------------------------------------------------------
 % Author     : Amit Manohar Manthanwar (AMM)
-% Mailer     : manthanwar@hotmail.com
 % WebURL     : https:%manthanwar.github.io
 % ------------------------------------------------------------------------------
 % Author     : Purna Chandra Mohan (PCM)

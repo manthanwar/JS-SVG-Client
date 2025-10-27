@@ -3,8 +3,6 @@
 // Description   : JavaScript Class Triangle Geometry
 // -----------------------------------------------------------------------------
 // Author        : Amit Manohar Manthanwar
-// Mailer        : manthanwar@hotmail.com
-// Mobile        : +91.853.081.3398
 // WebURL        : https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright     : (c) 2024 Amit Manohar Manthanwar
@@ -23,7 +21,7 @@
  * @file Triangle.js
  * @since 2024-08-29
  * @description Triangle Formulae
- * @author Amit M. Manthanwar &lt;manthanwar@hotmail.com&gt;
+ * @author Amit M. Manthanwar;
  * @copyright (c) 2024 Amit M. Manthanwar
  *
  * @param {Number} x1 - x coordinate of point A

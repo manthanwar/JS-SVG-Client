@@ -3,8 +3,6 @@
 // Description   : SVG Polygon Class
 // -----------------------------------------------------------------------------
 // Author        : Amit Manohar Manthanwar
-// Mailer        : manthanwar@hotmail.com
-// Mobile        : +91.853.081.3398
 // WebURL        : https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright     : (c) 2024 Amit Manohar Manthanwar

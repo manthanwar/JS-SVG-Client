@@ -6,7 +6,6 @@
 # Description   : convert excel file into latex tables for the EU RIA proposal
 # ------------------------------------------------------------------------------
 # Author        : Amit Manohar Manthanwar
-# Mailer        : manthanwar@hotmail.com
 # GitHub        : https://manthanwar.github.io/
 # ------------------------------------------------------------------------------
 # Copyright     : ©2025 Amit Manohar Manthanwar

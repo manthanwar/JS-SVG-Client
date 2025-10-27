@@ -9,10 +9,10 @@ readme = "README.md"
 license = "Proprietary"
 license-files = ["LICEN[CS]E*"]
 authors = [
-    { name = "Amit Manohar Manthanwar", email = "manthanwar@hotmail.com" },
+    { name = "Amit Manohar Manthanwar" },
 ]
 maintainers = [
-    { name = "Amit Manohar Manthanwar", email = "manthanwar@hotmail.com" },
+    { name = "Amit Manohar Manthanwar" },
 ]
 classifiers = [
     "Development Status :: 4 - Beta",

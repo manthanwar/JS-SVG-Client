@@ -4,7 +4,6 @@
 // Source: https://stackoverflow.com/questions/10039679/how-can-i-calculate-the-area-of-a-bezier-curve
 // -----------------------------------------------------------------------------
 // Author     : Amit Manohar Manthanwar
-// Mailer     : manthanwar@hotmail.com
 // WebURL     : https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright  : (c) 2024 Amit Manohar Manthanwar

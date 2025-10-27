@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset='utf-8'>
+ <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+ <title>Page Title</title>
+ <meta name='viewport' content='width=device-width, initial-scale=1'>
+ <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+ <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+ <!-- <script src='main.js'></script> -->
+
+</head>
+<body>
+ <H1> Hello Trade</H1>
+ <!-- Smart Documentation Engine Section (Working Prototype) -->
+            <section id="smart-docs" class="module hidden">
+                <h2 class="text-3xl font-bold mb-2">Smart Documentation Engine</h2>
+                <p class="text-slate-600 mb-6">Enter key trade details once to auto-generate all required export documents.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <!-- Data Entry Form -->
+                    <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
+                        <form id="doc-form" action="https://js-svg-client.onrender.com/endPoint" method="POST">
+                            <h3 class="text-xl font-semibold mb-4 border-b pb-2">Trade Details</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="product" class="block text-sm font-medium text-slate-700">Product Description</label>
+                                    <input type="text" id="product" name="product" value="Handcrafted Leather Bags" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="destination" class="block text-sm font-medium text-slate-700">Destination Country</label>
+                                    <input type="text" id="destination" name="destination" value="Germany" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="hs-code" class="block text-sm font-medium text-slate-700">HS Code</label>
+                                    <input type="text" id="hs-code" name="hs-code" value="4202.21" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="buyer-info" class="block text-sm font-medium text-slate-700">Buyer Information</label>
+                                    <textarea id="buyer-info" name="buyer-info" rows="3" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">Berlin Imports GmbH&#10;Hauptstrasse 123&#10;10115 Berlin, Germany</textarea>
+                                </div>
+                                <div>
+                                    <label for="quantity" class="block text-sm font-medium text-slate-700">Quantity</label>
+                                    <input type="number" id="quantity" name="quantity" value="50" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                 <div>
+                                    <label for="price" class="block text-sm font-medium text-slate-700">Unit Price ($)</label>
+                                    <input type="number" id="price" name="price" value="150" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <button type="button" id="generate-docs-btn" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 font-semibold transition-transform transform hover:scale-105">
+                                    <i class="fas fa-cogs mr-2"></i>Generate Documents
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+</body>
+</html>

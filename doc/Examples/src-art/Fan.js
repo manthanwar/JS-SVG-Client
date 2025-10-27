@@ -3,7 +3,6 @@
 // Description   : JS Class to draw Ceiling Fan/Propeller using JS-SVG-Client
 // -----------------------------------------------------------------------------
 // Author: Amit Manohar Manthanwar
-// Mailer: manthanwar@hotmail.com
 // WebURL: https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright : (c) 2024 Amit Manohar Manthanwar

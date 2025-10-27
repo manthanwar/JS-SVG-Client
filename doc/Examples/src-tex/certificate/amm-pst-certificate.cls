@@ -4,7 +4,6 @@
 %-------------------------------------------------------------------------------
 % Author        : Amit Manohar Manthanwar
 % Office        : Pune, Maharashtra, India
-% Mailer        : manthanwar@hotmail.com
 % WebURL        : https://github.com/manthanwar
 %-------------------------------------------------------------------------------
 % Copyright     : �2025 Amit Manohar Manthanwar

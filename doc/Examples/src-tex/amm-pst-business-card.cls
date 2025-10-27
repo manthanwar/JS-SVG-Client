@@ -4,9 +4,6 @@
 %-------------------------------------------------------------------------------
 % Author        : Amit Manohar Manthanwar (AMM)
 % Locale        : Pune, Maharashtra, India
-% Mailer        : manthanwar@hotmail.com
-% Caller        : Skype: mnthanwar@hotmail.com
-% Mobile        : +91.853.081.3398
 % WebURL        : https://manthanwar.github.io
 %-------------------------------------------------------------------------------
 % Copyright     : ©2024 Amit Manohar Manthanwar

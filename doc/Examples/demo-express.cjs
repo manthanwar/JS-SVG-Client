@@ -11,13 +11,14 @@ const handlebars = require('express-handlebars');
 const router = express.Router();
 const app = express();
 const certificate = require('./routes/certificate.cjs');
+const report = require('./routes/report.cjs');
+const invoice = require('./routes/invoice.cjs');
 const hbsOptions = require('./routes/hbsOptions.cjs');
 
 //support parsing of application/x-www-form-urlencoded post data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // to support JSON-encoded bodies
 // app.use(express.urlencoded()); // to support URL-encoded bodies
-
 
 const hbs = handlebars.create(hbsOptions);
 app.engine('.hbs', hbs.engine);
@@ -37,6 +38,8 @@ app.use(express.static('doc/Examples/data-certificates'));
 
 // route
 app.use('/certificate', certificate);
+app.use('/report', report);
+app.use('/invoice', invoice);
 
 // app.use('/src-gauge/', express.static(__dirname + 'doc/Examples/src-plot'));
 // app.use(express.static('doc/Examples/src-gauge'));

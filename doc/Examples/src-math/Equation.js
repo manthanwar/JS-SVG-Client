@@ -3,7 +3,6 @@
 // Description   : JS Class to solve mathematical equations
 // -----------------------------------------------------------------------------
 // Author        : Amit Manohar Manthanwar
-// Mailer        : manthanwar@hotmail.com
 // WebURL        : https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright     : (c) 2024 Amit Manohar Manthanwar

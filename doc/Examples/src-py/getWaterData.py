@@ -5,7 +5,6 @@
 # Description   : python script for managing files
 # ------------------------------------------------------------------------------
 # Author        : Amit Manohar Manthanwar
-# Mailer        : manthanwar@hotmail.com
 # GitHub        : https://manthanwar.github.io/
 # ------------------------------------------------------------------------------
 # Copyright     : ©2024 Amit Manohar Manthanwar

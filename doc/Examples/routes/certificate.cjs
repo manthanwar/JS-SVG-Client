@@ -5,7 +5,6 @@
 // description   : certificate route
 // -----------------------------------------------------------------------------
 // Author        : Amit Manohar Manthanwar
-// Mailer        : manthanwar@hotmail.com
 // WebURL        : https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright     : (c) 2025 Amit Manohar Manthanwar
@@ -101,12 +100,12 @@ router.post('/printOne', (req, res, next) => {
  //  \\RequirePackage\{../src-tex/pst-art-logo\}%
  //  \\documentclass\{${classPath}\}%
  const fileContent = `\\documentclass\{amm-pst-certificate\}%
-\\begin{document\}%
+\\begin\{document\}%
 \\defineColor\{${data.color}\}%
 \\defineCertificate\{${data.certU}\}\{${data.certN}\}\{${certDMY}\}%
 \\defineStudent\{${data.nameT}\}\{${data.nameF}\}\{${data.nameM}\}\{${data.nameL}\}\{${data.nameN}\}%
 \\defineExam\{${data.examN}\}\{${examDMY}\}\{${data.examR}\}%
-\\end{document\}
+\\end\{document\}
  `;
 
  fs.writeFile(filePath, fileContent, (err) => {
@@ -174,7 +173,6 @@ router.get('/printManyPdf', (req, res) => {
   delay: req.query.delay ? req.query.delay : 60
  });
 });
-
 
 function runCommand(cmd) {
  return new Promise((resolve, reject) => {

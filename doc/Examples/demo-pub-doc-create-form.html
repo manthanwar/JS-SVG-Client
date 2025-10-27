@@ -1,0 +1,301 @@
+<div class="tab">
+ <button class="tablinks">Upload Excel</button>
+ <button class="tablinks">Fill Form</button>
+ <button class="tablinks">Upload JSON</button>
+</div>
+<!-- First Tab -->
+<div id="Mumbai" class="tabcontent">
+ <div style="margin: 40px">Coming Soon...</div>
+ <!-- <div class="formContainer">
+  <h2>Create Your Certificate</h2>
+
+  <form action="certificate/printOne" method="POST" autocomplete="on">
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <select
+      id="certU"
+      name="certU"
+      placeholder="University"
+      required
+      autofocus
+      style="width: 300px"
+     >
+      <option value="" disabled selected>Select University</option>
+      <option value="University of Agra">University of Agra</option>
+      <option value="University of Bangalore">University of Bangalore</option>
+      <option value="University of Bapatla">University of Bapatla</option>
+      <option value="University of Brno">University of Brno</option>
+      <option value="University of Cork">University of Cork</option>
+      <option value="University of Delhi">University of Delhi</option>
+      <option value="University of Doha">University of Doha</option>
+      <option value="University of Gaya">University of Gaya</option>
+      <option value="University of Kyiv">University of Kyiv</option>
+      <option value="University of Lima">University of Lima</option>
+      <option value="University of London">University of London</option>
+      <option value="University of Mumbai">University of Mumbai</option>
+      <option value="University of Nice">University of Nice</option>
+      <option value="University of Oslo">University of Oslo</option>
+      <option value="University of Paris">University of Paris</option>
+      <option value="University of Pisa">University of Pisa</option>
+      <option value="University of Pune">University of Pune</option>
+      <option value="University of Puri">University of Puri</option>
+      <option value="University of Rome">University of Rome</option>
+      <option value="University of York">University of York</option>
+     </select>
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <select
+      id="nameT"
+      name="nameT"
+      placeholder="Title"
+      required
+      style="max-width: 100px"
+      autofocus
+     >
+      <option value="" disabled selected>Title</option>
+      <option value="Ms">Ms</option>
+      <option value="Mr">Mr</option>
+     </select>
+     <input
+      type="text"
+      id="nameF"
+      name="nameF"
+      size="8"
+      required
+      placeholder="First Name"
+     />
+    </div>
+
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="nameM"
+      name="nameM"
+      size="8"
+      placeholder="Middle Name"
+     />
+    </div>
+
+    <div class="floating-label-group">
+     <input
+      type="text"
+      d="nameL"
+      name="nameL"
+      size="10"
+      required
+      placeholder="Last Name"
+     />
+    </div>
+
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="nameN"
+      name="nameN"
+      size="11"
+      required
+      placeholder="ID Number"
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <select
+      id="examN"
+      name="examN"
+      placeholder="Exam Name"
+      required
+      style="min-width: 450px"
+     >
+      <option value="" disabled selected>Exam Name</option>
+      <option value="Bachelor of Aerospace Engineering">
+       Bachelor of Aerospace Engineering
+      </option>
+      <option value="Bachelor of Arts">Bachelor of Arts</option>
+      <option value="Bachelor of Ayurvedic Medicine and Surgery">
+       Bachelor of Ayurvedic Medicine and Surgery
+      </option>
+      <option value="Bachelor of Biomedical Engineering">
+       Bachelor of Biomedical Engineering
+      </option>
+      <option value="Bachelor of Business Administration">
+       Bachelor of Business Administration
+      </option>
+      <option value="Bachelor of Chemical Engineering">
+       Bachelor of Chemical Engineering
+      </option>
+      <option value="Bachelor of Civil Engineering">
+       Bachelor of Civil Engineering
+      </option>
+      <option value="Bachelor of Commerce">Bachelor of Commerce</option>
+      <option value="Bachelor of Computer Engineering">
+       Bachelor of Computer Engineering
+      </option>
+      <option value="Bachelor of Dental Surgery">
+       Bachelor of Dental Surgery
+      </option>
+      <option value="Bachelor of Electrical Engineering">
+       Bachelor of Electrical Engineering
+      </option>
+      <option value="Bachelor of Homeopathic Medicine and Surgery">
+       Bachelor of Homeopathic Medicine and Surgery
+      </option>
+      <option value="Bachelor of Mechanical Engineering">
+       Bachelor of Mechanical Engineering
+      </option>
+      <option value="Bachelor of Medicine and Bachelor of Surgery">
+       Bachelor of Medicine and Bachelor of Surgery
+      </option>
+      <option value="Bachelor of Pharmacy">Bachelor of Pharmacy</option>
+      <option value="Bachelor of Physiotherapy">
+       Bachelor of Physiotherapy
+      </option>
+     </select>
+    </div>
+
+    <div class="floating-label-group">
+     <select id="examR" name="examR" placeholder="Exam Result" required>
+      <option value="" disabled selected>Exam Result</option>
+      <option value="First Class With Distinction">
+       First Class With Distinction
+      </option>
+      <option value="First Class">First Class</option>
+      <option value="Second Class">Second Class</option>
+      <option value="Third Class">Third Class</option>
+      <option value="Pass">Pass</option>
+      <option value="Conceded Pass">Conceded Pass</option>
+     </select>
+    </div>
+
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="examD"
+      name="examD"
+      placeholder="Exam Date"
+      onfocus="this.type='date'; this.style.width='240px';"
+      onblur="this.type='text'; this.style.width='240px'"
+      size="10"
+      style="width: 210px"
+      max="2025-05-31"
+      required
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="certN"
+      name="certN"
+      size="27"
+      required
+      placeholder="Certificate Number"
+     />
+    </div>
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="certD"
+      name="certD"
+      placeholder="Certificate Date"
+      onfocus="(this.type='date')"
+      onblur="(this.type='text');"
+      size="10"
+      style="width: 240px"
+      max="2025-05-31"
+      required
+     />
+    </div>
+    <div class="floating-label-group">
+     <div class="inputColor">
+      <label for="color" class="labelColor">Choose Color </label>
+      <input
+       type="color"
+       id="color"
+       name="color"
+       value="#c68172"
+       placeholder="color"
+      />
+     </div>
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div> -->
+</div>
+
+<!-- Second Tab -->
+<div id="London" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Project Report Using Excel</h2>
+
+  <form
+   action="report/printMany"
+   method="POST"
+   enctype="multipart/form-data"
+  >
+   <div class="floating-label-group-group" style="margin-top: 20px">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="nameF"
+      name="nameF"
+      size="12"
+      required
+      placeholder="Name"
+     />
+     <input type="email" id="email" name="email" placeholder="email" required />
+    </div>
+   </div>
+   <div class="floating-label-group-group" style="margin-top: 40px">
+    <div class="floating-label-group">
+     <label for="file" style="margin-top: -20px; margin-right: -20px"
+      >Select File:</label
+     >
+     <input type="file" id="file" name="file" required accept=".xlsx, .xls" />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group" style="margin-top: 40px">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>
+
+<!-- Third Tab -->
+<div id="Pune" class="tabcontent">
+ <div style="margin: 40px">Coming Soon...</div>
+ <!-- <div class="formContainer">
+  <h2>Create Your Certificate Using JSON</h2>
+
+  <form
+   action="certificate/printJson"
+   method="POST"
+   enctype="multipart/form-data"
+  >
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <label for="file">Select File </label>
+     <input type="file" id="file" name="file" required />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div> -->
+</div>

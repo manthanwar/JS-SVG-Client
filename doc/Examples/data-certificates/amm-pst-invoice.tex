@@ -1,0 +1,72 @@
+%===============================================================================
+% File Name     : amm-pst-invoice.tex
+% File Created  : 2025-10-26 15:56 UTC +01:00
+% Description   : PostScript Invoice
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Locale        : Pune, Maharashtra, India
+% Website       : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : Restricted
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%---------------+---------+-----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+-----------------------------------------------------
+% 26-Oct-2025   | AMM     | Initial Version
+%---------------+---------+-----------------------------------------------------
+%===============================================================================
+\documentclass[12pt]{amm-pst-invoice}% \listfiles
+\usepackage{amm-pst-invoice-bapatla}
+\begin{document}
+%===============================================================================
+%===============================================================================
+% region definitions
+%-------------------------------------------------------------------------------
+\def\customerId{1234567}%
+\def\buyerNames{First Middle Last}%
+\def\buyerLineA{Berlin Imports GmbH}%
+\def\buyerLineB{Hauptstrasse 123}%
+\def\buyerLineC{10115 Berlin}%
+\def\buyerState{Germany}%
+\def\buyerPhone{+49-123-456-7890}%
+\def\buyerEmail{buyer@germany.com}%
+%-------------------------------------------------------------------------------
+% \def\invoiceNo{PI20211015}% number
+% \def\purchaseO{N/A}% customer purchase order
+%-------------------------------------------------------------------------------
+\def\portOfLoad{Visakhapatnam Port}%
+\def\portOfExit{Hamburg}%
+\def\targetCity{Berlin}% final Destination
+% \def\termsDelivery{CPT Berlin}% Carriage Paid To
+% \def\termsPayments{100\% deposit TT before shipment}%
+%-------------------------------------------------------------------------------
+% \def\modA{JXB-182B}% model number
+% \def\pakA{5PCS/CTN}% package
+% Handcrafted Leather Bag
+% Handcrafted Leather Jacket
+% Handcrafted Leather Wallet
+% Handcrafted Leather Belt
+% Handcrafted Leather Glove
+\def\dogA{Handcrafted Leather Jacket}% goods description
+% \def\ddtA{TBA}% delivery date
+\def\qtyA{2}% quantity
+\def\unpA{12.00}% unit price
+\def\amtA{24.00}% amount
+\def\hscA{4202.21}% Harmonized System Code - 6 digit - World Customs Org
+%-------------------------------------------------------------------------------
+\def\totA{72.50}% total Amount
+% \def\totC{INR}% total Currency
+\def\totW{SEVENTY TWO AND CENTS fifty}% total in words
+%-------------------------------------------------------------------------------
+% endregion definitions
+%===============================================================================
+\makeInvoice
+%===============================================================================
+%===============================================================================
+\end{document}
+%===============================================================================

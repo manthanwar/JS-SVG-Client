@@ -5,7 +5,6 @@
 # Description   : Convert excel file into latexFile tables for EU proposal
 # ------------------------------------------------------------------------------
 # Author        : Amit Manohar Manthanwar
-# Mailer        : manthanwar@hotmail.com
 # GitHub        : https://manthanwar.github.io/
 # ------------------------------------------------------------------------------
 # Copyright     : ©2025 Amit Manohar Manthanwar

@@ -3,10 +3,6 @@
 % Description   : LaTeX Class File for Presentations
 %-------------------------------------------------------------------------------
 % Author        : Amit Manohar Manthanwar (AMM)
-% Locale        : Pune, Maharashtra, India
-% Mailer        : manthanwar@hotmail.com
-% Caller        : Skype: mnthanwar@hotmail.com
-% Mobile        : +91.853.081.3398
 % WebURL        : https://manthanwar.github.io
 %-------------------------------------------------------------------------------
 % Copyright     : ©2022 Amit Manohar Manthanwar

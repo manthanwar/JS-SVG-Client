@@ -71,6 +71,12 @@ article iframe {
  height: 50px;
 }
 
+.floating-label-div{
+    display: block;
+    margin-bottom: -20px;
+    margin-top: 40px;
+}
+
 .floating-label-group {
  position: relative;
  /* margin-bottom: 30px; */
@@ -122,6 +128,7 @@ font-size: 20px;
  color: #500000;
 }
 
+.floating-label-group input[type='number'],
 .floating-label-group input[type='date'],
 .floating-label-group input[type='date']:focus,
 .floating-label-group select {
@@ -148,6 +155,7 @@ font-size: 20px;
 }
 
 .floating-label-group select:valid,
+.floating-label-group input:valid,
 .floating-label-group input[type='text']:valid {
  color: teal;
  /* font-weight: bold; */

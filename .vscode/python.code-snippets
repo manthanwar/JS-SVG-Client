@@ -14,7 +14,6 @@
    "# description   : $1",
    "# ------------------------------------------------------------------------------",
    "# Author        : Amit Manohar Manthanwar",
-   "# Mailer        : manthanwar@hotmail.com",
    "# WebURL        : https:#manthanwar.github.io",
    "# ------------------------------------------------------------------------------",
    "# Copyright     : (c) $CURRENT_YEAR Amit Manohar Manthanwar",
@@ -29,5 +28,5 @@
   ]
  },
 
- 
+
 }

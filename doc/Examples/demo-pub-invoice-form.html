@@ -1,0 +1,346 @@
+<div class="tab">
+ <button class="tablinks">Form</button>
+ <button class="tablinks">Upload Excel</button>
+ <button class="tablinks">Upload JSON</button>
+</div>
+
+<!-- First Tab -->
+<div id="London" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Invoice</h2>
+  <form action="invoice/printOne" method="POST" autocomplete="on">
+   <div class="floating-label-div">Product Information:</div>
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <select id="goods" name="goods" required autofocus style="width: 300px">
+      <option value="" disabled selected>Select Product</option>
+      <option value="Handcrafted Leather Bag">Handcrafted Leather Bag</option>
+      <option value="Handcrafted Leather Jacket">
+       Handcrafted Leather Jacket
+      </option>
+      <option value="Handcrafted Leather Wallet">
+       Handcrafted Leather Wallet
+      </option>
+      <option value="Handcrafted Leather Belt">Handcrafted Leather Belt</option>
+      <option value="Handcrafted Leather Glove">
+       Handcrafted Leather Glove
+      </option>
+     </select>
+
+     <select id="hCode" name="hCode" required style="width: 200px">
+      <option value="" disabled selected>Select HS Code</option>
+      <!-- Jackets and jerseys -->
+      <option value="4203.10.10">&nbsp; 4203.10.10</option>
+      <!-- Handbags -->
+      <option value="4202.21">&nbsp; 4202.21</option>
+      <!-- Gloves -->
+      <option value="4203.29">&nbsp; 4203.29</option>
+      <!-- Wallets  -->
+      <option value="4202.31.20">&nbsp; 4202.31.20</option>
+      <!-- Belts -->
+      <option value="4203.30">&nbsp; 4203.30</option>
+     </select>
+
+     <select
+      id="quant"
+      name="quant"
+      required
+      style="width: 200px"
+     >
+      <option value="" disabled selected>Select Quantity</option>
+      <option value="1">&nbsp; 1</option>
+      <option value="2">&nbsp; 2</option>
+      <option value="3">&nbsp; 3</option>
+      <option value="4">&nbsp; 4</option>
+      <option value="5">&nbsp; 5</option>
+     </select>
+
+     <input
+      type="number"
+      id="price"
+      name="price"
+      min="0.01"
+      step="0.01"
+      size="4"
+      style="width: 160px"
+      placeholder="Unit Price"
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-div">Buyer Information:</div>
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <select
+      id="nameT"
+      name="nameT"
+      placeholder="Title"
+      required
+      style="max-width: 100px"
+     >
+      <option value="" disabled selected>Title</option>
+      <option value="Ms">Ms</option>
+      <option value="Mr">Mr</option>
+     </select>
+     <input
+      type="text"
+      id="nameF"
+      name="nameF"
+      size="8"
+      required
+      placeholder="First Name"
+     />
+
+     <input
+      type="text"
+      id="nameM"
+      name="nameM"
+      size="8"
+      placeholder="Middle Name"
+     />
+
+     <input
+      type="text"
+      d="nameL"
+      name="nameL"
+      size="10"
+      required
+      placeholder="Last Name"
+     />
+     <input
+      type="text"
+      id="nameN"
+      name="nameN"
+      size="11"
+      placeholder="Customer ID"
+     />
+    </div>
+   </div>
+
+   <!-- <div class="floating-label-div">Buyer Contact Information:</div> -->
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <input
+      type="email"
+      id="email"
+      name="email"
+      pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+      placeholder="email"
+      required
+     />
+     <input
+      type="tel"
+      id="phone"
+      name="phone"
+      placeholder="Phone 123-123-1234"
+      size="15"
+      maxlength="12"
+      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+      required
+     />
+     <select
+      id="state"
+      name="state"
+      required
+      autofocus
+      style="width: 285px"
+     >
+      <option value="" disabled selected>Select Buyer Country</option>
+      <option value="Australia">Australia</option>
+      <option value="Belgium">Belgium</option>
+      <option value="Brazil">Brazil</option>
+      <option value="Canada">Canada</option>
+      <option value="Denmark">Denmark</option>
+      <option value="Finland">Finland</option>
+      <option value="France">France</option>
+      <option value="Germany">Germany</option>
+      <option value="Greece">Greece</option>
+      <option value="Ireland">Ireland</option>
+      <option value="Israel">Israel</option>
+      <option value="Italy">Italy</option>
+      <option value="Japan">Japan</option>
+      <option value="Norway">Norway</option>
+      <option value="Poland">Poland</option>
+      <option value="Qatar">Qatar</option>
+      <option value="Russia">Russia</option>
+      <option value="Saudi Arabia">Saudi Arabia</option>
+      <option value="South Africa">South Africa</option>
+      <option value="Spain">Spain</option>
+      <option value="Sweden">Sweden</option>
+      <option value="Switzerland">Switzerland</option>
+      <option value="UAE">United Arab Emirates</option>
+      <option value="UK">United Kingdom</option>
+      <option value="USA">United States</option>
+     </select>
+    </div>
+   </div>
+
+   <!-- <div class="floating-label-div">Buyer Address:</div> -->
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="lineA"
+      name="lineA"
+      placeholder="Address Line 1"
+      size="20"
+      required
+     />
+     <input
+      type="text"
+      id="lineB"
+      name="lineB"
+      size="20"
+      placeholder="Address Line 2"
+     />
+     <input
+      type="text"
+      id="lineC"
+      name="lineC"
+      size="11"
+      placeholder="City"
+      required
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-div">Shipping Information:</div>
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="portL"
+      name="portL"
+      size="17"
+      placeholder="Port of Loading"
+      required
+     />
+     <input
+      type="text"
+      id="portD"
+      name="portD"
+      placeholder="Port of Discharge"
+      size="17"
+      required
+     />
+     <input
+      type="text"
+      id="cityF"
+      name="cityF"
+      size="17"
+      placeholder="Final Destination City"
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>
+
+<!-- Second Tab -->
+<div id="Mumbai" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Certificate Using Excel</h2>
+
+  <form
+   action="certificate/printMany"
+   method="POST"
+   enctype="multipart/form-data"
+  >
+   <div class="floating-label-group-group" style="margin-top: 20px">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="nameF"
+      name="nameF"
+      size="12"
+      required
+      placeholder="Name"
+     />
+     <input type="email" id="email" name="email" placeholder="email" required />
+    </div>
+   </div>
+   <div class="floating-label-group-group" style="margin-top: 40px">
+    <div class="floating-label-group">
+     <label for="file" style="margin-top: -20px; margin-right: -20px"
+      >Select File:</label
+     >
+     <input type="file" id="file" name="file" required accept=".xlsx, .xls" />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <div class="floating-label-group" style="margin-top: -20px">
+     <select
+      id="dataType"
+      name="dataType"
+      placeholder="Selection Type"
+      style="max-width: 300px"
+     >
+      <option value="" disabled selected>Selection Type</option>
+      <option value="head">Top Rows</option>
+      <option value="tail">Bottom Rows</option>
+      <option value="random">Randomly Selected</option>
+      <option value="indices">Specify Indices</option>
+     </select>
+     <select
+      id="dataRows"
+      name="dataRows"
+      placeholder="No of Rows to Print"
+      style="width: 260px"
+      style="display: none"
+     >
+      <option value="" disabled selected>No of Rows to Print</option>
+      <option value="1">&nbsp; 1</option>
+      <option value="2">&nbsp; 2</option>
+      <option value="3">&nbsp; 3</option>
+      <option value="4">&nbsp; 4</option>
+      <option value="5">&nbsp; 5</option>
+     </select>
+     <input
+      type="text"
+      id="dataList"
+      name="dataList"
+      size="20"
+      placeholder="1, 2, 3, 4, 5"
+      style="display: none"
+     />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group" style="margin-top: 40px">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>
+
+<!-- Third Tab -->
+<div id="Pune" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Certificate Using JSON</h2>
+
+  <form
+   action="certificate/printJson"
+   method="POST"
+   enctype="multipart/form-data"
+  >
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <label for="file">Select File </label>
+     <input type="file" id="file" name="file" required />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>

@@ -3,7 +3,6 @@
 // Description: JS Class to get country name
 // -----------------------------------------------------------------------------
 // Author     : Amit Manohar Manthanwar
-// Mailer     : manthanwar@hotmail.com
 // WebURL     : https://manthanwar.github.io
 // -----------------------------------------------------------------------------
 // Copyright  : (c) 2024 Amit Manohar Manthanwar

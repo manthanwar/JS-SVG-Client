@@ -142,16 +142,11 @@ data.navMenu = [
  //   href: 'https://bapfoundation.org/',
  //   target: '_blank'
  //  },
+ // page: 'Data-Driven Reporting and Publication Automation',
+ // href: 'demo-pub-branding.html'
  {
   link: 'Publications',
-  // page: 'Data-Driven Reporting and Publication Automation',
-  // href: 'demo-pub-branding.html'
   menu: [
-   //  {
-   //   link: 'Data-Driven Reporting',
-   //   page: 'Data-Driven Reporting and Publication Automation',
-   // href: 'demo-reporting.html'
-   //  },
    {
     link: 'Brand Identity',
     page: 'Design Intelligence and Document Automation',
@@ -161,12 +156,22 @@ data.navMenu = [
     link: 'Certificates and Awards',
     page: 'Certificates and Awards',
     href: 'demo-pub-certificate.html'
+   },
+   {
+    link: 'Document Automation',
+    page: 'Document Automation',
+    href: 'demo-pub-doc-automation.html'
    }
    //  {
    //   link: 'E-Commerce',
    //   page: 'E-Commerce Applications',
    //   href: 'demo-reporting.html'
-   //  }
+   //  },
+   //  {
+   //   link: 'Data-Driven Reporting',
+   //   page: 'Data-Driven Reporting and Publication Automation',
+   // href: 'demo-reporting.html'
+   //  },
   ]
  },
  {
