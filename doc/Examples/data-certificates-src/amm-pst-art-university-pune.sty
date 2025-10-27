@@ -1,0 +1,459 @@
+%===============================================================================
+% File Name     : amm-pst-art-university-pune.sty
+% Description   : LaTeX package for postscript water icons using PSTricks
+% Documentation : amm-pst-marksheet.tex
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Locale        : Pune, Maharashtra, India
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%===============================================================================
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 08-Aug-2025   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+\NeedsTeXFormat{LaTeX2e}[2023-11-01]
+\ProvidesPackage{amm-pst-art-university-pune}[Version 2025.08.08 Postscript Marksheet Designs (c) Amit M. Manthanwar]
+%===============================================================================
+\RequirePackage{pstricks}
+\RequirePackage{pst-all}
+\RequirePackage{multido}
+\RequirePackage{xkeyval}
+%===============================================================================
+%-------------------------------------------------------------------------------
+% key value family
+% \define@key{amm-pst-water}{iconWidth}[4]{\newcommand{\iconWidth}{#1}}
+%-------------------------------------------------------------------------------
+\makeatletter
+\def\kvf{amm-pst-art-university-pune}
+\providecommand{\kv}[2]{%
+\define@key{\kvf}{#1}[#2]{\expandafter\newcommand\csname #1\endcsname{##1}}%
+\presetkeys{\kvf}{#1}{}}
+\providecommand{\pstset}[1]{\presetkeys{\kvf}{#1}{}}
+\makeatother
+%===============================================================================
+
+
+%===============================================================================
+% region color definitions
+\newcommand{\defineColor}[1]{%[c68172]{%
+\definecolor{orangeUniversityOfPune}{HTML}{#1}%
+\def\certificateColor{orangeUniversityOfPune}%
+}%
+%-------------------------------------------------------------------------------
+% \definecolor{orangeUniversityOfPune}{HTML}{c68172}%
+% \definecolor{\certificateColor}{HTML}{994d3d}%
+%-------------------------------------------------------------------------------
+% endregion color definitions
+%===============================================================================
+
+%===============================================================================
+% region \defineCertificate
+% \def\certificateSchool{University Of Pune}%
+% \def\certificateNumber{0020250808}%
+% \def\certificateDate{1 August 2025}%
+%-------------------------------------------------------------------------------
+\newcommand{\defineCertificate}[3]{%
+\def\certificateSchool{#1}%
+\def\certificateNumber{#2}%
+\def\certificateDate{#3}%
+}%
+% endregion \defineCertificate
+%===============================================================================
+
+%===============================================================================
+% region define Student
+% \def\studentNumber{A12345678}%
+% \def\studentName{Title Name Middle Surname}%
+%-------------------------------------------------------------------------------
+% \newcommand{\studentTitle}[1]{\def\studentTitle{#1}}%
+\newcommand{\studentTitle}[1]{\if\relax\detokenize{#1}\relax\def\studentTitle{}\else\def\studentTitle{#1\space}\fi}%
+\newcommand{\studentNameF}[1]{\def\studentNameF{#1}}%
+\newcommand{\studentNameM}[1]{\if\relax\detokenize{#1}\relax\def\studentNameM{}\else\def\studentNameM{#1\space}\fi}%
+\newcommand{\studentNameL}[1]{\def\studentNameL{#1}}%
+\newcommand{\studentIdNum}[1]{\def\studentNumber{#1}}%
+\def\studentName{%
+\studentTitle\studentNameF\space\studentNameM\studentNameL}%
+%-------------------------------------------------------------------------------
+% \studentTitle{Mr}%
+% \studentNameF{Name}%
+% \studentNameM{}%
+% \studentNameL{Last}%
+% \studentIdNum{A12345678}%
+\newcommand{\defineStudent}[5]{%
+\studentTitle{#1}%
+\studentNameF{#2}%
+\studentNameM{#3}%
+\studentNameL{#4}%
+\studentIdNum{#5}%
+}%
+%-------------------------------------------------------------------------------
+% endregion define Student
+%===============================================================================
+
+%===============================================================================
+% region define Exam
+% \def\examName{Bachelor of Computer Engineering}%
+% \def\examDate{May 2025}%
+% \def\examResult{First Class With Distinction}%
+\newcommand{\defineExam}[3]{%
+\def\examName{#1}%
+\def\examDate{#2}%
+\def\examResult{#3}%
+\makeCertificate%
+}%
+%-------------------------------------------------------------------------------
+% endregion define Exam
+%===============================================================================
+
+%===============================================================================
+% region definitions
+%-------------------------------------------------------------------------------
+% \def\certificateSchool{University Of Pune}%
+% \def\certificateNumber{0020250808}%
+% \def\certificateDate{1 August 2025}%
+% \def\studentNumber{A12345678}%
+% \def\studentName{Title Name Middle Surname}%
+\def\examName{Bachelor of Computer Engineering}%
+\def\examDate{May 2025}%
+\def\examResult{First Class With Distinction}%
+% endregion definitions
+%===============================================================================
+
+%===============================================================================
+% region key value pairs
+%-------------------------------------------------------------------------------
+\kv{iconWidth}{10}
+% \kv{LineStyle}{solid}
+% \kv{LineColor}{black}
+% \kv{LineWidth}{0.3}
+% \kv{FillStyle}{none}
+% \kv{FillColor}{white}
+%-------------------------------------------------------------------------------
+% endregion key value pairs
+%===============================================================================
+
+%===============================================================================
+% region University of Pune Marksheet - Year 1999
+%-------------------------------------------------------------------------------
+% region data
+% The University of Pune (now Savitribai Phule Pune University)
+% http://www.unipune.ac.in/
+% Figure Floral Pune University
+% Width: 80 mm, Height: 80 mm
+% Pts: P1      P2      P3      P4
+% Base - Receptacle + Peduncle
+% C01: (  0,10)(  0,10)( -3,12)( -3,15)
+% C02: ( -3,15)( -3,15)( -7,15)( -7,20)
+% C03: ( -7,20)( -5,16)(  0,26)(  0,26)
+% Leaf
+% C04: (  0,26)(  0,26)(-16,21)(-16,28)
+% C05: (-16,28)(-16,28)(-29,35)(-20,36)
+% C06: (-20,36)(-20,40)(-41,42)(-29,46)
+% C07: (-29,46)(-44,52)(-41,57)(-32,57)
+% C08: (-32,57)(-32,66)(-20,52)(-20,52)
+% C09: (-20,52)(-18,61)(-13,60)(-13,47)
+% C10: (-13,47)( -3,54)(-22,28)(  0,28)
+% Leaf Stem
+% C11: (  0,27)(-23,23)(-10,53)(-35,53)
+% C12: (  0,27)(-19,23)(-17,50)(-17,50)
+% C13: (  0,27)(-15,23)(-17,43)(-26,43)
+% Flower Base - Sepal
+% C14: (  0,30)(-11,30)( -6,42)( -9,44)
+% C15: ( -9,44)( -2,46)( -3,33)(  0,33)
+% C15: ( -9,44)( -2,46)( -3,36)(  0,36)
+% Flower Petal Small
+% C16: (  0,38)( -4,38)(-14,70)(-19,68)
+% C17: (-19,68)(-14,77)( -3,38)(  0,38)
+% Flower Petal Big
+% C18: (  0,38)( -4,38)( -9,73)(-14,73)
+% C19: (-14,73)(-18,73)(-15,57)(-25,60)
+% C20: (-25,60)(-21,65)(-24,77)(-15,77)
+% C21: (-15,77)( -5,77)( -4,38)(  0,38)
+% Flower Stigma
+% C22: (  0,63)( -4,63)( -2,87)( -5,86)
+% C23: ( -5,86)( -8,86)(  0,50)(  0,35)
+% C24: (  0,35)( -1,35)( -8,80)( -7,87)
+% C25: ( -7,87)( -6,90)( -4,90)(  0,90)
+% endregion data
+%-------------------------------------------------------------------------------
+%==============================================================================
+% region Base Receptacle + Peduncle
+\newcommand{\pstPuneUniversityMarksheetBase}{%
+\pscustom{%
+\psbezier(  0,10)(  0,10)( -3,12)( -3,15)% C01 \psbezier( -3,15)
+( -3,15)( -7,15)( -7,20)% C02 \psbezier( -7,20)
+( -3,16)(  0,26)(  0,26)% C03
+\reversepath%(  0,10)
+\psbezier[xunit=-1mm]%
+(  0,10)( -3,12)( -3,15)% C01 \psbezier( -3,15)
+( -3,15)( -7,15)( -7,20)% C02 \psbezier( -7,20)
+( -3,16)(  0,26)(  0,26)% C03
+\closepath%
+}% \pscustom
+% \pspolygon(0,24)(3,27)(0,30)(-3,27)%
+\pscircle(0,27){3}%
+}%% Figure Floral Pune University Leaf
+% endregion Base Receptacle + Peduncle
+%-------------------------------------------------------------------------------
+% region \pstPuneUniversityMarksheetLeaf
+\newcommand{\pstPuneUniversityMarksheetLeaf}{%
+\pscustom{%
+\psbezier(  0,26)(  0,26)(-16,21)(-16,28)% C04 \psbezier(-16,28)
+(-16,28)(-29,35)(-20,36)% C05 \psbezier(-20,36)
+(-20,40)(-41,42)(-29,46)% C06 \psbezier(-29,46)
+(-44,52)(-41,57)(-32,57)% C07 \psbezier(-32,57)
+(-32,66)(-20,52)(-20,52)% C08 \psbezier(-20,52)
+(-18,61)(-13,60)(-13,47)% C09 \psbezier(-13,47)
+( -3,54)(-22,28)(  0,28)% C10
+}% \pscustom
+}%
+% endregion \pstPuneUniversityMarksheetLeaf
+%-------------------------------------------------------------------------------
+% region Leaf stem
+\newcommand{\pstPuneUniversityMarksheetLeafStem}{%
+\psbezier(  0,27)(-23,23)(-10,53)(-35,53)% C11
+\psbezier(  0,27)(-19,23)(-17,50)(-17,50)% C12
+\psbezier(  0,27)(-15,23)(-17,43)(-26,43)% C13
+}%
+% endregion Leaf stem
+%-------------------------------------------------------------------------------
+% region Flower Base - Sepal
+\newcommand{\pstPuneUniversityMarksheetFlowerBase}{%
+\pscustom{%
+\psbezier(  0,30)(-11,30)( -6,42)( -9,44)% C14 \psbezier( -9,44)
+( -2,46)( -3,38)(  0,38)% C15
+}}%
+% endregion Flower Base - Sepal
+%-------------------------------------------------------------------------------
+% region Flower Petal Small
+\newcommand{\pstPuneUniversityMarksheetFlowerPetalSmall}{%
+\pscustom{%
+\psbezier(  0,38)( -4,38)(-14,70)(-19,68)% C16 \psbezier(-19,68)
+(-14,77)( -3,38)(  0,38)% C17
+}}%
+% Flower Petal Big
+\newcommand{\pstPuneUniversityMarksheetFlowerPetalBig}{%
+\pscustom{%
+\psbezier(  0,38)( -4,38)( -9,73)(-14,73)% C18 \psbezier(-14,73)
+(-18,73)(-15,57)(-25,60)% C19 \psbezier(-25,60)
+(-21,65)(-24,77)(-15,77)% C20 \psbezier(-15,77)
+( -5,77)( -4,38)(  0,38)% C21
+}}%
+% endregion Flower Petal Small
+%-------------------------------------------------------------------------------
+% region Flower Stigma
+\newcommand{\pstPuneUniversityMarksheetFlowerStigma}{%
+\pscustom{%
+\psbezier(  0,63)( -4,63)( -2,87)( -5,86)% C22 \psbezier( -5,86)
+( -8,86)(  0,50)(  0,35)% C23 \psbezier(  0,35)
+( -1,35)( -8,80)( -7,87)% C24 \psbezier( -7,87)
+( -6,90)( -4,90)(  0,90)% C25
+}}%
+% endregion Flower Stigma
+%-------------------------------------------------------------------------------
+% region Flower Petal Big
+\newcommand{\pstPuneUniversityMarksheet}[1][]{\setkeys{\kvf}{#1}%
+\FPeval{\wide}{round(\iconWidth/80:3)}\psscalebox{\wide}{\rput(0,-10){%
+% base - Receptacle + Peduncle
+\psset{fillstyle=solid,fillcolor=\certificateColor,linestyle=none,linecolor=\certificateColor}%
+\rput(0,0){\pstPuneUniversityMarksheetBase}%
+% leaf
+\rput(0,0){%
+\psset{fillstyle=none,fillcolor=lime!10,linestyle=solid,linecolor=\certificateColor,linewidth=1mm}%
+\pstPuneUniversityMarksheetLeaf%
+\pstPuneUniversityMarksheetLeafStem%
+\psset{xunit=-1mm}%
+\pstPuneUniversityMarksheetLeaf%
+\pstPuneUniversityMarksheetLeafStem%
+}% \rput
+% Flower
+\psset{fillstyle=solid,fillcolor=\certificateColor,linestyle=none,linecolor=\certificateColor}%
+\rput(0,0){%
+\pstPuneUniversityMarksheetFlowerPetalSmall%
+\pstPuneUniversityMarksheetFlowerPetalBig%
+\pstPuneUniversityMarksheetFlowerStigma%
+\psset{xunit=-1mm}%
+\pstPuneUniversityMarksheetFlowerPetalSmall%
+\pstPuneUniversityMarksheetFlowerPetalBig%
+\pstPuneUniversityMarksheetFlowerStigma%
+}%
+% Flower base
+\psset{fillstyle=solid,fillcolor=\certificateColor,linestyle=solid,linecolor=\certificateColor}%
+\rput(0,0){%
+\pstPuneUniversityMarksheetFlowerBase%
+\psset{xunit=-1mm}%
+\pstPuneUniversityMarksheetFlowerBase%
+}%
+}}}% \figFloralUniversityOfPuneMarksheet
+% endregion Flower Petal Big
+%-------------------------------------------------------------------------------
+% endregion University of Pune Marksheet - Year 1999
+%===============================================================================
+
+%===============================================================================
+% region \testPage
+\newcommand{\testPage}{%
+\rput(0,0){\psline[linewidth=1,linecolor=red](0,0)(280,0)}%
+\rput(0,10){\psline[linewidth=2,linecolor=green](-10,0)(0,0)}%
+\rput(280,190){\psline[linewidth=2,linecolor=green](0,0)(12,0)}%
+\rput(0,0){\psline[linewidth=1,linecolor=blue](0,0)(0,190)}%
+\rput(280,190){\psline[linewidth=1,linecolor=red](0,0)(0,12)}%
+\rput(0,0){\psline[linewidth=1,linecolor=black](0,0)(0,-12)}%
+}%
+% endregion \testPage
+%===============================================================================
+
+%===============================================================================
+% region \pageBorderUniversityPune
+\newcommand{\pageBorderUniversityPune}{%
+\pstset{iconWidth=13.4}%
+\rput(0,0){\psrotate(0,0){135}{\pstPuneUniversityMarksheet}}%
+\rput(0,190){\psrotate(0,0){45}{\pstPuneUniversityMarksheet}}%
+\rput(280,190){\psrotate(0,0){-45}{\pstPuneUniversityMarksheet}}%
+\rput(280,0){\psrotate(0,0){-135}{\pstPuneUniversityMarksheet}}%
+\multirput(0,0)(0,10){19}{\psrotate(0,0){45}{\pstPuneUniversityMarksheet}}%
+\multirput(0,190)(10,0){28}{\psrotate(0,0){-45}{\pstPuneUniversityMarksheet}}%
+\multirput(280,10)(0,10){19}{\psrotate(0,0){-135}{\pstPuneUniversityMarksheet}}%
+\multirput(10,0)(10,0){28}{\psrotate(0,0){135}{\pstPuneUniversityMarksheet}}%
+}%
+% endregion \pageBorderUniversityPune
+%===============================================================================
+
+%===============================================================================
+\def\decP{3}%
+\newcommand{\fpEval}[1]{\fpeval{round(#1,\decP)}}%
+%===============================================================================
+
+
+
+%===============================================================================
+% region \RemoveSpaces
+\newcommand{\RemoveSpaces}[1]{\begingroup\spaceskip=1sp
+\xspaceskip=1sp #1\endgroup}%
+% endregion \RemoveSpaces
+%===============================================================================
+
+%===============================================================================
+% region \pageBackgroundText
+% #1 : University of Pune
+% #2 : how many times horizontal = 10
+% #3 : how many times vertical = 95
+% #4 : vertical gap factor = 0.7
+\newcommand{\pageBackgroundText}[4]{%
+\def\noH{\fpEval{280/#2}}%
+\def\noV{\fpEval{190/#3}}%
+\def\noVs{\fpEval{#4*190/#3}}%
+\multirput[lb](0,0)(0,\noV){#3}{%
+\multirput[lb](0,0)(\noH,0){#2}{\resizebox{\noH mm}{\noVs mm}{\textcolor{\certificateColor!25}{\MakeUppercase{\RemoveSpaces{#1}}}}}}}%
+%
+% endregion \pageBackgroundText
+%===============================================================================
+
+
+
+%===============================================================================
+% region \certificateSignature
+\newcommand{\certificateSignature}{%
+\rput[r](260,15){\color{\certificateColor}{\small{\textbf{\textsf{\uppercase{Controller of examination}}}}}}%
+%
+\rput(232,27){\psscalebox{1.5}{\psset{fillcolor=\certificateColor}\input{fig-signature.tex}}}%
+}%
+% endregion \certificateSignature
+%===============================================================================
+
+%==============================================================================
+% region \makeCertificate
+\newcommand{\makeCertificate}{%
+\begin{figure}[!ht]
+% \vspace*{-0.1mm}%
+% \begin{center}
+% \hspace*{-16.5mm}%
+% \hspace*{-19.5mm}%
+% \resizebox{1\textwidth}{!}{
+% \resizebox{278.4mm}{!}{%
+\resizebox{278.3mm}{189.9mm}{%
+% \psset{unit=10mm}%\sffamily
+% \begin{pspicture}(0,0)(29,21)
+\begin{pspicture}(0,0)(28,19)
+% \psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20]%,griddots=4,subgriddots=10] %,gridlabels=8pt,gridlabelcolor=red]
+%-------------------------------------------------------------------------------
+% \rput(0,0){\testPageSize}%
+\psset{unit=1mm,dimen=middle,linestyle=solid,fillstyle=none}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\pageBorderUniversityPune%
+%-------------------------------------------------------------------------------
+% \rput[l](10,10){\resizebox{35mm}{!}{University of Pune}}%
+\pageBackgroundText{\certificateSchool}{11}{90}{0.8}%
+%-------------------------------------------------------------------------------
+\rput(140,175){\resizebox{!}{7mm}{\textcolor{\certificateColor}{\textbf{\MakeUppercase{\certificateSchool}}}}}%
+%-------------------------------------------------------------------------------
+\def\hspaceGap{\hspace{10mm}}%
+\def\certFontSize{\large\textbf}%
+%
+\rput[lt](20,150){\color{\certificateColor}{\certFontSize{Number:}}\hspaceGap\color{black}{\certFontSize{\studentNumber}}}%
+%
+\rput[rt](260,150){\color{\certificateColor}{\certFontSize{Date:}}\hspaceGap\color{black}{\certFontSize{\MakeUppercase{\certificateDate}}}}%
+%
+\rput(145,130){\color{\certificateColor}{\certFontSize{This is to certify that}}}%
+%
+\rput[l](20,110){\color{\certificateColor}{\certFontSize{Mr/Ms}}\hspaceGap\color{black}{\certFontSize{\MakeUppercase{\studentName}}}}%
+%
+\rput[l](20,90){\color{\certificateColor}{\certFontSize{Passed the}}%
+\hspaceGap\color{black}{\certFontSize{\MakeUppercase{\examName}}}%
+\hspaceGap\color{\certificateColor}{\certFontSize{examination held by}}}%%
+%
+\rput[l](20,70){\color{\certificateColor}{\certFontSize{\certificateSchool\ in the month of}}\hspaceGap\color{black}{\certFontSize{\MakeUppercase{\examDate}}}}%
+\rput[l](20,50){\color{\certificateColor}{\certFontSize{and was placed in}}
+\hspaceGap\color{black}{\certFontSize{\MakeUppercase{\examResult}}}}%
+%
+\rput[l](20,15){\color{black}{\LARGE{\fontfamily{lmtt}\fontseries{b}\selectfont{\certificateNumber}}}}%
+%-------------------------------------------------------------------------------
+\certificateSignature%
+%------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\end{pspicture}
+}% \resizebox
+% \caption{}
+% \label{fig:}
+% \end{center}
+\end{figure}
+% ps2pdf -dNOSAFER fileName.ps
+}% end \newcommand{\makeCertificate}
+% endregion \makeCertificate
+%==============================================================================
+
+
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%-------------------------------------------------------------------------------
+\endinput
+%% End of file
+%===============================================================================
+%===============================================================================
+%===============================================================================
+
+\newcommand{\iconWaterWheel}[1][]{\setkeys{\kvf}{#1}%
+\FPeval{\wide}{round(\iconWidth/4:3)}\psscalebox{\wide}{%
+\psset{linestyle=solid}%
+\pscircle(0,0){2}%
+}}% end \psscalebox % end \waterWheel
+%-------------------------------------------------------------------------------
+% \rput(2,2){\waterWheel[iconWidth=4,colorWheel=red]}
+% \rput(2,2){\waterWheel}
+% \rput(13,18.5){Cloths @ \number\inputlineno}
+%===============================================================================

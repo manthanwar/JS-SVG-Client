@@ -138,4 +138,19 @@ export class Utils {
     document.getElementsByClassName('tablinks')[0].click();
    });
  }
+
+ /**
+  * @description fetch the url resource
+  */
+ static fetchUrlNoToggle(fileName, article) {
+  fetch(fileName)
+   .then((response) => response.text())
+   .then((data) => {
+    article.innerHTML = data;
+    Utils.tabClose();
+    Utils.tabClick();
+    document.getElementById('London').style.display = 'block';
+    document.getElementsByClassName('tablinks')[0].click();
+   });
+ }
 }

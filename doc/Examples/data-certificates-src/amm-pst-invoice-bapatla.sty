@@ -1,0 +1,391 @@
+%===============================================================================
+% File Name     : amm-pst-invoice-bapatla.sty
+% File Created  : 2025-10-26 22:06 UTC +01:00
+% Description   : Invoice of Bapatla Foundation
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Address       : Pune, Maharashtra, India
+% Website       : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : Restricted
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%---------------+---------+-----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+-----------------------------------------------------
+% 26-Oct-2025   | AMM     | Initial Version
+%---------------+---------+-----------------------------------------------------
+%===============================================================================
+\NeedsTeXFormat{LaTeX2e}[2023-11-01]
+\ProvidesPackage{amm-pst-invoice-bapatla}[2025/10/26 Invoice Bapatla (c) Amit Manohar Manthanwar]
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%==============================================================================
+\def\creatorNames{Bapatla Company Limited}%
+\def\creatorLocal{UNIT 101, GOLD TOWER 2, LAKE ROAD, BAPATLA 123456, INDIA}%
+\def\creatorPhone{+91-123-456-7890}%
+\def\creatorEmail{info@bapatla.com}%
+%-------------------------------------------------------------------------------
+\def\sellerNames{Bapatla Company Limited}%
+\def\sellerLineA{Unit 101, Gold Tower 2}%
+\def\sellerLineB{Lake Road Industrial Park}%
+\def\sellerLineC{Bapatla 123456}%
+\def\sellerState{India}%
+\def\sellerPhone{+91-123-456-7890}%
+\def\sellerEmail{info@bapatla.com}%
+%-------------------------------------------------------------------------------
+\def\customerId{1234567}%
+\def\buyerNames{First Middle Last}%
+\def\buyerLineA{Berlin Imports GmbH}%
+\def\buyerLineB{Hauptstrasse 123}%
+\def\buyerLineC{10115 Berlin}%
+\def\buyerState{Germany}%
+\def\buyerPhone{+49-123-456-7890}%
+\def\buyerEmail{buyer@germany.com}%
+%-------------------------------------------------------------------------------
+\def\invoiceNo{PI20211015}% number
+\def\purchaseO{N/A}% customer purchase order
+%-------------------------------------------------------------------------------
+\def\portOfLoad{Visakhapatnam Port}%
+\def\portOfExit{Hamburg}%
+\def\targetCity{Berlin}% final Destination
+% \def\termsDelivery{CPT Berlin}% Carriage Paid To
+\def\termsDelivery{CPT \targetCity}% Carriage Paid To
+\def\termsPayments{100\% deposit TT before shipment}%
+%-------------------------------------------------------------------------------
+\def\modA{JXB-182B}% model number
+\def\pakA{5PCS/CTN}% package
+\def\dogA{Non-contact Thermometer}% goods description
+\def\ddtA{TBA}% delivery date
+\def\qtyA{2}% quantity
+\def\unpA{12.00}% unit price
+\def\amtA{24.00}% amount
+\def\hscB{}% Harmonized System Code
+%-------------------------------------------------------------------------------
+\def\modB{}% model number
+\def\pakB{}% package
+\def\dogB{}% goods description
+\def\ddtB{}% delivery date
+\def\qtyB{}% quantity
+\def\unpB{}% unit price
+\def\amtB{}% amount
+\def\hscB{}% Harmonized System Code
+%-------------------------------------------------------------------------------
+\def\modC{}% model number
+\def\pakC{}% package
+\def\dogC{}% goods description
+\def\ddtC{}% delivery date
+\def\qtyC{}% quantity
+\def\unpC{}% unit price
+\def\amtC{}% amount
+\def\hscC{}% Harmonized System Code
+%-------------------------------------------------------------------------------
+\def\modD{}% model number
+\def\pakD{}% package
+\def\dogD{}% goods description
+\def\ddtD{}% delivery date
+\def\qtyD{}% quantity
+\def\unpD{}% unit price
+\def\amtD{}% amount
+\def\hscD{}% Harmonized System Code
+%-------------------------------------------------------------------------------
+\def\modE{}% model number
+\def\pakE{}% package
+\def\dogE{}% goods description
+\def\ddtE{}% delivery date
+\def\qtyE{}% quantity
+\def\unpE{}% unit price
+\def\amtE{}% amount
+\def\hscE{}% Harmonized System Code
+%-------------------------------------------------------------------------------
+\def\modF{}% model number
+\def\pakF{}% package
+\def\dogF{}% goods description
+\def\ddtF{}% delivery date
+\def\qtyF{}% quantity
+\def\unpF{}% unit price
+\def\amtF{}% amount
+\def\hscF{}% Harmonized System Code
+%-------------------------------------------------------------------------------
+\def\modG{}% model number
+\def\pakG{}% package
+\def\dogG{}% goods description
+\def\ddtG{}% delivery date
+\def\qtyG{}% quantity
+\def\unpG{}% unit price
+\def\amtG{}% amount
+\def\hscG{}% Harmonized System Code
+%-------------------------------------------------------------------------------
+\def\modH{}% model number
+\def\pakH{}% package
+\def\dogH{}% goods description
+\def\ddtH{}% delivery date
+\def\qtyH{}% quantity
+\def\unpH{}% unit price
+\def\amtH{}% amount
+\def\hscH{}% Harmonized System Code
+%-------------------------------------------------------------------------------
+\def\viaS{DHL}% Ship by
+\def\ddtS{TBA}% date of delivery
+\def\qtyS{1}% quantity
+\def\unpSP{48.50}% unit price
+\def\amtS{48.50}% amount
+%-------------------------------------------------------------------------------
+\def\totA{72.50}% total Amount
+\def\totC{USD}% total Currency
+\def\totW{SEVENTY TWO AND CENTS fifty}% total in words
+%-------------------------------------------------------------------------------
+\def\accountNam{Bapatla Company Limited}% Name
+\def\accountNum{01234567891}% Number
+\def\accountAdd{BANK OF INDIA TOWER, A1 GARDEN ROAD, CENTRAL, BAPATLA}% address
+\def\bankerBicS{BANKINBPXXX}% Swift BIC = Business Identifier Code
+\def\bankerName{BANK OF INDIA (ANDHRA) LIMITED, INDIA}% Name
+\def\bankerCode{012}% Name
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\def\signerName{Bapatla Company Limited}%
+\def\signerSign{fig-signature.tex}% tex file name of signature
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+% % \def\creatorEmail{}%
+% \def\creatorEmail{}%
+% \def\creatorEmail{}%
+
+%==============================================================================
+% region \makeInvoice
+\newcommand{\makeInvoice}{%
+\begin{figure}[!ht]
+% \vspace*{-0.1mm}%
+% \begin{center}
+% \hspace*{-16.5mm}%
+% \hspace*{-19.5mm}%
+\resizebox{1\textwidth}{!}{
+% \resizebox{278.4mm}{!}{%
+% \resizebox{278.3mm}{189.9mm}{%
+% \psset{unit=10mm}%\sffamily
+% \begin{pspicture}(0,0)(29,21)
+\begin{pspicture}(0,0)(17,26)
+% \psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20]%,griddots=4,subgriddots=10] %,gridlabels=8pt,gridlabelcolor=red]
+%-------------------------------------------------------------------------------
+% \rput(0,0){\testPageSize}%
+\psset{unit=1mm,dimen=middle,fillstyle=none,linestyle=solid,linewidth=0.4}%
+%-------------------------------------------------------------------------------
+% \def\motifColor{teal}%
+%-------------------------------------------------------------------------------
+% \rput(50,50){\motifMain[iconWidth=40]}%
+%-------------------------------------------------------------------------------
+% \rput(0,0){\testPageSize}%
+%-------------------------------------------------------------------------------
+% Logo
+% \rput(0,40){\psLogoJapanLady[iconWidth=10]}%
+\rput(0,5){%
+\rput(0,248){\psLogoBapatla{20}}%
+\rput(85,260){\Huge{\textbf{\creatorNames}}}
+\rput(85,250){\small{\creatorLocal}}
+\rput(85,245){\small{\creatorPhone\ \; $\bullet$ \; \creatorEmail}}}%
+%-------------------------------------------------------------------------------
+\setlength{\tabcolsep}{1mm}%
+% \setlength{\fboxsep}{2mm}%
+\setlength{\fboxrule}{0.1mm}%
+\def\frameLineColor{white}%
+\def\frameFillColor{white}%
+%-------------------------------------------------------------------------------
+\rput[tl](0,240){%
+% \begin{minipage}[position][height][inner-pos]{width}%
+\resizebox{85mm}{!}{%
+\fcolorbox{\frameLineColor}{\frameFillColor}{%
+\begin{minipage}[t][40mm][c]{85mm}\footnotesize%
+% \hspace{4mm}\textbf{Seller}\\[2mm]
+% \rput[lb](4,0){\textbf{BAPATLA COMPANY LIMITED}}\\[2mm]
+% \begin{tabular}{@{\hspace{4mm}}lcl}
+% \begin{tabular}{R{16mm}C{2mm}L{60mm}}%
+\begin{tabular}{R{16mm}cL{60mm}}%
+\textbf{Seller} &:& \textbf{\MakeUppercase{\sellerNames}}\\\\
+Address & : & \sellerLineA \\
+& & \sellerLineB \\
+& & \sellerLineC, \MakeUppercase{\sellerState}\\\\
+Telephone & : & \sellerPhone\\
+Email & : & \sellerEmail
+\end{tabular}
+\end{minipage}}%
+}%
+}%
+%-------------------------------------------------------------------------------
+\rput[tl](0,200){%
+\resizebox{85mm}{!}{%
+\fcolorbox{\frameLineColor}{\frameFillColor}{%
+\begin{minipage}[t][40mm][c]{85mm}\footnotesize%
+% \textbf{Buyer}\\[2mm]
+% \rput[lb](2,0){\textbf{\MakeUppercase{First Middle Last}}}\\[2mm]
+% \begin{tabular}{@{\hspace{2mm}}lcl}
+\begin{tabular}{R{16mm}cL{60mm}}
+\textbf{Buyer} &:& \textbf{\MakeUppercase{\buyerNames}}\\\\
+Address & : & \buyerLineA\\
+& & \buyerLineB\\
+& & \buyerLineC, \MakeUppercase{\buyerState}\\\\
+Telephone & : & \buyerPhone\\
+Email & : & \buyerEmail
+\end{tabular}
+\end{minipage}}%
+}%
+}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\rput[tl](85,240){%
+\resizebox{85mm}{!}{%
+\fcolorbox{\frameLineColor}{\frameFillColor}{%
+\begin{minipage}[t][30mm][c]{85mm}\footnotesize%
+\centering%
+\begin{tabular}{R{27mm}cL{50mm}}
+Invoice NO &:& \invoiceNo\\[1mm]
+Customer NO &:& \customerId\\[1mm]
+Customer PO &:& \purchaseO\\[1mm]
+Date &:& \number\day\ \monthName\ \number\year
+\end{tabular}
+\end{minipage}}%
+}%
+}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\rput[tl](85,210){%
+\resizebox{85mm}{!}{%
+\fcolorbox{\frameLineColor}{\frameFillColor}{%
+\begin{minipage}[t][30mm][c]{85mm}\footnotesize\centering%
+\begin{tabular}{R{27mm}cL{50mm}}
+Loading Port &:& \portOfLoad\\[1mm]
+Discharge Port &:& \portOfExit\\[1mm]
+Final Destination &:& \targetCity\\[1mm]
+Delivery Terms &:& \termsDelivery\\[1mm]
+Payment Terms &:& \termsPayments
+\end{tabular}%
+\end{minipage}}%
+}%
+}%
+%-------------------------------------------------------------------------------
+\def\amtFillColor{teal}%
+\def\amtFontColor{white}%
+%-------------------------------------------------------------------------------
+\rput[tl](85,180.5){%
+\resizebox{85mm}{!}{%
+\fcolorbox{\frameLineColor}{\frameFillColor}{%
+\begin{minipage}[t][20mm][c]{85mm}%\normalsize%\centering%
+\begin{tabular}{R{27mm}cL{50mm}}
+Amount &:& \rput(20,1.4){\psframe[fillstyle=solid,fillcolor=\amtFillColor,linestyle=none](-19.4,-5)(20,5)}\rput(19.4,1.4){\textcolor{\amtFontColor}{\large\fontfamily{phv}\fontseries{b}\selectfont{\totA}}}
+\end{tabular}%
+\end{minipage}}%
+}%
+}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\setlength{\tabcolsep}{1mm}%
+\setlength\extrarowheight{2mm}%
+\def\rowSpa{2mm}%
+\arrayrulecolor{gray}%
+\setlength{\arrayrulewidth}{0.1mm}%
+%-------------------------------------------------------------------------------
+\rput[tl](0,155){%
+% \resizebox{170mm}{!}{%
+% \fcolorbox{\frameLineColor}{\frameFillColor}{%
+\begin{minipage}[t][60mm][t]{170mm}\footnotesize%\centering%
+% \vspace{4mm}%
+\resizebox{170mm}{!}{%
+% \begin{tabular}{|C{20mm}|C{20mm}|C{50mm}|C{25mm}|C{15mm}|C{20mm}|C{20mm}|}\hline
+\begin{tabular}{|C{18mm}C{18mm}C{45mm}C{16mm}C{22mm}C{16mm}C{18mm}C{18mm}|}\hline
+\rowcolor{gray!20}%
+% \rowcolor{teal}%
+\textbf{Model} & \textbf{Packages} & \textbf{Description of Goods} & \textbf{HS Code} & \textbf{Delivery Date} & \textbf{Quantity} & \textbf{Unit Price} & \textbf{Amount}\\[\rowSpa]\hline
+\modA & \pakA & \dogA & \hscA & \ddtA & \qtyA & \unpA & \amtA \\[\rowSpa]
+\modB & \pakB & \dogB & \hscB & \ddtB & \qtyB & \unpB & \amtB \\[\rowSpa]
+\modC & \pakC & \dogC & \hscC & \ddtC & \qtyC & \unpC & \amtC \\[\rowSpa]
+\modD & \pakD & \dogD & \hscD & \ddtD & \qtyD & \unpD & \amtD \\[\rowSpa]
+\modE & \pakE & \dogE & \hscE & \ddtE & \qtyE & \unpE & \amtE \\[\rowSpa]
+\modF & \pakF & \dogF & \hscF & \ddtF & \qtyF & \unpF & \amtF \\[\rowSpa]
+% \modG & \pakG & \dogG & \ddtG & \qtyG & \unpG & \amtG \\[\rowSpa]
+% \modH & \pakH & \dogH & \ddtH & \qtyH & \unpH & \amtH \\[\rowSpa]
+\hline
+\multicolumn{4}{|r}{Shipping charge (by {\viaS})} &  \ddtS & \qtyS & \unpSP & \amtS\\[\rowSpa]\hline
+\multicolumn{6}{|r}{TOTAL} & \totC & \totA\\[\rowSpa]\hline
+\multicolumn{8}{c}{}\\[-4mm]
+\multicolumn{8}{c}{SAY TOTAL \hspace{10mm} \totC\ \MakeUppercase{\totW} ONLY}
+% \multicolumn{2}{r}{SAY USD TOTAL} & \multicolumn{5}{l}{\hspace{10mm}HI HI TOTAL}
+\end{tabular}}%
+\end{minipage}}%
+% }%
+% }%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\rput[tl](0,78){%
+% \begin{minipage}[position][height][inner-pos]{width}%
+\begin{minipage}[t][80mm][t]{170mm}%
+\footnotesize
+\textbf{Remarks:}
+\begin{itemize}[nosep,topsep=2mm]
+\item Seller will arrange the shipment for the above mentioned goods by ourself.
+\item This invoice is only for both parties' record (buyer and seller). Also, it will make payment for buyer.
+\item[] No any other additionally purpose.
+\item Samples production's ready date will be 12 days when we receive the deposit.
+\end{itemize}
+\vspace{2mm}%
+\textbf{Bank Details:}\\[2mm]
+\setlength{\tabcolsep}{2mm}%
+\setlength\extrarowheight{0mm}%
+\fontfamily{cmtt}\selectfont{%
+\begin{tabular}{L{30mm}cl}
+Account Name &:& \accountNam\\
+Account Number &:& \accountNum\\
+Account Address &:& \accountAdd\\
+SWIFT BIC &:& \bankerBicS\\
+Bank Name &:& \bankerName\\
+Bank Code &:& \bankerCode
+\end{tabular}}
+\end{minipage}}%
+%-------------------------------------------------------------------------------
+\footnotesize%
+\rput(0,-5){%
+\rput[lt](0,20){For and Behalf of}%
+\rput(20,10){\psset{fillcolor=black}\psscalebox{1}{\input{\signerSign}}}%
+\rput[lb](0,0){\MakeUppercase{\signerName}}%
+\rput(110,10){Confirmed By}%
+}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\psset{linecolor=gray,linewidth=0.1mm}%
+\def\fBox##1{\psframe(0,0)(85,##1)}%
+\rput(0,200){\fBox{40}}%
+\rput(0,160){\fBox{40}}%
+\rput(85,210){\fBox{30}}%
+\rput(85,180){\fBox{30}}%
+\rput(85,160){\fBox{20}}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\end{pspicture}
+}% \resizebox
+% \caption{}
+% \label{fig:}
+% \end{center}
+\end{figure}
+% ps2pdf -dNOSAFER fileName.ps
+}% end \makeInvoice
+% endregion \makeInvoice
+%===============================================================================

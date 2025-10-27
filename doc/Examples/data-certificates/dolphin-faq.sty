@@ -1,0 +1,158 @@
+%===============================================================================
+% File Name     : dolphin-faq.sty
+% File Created  : 2025-10-27 18:25 UTC +01:00
+% Description   : dolphin design intelligence frequently asked questions
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Address       : Pune, Maharashtra, India
+% Website       : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Copyright     : ©2025 Amit Manohar Manthanwar
+% License       : Restricted
+% License       : LaTeX Project Public License
+%-------------------------------------------------------------------------------
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN archives
+% in directory macros/latex/base/lppl.txt.
+%---------------+---------+-----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+-----------------------------------------------------
+% 27-Oct-2025   | AMM     | Initial Version
+%---------------+---------+-----------------------------------------------------
+%===============================================================================
+%===============================================================================
+\NeedsTeXFormat{LaTeX2e}[2023-11-01]
+\ProvidesPackage{dolphin-faq}[2025/10/27 Dolphin Design Intelligence FAQ (c) Amit Manohar Manthanwar]
+%===============================================================================
+% \usepackage[scaled]{helvet}
+% \usepackage{nunito}
+%===============================================================================
+
+%===============================================================================
+\def\colorQed{red!50}%
+\newcounter{question}[section]
+\newcommand{\question}[1]{\stepcounter{question}\vspace{0.2\parskip}%
+\fontNunitoB{Q\arabic{question}.} \fontNunitoSb{#1}}%
+\newcommand{\answer}[1]{\par\vspace{-0.8\parskip}%
+\fontNunitoSb{Answer:} \fontNunitoL{#1}\hfill{\scriptsize\color{\colorQed}{$\blacksquare$}}\vspace{-0.5\parskip}}%
+%===============================================================================
+
+%===============================================================================
+%-------------------------------------------------------------------------------
+\setlength{\parskip}{10mm}
+% \setlength{\baselineskip}{15pt}
+\renewcommand{\baselinestretch}{1.2}
+%===============================================================================
+
+%===============================================================================
+\title{\fontNunitoEb{Dolphin Design Intelligence}\\[1mm]
+\Large\fontNunito{Frequently Asked Questions}}
+\author{\fontNunitoL{Dolphin Development Team}}
+% \author{\fontNunitoL{}}
+% \date{\today}
+%===============================================================================
+%===============================================================================
+% \newcommand{\textBf}[1]{{\fontNunitoSb{#1}}}
+%===============================================================================
+
+%===============================================================================
+% region front cover
+\newcommand{\makeCoverFront}{%
+\clearpage
+\thispagestyle{empty}
+%-------------------------------------------------------------------------------
+\begin{figure}[!h]
+\centering%
+\resizebox{\textwidth}{!}{%
+% \fontfamily{cmss}\selectfont
+% \sffamily\tiny%\scriptsize\tiny%
+%\psset{unit=10mm}
+\begin{pspicture}(0,0)(17,26)%[saveNodeCoors]
+% \psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20, gridlabels=8pt, gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm] % griddots=4, subgriddots=10,
+%-------------------------------------------------------------------------------
+\psset{unit=1mm,dimen=middle,fillstyle=none,linestyle=solid,linecolor=teal!80!blue,linewidth=1,linecap=1,linejoin=1}%
+%-------------------------------------------------------------------------------
+% \rput(-20,-17){\psframe[fillstyle=solid,fillcolor=red,linestyle=none](0,0)(210,10)}%
+%-------------------------------------------------------------------------------
+\rput(25,215){\psline[linecolor=red!80](0,0)(0,65)}%
+\rput(65,215){\psline[linecolor=teal!80](0,0)(0,65)}%
+\rput(105,215){\psline[linecolor=Purple!80](0,0)(0,65)}%
+\rput(145,215){\psline[linecolor=Maroon!80](0,0)(0,65)}%
+%
+\psset{fillstyle=solid,linestyle=none}%
+\rput(25,210){\pscircle[fillcolor=red!40](0,0){15}}%
+\rput(65,210){\pscircle[fillcolor=teal!40](0,0){15}}%
+\rput(105,210){\pscircle[fillcolor=Purple!40](0,0){15}}%
+\rput(145,210){\pscircle[fillcolor=Maroon!40](0,0){15}}%
+%
+\psset{fillstyle=none,linestyle=solid,linecolor=white,linewidth=0.5}%
+\rput(25,210){\pscircle(0,0){13}}%
+\rput(65,210){\pscircle(0,0){13}}%
+\rput(105,210){\pscircle(0,0){13}}%
+\rput(145,210){\pscircle(0,0){13}}%
+%
+{\color{white}{%
+\rput(25,210){\resizebox{10mm}{!}{\fontNunitoEb{?}}}%
+\rput(65,210){\resizebox{10mm}{!}{\fontNunitoEb{?}}}%
+\rput(105,210){\resizebox{10mm}{!}{\fontNunitoEb{?}}}%
+\rput(145,210){\resizebox{10mm}{!}{\fontNunitoEb{?}}}%
+}}%
+%-------------------------------------------------------------------------------
+\rput(85,140){\resizebox{90mm}{!}{\fontMontserratEb{FAQs}}}%
+\rput(85,115){\resizebox{90mm}{!}{\fontNunitoB{Frequently Asked Questions}}}%
+\rput[rb](170,18){\resizebox{70mm}{!}{\fontMontserratSb{DOLPHIN INTELLIGENT BY}}}%
+% \rput[rb](170,0){\resizebox{60mm}{!}{\fontMontserratSb{DESIGN}}}%
+\rput[rb](170,0){\resizebox{70mm}{!}{\fontPbkB{DESIGN}}}%
+\rput[lb](0,0){\resizebox{20mm}{!}{\fontPhv{2025.10}}}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\end{pspicture}%
+}%\resizebox
+% \caption{Pattern six and four fold combined tile with open endings}
+\end{figure}
+%-------------------------------------------------------------------------------
+\clearpage
+\maketitle
+}% \makeCoverFront
+% endregion front cover
+%===============================================================================
+
+%===============================================================================
+% region back cover
+\newcommand{\makeCoverBack}{%
+\clearpage
+\thispagestyle{empty}
+\begin{figure}[!h]
+\centering%
+\resizebox{\textwidth}{!}{%
+\sffamily\tiny%\scriptsize\tiny%
+%\psset{unit=10mm}
+\begin{pspicture}(0,0)(17,25.5)%[saveNodeCoors]
+% \psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20, gridlabels=8pt, gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm] % griddots=4, subgriddots=10,
+%-------------------------------------------------------------------------------
+\psset{unit=1mm,fillstyle=none,linestyle=solid,linecolor=teal!80!blue,linewidth=1,linecap=1,linejoin=1}%
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\rput(85,125){\psset{fillstyle=solid,fillcolor=white}
+\psframe[linecolor=teal!80!blue,linewidth=1](-20,-20)(20,20)%
+\rput(0,0){\qrcode[hyperlink,height=25mm]{https://js-svg-client.onrender.com/}}%
+\rput(0,-16){\href{https://js-svg-client.onrender.com/}{\large\textbf{DOLPHIN}}}%
+}% \rput
+%-------------------------------------------------------------------------------
+% \rput[rb](170,15){\resizebox{!}{6mm}{\fontMontserratSb{Looking For An}}}%
+% \rput[rb](170,0){\resizebox{!}{8mm}{\fontMontserratEb{Answer?}}}%
+% \rput[rb](170,15){\resizebox{!}{6mm}{\fontPhv{Looking For An}}}%
+% \rput[rb](170,0){\resizebox{!}{8mm}{\fontPhvB{Answer?}}}%
+\rput[rb](170,12){\resizebox{!}{6mm}{\fontNunito{\color{black!80}{Looking For An}}}}%
+\rput[rb](170,0){\resizebox{!}{8mm}{\fontNunitoEb{\color{teal!80!blue}{Answer?}}}}%
+%-------------------------------------------------------------------------------
+\end{pspicture}%
+}%\resizebox
+% \caption{Pattern six and four fold combined tile with open endings}
+\end{figure}
+%-------------------------------------------------------------------------------
+}% end \backCover
+% endregion back cover
+%===============================================================================

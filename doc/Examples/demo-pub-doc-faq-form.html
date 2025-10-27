@@ -1,0 +1,80 @@
+<div class="tab">
+ <button class="tablinks">Upload File</button>
+ <!-- <button class="tablinks">Form</button> -->
+ <button class="tablinks">Upload JSON</button>
+</div>
+
+<!-- First Tab -->
+<div id="London" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your FAQs Using Text File</h2>
+
+  <form
+   action="faq/printFile"
+   method="POST"
+   enctype="multipart/form-data"
+  >
+   <div class="floating-label-group-group" style="margin-top: 20px">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="nameF"
+      name="nameF"
+      size="12"
+      required
+      placeholder="Name"
+     />
+     <input type="email" id="email" name="email" placeholder="email" required />
+    </div>
+   </div>
+   <div class="floating-label-group-group" style="margin-top: 40px">
+    <div class="floating-label-group">
+     <label for="file" style="margin-top: -20px; margin-right: -20px"
+      >Select File:</label
+     >
+     <input type="file" id="file" name="file"
+     required accept=".tex" />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group" style="margin-top: 40px">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>
+
+<!-- Second Tab -->
+<div id="Mumbai" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your FAQs</h2>
+  <div>Coming soon...</div>
+ </div>
+</div>
+
+
+<!-- Third Tab -->
+<div id="Pune" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Certificate Using JSON</h2>
+
+  <form
+   action="certificate/printJson"
+   method="POST"
+   enctype="multipart/form-data"
+  >
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <label for="file">Select File </label>
+     <input type="file" id="file" name="file" required />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>

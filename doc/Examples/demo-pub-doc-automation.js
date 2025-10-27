@@ -42,7 +42,7 @@ ${Utils.createListItem('demo-pub-invoice.html', 'Create Invoice')}
 <ul>
 ${Utils.createListItem('demo-pub-doc-create.html', 'Create Project Report')}
 ${Utils.createListItem(
- 'demo-pub-doc-create.html',
+ 'demo-pub-doc-faq.html',
  'Create Frequently Asked Questions'
 )}
 </ul>
