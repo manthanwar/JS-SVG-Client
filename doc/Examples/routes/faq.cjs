@@ -190,9 +190,9 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
  const bas = dat.substring(0, dat.lastIndexOf('.'));
  const pdf = bas + '-main.pdf';
  const log = bas + '-main.log';
- const tfn = bas + '-main.tex'; // tex file name
+ const tex = bas + '-main'; // tex file name
  const txt = path.join(__dirname, '../data-certificates', bas + '.txt');
- const tex = path.join(__dirname, '../data-certificates', tfn);
+ const tfn = path.join(__dirname, '../data-certificates', tex + '.tex');
  const del = 10; //delay
  const lin = `\\documentclass[12pt]{dolphin-faq}
 \\usepackage{dolphin-faq}
@@ -203,31 +203,19 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
 \\end{document}
  `;
 
- util.writeFile(txt, msg);
- util.writeFile(tex, lin);
+ // util.writeFile(txt, msg);
+ util.writeFile(tfn, lin);
 
-const cmd = `cd ${src} && \
+ const cmd = `cd ${src} && \
  latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
  dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
- rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps`;
+ rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
 
-
- // res.send(
- //  `<div style="font-size:40px;"><div>${lin}</div> <div>${tex}</div></div>`
- // );
-
-
- // region spawn nohup ------------------
  const child = spawn(cmd, { shell: true });
  child.unref(); // Allows the parent process to exit independently
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
  console.log(`Child process spawned with PID: ${child.pid}`);
- // endregion spawn nohup ------------------
-
- // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
-
- //
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
 });
 //endregion app.post /printFile
 

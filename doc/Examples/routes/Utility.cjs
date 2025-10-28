@@ -18,6 +18,8 @@
 */
 const fs = require('node:fs');
 // const fs = require('fs');
+const path = require('path');
+
 
 class Utility {
  constructor() {
@@ -34,6 +36,16 @@ class Utility {
     console.error('Error writing to file:', err);
    } else {
     console.log('File written successfully!');
+   }
+  });
+ }
+
+ static appendFile(filePath, dataToAppend) {
+  fs.appendFile(filePath, dataToAppend, (err) => {
+   if (err) {
+    console.error('Error appending to file:', err);
+   } else {
+    console.log('Data appended successfully!');
    }
   });
  }
@@ -65,7 +77,6 @@ Utility.runCommand = (cmd) => {
 
 // Helper function for artificial delay
 Utility.delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 
 /**
  * @description JavaScript program to convert number into words by breaking it into groups of three
@@ -151,6 +162,21 @@ Utility.convertToWords = (n) => {
 
  // Remove trailing space
  return res.trim();
+};
+
+/**
+ * @description Middleware to log incoming requests
+ */
+Utility.traffic = (router, logFile) => {
+ router.use((req, res, next) => {
+  const now = new Date().toISOString(); //Date.now();
+  const cip = req.clientIp;
+  const uag = req.headers['user-agent'].replace('Mozilla/5.0 ', '');;
+  const ref = req.headers['referer'];
+  const log = `${now} ${cip} ${uag} ${ref} ${req.url} ${req.method}\n`;
+  Utility.appendFile(path.join(__dirname, logFile), log);
+  next();
+ });
 };
 
 module.exports = Utility;

@@ -208,7 +208,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const tfl = bas + '.txt';
  const log = bas + '.log';
  const txt = path.join(__dirname, '../data-certificates', tfl);
- const del = 15; //delay
+ const del = 20; //delay
  // const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} > ${log} 2>&1 && rm ${xls} ${log} &`;
  util.writeFile(txt, msg);
  const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} && rm ${xls} &`;

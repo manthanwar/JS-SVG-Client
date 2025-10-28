@@ -10,6 +10,8 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const router = express.Router();
 const app = express();
+const requestIp = require('request-ip');
+const util = require('./routes/Utility.cjs');
 const hbsOptions = require('./routes/hbsOptions.cjs');
 const certificate = require('./routes/certificate.cjs');
 const report = require('./routes/report.cjs');
@@ -36,6 +38,9 @@ app.use(express.static('doc/Examples/src-plot'));
 app.use(express.static('doc/Examples/src-tex'));
 app.use(express.static('doc/Examples/src-tex-data'));
 app.use(express.static('doc/Examples/data-certificates'));
+
+app.use(requestIp.mw()); // Middleware to populate req.clientIp
+util.traffic(app, '../data-certificates/traffic.log');
 
 // route
 app.use('/certificate', certificate);

@@ -114,8 +114,6 @@ router.post('/printOne', (req, res, next) => {
  const fileName = tex + '.tex';
  const filePath = path.join(__dirname, '../data-certificates/' + fileName);
 
-
-
  // const tex = fileName.slice(0, -4);
  //  \\RequirePackage\{../src-tex/pst-art-logo\}%
  //  \\documentclass\{${classPath}\}%

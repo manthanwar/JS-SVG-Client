@@ -6,7 +6,7 @@
 
 In this folder keep only the following files
 
-['amm-pst-art-university-pune.sty', 'amm-pst-certificate.cls', 'amm-pst-dpr-article.cls', 'amm-pst-dpr-article.sty', 'amm-pst-invoice-bapatla.sty', 'amm-pst-invoice.cls', 'dolphin-faq.cls', 'dolphin-faq.sty', 'dolphin-fonts.sty', 'fig-signature.tex', 'xls2dpr.py', 'xls2tex.py']
+['amm-pst-art-university-pune.sty', 'amm-pst-certificate.cls', 'amm-pst-dpr-article.cls', 'amm-pst-dpr-article.sty', 'amm-pst-invoice-bapatla.sty', 'amm-pst-invoice.cls', 'dolphin-faq.cls', 'dolphin-faq.sty', 'dolphin-fonts.sty', 'fig-signature.tex', 'xls2dpr.py', 'xls2tex.py', 'cleanUp.py']
 
 ## Certificate Documentation
 
