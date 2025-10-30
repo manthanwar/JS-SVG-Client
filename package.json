@@ -17,7 +17,8 @@
     "node": "node --watch ./doc/Examples/demo-express.cjs",
     "start": "pm2 start ./doc/Examples/demo-express.cjs --name dolphin",
     "stop": "pm2 stop dolphin",
-    "delete": "pm2 delete dolphin"
+    "delete": "pm2 delete dolphin",
+    "demo": "ngrok http 3000"
   },
   "repository": {
     "type": "git",

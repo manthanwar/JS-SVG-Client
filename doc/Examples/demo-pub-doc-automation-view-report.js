@@ -43,13 +43,6 @@ function getFile() {
   } else {
    ppp.innerHTML = `${name}, here is your report <a
    href="/data-certificates/${pdf}">${pdf}</a>.
-   <iframe
-    src="/data-certificates/${pdf}"
-    width="90%"
-    height="600px"
-    style="margin: 40px; border: none;"
-   ></iframe>
-
    <p style="margin: 40px 0px;">
    Generated file bundle <a href="/data-certificates/${zip}">${zip}</a>.
    </p>
@@ -61,3 +54,10 @@ function getFile() {
 
 
 // Compilation Statistics <a href="/data-certificates/${txt}">${txt}</a>.
+
+   // <iframe
+   //  src='/data-certificates/${pdf}'
+   //  width='90%'
+   //  height='600px'
+   //  style='margin: 40px; border: none;'
+   // ></iframe>;

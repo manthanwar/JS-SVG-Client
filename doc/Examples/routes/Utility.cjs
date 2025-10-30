@@ -20,8 +20,10 @@ const fs = require('node:fs');
 // const fs = require('fs');
 const path = require('path');
 
-
 class Utility {
+ // Set the inactivity timeout to 30 minutes (30 * 60 * 1000 milliseconds)
+ static inactivityTimeout = 30 * 60 * 1000;
+ static timeoutId;
  constructor() {
   this.appName = 'Dolphin.js App';
   this.className = 'Utility';
@@ -45,7 +47,7 @@ class Utility {
    if (err) {
     console.error('Error appending to file:', err);
    } else {
-    console.log('Data appended successfully!');
+    // console.log('Data appended successfully!');
    }
   });
  }
@@ -171,12 +173,27 @@ Utility.traffic = (router, logFile) => {
  router.use((req, res, next) => {
   const now = new Date().toISOString(); //Date.now();
   const cip = req.clientIp;
-  const uag = req.headers['user-agent'].replace('Mozilla/5.0 ', '');;
+  const uag = req.headers['user-agent'].replace('Mozilla/5.0 ', '');
   const ref = req.headers['referer'];
   const log = `${now} ${cip} ${uag} ${ref} ${req.url} ${req.method}\n`;
   Utility.appendFile(path.join(__dirname, logFile), log);
   next();
  });
+};
+
+/**
+ * @description Function to reset the inactivity timer
+ */
+Utility.resetTimer = (server) => {
+ console.log('Activity detected. Resetting inactivity timer.');
+ clearTimeout(Utility.timeoutId);
+ Utility.timeoutId = setTimeout(() => {
+  console.log('30 minutes of inactivity. Shutting down the server.');
+  server.close(() => {
+   console.log('Server has been gracefully shut down.');
+   process.exit(0); // Exit the process after the server closes
+  });
+ }, Utility.inactivityTimeout);
 };
 
 module.exports = Utility;

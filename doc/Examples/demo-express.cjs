@@ -325,5 +325,8 @@ app.get('/pub-business-card-pdf', (req, res) => {
 //  console.log(`Listening on port ${port}\n go to http://localhost:${port}`);
 // });
 
+// Whenever a connection is received, reset the timer.
+// app.on('request', resetTimer);
+
 app.listen(PORT);
 console.log('Server started at http://localhost:' + PORT);
