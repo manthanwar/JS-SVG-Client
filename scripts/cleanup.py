@@ -21,6 +21,7 @@ import os
 import shutil
 import subprocess
 import sys
+import colors
 
 
 def run_shell_command(command, capture_output=True, text=True, check=True, shell=False):
@@ -105,11 +106,12 @@ def delete_files_except(directory_path, files_to_keep):
             # Check if it's a file and not in the list of files to keep
             if os.path.isfile(file_path) and filename not in files_to_keep:
                 os.remove(file_path)
-                print(f"Deleted: {filename}")
+                # print(f"Deleted: {filename}")
+                print(colors.GREEN + "Deleted: " + filename + colors.RESET)
             elif os.path.isdir(file_path):
                 print(f"Skipping directory: {filename}")
             else:
-                print(f"Keeping: {filename}")
+                print(f"{colors.RED} Keeping: {filename} {colors.RESET}")
 
     except FileNotFoundError:
         print(f"Error: Directory not found at {directory_path}")
@@ -137,15 +139,21 @@ def clean_folder_except(folder_path, items_to_keep):
             try:
                 if os.path.isfile(item_path):
                     os.remove(item_path)  # Remove file
-                    print(f"Deleted file: {item_path}")
+                    # print(f"Deleted file: {item_path}")
+                    print(colors.BOLD + colors.GREEN + "Deleted: " +
+                          item_path + colors.RESET)
                 elif os.path.isdir(item_path):
                     # Remove directory and its contents
                     shutil.rmtree(item_path)
-                    print(f"Deleted folder: {item_path}")
+                    # print(f"Deleted folder: {item_path}")
+                    print(colors.BOLD + colors.BLUE + "Deleted folder: " +
+                          item_path + colors.RESET)
+
             except OSError as e:
                 print(f"Error deleting {item_path}: {e}")
-        else:
-            print(f"Keeping: {item_path}")
+        # else:
+            # print(f"Keeping: {item_path}")
+            # print(f"{colors.WHITE} Keeping: {item_path} {colors.RESET}")
 
 
 # Example usage:
@@ -163,12 +171,11 @@ if __name__ == "__main__":
                  'amm-pst-dpr-article.sty',
                  'amm-pst-invoice.cls',
                  'amm-pst-invoice-bapatla.sty',
-                 'cleanUp.py',
                  'dolphin-faq.cls',
                  'dolphin-faq.sty',
                  'dolphin-fonts.sty',
                  'fig-signature.tex',
-                 'traffic.log',
+                 #  'traffic.log',
                  'xls2dpr.py',
                  'xls2tex.py'
                  ]
@@ -184,8 +191,8 @@ if __name__ == "__main__":
     # print(f'Copied from {source} to {target} excluding: {exclude}')
 
     # print("--- Running 'ls -l' ---")
-    result = run_shell_command(["ls", "-X"])
-    if result:
-        print(f"Return code: {result.returncode}")
-        # print("Stdout:", result.stdout)
-        # print("Stderr:", result.stderr)
+    # result = run_shell_command(["ls", "-X"])
+    # if result:
+    #     print(f"Return code: {result.returncode}")
+    #     print("Stdout:", result.stdout)
+    # print("Stderr:", result.stderr)

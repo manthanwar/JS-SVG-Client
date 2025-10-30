@@ -1,5 +1,29 @@
 # Design Intelligence and Document Automation
 
+## Folder Structure
+
+```sh
+.
+├── src/                  # Main application source code
+│   ├── api/              # API routes and controllers
+│   ├── services/         # Business logic and data manipulation
+│   ├── models/           # Database models/schemas
+│   └── utils/            # Utility functions
+├── config/               # Configuration files (e.g., database credentials, environment variables)
+├── public/               # Static assets (if serving a web frontend)
+├── tests/                # Unit and integration tests
+├── scripts/              # Bash scripts for various tasks
+│   ├── setup.sh          # Project setup (e.g., database initialization)
+│   ├── deploy.sh         # Deployment scripts
+│   ├── build.sh          # Build scripts (e.g., frontend asset compilation)
+│   └── cleanup.sh        # Cleanup tasks
+├── node_modules/         # Installed npm packages
+├── package.json          # Project metadata and dependencies
+├── package-lock.json     # Exact dependency versions
+├── .env                  # Environment variables (local development)
+└── README.md             # Project documentation
+```
+
 ## Files to keep
 
 ### /doc/Examples/data-certificates

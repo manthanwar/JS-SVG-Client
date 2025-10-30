@@ -18,7 +18,8 @@
     "start": "pm2 start ./doc/Examples/demo-express.cjs --name dolphin",
     "stop": "pm2 stop dolphin",
     "delete": "pm2 delete dolphin",
-    "demo": "ngrok http 3000"
+    "demo": "ngrok http 3000",
+    "clean": "bash ./scripts/cleanup.sh"
   },
   "repository": {
     "type": "git",
