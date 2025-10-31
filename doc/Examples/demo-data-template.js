@@ -13,7 +13,7 @@ data.home = {
 data.navMenu = [
  {
   link: 'Home',
-  page: 'Home of Vector Visualization',
+  page: 'Home of Design Intelligence',
   href: 'demo-home.html'
  },
  {

@@ -6,7 +6,6 @@ const fs = require('fs');
 const { exec } = require('node:child_process');
 const { spawn } = require('node:child_process');
 const express = require('express');
-// const { engine } = require('express-handlebars');
 const handlebars = require('express-handlebars');
 const router = express.Router();
 const app = express();
@@ -18,18 +17,21 @@ const report = require('./routes/report.cjs');
 const invoice = require('./routes/invoice.cjs');
 const faq = require('./routes/faq.cjs');
 
-//support parsing of application/x-www-form-urlencoded post data
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); // to support JSON-encoded bodies
-// app.use(express.urlencoded()); // to support URL-encoded bodies
-
 const hbs = handlebars.create(hbsOptions);
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
+app.use(requestIp.mw()); // Middleware to populate req.clientIp
+util.traffic(app, '../data-certificates/traffic.log');
+
+//parse application/x-www-form-urlencoded post data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // to support JSON-encoded bodies
+
 app.use(express.static('dist'));
 app.use(express.static('doc'));
 app.use(express.static('doc/Examples'));
+app.use(express.static('doc/Examples/pdf'));
 app.use(express.static('doc/Examples/src-art'));
 app.use(express.static('doc/Examples/src-gauge'));
 app.use(express.static('doc/Examples/src-lib'));
@@ -39,57 +41,15 @@ app.use(express.static('doc/Examples/src-tex'));
 app.use(express.static('doc/Examples/src-tex-data'));
 app.use(express.static('doc/Examples/data-certificates'));
 
-app.use(requestIp.mw()); // Middleware to populate req.clientIp
-util.traffic(app, '../data-certificates/traffic.log');
 
-// route
+// routes
 app.use('/certificate', certificate);
 app.use('/report', report);
 app.use('/invoice', invoice);
 app.use('/faq', faq);
 
-// app.use('/src-gauge/', express.static(__dirname + 'doc/Examples/src-plot'));
-// app.use(express.static('doc/Examples/src-gauge'));
-// app.use(express.static('doc/Examples'));
-// app.use('/src-plot', express.static('doc/Examples/src-plot'));
-// app.use(express.static(path.join(__dirname, 'doc')));
-// app.use('/src-plot', express.static(__dirname + 'doc/Examples/src-plot'));
-
-// app.get('/hello', (req, res) => {
-//  res.send('Hello World!' + config.openWeather.API_KEY);
-// });
-
-app.get('/test-data-passing', (req, res) => {
- res.render('test-data-passing', {
-  layout: false,
-  name: 'hello there',
-  API_KEY: process.env.API_KEY_openWeather
- });
-});
-
-app.get('/getServerData', function (req, res) {
- const obj = {
-  name: 'amit',
-  surname: 'Manthanwar'
- };
- res.json(obj);
-});
-
 app.get('/', function (req, res) {
  res.sendFile(path.join(__dirname, 'demo-home.html'));
-});
-
-// app.get('/demo-artDesign.html', function (req, res) {
-//  res.sendFile(path.join(__dirname, './demo-artDesign.html'));
-// });
-
-https: app.get('/resp', function (req, res) {
- res.sendFile(path.join(__dirname, 'demo-responsive.html'));
-});
-
-app.get('/test', function (req, res) {
- // res.sendFile(path.join(__dirname, 'demo-home.html'));
- res.sendFile(path.join(__dirname, 'test.html'));
 });
 
 //region app.post /pub-business-card-spawn
@@ -295,38 +255,9 @@ app.get('/pub-business-card-pdf', (req, res) => {
  });
 });
 
-// console.log('reqIP = ', JSON.parse(req.body.weather));
-// console.dir(req.body)
-// console.log("ip = ", req.ip)
-// console.log([1, 2, 3, 4])
-// console.dir([1, 2, 3, 4])
-// res.send('welcome, ' + req.body.firstName)
-// res.json({ body: req.body, weather: JSON.parse(req.body.weather) });
-// res.json({ body: JSON.parse(req.body.weather) })
-// res.render('formPost', { layout: 'main' });
-// res.json(data);
-
-// res.setHeader('Content-type', 'text/html');
-// res.send('welcome, ' + req.body.nameF);
-
-// app.get('/pub-business-card', (req, res) => {
-//  // res.render('pub-business-card', {
-//  //  // layout: false,
-//  //  title: 'Dolphin Business Card',
-//  //  name: 'hello there',
-//  //  file: 'demo-pub-branding-bizcard.html'
-//  // });
-//  // console.log(__dirname);
-//  res.sendFile(path.join(__dirname, '/demo-pub-branding-bizcard.html'));
-//  // res.sendFile('demo-pub-branding-bizcard.html', { root: __dirname });
-// });
-
-// app.listen(port, () => {
-//  console.log(`Listening on port ${port}\n go to http://localhost:${port}`);
-// });
-
 // Whenever a connection is received, reset the timer.
 // app.on('request', resetTimer);
 
-app.listen(PORT);
-console.log('Server started at http://localhost:' + PORT);
+app.listen(PORT, () => {
+ console.log('Server started at http://localhost:' + PORT);
+});

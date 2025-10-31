@@ -35,7 +35,10 @@ window.onload = (event) => {
 <ul>
 ${Utils.createListItem('dolphin-DI-proposal.pdf', 'Product Proposal')}
 ${Utils.createListItem('dolphin-proposal-smb.pdf', 'Product Proposal for SMBs')}
-${Utils.createListItem('dolphin-proposal-bank.pdf', 'Product Proposal for Banks')}
+${Utils.createListItem(
+ 'dolphin-proposal-bank.pdf',
+ 'Product Proposal for Banks'
+)}
 ${Utils.createListItem('amm-pst-product-brochure.pdf', 'Product Brochure')}
 ${Utils.createListItem('dolphin-one-pager.pdf', 'Product One Pager')}
 ${Utils.createListItem('amm-pst-product-talk.pdf', 'Product Presentation')}
@@ -104,9 +107,7 @@ ${Utils.createListItemNote(
  'This map needs redesigning to optimize quality and size'
 )}
 </ul>
-
-
-
-
 `;
 };
+
+// https://delhimetrorail.com/network_map
