@@ -136,15 +136,16 @@ data.navMenu = [
    }
   ]
  },
- //  {
- //   link: 'Public Healthcare',
- //   page: 'Geographical Information System',
- //   href: 'https://bapfoundation.org/',
- //   target: '_blank'
- //  },
- // page: 'Data-Driven Reporting and Publication Automation',
- // href: 'demo-pub-branding.html'
  {
+  link: 'Public Healthcare',
+  page: 'Geographical Information System',
+  href: 'https://nodejs-covid19.onrender.com/',
+  //  href: 'https://bapfoundation.org/',
+  target: '_blank'
+ },
+ {
+  // page: 'Data-Driven Reporting and Publication Automation',
+  // href: 'demo-pub-branding.html'
   link: 'Publications',
   menu: [
    {
