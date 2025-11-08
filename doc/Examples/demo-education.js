@@ -43,5 +43,10 @@ ${Utils.createListItem(
 )}
 </ul>
 
+<h3>School Flyers</h3>
+<ul style="margin-top: 30px;">
+${Utils.createListItem('dolphin-flyer-school.pdf', 'Course Registration')}
+</ul>
+
 `;
 };

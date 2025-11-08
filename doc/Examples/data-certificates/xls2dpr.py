@@ -31,6 +31,9 @@
 # nohup ./xls2dpr.py data-certificate.xlsx > output.log 2>&1 &
 # nohup ./xls2dpr.py data-certificate.xlsx Certificate &
 # ./xls2dpr.py data-certificate.xlsx Certificate
+# ------------------------------------------------------------------------------
+# Create executable
+# pyinstaller --onefile xls2dpr.py
 # ==============================================================================
 
 

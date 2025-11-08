@@ -156,6 +156,38 @@ def clean_folder_except(folder_path, items_to_keep):
             # print(f"{colors.WHITE} Keeping: {item_path} {colors.RESET}")
 
 
+def read_file_line_by_line(file_path):
+    """
+    Reads a text file line by line and prints each line to the console.
+
+    Args:
+        file_path (str): The path to the text file.
+    """
+    try:
+        uniqueIps = []
+        with open(file_path, 'r') as file:
+            for line in file:
+                # The 'line' variable will include the newline character ('\n')
+                # at the end of each line, except possibly the last line.
+                # Use .strip() to remove leading/trailing whitespace, including '\n'.
+                # print(line.strip())
+                # found_ips = extract_ipv4_addresses(line)
+                # print(f"Extracted IP addresses: {found_ips[0]}")
+                lineArr = line.split()
+                # print('IP = ' + lineArr[1])
+                # uniqueIps.append(lineArr[1])
+                if lineArr[1] not in uniqueIps:
+                    uniqueIps.append(lineArr[1])
+        uniqueIps.remove('::ffff:127.0.0.1')
+        uniqueIps = sorted(uniqueIps)
+        print(*uniqueIps, sep='\n')
+    except FileNotFoundError:
+        print(f"Error: The file '{file_path}' was not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+
 # Example usage:
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -175,7 +207,8 @@ if __name__ == "__main__":
                  'dolphin-faq.sty',
                  'dolphin-fonts.sty',
                  'fig-signature.tex',
-                 #  'traffic.log',
+                 'traffic.log',
+                 'traffic-analysis.py',
                  'xls2dpr.py',
                  'xls2tex.py'
                  ]
