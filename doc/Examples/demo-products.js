@@ -39,6 +39,11 @@ ${Utils.createListItem(
  'dolphin-proposal-bank.pdf',
  'Product Proposal for Banks'
 )}
+${Utils.createListItem(
+ ' dolphin-product-proposal-school.pdf',
+ 'Product Proposal for Schools'
+)}
+
 ${Utils.createListItem('amm-pst-product-brochure.pdf', 'Product Brochure')}
 ${Utils.createListItem('dolphin-one-pager.pdf', 'Product One Pager')}
 ${Utils.createListItem('amm-pst-product-talk.pdf', 'Product Presentation')}

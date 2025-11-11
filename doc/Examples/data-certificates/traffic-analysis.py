@@ -19,6 +19,9 @@
 # ==============================================================================
 
 # from excel2tex import CreateTexFromExcel as xls2dpr
+import json
+# from requests import get
+import requests
 from excel2tex import ExcelToTexArticle as xls2dpr
 from excel2tex import Utility as util
 # import excel2tex
@@ -30,6 +33,7 @@ import pandas as pd
 
 
 import re
+import ipapi
 
 
 def extract_ipv4_addresses(text):
@@ -98,14 +102,45 @@ def read_file_line_by_line(file_path):
                 # print('IP = ' + lineArr[1])
                 # uniqueIps.append(lineArr[1])
                 if lineArr[1] not in uniqueIps:
-                    uniqueIps.append(lineArr[1])
-        uniqueIps.remove('::ffff:127.0.0.1')
+                    result = lineArr[1]
+                    # print(result)
+                    # sys.exit(0)
+                    uniqueIps.append(result)
+
+        # uniqueIps.remove('::ffff:127.0.0.1')
         uniqueIps = sorted(uniqueIps)
-        print(*uniqueIps, sep='\n')
+        # print(*uniqueIps, sep='\n')
+        return uniqueIps
+
     except FileNotFoundError:
         print(f"Error: The file '{file_path}' was not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+
+def get_ip_location(ip):
+    try:
+        ip_data = requests.get('https://ipapi.co/' + ip + '/json/')
+        json_data = ip_data.json()
+        # print(json_data)
+        city = json_data["city"]
+        country = json_data["country_name"]
+        # latitude = json_data["latitude"]
+        # longitude = json_data["longitude"]
+        result = ip + ' : ' + city + ', ' + country
+        print(result)
+    except requests.exceptions.Timeout as e:
+        print(f"Request timed out: {e}")
+    except requests.exceptions.ConnectionError as e:
+        print(f"Connection error occurred: {e}")
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+    except requests.exceptions.RequestException as e:
+        # Any other requests-related exception not specifically caught above
+        print(f"An unexpected requests error occurred: {e}")
+    except Exception as e:
+        # This catches any other non-requests related exceptions
+        print(f"An unexpected error occurred: {e}")
 
 
 if __name__ == "__main__":
@@ -114,6 +149,7 @@ if __name__ == "__main__":
 
     current_datetime = datetime.now()
     print("Current Date and Time:", current_datetime, '\n')
+
     # Example usage:
     # input_string = "Server IP: 192.168.1.10, Gateway: 10.0.0.1, Invalid IP: 256.0.0.1 and another valid one 172.16.0.5"
     # found_ips = extract_ipv4_addresses(input_string)
@@ -124,12 +160,22 @@ if __name__ == "__main__":
     # found_ips = extract_ipv4_addresses(input_string)
     # print(f"Extracted IP addresses: {found_ips[0]}")
 
-    read_file_line_by_line("traffic.log")
+    ipArray = read_file_line_by_line("traffic.log")
+    print(*ipArray, sep='\n')
+    # print(ipArray[0])
+    # get_ip_location(ipArray[0])
+    # for index, ip in enumerate(ipArray):
+    #     # print(ip)
+    #     if index == len(ipArray) - 1:
+    #         get_ip_location(ip)
+    #     else:
+    #         get_ip_location(ip)
+    #         time.sleep(100)
 
     # keepFilesPath = os.path.abspath('../../../scripts/keepFiles.txt')
-    keepFilesPath = '../../../scripts/keepFiles.txt'
-    keepFiles = read_file_to_list(keepFilesPath)
-    print(*keepFiles, sep='')
+    # keepFilesPath = '../../../scripts/keepFiles.txt'
+    # keepFiles = read_file_to_list(keepFilesPath)
+    # print(*keepFiles, sep='')
 
     # print('Python Version ', sys.version)
     # print('Pandas Version ', pd.__version__)
