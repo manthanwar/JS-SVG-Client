@@ -210,7 +210,8 @@ if __name__ == "__main__":
                  'traffic.log',
                  'traffic-analysis.py',
                  'xls2dpr.py',
-                 'xls2tex.py'
+                 'xls2tex.py',
+                 'pst-icon-macros.sty'
                  ]
 
     clean_folder_except(target_folder, keepItems)

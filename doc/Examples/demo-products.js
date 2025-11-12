@@ -40,8 +40,12 @@ ${Utils.createListItem(
  'Product Proposal for Banks'
 )}
 ${Utils.createListItem(
- ' dolphin-product-proposal-school.pdf',
+ 'dolphin-product-proposal-school.pdf',
  'Product Proposal for Schools'
+)}
+${Utils.createListItem(
+ 'dolphin-product-flyer-edtech.pdf',
+ 'Product Flyer EdTech'
 )}
 
 ${Utils.createListItem('amm-pst-product-brochure.pdf', 'Product Brochure')}
