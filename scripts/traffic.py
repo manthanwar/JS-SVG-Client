@@ -22,8 +22,8 @@
 import json
 # from requests import get
 import requests
-from excel2tex import ExcelToTexArticle as xls2dpr
-from excel2tex import Utility as util
+# from excel2tex import ExcelToTexArticle as xls2dpr
+# from excel2tex import Utility as util
 # import excel2tex
 import sys
 import os
@@ -145,7 +145,7 @@ def get_ip_location(ip):
 
 if __name__ == "__main__":
     # timeStarted = time.time()
-    timeStarted = util.tic()
+    # timeStarted = util.tic()
 
     current_datetime = datetime.now()
     print("Current Date and Time:", current_datetime, '\n')
@@ -160,7 +160,12 @@ if __name__ == "__main__":
     # found_ips = extract_ipv4_addresses(input_string)
     # print(f"Extracted IP addresses: {found_ips[0]}")
 
-    ipArray = read_file_line_by_line("traffic.log")
+    current_file_path = os.path.abspath(__file__)
+    current_dir = os.path.dirname(current_file_path)
+    logPath = '../doc/Examples/data-certificates/traffic.log'
+    logFile = os.path.join(current_dir, logPath)
+
+    ipArray = read_file_line_by_line(logFile)
     print(*ipArray, sep='\n')
     # print(ipArray[0])
     # get_ip_location(ipArray[0])
@@ -171,39 +176,3 @@ if __name__ == "__main__":
     #     else:
     #         get_ip_location(ip)
     #         time.sleep(100)
-
-    # keepFilesPath = os.path.abspath('../../../scripts/keepFiles.txt')
-    # keepFilesPath = '../../../scripts/keepFiles.txt'
-    # keepFiles = read_file_to_list(keepFilesPath)
-    # print(*keepFiles, sep='')
-
-    # print('Python Version ', sys.version)
-    # print('Pandas Version ', pd.__version__)
-    # print('Current Working Directory:',  os.getcwd(), '')
-    # print('Creating LaTeX Input Files from Excel Tables...\n')
-
-    sys.exit(0)
-    if len(sys.argv) > 1:
-        # The first argument after the script name is at index 1
-        excelFile = sys.argv[1]
-    else:
-        print("Please provide an argument when running the script.")
-
-    # if len(sys.argv) >= 3:
-    #     dataType = sys.argv[2]
-    # else:
-    #     dataType = 'head'
-
-    # if len(sys.argv) >= 4:
-    #     dataRows = sys.argv[3]
-    # else:
-    #     dataRows = 3
-
-    # if len(sys.argv) >= 5:
-    #     dataList = sys.argv[4]
-    # else:
-    #     dataList = '0,1,2'
-
-    util.toc(timeStarted)
-
-    # sys.exit(0)  # Exit with a success status code

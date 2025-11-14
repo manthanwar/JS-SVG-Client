@@ -18,8 +18,10 @@
     "start": "pm2 start ./doc/Examples/demo-express.cjs --name dolphin",
     "stop": "pm2 stop dolphin",
     "delete": "pm2 delete dolphin",
-    "web": "ngrok http 3000 --url=robust-camel-exciting.ngrok-free.app",
-    "clean": "bash ./scripts/cleanup.sh"
+    "ngrok": "ngrok http 3000 --url=robust-camel-exciting.ngrok-free.app",
+    "clean": "bash ./scripts/cleanup.sh",
+    "web": "cd ./scripts/ && start server.bat",
+    "traffic": "cd ./scripts/ && python traffic.py"
   },
   "repository": {
     "type": "git",

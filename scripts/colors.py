@@ -1,3 +1,6 @@
+#! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
+#! /usr/bin/env python3
+#! /c/Program Files/QGIS 3.26.0/apps/Python39/python
 # ==============================================================================
 # File Name     : colors.py
 # Date Created  : 2025-10-31 00:20 UTC +01:00
@@ -54,3 +57,42 @@ BRIGHT_WHITE = '\033[97m'
 
 # Reset code to return to default terminal text color
 RESET = '\033[0m'
+
+
+def read_file_ignore_comments(filepath):
+    """
+    Reads a file line by line, ignoring lines that start with '#'.
+
+    Args:
+        filepath (str): The path to the file to read.
+
+    Yields:
+        str: Each non-comment, non-empty line from the file, stripped of leading/trailing whitespace.
+    """
+    data = {}
+    with open(filepath, 'r') as file:
+        for line in file:
+            stripped_line = line.strip()
+            if stripped_line and not stripped_line.startswith('#'):
+                key_value = stripped_line.split('=')
+                key_value = line.strip().split('=')
+                if len(key_value) == 2:
+                    key, value = key_value
+                    data[key] = value
+
+    return data
+    # yield stripped_line
+
+
+if __name__ == "__main__":
+    print('helll000')
+    print("Processing colors.sh:")
+    # for processed_line in read_file_ignore_comments("colors.sh"):
+    #     print(processed_line)
+
+    data = read_file_ignore_comments("colors.sh")
+    # black = data.get('BLACK')
+    # print(black)
+    print(data["BOLD"])
+    print(data["BLACK"])
+    print(data["RED"])

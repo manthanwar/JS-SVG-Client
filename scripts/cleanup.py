@@ -187,6 +187,33 @@ def read_file_line_by_line(file_path):
         print(f"An error occurred: {e}")
 
 
+def read_file_to_list(filepath):
+    """
+    Reads a file and returns its content as a list of strings,
+    where each element in the list represents a line from the file.
+
+    Args:
+        filepath (str): The path to the file to be read.
+
+    Returns:
+        list: A list of strings, with each string being a line from the file.
+              Returns an empty list if the file is not found or is empty.
+    """
+    try:
+        with open(filepath, 'r') as file:
+            lines = file.readlines()
+            # Optionally, remove newline characters from each line
+            lines = [line.strip() for line in lines]
+            return lines
+    except FileNotFoundError:
+        print(f"Error: The file '{filepath}' was not found.")
+        return []
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return []
+
+
+
 
 # Example usage:
 if __name__ == "__main__":
@@ -196,30 +223,17 @@ if __name__ == "__main__":
     else:
         print("Please provide an argument when running the script.")
 
-    keepItems = ['excel2tex',
-                 'amm-pst-art-university-pune.sty',
-                 'amm-pst-certificate.cls',
-                 'amm-pst-dpr-article.cls',
-                 'amm-pst-dpr-article.sty',
-                 'amm-pst-invoice.cls',
-                 'amm-pst-invoice-bapatla.sty',
-                 'dolphin-faq.cls',
-                 'dolphin-faq.sty',
-                 'dolphin-fonts.sty',
-                 'fig-signature.tex',
-                 'traffic.log',
-                 'traffic-analysis.py',
-                 'xls2dpr.py',
-                 'xls2tex.py',
-                 'pst-icon-macros.sty'
-                 ]
+    current_file_path = os.path.abspath(__file__)
+    current_dir = os.path.dirname(current_file_path)
+    relative_path_to_data_file = os.path.join(current_dir, 'keepFiles.txt')
+    keepItems = read_file_to_list(relative_path_to_data_file)
 
     clean_folder_except(target_folder, keepItems)
 
     # Example Usage: Copy
-    source = "source_folder"
-    target = "destination_folder"
-    exclude = ["file_to_exclude.txt", "folder_to_exclude", "*.log"]
+    # source = "source_folder"
+    # target = "destination_folder"
+    # exclude = ["file_to_exclude.txt", "folder_to_exclude", "*.log"]
 
     # copy_with_exclusions(source, target, exclude)
     # print(f'Copied from {source} to {target} excluding: {exclude}')
