@@ -4,6 +4,8 @@ amm-pst-dpr-article.cls
 amm-pst-dpr-article.sty
 amm-pst-invoice-bapatla.sty
 amm-pst-invoice.cls
+crm.js
+crm.log
 dolphin-faq.cls
 dolphin-faq.sty
 dolphin-fonts.sty
