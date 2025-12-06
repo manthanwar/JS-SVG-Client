@@ -41,7 +41,6 @@ app.use(express.static('doc/Examples/src-tex'));
 app.use(express.static('doc/Examples/src-tex-data'));
 app.use(express.static('doc/Examples/data-certificates'));
 
-
 // routes
 app.use('/certificate', certificate);
 app.use('/report', report);
@@ -258,6 +257,6 @@ app.get('/pub-business-card-pdf', (req, res) => {
 // Whenever a connection is received, reset the timer.
 // app.on('request', resetTimer);
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
  console.log('Server started at http://localhost:' + PORT);
 });
