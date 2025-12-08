@@ -206,8 +206,9 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
  // util.writeFile(txt, msg);
  util.writeFile(tfn, lin);
 
+ // latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
  const cmd = `cd ${src} && \
- latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
+ latex ${tex}.tex && latex ${tex}.tex && \
  dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
  rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
 
