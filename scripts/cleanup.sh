@@ -1,9 +1,22 @@
-SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
+#!/bin/bash
+
+# Get the absolute path of the script itself
+SCRIPT_PATH=$(realpath "${BASH_SOURCE[0]}")
+
+# Get the directory of the script
+SCRIPT_DIR=$(dirname "${SCRIPT_PATH}")
+
+# SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
+
 source "$SCRIPT_DIR/colors.sh"
 
-TARGET_DIR="/d/GitHub/JS-SVG-Client/doc/Examples/data-certificates/"
-TARGET_DIR_SRC_TEX_DATA="/d/GitHub/JS-SVG-Client/doc/Examples/src-tex-data/"
-BACKUP_DIR="/e/junk/Dolphin-Data/"
+TARGET_DIR="$SCRIPT_DIR/../doc/Examples/data-certificates/"
+TARGET_DIR_SRC_TEX_DATA="$SCRIPT_DIR/../doc/Examples/src-tex-data/"
+
+# BACKUP_DIR="/e/junk/Dolphin-Data/"
+BACKUP_DIR="$SCRIPT_DIR/../../../Junk/Dolphin-Data/"
+mkdir -p "$BACKUP_DIR"
+
 CLEANUP_FILE="./scripts/cleanup.py"
 
 cp -r "$TARGET_DIR_SRC_TEX_DATA" "$BACKUP_DIR"
