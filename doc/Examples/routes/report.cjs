@@ -211,7 +211,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const del = 20; //delay
  // const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} > ${log} 2>&1 && rm ${xls} ${log} &`;
  util.writeFile(txt, msg);
- const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} && rm ${xls} &`;
+ const cmd = `cd ${src} && nohup python xls2dpr.py ${xls} && rm ${xls} &`;
 
  // if (ext != '.xlsx' || ext != '.xls') {
  //  res.send(`<div style="margin:100px;">
