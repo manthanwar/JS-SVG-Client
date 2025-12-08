@@ -1,5 +1,5 @@
-#! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
 #! /usr/bin/env python3
+#! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
 # ==============================================================================
 # File Name     : <xls2dpr.py>
 # Requires      : <excel2tex> Python Package of Amit Manohar Manthanwar
