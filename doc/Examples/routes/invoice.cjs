@@ -261,7 +261,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const log = bas + '.log';
  const txt = path.join(__dirname, '../data-invoices', tfl);
  const del = typ == 'indices' ? 10 * lAr.length : 10 * row; //delay
- const cmd = `cd ${src} && nohup python xls2tex.py ${xls} ${typ} ${csv} > ${log} 2>&1 && rm ${xls} ${log} &`;
+ const cmd = `cd ${src} && python xls2tex.py ${xls} ${typ} ${csv} > ${log} 2>&1 && rm ${xls} ${log} &`;
  util.writeFile(txt, msg);
  // if (ext != '.xlsx' || ext != '.xls') {
  //  res.send(`<div style="margin:100px;">
