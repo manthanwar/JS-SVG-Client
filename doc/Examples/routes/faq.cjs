@@ -211,11 +211,14 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
  dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
  rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
 
+console.log("-----+++++_-----")
+console.log(cmd);
+console.log('-----+++++_-----');
  const child = spawn(cmd, { shell: true });
  child.unref(); // Allows the parent process to exit independently
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
  console.log(`Child process spawned with PID: ${child.pid}`);
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
 });
 //endregion app.post /printFile
 
