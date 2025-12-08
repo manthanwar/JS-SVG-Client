@@ -106,7 +106,7 @@ router.post('/printOne', (req, res, next) => {
  // const cmd = `cd ${src} && make -f ${mak} latexruns file=${tex}`;
  //  const cmd = `cd ${src} && make -f ../src-tex/makefile latexruns file=${tex}`;
  const cmd = `cd ${src} && \
- latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
+ latex ${tex}.tex && latex ${tex}.tex && \
  dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
  rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps`;
  exec(cmd, (error, stdout, stderr) => {
@@ -207,7 +207,9 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
  util.writeFile(tfn, lin);
 
  // latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
- const cmd = `cd ${src} && latex ${tex}.tex && latex ${tex}.tex && dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
+ const cmd = `cd ${src} && latex ${tex}.tex && latex ${tex}.tex && \
+ dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
+ rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
 
  const child = spawn(cmd, { shell: true });
  child.unref(); // Allows the parent process to exit independently

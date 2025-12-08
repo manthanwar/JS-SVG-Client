@@ -217,7 +217,7 @@ app.post('/pub-business-card', function (req, res, next) {
   const mak = path.join(__dirname, '/src-tex/makefile');
   // const cmd = `cd ${src} && make -f ${mak} latexruns file=${tex}`;
   // const cmd = `cd ${src} && make -f ../src-tex/makefile latexruns file=${tex}`;
-  const cmd = `cd ${src} && latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.out ${tex}.ps`;
+  const cmd = `cd ${src} && latex ${tex}.tex && latex ${tex}.tex && dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.out ${tex}.ps`;
   exec(cmd, (error, stdout, stderr) => {
    if (error) {
     const message = 'Error generating your card. Resubmit with correct data.';

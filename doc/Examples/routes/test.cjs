@@ -115,7 +115,6 @@ https: app.get('/resp', function (req, res) {
 // app.use(express.static(path.join(__dirname, 'doc')));
 // app.use('/src-plot', express.static(__dirname + 'doc/Examples/src-plot'));
 
-
 //region app.post /printOne
 router.post('/printOne', (req, res, next) => {
  const data = {
@@ -170,7 +169,7 @@ router.post('/printOne', (req, res, next) => {
  //  const mak = path.join(__dirname, '/src-tex/makefile');
  // const cmd = `cd ${src} && make -f ${mak} latexruns file=${tex}`;
  //  const cmd = `cd ${src} && make -f ../src-tex/makefile latexruns file=${tex}`;
-// latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
+ // latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
  const cmd = `cd ${src} && \
  latex ${tex}.tex && latex ${tex}.tex && \
  dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
@@ -273,7 +272,7 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
  util.writeFile(tfn, lin);
 
  const cmd = `cd ${src} && \
- latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
+ latex ${tex}.tex && latex ${tex}.tex && \
  dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
  rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
 
