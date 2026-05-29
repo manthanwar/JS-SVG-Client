@@ -31,6 +31,7 @@ app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.static('dist'));
 app.use(express.static('doc'));
 app.use(express.static('doc/Examples'));
+app.use(express.static('doc/Examples/amit'));
 app.use(express.static('doc/Examples/pdf'));
 app.use(express.static('doc/Examples/src-art'));
 app.use(express.static('doc/Examples/src-gauge'));
@@ -49,6 +50,10 @@ app.use('/faq', faq);
 
 app.get('/', function (req, res) {
  res.sendFile(path.join(__dirname, 'demo-home.html'));
+});
+
+app.get('/pub', function (req, res) {
+ res.sendFile(path.join(__dirname, 'pub.html'));
 });
 
 //region app.post /pub-business-card-spawn
