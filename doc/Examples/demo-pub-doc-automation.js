@@ -45,6 +45,7 @@ ${Utils.createListItem(
  'demo-pub-doc-faq.html',
  'Create Frequently Asked Questions'
 )}
+${Utils.createListItem('api-guide.pdf', '<span style="color:purple">API User Guide</span>')}
 </ul>
 
 
