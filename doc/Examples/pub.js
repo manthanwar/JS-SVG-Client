@@ -28,6 +28,7 @@ ${Utils.createListItem('Spatially_resolved_oxygen_reaction_water.pdf', 'Experime
 ${Utils.createListItem('PEM1kW_Model_Heat_Management_v2.pdf', 'Operational Strategy: 1. Dynamic Model of Fuel Cell Energy System')}
 ${Utils.createListItem('Smart_H2Energy_v02_review_submitted.pdf', 'Operational Strategy: 2. Smart Operational Strategies for Fuel Cell Energy System')}
 ${Utils.createListItem('ESCAPE25_PSE2015_Imperial_MKP_Paper_v2.pdf', 'Operational Strategy: 3. Explicit Control of Mini Fuel Cell Vehicle')}
+${Utils.createListItem('IEEEtran_VehicularTech_Fuel_Cell_Car_v1.pdf', 'Operational Strategy: 4. Integrated Control Strategy for Fuel Cell Vehicle')}
 </ul>
 
 <li>Control Theory</li>
