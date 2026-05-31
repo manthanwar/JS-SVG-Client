@@ -79,6 +79,8 @@ ${Utils.createListItem(
  'https://in.mirrors.cicku.me/ctan/graphics/pstricks/contrib/pst-flags/doc/pst-flags-doc.pdf',
  'National Flags of Countries'
 )}
+${Utils.createListItem('pst-icon-pid-doc.pdf', 'Manufacturing Piping and Infrastructure Diagrams')}
+
 </ul>
 
 <h3>Geometric Art Design Applications</h3>
