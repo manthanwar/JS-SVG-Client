@@ -68,6 +68,7 @@ ${Utils.createListItem("fig-fc-system-pfd.pdf", "Fuel Cell Plant PFD")}
 ${Utils.createListItem("fig-smart-automation-framework.pdf", "Smart Automation Framework")}
 ${Utils.createListItem("fig-control-levels.pdf", "Control Levels")}
 ${Utils.createListItem("fig-control-pyramid.pdf ", "Control Hierarchy")}
+${Utils.createListItem("fig-control-backoff-birdhouse.pdf", "Control Backed-off Operating Point - Birdhouse")}
 </ul>
 
 
