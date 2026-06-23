@@ -59,7 +59,11 @@ ${Utils.createListItem("fig-fc-h2-network.pdf", "Hydrogen Supply Chain")}
 ${Utils.createListItem("fig-fc-map-temp-array-50cm2.pdf", "Fuel Cell Map - Temperature Array")}
 ${Utils.createListItem("fig-fc-system-pfd.pdf", "Fuel Cell System PFD")}
 
+
 ${Utils.createListItem("fig-smart-automation-framework.pdf", "Smart Automation Framework")}
+${Utils.createListItem("fig-control-levels.pdf", "Control Levels")}
+${Utils.createListItem("fig-control-pyramid.pdf ", "Control Hierarchy")}
+
 
 ${Utils.createListItem("fig-fc-car-architecture.pdf", "Fuel Cell Car Architecture")}
 ${Utils.createListItem("fig-fc-car-kinematics.pdf", "Car Kinematics")}
@@ -67,13 +71,6 @@ ${Utils.createListItem("fig-fc-car-body.pdf", "Car Body")}
 ${Utils.createListItem("fig-motor-dc.pdf", "DC Motor")}
 
 </ul>
-
-
-
-
-
-
-
 
 `;
 };
@@ -83,3 +80,4 @@ ${Utils.createListItem("fig-motor-dc.pdf", "DC Motor")}
 // ${Utils.createListItem("", "")}
 
 // ${Utils.createListItem("", " - <i>Under Preparation</i>")}
+
