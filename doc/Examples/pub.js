@@ -81,12 +81,10 @@ ${Utils.createListItem("fig-motor-dc.pdf", "DC Motor")}
 </ul>
 </ul>
 
+<h3>Software Libraries</h3>
+<ul>
+${Utils.createListItem("pst-art-led.pdf", "PostScript LED Display")}
+</ul>
+
 `;
 };
-
-// ${Utils.createListItem("", "")}
-// ${Utils.createListItem("", "")}
-// ${Utils.createListItem("", "")}
-
-// ${Utils.createListItem("", " - <i>Under Preparation</i>")}
-
