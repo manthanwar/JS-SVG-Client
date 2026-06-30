@@ -51,39 +51,8 @@ ${Utils.createListItem("", "Thesis Version 2 - <i>Under Preparation</i>")}
 </ul>
 
 <h3>Figures</h3>
-
 <ul>
-<li>Fuel Cell </li>
-<ul>
-${Utils.createListItem("fig-fc-h2-economy.pdf", "Hydrogen Economy")}
-${Utils.createListItem("fig-fc-multiscale.pdf", "Fuel Cell Multi-Scale")}
-${Utils.createListItem("fig-fc-h2-network.pdf", "Hydrogen Supply Chain")}
-
-${Utils.createListItem("fig-fc-map-temp-array-50cm2.pdf", "Unit Cell Map - Temperature Array")}
-${Utils.createListItem("fig-fc-system-pfd.pdf", "Fuel Cell Plant PFD")}
-</ul>
-
-<li>Automation and Control</li>
-<ul>
-${Utils.createListItem("fig-smart-automation-framework.pdf", "Smart Automation Framework")}
-${Utils.createListItem("fig-control-levels.pdf", "Control Levels")}
-${Utils.createListItem("fig-control-pyramid.pdf ", "Control Hierarchy")}
-${Utils.createListItem("fig-control-backoff-birdhouse.pdf", "Control Backed-off Operating Point - Birdhouse")}
-</ul>
-
-
-<li>Fuel Cell Automotive Application</li>
-<ul>
-${Utils.createListItem("fig-fc-car-architecture.pdf", "Fuel Cell Car Architecture")}
-${Utils.createListItem("fig-fc-car-kinematics.pdf", "Car Kinematics")}
-${Utils.createListItem("fig-fc-car-body.pdf", "Car Body")}
-${Utils.createListItem("fig-motor-dc.pdf", "DC Motor")}
-</ul>
-</ul>
-
-<h3>Software Libraries</h3>
-<ul>
-${Utils.createListItem("pst-art-led.pdf", "PostScript LED Display")}
+${Utils.createListItem("figs.html", "Figures for Publications")}
 </ul>
 
 `;

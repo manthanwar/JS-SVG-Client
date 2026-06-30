@@ -33,91 +33,98 @@ window.onload = (event) => {
 
 <h3>Dolphin Design Intelligence Studio</h3>
 <ul>
-${Utils.createListItem('dolphin-DI-proposal.pdf', 'Product Proposal')}
-${Utils.createListItem('dolphin-proposal-smb.pdf', 'Product Proposal for SMBs')}
+${Utils.createListItem("dolphin-DI-proposal.pdf", "Product Proposal")}
+${Utils.createListItem("dolphin-proposal-smb.pdf", "Product Proposal for SMBs")}
 ${Utils.createListItem(
- 'dolphin-proposal-bank.pdf',
- 'Product Proposal for Banks'
+  "dolphin-proposal-bank.pdf",
+  "Product Proposal for Banks",
 )}
 ${Utils.createListItem(
- 'dolphin-product-proposal-school.pdf',
- 'Product Proposal for Schools'
+  "dolphin-product-proposal-school.pdf",
+  "Product Proposal for Schools",
 )}
 ${Utils.createListItem(
- 'dolphin-product-flyer-edtech.pdf',
- 'Product Flyer EdTech'
+  "dolphin-product-flyer-edtech.pdf",
+  "Product Flyer EdTech",
 )}
 
-${Utils.createListItem('amm-pst-product-brochure.pdf', 'Product Brochure')}
-${Utils.createListItem('dolphin-one-pager.pdf', 'Product One Pager')}
-${Utils.createListItem('amm-pst-product-talk.pdf', 'Product Presentation')}
-${Utils.createListItem('dolphin-DI-faqs.pdf', 'Frequently Asked Questions')}
+${Utils.createListItem("amm-pst-product-brochure.pdf", "Product Brochure")}
+${Utils.createListItem("dolphin-one-pager.pdf", "Product One Pager")}
+${Utils.createListItem("amm-pst-product-talk.pdf", "Product Presentation")}
+${Utils.createListItem("dolphin-DI-faqs.pdf", "Frequently Asked Questions")}
 </ul>
 
 <h3>Software Libraries</h3>
 <ul>
 ${Utils.createListItem(
- 'https://www.npmjs.com/package/js-svg-client',
- 'JavaScript Library'
+  "https://www.npmjs.com/package/js-svg-client",
+  "JavaScript Library",
 )}
-${Utils.createListItem('https://ctan.org/pkg/pst-flags', 'PostScript Library')}
+${Utils.createListItem("https://ctan.org/pkg/pst-flags", "PostScript Library - Country Flags")}
+${Utils.createListItem("https://ctan.org/pkg/pst-art-led", "PostScript Library - LED Displays")}
 </ul>
 
 <h3>Art Design Applications</h3>
 <ul>
-${Utils.createListItem('amm-pst-art-dolphin.pdf', 'Dolphin Dynamic Art Design')}
-${Utils.createListItem('amm-pst-icons.pdf', 'Vector Icons and Artifacts')}
+${Utils.createListItem("figs.html", "Academic and Scientific Artworks")}
+
+${Utils.createListItem("amm-pst-art-dolphin.pdf", "Dolphin Dynamic Art Design")}
+${Utils.createListItem("amm-pst-icons.pdf", "Vector Icons and Artifacts")}
 ${Utils.createListItem(
- 'pst-icon-sports-olympic-2024.pdf',
- 'Paris Olympic Pictograms Elements'
+  "pst-icon-sports-olympic-2024.pdf",
+  "Paris Olympic Pictograms Elements",
 )}
 ${Utils.createListItem(
- 'pst-icon-sports-olympic-2024-talk.pdf',
- 'Paris Olympic Pictograms Presentation'
+  "pst-icon-sports-olympic-2024-talk.pdf",
+  "Paris Olympic Pictograms Presentation",
 )}
 ${Utils.createListItem(
- 'https://in.mirrors.cicku.me/ctan/graphics/pstricks/contrib/pst-flags/doc/pst-flags-doc.pdf',
- 'National Flags of Countries'
+  "https://in.mirrors.cicku.me/ctan/graphics/pstricks/contrib/pst-flags/doc/pst-flags-doc.pdf",
+  "National Flags of Countries",
 )}
-${Utils.createListItem('pst-icon-pid-doc.pdf', 'Manufacturing Piping and Infrastructure Diagrams')}
+${Utils.createListItem("pst-icon-pid-doc.pdf", "Manufacturing Piping and Infrastructure Diagrams")}
 
 </ul>
 
 <h3>Geometric Art Design Applications</h3>
 <ul>
 ${Utils.createListItem(
- 'pst-art-geometric-fold-04-construction.pdf',
- 'Construction of Four Fold Geometric Art Patterns'
+  "pst-art-geometric-fold-04-construction.pdf",
+  "Construction of Four Fold Geometric Art Patterns",
 )}
 ${Utils.createListItem(
- 'pst-art-geometric-fold-06-04-construction.pdf',
- 'Construction of Combined Four and Six Fold Pattern'
+  "pst-art-geometric-fold-06-04-construction.pdf",
+  "Construction of Combined Four and Six Fold Pattern",
 )}
 ${Utils.createListItem(
- 'pst-art-geometric-fold-04.pdf',
- 'Examples of Auto-Generated Four Fold Patterns'
+  "pst-art-geometric-fold-04.pdf",
+  "Examples of Auto-Generated Four Fold Patterns",
 )}
-${Utils.createListItem('pst-art-geometric.pdf', 'Use Cases of Geometric Art')}
+${Utils.createListItem("pst-art-geometric.pdf", "Use Cases of Geometric Art")}
 </ul>
 
 <h3>Infrastructure Management Solutions</h3>
 <ul>
-${Utils.createListItem('pst-icons-river-krishna.pdf', 'River Krishna Network')}
+${Utils.createListItem("pst-icons-river-krishna.pdf", "River Krishna Network")}
 </ul>
 
 <h3>Examples that can benefit from Dolphin Design Intelligence</h3>
 <ul>
 ${Utils.createListItemNote(
- 'https://indianculture.gov.in/kumbh-maps',
- 'Maha Kumbh Map of the Indian Ministry of Culture',
- 'The names of streets are illegible. This map needs redesigning to optimize quality and size'
+  "https://indianculture.gov.in/kumbh-maps",
+  "Maha Kumbh Map of the Indian Ministry of Culture",
+  "The names of streets are illegible. This map needs redesigning to optimize quality and size",
 )}
 ${Utils.createListItemNote(
- 'https://backend.delhimetrorail.com/documents/1030/smartcard.pdf',
- 'Delhi City Metro Map of the Indian Railways',
- 'This map needs redesigning to optimize quality and size'
+  "https://backend.delhimetrorail.com/documents/1030/smartcard.pdf",
+  "Delhi City Metro Map of the Indian Railways",
+  "This map needs redesigning to optimize quality and size",
 )}
 </ul>
+
+
+
+
 `;
 };
 
