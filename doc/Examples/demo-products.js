@@ -58,10 +58,10 @@ ${Utils.createListItem("dolphin-DI-faqs.pdf", "Frequently Asked Questions")}
 <ul>
 ${Utils.createListItem(
   "https://www.npmjs.com/package/js-svg-client",
-  "JavaScript Library",
+  "JavaScript Dynamic Data Visualization",
 )}
-${Utils.createListItem("https://ctan.org/pkg/pst-flags", "PostScript Library - Country Flags")}
-${Utils.createListItem("https://ctan.org/pkg/pst-art-led", "PostScript Library - LED Displays")}
+${Utils.createListItem("https://ctan.org/pkg/pst-flags", "PostScript Country Flags")}
+${Utils.createListItem("https://ctan.org/pkg/pst-art-led", "PostScript LED Displays")}
 </ul>
 
 <h3>Art Design Applications</h3>
