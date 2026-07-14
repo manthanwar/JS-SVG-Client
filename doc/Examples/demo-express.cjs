@@ -32,6 +32,7 @@ app.use(express.static('dist'));
 app.use(express.static('doc'));
 app.use(express.static('doc/Examples'));
 app.use(express.static('doc/Examples/amit'));
+app.use(express.static('doc/Examples/forms'));
 app.use(express.static('doc/Examples/pdf'));
 app.use(express.static('doc/Examples/src-art'));
 app.use(express.static('doc/Examples/src-gauge'));

@@ -1,0 +1,81 @@
+{
+ "metadata:": {
+  "filename": "hp=gas-kyc-form-sample.json",
+  "description": "KYC for Hindustan Petroleum Gas",
+  "author": "Amit M. Manthanwar",
+  "documentation": [
+   "POA = Proof of Address",
+   "Field length = 21 box spaces for all fields except address",
+   "field length = 24 box spaces for address",
+   "Use tilde ~ for blank box",
+   "Form ID = ['string', 'boolean'] e.g ['id number', '1 if attached else 0']",
+   "NameT = Title",
+   "NameF = First Name",
+   "NameM = Middle Name",
+   "NameL = Last Name",
+   "NameD = Date of Birth"
+  ]
+ },
+
+ "formPOA": {
+  "Aadhaar": "1",
+  "Driving": "0",
+  "Lease": "0",
+  "Voter": "0",
+  "UtilityBill": "0",
+  "Passport": "0",
+  "Gazetted": "0",
+  "RationCard": "0",
+  "FlatLetter": "0",
+  "HouseDoc": "0",
+  "LICPolicy": "0",
+  "BankStatement": "0"
+ },
+
+ "formID": {
+  "Aadhaar": ["1234 331234 1234", "1"],
+  "Passport": ["", "0"],
+  "Pan": ["", "0"],
+  "Voter": ["", "0"],
+  "GovId": ["", "0"],
+  "Driving": ["", "0"]
+ },
+
+ "formField": {
+  "RationState": "MAHARASHTRA",
+  "RationCard": "1000001234",
+  "Date": "06/07/2026",
+  "ConsumerNumber": "123456",
+  "NameT": "MRS",
+  "NameF": "SAVITRIBAI",
+  "NameM": "JYOTIRAO",
+  "NameL": "PHULE",
+  "NameD": "03011831",
+  "NameFatherF": "FIRST",
+  "NameFatherM": "MIDDLE",
+  "NameFatherL": "LAST",
+  "NameMotherF": "FIRST",
+  "NameMotherM": "MIDDLE",
+  "NameMotherL": "LAST",
+  "NameSpouseF": "FIRST",
+  "NameSpouseM": "MIDDLE",
+  "NameSpouseL": "LAST",
+  "BankName": "STATE BANK OF INDIA",
+  "BankBranch": "CITY BRANCH",
+  "BankAddress": "CITY ROAD",
+  "BankIFSC": "SBIN00000001",
+  "BankAccount": "100000001234",
+  "Phone": "+911231231234",
+  "Mobile": "+911231231234",
+  "Email": "email@Domain.TLD",
+  "AddressHouseNumber": "01",
+  "AddressHouseName": "FIRST",
+  "AddressBuilding": "CENTRAL",
+  "AddressStreet": "ROAD NAME",
+  "AddressCity": "PUNE",
+  "AddressDistrict": "PUNE",
+  "AddressState": "MAHARASHTRA",
+  "AddressPostcode": "411001",
+  "AddressDetail": "Top Floor, Near New Highway"
+ }
+}
