@@ -49,7 +49,7 @@ ${Utils.createListItem('api-guide.pdf', '<span style="color:purple">API User Gui
 </ul>
 
 
-<h3>Various Form</h3>
+<h3>Various Forms</h3>
 <ul>
 ${Utils.createListItem('forms.html', 'KYC Forms')}
 </ul>
