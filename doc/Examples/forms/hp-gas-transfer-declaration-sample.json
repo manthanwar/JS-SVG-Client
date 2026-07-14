@@ -1,0 +1,17 @@
+{
+ "NameF": "First",
+ "NameM": "Middle",
+ "NameL": "Last",
+ "FromNameF": "First",
+ "FromNameM": "Middle",
+ "FromNameL": "Last",
+ "FromNameA": "70}% A",
+ "AddressLineI": "1 Building",
+ "AddressLineII": "Road Name",
+ "AddressVillage": "Village",
+ "AddressTown": "Town",
+ "AddressDistrict": "District",
+ "AddressPincode": "110001",
+ "Date": "10/07/2026",
+ "Place": "Pune"
+}

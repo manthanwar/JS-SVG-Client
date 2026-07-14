@@ -1,0 +1,40 @@
+{
+ "Distributor": "MY GAS SUPPLY COMPANY, AREA, CITY PINCODE",
+ "OwnerOld": {
+  "NameF": "FIRST",
+  "NameM": "MIDDLE",
+  "NameL": "LAST",
+  "Mobile": "1234567890",
+  "AddressLineI": "Building No",
+  "AddressLineII": "Road Name",
+  "AddressVillage": "Village",
+  "AddressTown": "Town",
+  "AddressDistrict": "District",
+  "AddressPincode": "111001",
+  "Date": "01/01/2026",
+  "Place": "PUNE"
+ },
+ "OwnerNew": {
+  "NameF": "FIRST",
+  "NameM": "MIDDLE",
+  "NameL": "LAST",
+  "Mobile": "1234567890",
+  "AddressLineI": "Building No",
+  "AddressLineII": "Road Name",
+  "AddressVillage": "Village",
+  "AddressTown": "Town",
+  "AddressDistrict": "District",
+  "AddressPincode": "111001",
+  "Date": "01/01/2026",
+  "Place": "PUNE"
+ },
+ "Relationship": "WIFE",
+ "VoucherNumber": "1234567",
+ "VoucherDated": "01/01/1990",
+ "ConsumerNumber": "123456",
+ "TransferTypeA": "1",
+ "TransferTypeB": "0",
+ "TransferTypeC": "0",
+ "TransferTypeD": "0",
+ "TransferTypeE": "0"
+}

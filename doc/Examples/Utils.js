@@ -27,6 +27,12 @@ export class Utils {
   return `The name of this class is ${this.name}.`;
  }
 
+ static createLink(url, name) {
+  const item =
+   '<a href="' + url + '" target="_blank">' + name + '</a>';
+  return item;
+ }
+
  static createListItem(url, name) {
   const item =
    '<li><a href="' + url + '" target="_blank">' + name + '</a></li>';
