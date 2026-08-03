@@ -60,6 +60,16 @@ ${Utils.createListItem('hp-gas-transfer-declaration-sample.json', 'Sample Data i
 
 </ul>
 
+
+
+<h3>Property Documents: Pune Municipal Corporation (PMC)</h3>
+
+<ul>
+
+${Utils.createListItem('pmc-property-transfer-form-5-blank.pdf', 'Property Transfer Form (PT5)')}
+
+</ul>
+
 `;
 };
 
