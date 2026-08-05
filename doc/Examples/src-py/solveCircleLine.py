@@ -1,5 +1,4 @@
-#! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 # ==============================================================================
 # File Name     : <solveCircleLine.py>
 # Description   : python script for circle and line intersection

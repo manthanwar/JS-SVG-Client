@@ -1,5 +1,4 @@
-#! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 # ==============================================================================
 # File Name     : ExcelToTexCertificate.py
 # Date Created  : 2025-10-16 16:25 UTC +02:00

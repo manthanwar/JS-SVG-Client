@@ -1,5 +1,4 @@
-#! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 # ==============================================================================
 # File Name     : ExcelToTexArticle.py
 # Date Created  : 2025-10-26 07:16 UTC +01:00

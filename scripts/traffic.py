@@ -1,6 +1,4 @@
-#! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
-#! /usr/bin/env python3
-#! /c/Program Files/QGIS 3.26.0/apps/Python39/python
+#!/usr/bin/env python3
 # ==============================================================================
 # File Name     : traffic-analysis.py
 # Date Created  : 2025-11-06 14:26 UTC +01:00

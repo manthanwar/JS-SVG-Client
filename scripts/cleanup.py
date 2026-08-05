@@ -1,5 +1,4 @@
-#! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 # ==============================================================================
 # File Name     : cleanUp.py
 # Date Created  : 2025-10-28 19:16 UTC +01:00

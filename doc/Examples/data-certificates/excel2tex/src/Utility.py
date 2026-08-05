@@ -1,8 +1,4 @@
-#! /c/Python314/python
-#! python3qgis
-#! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
-#! /usr/bin/env python3
-#! /c/Program Files/QGIS 3.26.0/apps/Python39/python
+#!/usr/bin/env python3
 # ==============================================================================
 # File Name     : Utility.py
 # Date Created  : 2025-10-16 19:59 UTC +02:00
