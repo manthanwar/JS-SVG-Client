@@ -1,3 +1,4 @@
+#! /c/Python314/python
 #! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
 #! /usr/bin/env python3
 # ==============================================================================

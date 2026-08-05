@@ -1,3 +1,4 @@
+#! /c/Python314/python
 #! python3qgis
 #! /c/Users/amit/AppData/Local/Programs/Python/Python312/python
 #! /usr/bin/env python3
@@ -26,7 +27,7 @@ import sys
 import subprocess
 import pandas as pd
 from typing import Any
-import gc
+import gc # built in
 
 # code = open in vscode editor with command: code filename
 
