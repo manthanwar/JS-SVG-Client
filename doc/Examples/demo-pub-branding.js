@@ -41,8 +41,9 @@ window.onload = (event) => {
 <ul>
 ${Utils.createListItemNoUrl('Brand Logo Design')}
 <ul>
-${Utils.createListItem('amm-pst-art-logo-jps.pdf', 'Logo Design 1')}
-${Utils.createListItem('amm-pst-art-logo-bapatla.pdf', 'Logo Design 2')}
+${Utils.createListItem('amm-pst-art-logo-jps.pdf', 'Logo Design 1 - Japan Photovoltaic Society')}
+${Utils.createListItem('amm-pst-art-logo-bapatla.pdf', 'Logo Design 2 - Bapatla')}
+${Utils.createListItem('pst-logo-in-up-queens-college.pdf', 'Logo Design 3 - School Branding')}
 </ul>
 <li><a href="amm-pst-letter.pdf" target="_blank">Formal Letter</a></li>
 <li><a href="amm-pst-talk.pdf" target="_blank">Presentation</a></li>
