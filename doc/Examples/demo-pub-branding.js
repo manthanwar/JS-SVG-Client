@@ -21,19 +21,18 @@ window.onload = (event) => {
  // artHead.innerHTML = 'Brand Identity';
  // main.style.border = '2px solid red;';
 
+ // <h3>Reports and Other Publications <i style="font-size:16px">coming soon...</i></h3>
+ // <ul>
+ // <li><a href="#" target="_blank">Reports</a></li>
+ // <li><a href="#" target="_blank">Newsletters</a></li>
+ // <li><a href="#" target="_blank">infographic</a> </li>
+ // </ul>
 
-// <h3>Reports and Other Publications <i style="font-size:16px">coming soon...</i></h3>
-// <ul>
-// <li><a href="#" target="_blank">Reports</a></li>
-// <li><a href="#" target="_blank">Newsletters</a></li>
-// <li><a href="#" target="_blank">infographic</a> </li>
-// </ul>
-
-//<h3>Awards and Recognitions</h3>
-//<ul>
-//<li><a href="marksheet-pune-university.pdf" target="_blank">Employee of the Month</a></li>
-//<li><a href="certificate-tcs-hackathon.pdf" target="_blank">Service Excellence</a></li>
-//</ul>
+ //<h3>Awards and Recognitions</h3>
+ //<ul>
+ //<li><a href="marksheet-pune-university.pdf" target="_blank">Employee of the Month</a></li>
+ //<li><a href="certificate-tcs-hackathon.pdf" target="_blank">Service Excellence</a></li>
+ //</ul>
 
  article.innerHTML = `
 

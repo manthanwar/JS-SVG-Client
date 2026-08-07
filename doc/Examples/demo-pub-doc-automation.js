@@ -38,6 +38,17 @@ ${Utils.createListItem(
 ${Utils.createListItem('demo-pub-invoice.html', 'Create Invoice')}
 </ul>
 
+<h3>Various Forms</h3>
+<ul>
+${Utils.createListItem('forms.html', 'KYC Forms')}
+</ul>
+
+<h3>AI-ready Medical Prescriptions as Modern HL7 FHIR</h3>
+<ul>
+${Utils.createListItem(' prescription.pdf', 'Medical Prescription')}
+${Utils.createListItem(' prescription.json', 'Medical Prescription Data')}
+</ul>
+
 <h3>Project Reports and Other Publications</h3>
 <ul>
 ${Utils.createListItem('demo-pub-doc-create.html', 'Create Project Report')}
@@ -49,10 +60,6 @@ ${Utils.createListItem('api-guide.pdf', '<span style="color:purple">API User Gui
 </ul>
 
 
-<h3>Various Forms</h3>
-<ul>
-${Utils.createListItem('forms.html', 'KYC Forms')}
-</ul>
 
 
 
