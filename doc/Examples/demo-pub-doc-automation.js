@@ -38,9 +38,9 @@ ${Utils.createListItem(
 ${Utils.createListItem('demo-pub-invoice.html', 'Create Invoice')}
 </ul>
 
-<h3>Various Forms</h3>
+<h3>Forms</h3>
 <ul>
-${Utils.createListItem('forms.html', 'KYC Forms')}
+${Utils.createListItem('forms.html', 'Various Forms')}
 </ul>
 
 <h3>AI-ready Medical Prescriptions as Modern HL7 FHIR</h3>
