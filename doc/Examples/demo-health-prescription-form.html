@@ -1,0 +1,84 @@
+<!-- #region Tabs -->
+<div class="tab">
+ <button class="tablinks">Upload JSON</button>
+ <button class="tablinks">Fill Form</button>
+ <!-- <button class="tablinks">Upload File</button> -->
+</div>
+<!-- #endregion Tabs -->
+
+<!-- #region First Tab -->
+<div id="London" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Prescription Using <a href="prescription.json" target="_blank">JSON File</a></h2>
+
+  <form
+   action="prescription/printFile"
+   method="POST"
+   enctype="multipart/form-data"
+  >
+   <div class="floating-label-group-group" style="margin-top: 20px">
+    <div class="floating-label-group">
+     <input
+      type="text"
+      id="nameF"
+      name="nameF"
+      size="12"
+      required
+      placeholder="Name"
+     />
+     <input type="email" id="email" name="email" placeholder="email" required />
+    </div>
+   </div>
+   <div class="floating-label-group-group" style="margin-top: 40px">
+    <div class="floating-label-group">
+     <label for="file" style="margin-top: -20px; margin-right: -20px"
+      >Select JSON File:</label
+     >
+     <input type="file" id="file" name="file"
+     required accept=".json" />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group" style="margin-top: 40px">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>
+<!-- #endregion First Tab -->
+
+<!-- #region Second Tab -->
+<div id="Mumbai" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Prescription</h2>
+  <div>Coming soon...</div>
+ </div>
+</div>
+<!-- #endregion Second Tab -->
+
+<!-- #region Third Tab -->
+<div id="Pune" class="tabcontent">
+ <div class="formContainer">
+  <h2>Create Your Certificate Using JSON</h2>
+
+  <form
+   action="certificate/printJson"
+   method="POST"
+   enctype="multipart/form-data"
+  >
+   <div class="floating-label-group-group">
+    <div class="floating-label-group">
+     <label for="file">Select File </label>
+     <input type="file" id="file" name="file" required />
+    </div>
+   </div>
+
+   <div class="floating-label-group-group">
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Clear" />
+   </div>
+  </form>
+ </div>
+</div>
+<!-- #endregion Third Tab -->

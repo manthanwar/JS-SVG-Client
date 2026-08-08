@@ -16,6 +16,7 @@ const certificate = require('./routes/certificate.cjs');
 const report = require('./routes/report.cjs');
 const invoice = require('./routes/invoice.cjs');
 const faq = require('./routes/faq.cjs');
+const prescription = require('./routes/prescription.cjs');
 
 const hbs = handlebars.create(hbsOptions);
 app.engine('.hbs', hbs.engine);
@@ -48,6 +49,7 @@ app.use('/certificate', certificate);
 app.use('/report', report);
 app.use('/invoice', invoice);
 app.use('/faq', faq);
+app.use('/prescription', prescription);
 
 app.get('/', function (req, res) {
  res.sendFile(path.join(__dirname, 'demo-home.html'));

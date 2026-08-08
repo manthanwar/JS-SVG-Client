@@ -29,4 +29,3 @@ cp -r "$TARGET_DIR" "$BACKUP_DIR"
 python "$CLEANUP_FILE" "$TARGET_DIR"
 echo -e "${BOLD}${BRIGHT_YELLOW}cleaned ${BACKUP_DIR} ${RESET}"
 ls --color=auto --group-directories-first "$TARGET_DIR"
-

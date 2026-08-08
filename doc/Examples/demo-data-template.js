@@ -137,11 +137,21 @@ data.navMenu = [
   ]
  },
  {
-  link: 'Public Healthcare',
-  page: 'Geographical Information System',
-  href: 'https://nodejs-covid19.onrender.com/',
-  //  href: 'https://bapfoundation.org/',
-  target: '_blank'
+  link: 'Health',
+  menu: [
+   {
+    link: 'Disease Tracking',
+    page: 'Geographical Information System',
+    href: 'https://nodejs-covid19.onrender.com/',
+    //  href: 'https://bapfoundation.org/',
+    target: '_blank'
+   },
+   {
+    link: 'Intelligent Healthcare',
+    page: 'Intelligent Healthcare - AI Ready HL7 FHIR',
+    href: 'demo-health.html'
+   }
+  ]
  },
  {
   // page: 'Data-Driven Reporting and Publication Automation',

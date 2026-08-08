@@ -11,6 +11,8 @@ dolphin-faq.sty
 dolphin-fonts.sty
 excel2tex
 fig-signature.tex
+prescription-design-001.tex
+prescription.cls
 pst-icon-macros.sty
 traffic.log
 xls2dpr.py
