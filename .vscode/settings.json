@@ -138,6 +138,8 @@
     //     "--indent-size=2",
     //     "--ignore E121"
     // ],
+    // "python.defaultInterpreterPath": "C:\\Users\\amit\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8",
         // "editor.defaultFormatter": "ms-python.black-formatter",
@@ -1294,7 +1296,6 @@
     "prettier.configPath": "./.vscode/prettierrc.json",
     "prettier.ignorePath": "./.vscode/prettierignore",
     "prettier.useEditorConfig": true,
-    "python.defaultInterpreterPath": "C:\\Users\\amit\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
     "search.exclude": {
         "**/node_modules": true,
     },

@@ -112,7 +112,7 @@ class Utility:
         cmd += f"latex  -quiet {file}.tex && "
         cmd += f"dvips -q {file}.dvi && "
         cmd += f"ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY {file}.ps && "
-        cmd += f"rm {file}.aux {file}.dvi {file}.log "
+        cmd += f"rm {file}.aux {file}.dvi {file}.log {file}.out "
         cmd += f"{file}.out.ps {file}.ps"
         Utility.runCmd(cmd)
         return None

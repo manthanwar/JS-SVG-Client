@@ -1,0 +1,73 @@
+%-------------------------------------------------------------------------------
+% \testPage
+%-------------------------------------------------------------------------------
+\pagestyle{fancy}\fancyhf{}
+\cfoot{%
+{\color{OrangeRed}{\rule{\textwidth}{0.2mm}}}\\[0mm]
+{\color{IndianBlue}{\footnotesize{\JSONParseValue{\medReqData}{style.layout.footer}}}}\\[-2mm]%
+{\color{Green}{\rule{\textwidth}{0.2mm}}}
+}%
+%-------------------------------------------------------------------------------
+% {\color{OrangeRed}{\rule[1mm]{\textwidth}{0.2mm}}}\\[0mm]
+%-------------------------------------------------------------------------------
+\parbox[t]{0.5\textwidth}{%
+{\Large{\textbf{\JSONParseValue{\medReqData}{doctor.name}}}}\\
+{\footnotesize{\JSONParseValue{\medReqData}{doctor.title}}}\\[2mm]
+\textbf{\JSONParseValue{\medReqData}{doctor.specialty}}\\[2mm]
+\JSONParseValue{\medReqData}{doctor.address.street}, \JSONParseValue{\medReqData}{doctor.address.city} \JSONParseValue{\medReqData}{doctor.address.zip}}%
+%-------------------------------------------------------------------------------
+\hfill
+%-------------------------------------------------------------------------------
+\parbox[t]{0.5\textwidth}{\raggedleft{%
+Morning: 7.00 to 8.45\\
+Evening: 3.30 to 7.30\\[2mm]
+Registration: \JSONParseValue{\medReqData}{doctor.registration}\\[2mm]
+Phone: \JSONParseValue{\medReqData}{doctor.phone}}}\\[2mm]
+%-------------------------------------------------------------------------------
+{\color{OrangeRed}{\rule{\textwidth}{0.2mm}}}\\[-5mm]
+{\color{Green}{\rule{\textwidth}{0.2mm}}}\\[2mm]
+%-------------------------------------------------------------------------------
+% \parbox[t]{\textwidth}{\raggedleft{Date: \medReqDate}}\\[2mm]
+\parbox[t]{\textwidth}{\raggedleft{Date: \JSONParseValue{\medReqData}{date}}}
+%-------------------------------------------------------------------------------
+\subsection*{Patient Details:}\vspace{-2mm}
+Name: \textbf{\JSONParseValue{\medReqData}{patient.name}}\\[2mm]
+Age: \JSONParseValue{\medReqData}{patient.age} \hfill Gender: \JSONParseValue{\medReqData}{patient.gender} \hfill
+Weight: \JSONParseValue{\medReqData}{patient.weight}
+%-------------------------------------------------------------------------------
+
+\subsection*{Clinical Description:}%\\[2mm]
+\JSONParseValue{\medReqData}{diagnosis}% \\[10mm]
+%-------------------------------------------------------------------------------
+
+\subsection*{Medications:}%\\[2mm]
+\setlength{\tabcolsep}{4mm}
+% \setlength{\extrarowheight}{5pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}%{clll}
+{%|
+% >{\centering\arraybackslash}
+p{\dimexpr 0.18\linewidth-2\tabcolsep} %|
+p{\dimexpr 0.24\linewidth-2\tabcolsep} %|
+p{\dimexpr 0.18\linewidth-2\tabcolsep} %|
+p{\dimexpr 0.4\linewidth-2\tabcolsep}  %|
+}
+%
+\textbf{Form} & \textbf{Drug Name} & \textbf{Dosage} & \textbf{Frequency}\\
+\JSONParseArrayMapInline{\medReqData}{medications}{%
+\JSONParseValue{\medReqData}{medications[#1].form} & \JSONParseValue{\medReqData}{medications[#1].drugName} & \JSONParseValue{\medReqData}{medications[#1].dosage} & \JSONParseValue{\medReqData}{medications[#1].frequency} \\
+}
+\end{tabular}
+%-------------------------------------------------------------------------------
+
+\subsection*{Advice:}
+\JSONParseValue{\medReqData}{advice}
+\begin{itemize}[nosep,itemsep=0mm]
+\JSONParseArrayMapInline{\medReqData}{medications}{%
+\item \JSONParseValue{\medReqData}{medications[#1].drugName} :- \JSONParseValue{\medReqData}{medications[#1].instructions} for \JSONParseValue{\medReqData}{medications[#1].duration}
+}
+\end{itemize}
+%-------------------------------------------------------------------------------
+\subsection*{Follow Up:}
+Visit again on \JSONParseValue{\medReqData}{followUpDate}
+%-------------------------------------------------------------------------------

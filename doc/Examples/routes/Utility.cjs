@@ -17,8 +17,10 @@
 // =============================================================================
 */
 const fs = require('node:fs');
-// const fs = require('fs');
-const path = require('path');
+const path = require('node:path');
+const { exec } = require('node:child_process');
+const { execFile } = require('node:child_process');
+const { spawn } = require('node:child_process');
 
 class Utility {
  // Set the inactivity timeout to 30 minutes (30 * 60 * 1000 milliseconds)
@@ -39,6 +41,35 @@ class Utility {
    } else {
     console.log('File written successfully!');
    }
+  });
+ }
+
+ static async writeAndRun(filePath, content, src, tex) {
+  // const filePath = './output.txt';
+
+  // 1. Create the write stream
+  const stream = fs.createWriteStream(filePath);
+
+  stream.write(content);
+
+  // 2. Safely close the stream
+  stream.end();
+
+  // 3. Wait for the stream to fully finish writing to disk
+  await new Promise((resolve, reject) => {
+   stream.on('finish', resolve);
+   stream.on('error', reject);
+  });
+
+  console.log('File is completely written. Spawning child process...');
+
+  // 4. Spawn your process safely
+  // const child = spawn('cat', [filePath]); // Replace 'cat' with your command
+
+  const cmd = `cd ${src} && latex ${tex}.tex`;
+  const child = spawn(cmd, { cwd: src, shell: true });
+  child.stdout.on('data', (data) => {
+   console.log(`Child output: ${data}`);
   });
  }
 

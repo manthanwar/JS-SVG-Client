@@ -1,0 +1,11 @@
+
+running latex 1 ...
+
+gross execution time: 2185 ms
+
+user mode: 1703 ms, kernel mode: 140 ms, total: 1843
+ 
+time elapsed = 3148 ms for latexNx
+time elapsed = 0829 ms for ps
+time elapsed = 1181 ms for pdf
+time elapsed = 6085 ms for total

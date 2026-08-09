@@ -138,28 +138,20 @@ ls:
 clear:
 	@clear
 
-
-
 clean-latex:
-	@rm -f ${file}.aux ${file}.out ${file}.log ${file}.dvi ${file}.ps ${file}.fls ${file}.fdb_latexmk ${file}.gz ${file}.tmp ${file}.bak ${file}.nlo ${file}.nls ${file}.ilg ${file}.glg ${file}.glo ${file}.gls ${file}.glsdefs ${file}.ist ${file}.lof ${file}.lot ${file}.toc ${file}.idx ${file}.ind
-
-clean-pdflatex: ## clean pdflatex created files
-	@rm -f ${file}.aux ${file}.bcf ${file}.blg ${file}.bbl ${file}.brf ${file}.log ${file}.out ${file}.xml ${file}.xdv
-
-cleanLatexAll:
 	@rm -f *.aux *.out *.log *.dvi *.ps *.fls *.fdb_latexmk *.gz *.tmp *.bak *.nlo *.nls *.ilg *.glg *.glo *.gls *.glsdefs *.ist *.lof *.lot *.toc *.idx *.ind
 
-cleanPdflatexAll: ## clean pdflatex created files
+clean-pdflatex: ## clean pdflatex created files
 	@rm -f *.aux *.bcf *.blg *.bbl *.brf *.log *.out *.xml *.xdv
 
 clean-build: clean-latex clean-pdflatex ## clean build files of latex pdflatex
-	@rm -rf build ${file}.synctex
+	@rm -rf build *.synctex
 
 clean: clean-latex clean-pdflatex ls ## make -f $makefile clean file=filename
 
 cleanall: clean-build ls ## make -f $makefile cleanall file=filename
 
-nodecleanall: clean-latex ## make -f $makefile cleanall file=filename
+nodeCleanall: clean-build ## make -f $makefile cleanall file=filename
 
 cleanallp: clean-build ## make -f $makefile cleanall file=filename
 	@rm -rf ${file}.pdf
@@ -269,14 +261,7 @@ xelatexNx: ${file}.tex ## run xelatex n times
 	done
 	$(TIMEE)
 
-
-nodelatext:
-	@echo "Testing..."
-	@echo "file = ${file}"
-	@echo "n = ${n}"
-
-
-nodelatex: latexNx ps pdf nodecleanall timeElapsed ## make -f $makefile file=name runlatex n=2
+nodeLatex: latexNx ps pdf nodeCleanall timeElapsed ## make -f $makefile file=name runlatex n=2
 
 runlatexc: cleanall ## make -f $makefile file=filename runlatexc
 
