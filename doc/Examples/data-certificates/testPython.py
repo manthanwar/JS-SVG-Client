@@ -44,14 +44,14 @@ if len(sys.argv) > 1:
     # The first argument after the script name is at index 1
     texFile = sys.argv[1]
 
-print('----------------')
+print('\n----------------Python\n')
 print(texFile)
-print('----------------')
+print('\n----------------\n')
 
 # cmd = 'ls'
 # result = runCmd(cmd)
 # print(result)
-print('----------------')
+print('\n----------------')
 
 
 # cmd = f'cat {texFile}.tex'
