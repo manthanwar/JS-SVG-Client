@@ -29,17 +29,17 @@
     "medications": [
         {
             "drugName": "Amoxicillin",
-            "dosage": "500mg",
-            "form": "Capsule",
+            "dosage": "100mg",
+            "form": "Tablet",
             "frequency": "Three times a day",
             "duration": "7 days",
-            "instructions": "Take with food"
+            "instructions": "\textbf{Take with food}"
         },
         {
             "drugName": "Ibuprofen",
             "dosage": "400mg",
             "form": "Tablet",
-            "frequency": "Every 6 hours as needed",
+            "frequency": "Every 8 hours as needed",
             "duration": "5 days",
             "instructions": "Take for fever or pain"
         },
@@ -52,6 +52,7 @@
             "instructions": "Take to relieve coughing"
         }
     ],
+    "adviceStyleColorHighlight": "pink",
     "advice": "Drink plenty of water and get adequate rest.",
     "followUpDate": "22/08/2026",
     "style": {

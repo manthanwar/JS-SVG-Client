@@ -24,6 +24,7 @@ ${Utils.createListItem('book-intelligent-medical-documentation.pdf', 'Intelligen
 ${Utils.createListItemNoUrl('Medical Prescription')}
 <ul>
 ${Utils.createListItem(' prescription.pdf', 'Samole Medical Prescription')}
+${Utils.createListItem(' prescription-secured.pdf', 'Samole Medical Prescription - Secured')}
 ${Utils.createListItem(' prescription.json', 'Sample MedicalRequest JSON Data')}
 ${Utils.createListItem(' demo-health-prescription.html', 'Create Medical Prescription')}
 </ul>

@@ -32,12 +32,12 @@ Phone: \JSONParseValue{\medReqData}{doctor.phone}}}\\[2mm]
 %-------------------------------------------------------------------------------
 \subsection*{Patient Details:}\vspace{-2mm}
 Name: \textbf{\JSONParseValue{\medReqData}{patient.name}}\\[2mm]
-Age: \JSONParseValue{\medReqData}{patient.age} \hfill Gender: \JSONParseValue{\medReqData}{patient.gender} \hfill
+Age: \rput[l](0,0){\JSONParseValue{\medReqData}{patient.cyan}} \rput[l](0,0){\psframe[fillstyle=solid,fillcolor=pink,linestyle=none](0,-2mm)(10mm,4mm)} \hfill Gender: \JSONParseValue{\medReqData}{patient.gender} \hfill
 Weight: \JSONParseValue{\medReqData}{patient.weight}
-%-------------------------------------------------------------------------------
 
+%-------------------------------------------------------------------------------
 \subsection*{Clinical Description:}%\\[2mm]
-\JSONParseValue{\medReqData}{diagnosis}% \\[10mm]
+\rput[lb](0,0){\psframe[fillstyle=solid,fillcolor=yellow,linestyle=none](0,-2mm)(30mm,4mm)}\rput[lb](0,0){\color{red}{\textbf{\JSONParseValue{\medReqData}{diagnosis}}}}% \\[10mm]
 %-------------------------------------------------------------------------------
 
 \subsection*{Medications:}%\\[2mm]

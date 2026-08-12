@@ -164,6 +164,18 @@ router.get('/printOnePdf', (req, res) => {
 });
 // #endregion router.get /printOnePdf
 
+// #region router.get /printOnePdf
+router.get('/printOneJson', (req, res) => {
+ res.render('prescriptionJson', {
+  layout: false,
+  name: req.query.name ? req.query.name : '#',
+  jsonString: req.query.jsonString ? req.query.jsonString : '#',
+  json: req.query.json ? req.query.json : '#'
+  // delay: req.query.delay ? req.query.delay : 10
+ });
+});
+// #endregion router.get /printOnePdf
+
 //#region function runCommand
 function runCommand(cmd) {
  return new Promise((resolve, reject) => {
@@ -231,60 +243,61 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
   console.log('File written successfully!');
   console.log('Continuing script...');
 
-  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+  // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+  // res.redirect(`printOneJson?json=${dat}&name=${nam}&jsonStrin=${del}`);
 
-  const logFile = fs.openSync(log, 'w');
-  const errFile = fs.openSync(err, 'w');
+  // req.file.path contains the complete system path to the file
+  const filePath = req.file.path;
 
-  fs.writeSync(logFile, msg);
-  fs.writeSync(logFile, '------\nFile written! Compiling...\n');
-  fs.writeSync(logFile, tex + '.tex');
-  fs.writeSync(logFile, '\n------\n\n');
+  console.log('\n----\n' + filePath);
 
-  // const cmd = 'python';
-  // const arg = ['--version'];
-  // const arg = ['testPython.py', tex];
+  // Read file contents as a UTF-8 string (good for text, CSV, JSON, etc.)
+  fs.readFile(filePath, 'utf8', (error, data) => {
+   if (error) {
+    return res.status(500).send('Error reading file.');
+   }
 
-  // stdio: ['ignore', logFile, 'pipe'] // stdin, stdout, stderr
-  // const opt = { cwd: src, shell: true, stdio: ['ignore', logFile, errFile] };
-  // const opt = { cwd: src, shell: true, stdio: ['ignore', logFile, logFile] };
-  //  env: process.env.path
-  const opt = {
-   shell: true,
-   stdio: ['ignore', logFile, errFile]
-  };
-  const src = path.join(__dirname, '../data-certificates');
-  const tpy = path.join(__dirname, '../data-certificates', 'testPython.py');
+   // console.log('File content:', data);
+   // res.send('File content read successfully.');
+   // res.send(JSON.stringify(data, null, 2));
 
-  // const cmd = `cd ${src} && pwd && make -f makefile runlatex file=${tex} `;
+   // const data = { name: 'Alice', roles: ['admin', 'user'], active: true };
+   const htmlA = `<html>
+   <head>
+   <link rel="stylesheet" href="../css/dracula.css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
 
-  // const cmd = `cd ${src} && node --version `;
-  // const cmd = `cd ${src} && node demo-spawn-log.cjs `;
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
 
-  // latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
-  const cmd = `cd ${src} && latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && rm -f ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
+   </head>
+   <body>
+   <h1>Check if JSON data below is correct</h1>
+   <pre id="json-output" style="font-size: 1.5rem;">
+   <code id="json-block" class="language-json"></code>
+   </pre>
+   <a href="https://yourcustomlink.com" class="my-custom-btn"">Proceed </a> <a href="javascript:history.back()" class="my-custom-btn">Go Back</a>
 
-  fs.writeSync(logFile, '------cmd...\n');
-  fs.writeSync(logFile, cmd);
-  fs.writeSync(logFile, process.env.path);
-  fs.writeSync(logFile, '\n------\n\n');
+   <br><br><br><br>
+   <script>
+   const data = ${data};
+   const jsonString = JSON.stringify(data, null, 2);
+   const target = document.getElementById('json-block');
+   target.textContent = jsonString;
+   hljs.highlightElement(target);
+   document.getElementById('vanilla-json').innerHTML = syntaxHighlightJson(data);
+   </script></body></html>`;
 
-  const child = spawn(cmd, opt);
+   res.send(htmlA);
 
-  // const child = spawn(cmd, arg, opt);
+   // <script src="../css/highlight.js" defer></script>
+   // target.textContent = syntaxHighlightJson(jsonString);
+   // //hljs.highlightElement(target);
+   //document.getElementById('vanilla-json').innerHTML = syntaxHighlightJson(data);
 
-  child.unref(); // Allows the parent process to exit independently
-  process.on('exit', () => child.kill());
+   //   // Use textContent to safely prevent XSS injections
+   // document.getElementById("json-output").textContent = JSON.stringify(data, null, 2);
 
-  child.on('error', (error) => {
-   console.error(`System Error (Failed to start): ${error.message}`);
-  });
-
-  child.on('close', (code) => {
-   console.log(`Child spawn process exited with code ${code}`);
-   fs.writeSync(logFile, '\n------\nclose...\n');
-   fs.writeSync(logFile, 'Spawn process closed with code ' + code);
-   fs.closeSync(logFile); // Explicitly release the system resource
+   //
   });
 
   //

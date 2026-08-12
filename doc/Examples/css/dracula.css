@@ -1,0 +1,53 @@
+:root {
+ /* Backgrounds */
+ --dracula-bg: #282a36;
+ --dracula-current-line: #44475a;
+ --dracula-selection: #44475a;
+
+ /* Foreground / Text */
+ --dracula-fg: #f8f8f2;
+ --dracula-comment: #6272a4;
+
+ /* Accent Colors */
+ --dracula-cyan: #8be9fd;
+ --dracula-green: #50fa7b;
+ --dracula-orange: #ffb86c;
+ --dracula-pink: #ff79c6;
+ --dracula-purple: #bd93f9;
+ --dracula-red: #ff5555;
+ --dracula-yellow: #f1fa8c;
+}
+
+/*
+
+
+
+        /* The CSS to style your custom button */
+.my-custom-btn {
+ margin: 50px;
+ margin-right: 20px;
+ margin-bottom: 100px;
+ background-color: #007bff; /* Primary blue background */
+ color: #ffffff; /* White text color */
+ font-size: 20px; /* Text size */
+ font-weight: 600; /* Semi-bold text */
+ padding: 12px 24px; /* Spacing inside the button */
+ border: none; /* Removes the default ugly border */
+ border-radius: 8px; /* Rounded corners */
+ cursor: pointer; /* Changes mouse cursor to a hand pointer */
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow drop */
+ transition: all 0.3s ease; /* Smooth transition animation for hover */
+}
+
+/* What happens when you hover your mouse over the button */
+.my-custom-btn:hover {
+ background-color: #0056b3; /* Darker blue background */
+ box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+ transform: translateY(-2px); /* Lifts the button slightly up */
+}
+
+/* What happens when you physically click down on the button */
+.my-custom-btn:active {
+ transform: translateY(0); /* Pushes the button back down */
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
