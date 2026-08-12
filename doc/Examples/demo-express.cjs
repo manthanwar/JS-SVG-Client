@@ -265,6 +265,17 @@ app.get('/pub-business-card-pdf', (req, res) => {
 // Whenever a connection is received, reset the timer.
 // app.on('request', resetTimer);
 
+// The 404 Catch-All Middleware (MUST be at the very bottom)
+app.use((req, res, next) => {
+ res.status(404).send('<h1>Oops! Page not found.</h1>');
+});
+
+// Optional: Global 500 Internal Error Handler (Must have 4 arguments)
+app.use((err, req, res, next) => {
+ console.error(err.stack);
+ res.status(500).send('<h1>Something went wrong on our end!</h1>');
+});
+
 app.listen(PORT, () => {
  console.log('Server started at http://localhost:' + PORT);
 });

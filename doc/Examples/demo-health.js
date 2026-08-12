@@ -18,8 +18,9 @@ window.onload = (event) => {
 ${Utils.createListItem('https://covid19.desiign.in/', 'Coronavirus Disease 2019 (COVID-19)')}
 </ul>
 
-<h3>Healthcare Documentation Automation - AI Ready HL7 FHIR</h3>
+<h3>Healthcare Documentation - AI Ready HL7 FHIR</h3>
 <ul>
+${Utils.createListItem('book-intelligent-medical-documentation.pdf', 'Intelligent Medical Documentation')}
 ${Utils.createListItemNoUrl('Medical Prescription')}
 <ul>
 ${Utils.createListItem(' prescription.pdf', 'Samole Medical Prescription')}

@@ -1,0 +1,76 @@
+{
+    "prescription_id": "RX-982341",
+    "date": "15/08/2026",
+    "doctor": {
+        "name": "Dr. Surya Chandra",
+        "nameNative": "डॉ. सूर्य चंद्र",
+        "title": "MBBS (Pune), MD (London)",
+        "specialty": "General Physician",
+        "registration": "MMC/12345",
+        "phone": "+91-111-222-4444",
+        "email": "chandra@doctor.com",
+        "url": "http://www.doctor.com/chandra",
+        "address": {
+            "street": "123 Health Street",
+            "city": "Pune",
+            "state": "Maharashtra",
+            "zip": "411001",
+            "country": "India"
+        }
+    },
+    "patient": {
+        "name": "Rose Flower",
+        "age": "21 yr",
+        "gender": "Female",
+        "weight": "45.5 kg",
+        "patient_id": "PAT-12345"
+    },
+    "diagnosis": "Acute Bronchitis",
+    "medications": [
+        {
+            "drugName": "Amoxicillin",
+            "dosage": "500mg",
+            "form": "Capsule",
+            "frequency": "Three times a day",
+            "duration": "7 days",
+            "instructions": "Take with food"
+        },
+        {
+            "drugName": "Ibuprofen",
+            "dosage": "400mg",
+            "form": "Tablet",
+            "frequency": "Every 6 hours as needed",
+            "duration": "5 days",
+            "instructions": "Take for fever or pain"
+        },
+        {
+            "drugName": "Levolin",
+            "dosage": "5ml",
+            "form": "Syrup ",
+            "frequency": "Every 6 hours as needed",
+            "duration": "5 days",
+            "instructions": "Take to relieve coughing"
+        }
+    ],
+    "advice": "Drink plenty of water and get adequate rest.",
+    "followUpDate": "22/08/2026",
+    "style": {
+        "font": "Times New Roman",
+        "font_size": "12pt",
+        "colorScheme": {
+            "primaryColor": "#000000",
+            "secondaryColor": "#FF5733"
+        },
+        "layout": {
+            "header": "",
+            "footer": "Care you can trust. Guidance you can follow.",
+            "margins": {
+                "top": "1in",
+                "bottom": "1in",
+                "left": "1in",
+                "right": "1in"
+            }
+        }
+
+    }
+}

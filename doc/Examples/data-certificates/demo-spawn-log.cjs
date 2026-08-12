@@ -16,8 +16,8 @@ const logFile = fs.openSync(logPath, 'w');
 
 const cmd = 'make';
 const arg = [
- 'nodeLatex',
- 'file=prescription-20260809-aaabbbcom-prescription-main',
+ 'nodelatex',
+ 'file=prescription-20260812-aaabbbcom-prescription-main',
  'n=1'
 ];
 

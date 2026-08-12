@@ -220,54 +220,75 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
 \\end{document}
 `;
 
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ fs.writeFile(tfn, lin, (error) => {
+  if (error) {
+   console.error('Error Code:', error.code);
+   console.error('Error Message:', error.message);
+   return res.status(500).send(`<h1>Error</h1><p>${error.message}</p>`);
+   return;
+  }
 
- // util.writeFile(txt, msg);
- // util.writeFile(tfn, lin);
+  console.log('File written successfully!');
+  console.log('Continuing script...');
 
- try {
-  // Blocks the execution thread until writing finishes
-  fs.writeFileSync(tfn, lin);
-
-  // Executes right after writing finishes
-  console.log('File written! Continuing script...');
+  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
 
   const logFile = fs.openSync(log, 'w');
   const errFile = fs.openSync(err, 'w');
+
   fs.writeSync(logFile, msg);
-  fs.writeSync(logFile, '------\nCompiling file...\n');
-  fs.writeSync(logFile, tex);
+  fs.writeSync(logFile, '------\nFile written! Compiling...\n');
+  fs.writeSync(logFile, tex + '.tex');
   fs.writeSync(logFile, '\n------\n\n');
 
-  //  stdio: ['ignore', logFile, 'pipe'] // stdin, stdout, stderr
-  const opt = { cwd: src, stdio: ['ignore', logFile, errFile] };
-  const cmd = 'python';
-  const arg = ['--version'];
-  const child = spawn(cmd, arg, opt);
+  // const cmd = 'python';
+  // const arg = ['--version'];
+  // const arg = ['testPython.py', tex];
+
+  // stdio: ['ignore', logFile, 'pipe'] // stdin, stdout, stderr
+  // const opt = { cwd: src, shell: true, stdio: ['ignore', logFile, errFile] };
+  // const opt = { cwd: src, shell: true, stdio: ['ignore', logFile, logFile] };
+  //  env: process.env.path
+  const opt = {
+   shell: true,
+   stdio: ['ignore', logFile, errFile]
+  };
+  const src = path.join(__dirname, '../data-certificates');
+  const tpy = path.join(__dirname, '../data-certificates', 'testPython.py');
+
+  // const cmd = `cd ${src} && pwd && make -f makefile runlatex file=${tex} `;
+
+  // const cmd = `cd ${src} && node --version `;
+  // const cmd = `cd ${src} && node demo-spawn-log.cjs `;
+
+  // latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
+  const cmd = `cd ${src} && latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && rm -f ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
+
+  fs.writeSync(logFile, '------cmd...\n');
+  fs.writeSync(logFile, cmd);
+  fs.writeSync(logFile, process.env.path);
+  fs.writeSync(logFile, '\n------\n\n');
+
+  const child = spawn(cmd, opt);
+
+  // const child = spawn(cmd, arg, opt);
 
   child.unref(); // Allows the parent process to exit independently
-  console.log(`Child process spawned with PID: ${child.pid}`);
   process.on('exit', () => child.kill());
 
-  child.on('error', (err) => {
-   console.error('Failed to start process:', err);
-   // fs.writeSync(errFile, '\n\n------\nspawn error...\n');
-   // fs.writeSync(errFile, 'Failed to start process:', err);
-   // fs.writeSync(errFile, '\n------\n');
+  child.on('error', (error) => {
+   console.error(`System Error (Failed to start): ${error.message}`);
   });
 
   child.on('close', (code) => {
-   console.log(`Child process exited with code ${code}`);
-   fs.writeSync(logFile, '\n------\nstdout...\n');
-   fs.writeSync(logFile, code + ' = closed successfully');
-   fs.writeSync(logFile, '\n------\n');
+   console.log(`Child spawn process exited with code ${code}`);
+   fs.writeSync(logFile, '\n------\nclose...\n');
+   fs.writeSync(logFile, 'Spawn process closed with code ' + code);
    fs.closeSync(logFile); // Explicitly release the system resource
   });
 
   //
- } catch (err) {
-  console.error(`error fs.writeFileSync: ${err}`);
- }
+ });
 
  //
 });
