@@ -212,7 +212,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} > ${log} 2>&1 && rm ${xls} ${log} &`;
  util.writeFile(txt, msg);
 
- const cmd = `cd ${src} && python xls2dpr.py ${xls} && rm ${xls}`;
+ const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
 
  // region spawn nohup ------------------
  const child = spawn(cmd, { shell: true });
