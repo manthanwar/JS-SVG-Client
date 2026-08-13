@@ -211,14 +211,8 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const del = 20; //delay
  // const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} > ${log} 2>&1 && rm ${xls} ${log} &`;
  util.writeFile(txt, msg);
- const cmd = `cd ${src} && python xls2dpr.py ${xls} && rm ${xls} &`;
 
- // if (ext != '.xlsx' || ext != '.xls') {
- //  res.send(`<div style="margin:100px;">
- //  <h1 style="color:maroon;">File Error</h1><h1>Upload .xlsx or .xls file.</h1></div>`);
- // }
-
- // res.send(pdf)
+ const cmd = `cd ${src} && python xls2dpr.py ${xls} && rm ${xls}`;
 
  // region spawn nohup ------------------
  const child = spawn(cmd, { shell: true });
@@ -229,6 +223,13 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // endregion spawn nohup ------------------
 
  // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+
+ // if (ext != '.xlsx' || ext != '.xls') {
+ //  res.send(`<div style="margin:100px;">
+ //  <h1 style="color:maroon;">File Error</h1><h1>Upload .xlsx or .xls file.</h1></div>`);
+ // }
+
+ // res.send(pdf)
 
  //
 });

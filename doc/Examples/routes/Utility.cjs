@@ -280,9 +280,6 @@ Utility.dateFormat = () => {
 // #endregion Utility.dateFormat
 
 // #region Utility.highlightJSON
-Utility.highlightJSONA = (json) => {
- return 'HHHHHHHHHHHHHHHH';
-};
 Utility.highlightJSON = (json) => {
  if (!json) return '';
 
