@@ -22,32 +22,44 @@
 
 
 
-        /* The CSS to style your custom button */
-.my-custom-btn {
+/* The CSS to style your custom button */
+.dracula-btn {
+text-decoration: none;
+color: black;
  margin: 50px;
  margin-right: 20px;
  margin-bottom: 100px;
- background-color: #007bff; /* Primary blue background */
- color: #ffffff; /* White text color */
- font-size: 20px; /* Text size */
- font-weight: 600; /* Semi-bold text */
- padding: 12px 24px; /* Spacing inside the button */
- border: none; /* Removes the default ugly border */
- border-radius: 8px; /* Rounded corners */
- cursor: pointer; /* Changes mouse cursor to a hand pointer */
- box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow drop */
+ /* background-color: teal; */
+ font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+ font-size: 24px;
+ padding: 10px 30px;
+ width: 150px;
+ border: none;
+ border-radius: 8px;
+ cursor: pointer;
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
  transition: all 0.3s ease; /* Smooth transition animation for hover */
 }
 
+.dracula-btn[type='submit']:hover {
+ color: white;
+ background-color: teal;
+}
+
+.dracula-btn[type='reset']:hover {
+ color: white;
+ background-color: maroon;
+}
+
 /* What happens when you hover your mouse over the button */
-.my-custom-btn:hover {
- background-color: #0056b3; /* Darker blue background */
- box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+.dracula-btn:hover {
+ background-color: #0056b3;
+ box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
  transform: translateY(-2px); /* Lifts the button slightly up */
 }
 
 /* What happens when you physically click down on the button */
-.my-custom-btn:active {
+.dracula-btn:active {
  transform: translateY(0); /* Pushes the button back down */
  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

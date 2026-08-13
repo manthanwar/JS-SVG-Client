@@ -164,7 +164,7 @@ router.get('/printOnePdf', (req, res) => {
 });
 // #endregion router.get /printOnePdf
 
-// #region router.get /printOnePdf
+// #region router.get /printOneJson
 router.get('/printOneJson', (req, res) => {
  res.render('prescriptionJson', {
   layout: false,
@@ -174,7 +174,7 @@ router.get('/printOneJson', (req, res) => {
   // delay: req.query.delay ? req.query.delay : 10
  });
 });
-// #endregion router.get /printOnePdf
+// #endregion router.get /printOneJson
 
 //#region function runCommand
 function runCommand(cmd) {
@@ -232,6 +232,18 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
 \\end{document}
 `;
 
+ // util.writeFile(tfn, lin);
+
+ // // latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
+ // const cmd = `cd ${src} && latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && rm -f ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
+
+ // const child = spawn(cmd, { shell: true });
+ // child.unref(); // Allows the parent process to exit independently
+ // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ // process.on('exit', () => child.kill());
+ // console.log(`Child process spawned with PID: ${child.pid}`);
+ // //
+
  fs.writeFile(tfn, lin, (error) => {
   if (error) {
    console.error('Error Code:', error.code);
@@ -262,7 +274,7 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
    // res.send(JSON.stringify(data, null, 2));
 
    // const data = { name: 'Alice', roles: ['admin', 'user'], active: true };
-   const htmlA = `<html>
+   const html = `<html>
    <head>
    <link rel="stylesheet" href="../css/dracula.css" />
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
@@ -270,25 +282,30 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
 
    </head>
-   <body>
-   <h1>Check if JSON data below is correct</h1>
-   <pre id="json-output" style="font-size: 1.5rem;">
-   <code id="json-block" class="language-json"></code>
-   </pre>
-   <a href="https://yourcustomlink.com" class="my-custom-btn"">Proceed </a> <a href="javascript:history.back()" class="my-custom-btn">Go Back</a>
+   <body style="margin:50px;">
 
-   <br><br><br><br>
+   <h1 style="margin-bottom:20px;">Validate JSON</h1>
+
+   <div style="max-width:90%; max-height:400px; overflow: auto; margin-bottom:40px;">
+   <pre style="margin:0px; font-size: 1.5rem;"><code id="json-block" class="language-json"></code></pre>
+   </div>
+
+   <div>
+   <a href="/prescription/tex?name=${nam}&file=${tex}" class="dracula-btn" type="submit">Proceed</a>
+   <a href="javascript:history.back()" class="dracula-btn" type="reset">Go Back</a>
+   </div>
+
    <script>
    const data = ${data};
    const jsonString = JSON.stringify(data, null, 2);
    const target = document.getElementById('json-block');
    target.textContent = jsonString;
    hljs.highlightElement(target);
-   document.getElementById('vanilla-json').innerHTML = syntaxHighlightJson(data);
    </script></body></html>`;
 
-   res.send(htmlA);
+   res.send(html);
 
+   //    document.getElementById('vanilla-json').innerHTML = syntaxHighlightJson(data);
    // <script src="../css/highlight.js" defer></script>
    // target.textContent = syntaxHighlightJson(jsonString);
    // //hljs.highlightElement(target);
@@ -306,6 +323,36 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
  //
 });
 // #endregion router.post /printFile
+
+//#region router.get /tex
+router.get('/tex', (req, res) => {
+ // res.send(`Hi Amit`);
+ // util.writeFile(tfn, lin);
+
+ // res.send(`<h1>tex file: ${req.query.file}</h1>`);
+ const src = path.join(__dirname, '../data-certificates');
+ const tex = req.query.file;
+ const cmd = `cd ${src} && \
+ latex -quiet ${tex}.tex && \
+ latex -quiet ${tex}.tex && \
+ dvips -q ${tex}.dvi && \
+ ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
+ rm -f ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.out ${tex}.ps \
+ `;
+
+ const nam = req.query.name;
+ const pdf = tex + '.pdf';
+ const del = 10;
+
+ // && rm -f ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.out ${tex}.ps ${tex}.out.ps
+ const child = spawn(cmd, { shell: true });
+ child.unref(); // Allows the parent process to exit independently
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ process.on('exit', () => child.kill());
+ console.log(`Child process spawned with PID: ${child.pid}`);
+ //
+});
+//#endregion router.get /tex
 
 //#region router.get /:id
 router.get('/:id', (req, res) => {
