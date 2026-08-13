@@ -221,11 +221,20 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const txt = path.join(src, tfl);
  const del = 20; //delay
  // const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} > ${log} 2>&1 && rm ${xls} ${log} &`;
- // util.writeFile(txt, msg);
+ util.writeFile(txt, msg);
 
- fs.writeFileSync(txt, msg);
+ // fs.writeFileSync(txt, msg);
  console.log('File written successfully.');
 
+ res.send(`<h1>File Uploaded. <a href='/report/tex'>Proceed to Compile</a>`);
+
+ //
+});
+// #endregion post /printMany
+
+// #region get /tex
+router.get('/tex', (req, res) => {
+ res.send('<h1> HIIIIIIIIIII </h1>');
  process.exit(0);
  // region spawn nohup ------------------
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
@@ -243,7 +252,6 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  fs.writeSync(logFile, '\n------\nCompiling file...\n');
  fs.writeSync(logFile, xls);
  fs.writeSync(logFile, '\n------\n\n');
-
 
  // 1. Capture standard output
  child.stdout.on('data', (data) => {
@@ -299,7 +307,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  //
 });
-// #endregion post /printMany
+// #endregion get /tex
 
 // #region get /:id
 router.get('/:id', (req, res) => {
