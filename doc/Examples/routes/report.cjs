@@ -203,6 +203,10 @@ function runCommand(cmd) {
 
 // #region post /printMany
 router.post('/printMany', upload.single('file'), (req, res, next) => {
+res.send('<h1> AAAAAAAAAHIIIIIIIIIII </h1>');
+process.exit(0);
+
+
  if (!req.file || Object.keys(req.file).length === 0) {
   return res.status(400).send('<h1>No files were uploaded.</h1>');
  }
