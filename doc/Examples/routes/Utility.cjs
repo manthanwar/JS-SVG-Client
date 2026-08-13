@@ -16,12 +16,16 @@
 // --------------+---------+----------------------------------------------------
 // =============================================================================
 */
+
+// #region constants
 const fs = require('node:fs');
 const path = require('node:path');
 const { exec } = require('node:child_process');
 const { execFile } = require('node:child_process');
 const { spawn } = require('node:child_process');
+// #endregion constants
 
+// #region class Utility
 class Utility {
  // Set the inactivity timeout to 30 minutes (30 * 60 * 1000 milliseconds)
  static inactivityTimeout = 30 * 60 * 1000;
@@ -83,7 +87,9 @@ class Utility {
   });
  }
 }
+// #endregion class Utility
 
+// #region Utility.runCommand
 Utility.runCommand = (cmd) => {
  return new Promise((resolve, reject) => {
   exec(cmd, (error, stdout, stderr) => {
@@ -107,10 +113,13 @@ Utility.runCommand = (cmd) => {
   }); //exec
  }); //Promise
 };
+// #endregion Utility.runCommand
 
-// Helper function for artificial delay
+// #region Helper function for artificial delay
 Utility.delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// #endregion Helper function for artificial delay
 
+// #region Utility.convertToWords
 /**
  * @description JavaScript program to convert number into words by breaking it into groups of three
  */
@@ -196,7 +205,9 @@ Utility.convertToWords = (n) => {
  // Remove trailing space
  return res.trim();
 };
+// #endregion Utility.convertToWords
 
+// #region Utility.traffic
 /**
  * @description Middleware to log incoming requests
  */
@@ -211,7 +222,9 @@ Utility.traffic = (router, logFile) => {
   next();
  });
 };
+// #endregion Utility.traffic
 
+// #region Utility.resetTimer
 /**
  * @description Function to reset the inactivity timer
  */
@@ -226,5 +239,80 @@ Utility.resetTimer = (server) => {
   });
  }, Utility.inactivityTimeout);
 };
+// #endregion Utility.resetTimer
 
+// #region Utility.dateFormat
+
+// # region Utility.dateFormat
+/**
+ * Function to format date
+ * @returns { string } Output: YYYY-MM-DD HH:MM:SS TZ
+ */
+Utility.dateFormat = () => {
+ // const dtm = new Date().toISOString(); // YYYY-MM-DDTHH:mm:ss.sssZ
+ const date = new Date();
+ const formatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: false,
+  timeZoneName: 'short' // Outputs 'GMT+5' or similar offset
+  // timeZone: 'America/New_York',
+  // dateStyle: 'full',
+  // timeStyle: 'long'
+ });
+ // Format into parts to re-arrange into the desired string
+ const parts = formatter.formatToParts(date).reduce((acc, part) => {
+  acc[part.type] = part.value;
+  return acc;
+ }, {});
+
+ // Construct the custom string: YYYY-MM-DD HH:mm:ss TZ
+ const formattedDate = `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}:${parts.second} ${parts.timeZoneName}`;
+
+ // console.log(formattedDate);
+ // Output: 2026-08-13 19:12:00 GMT+5:30
+ return formattedDate;
+};
+// #endregion Utility.dateFormat
+
+// #region Utility.highlightJSON
+Utility.highlightJSON = (json) => {
+ if (!json) return '';
+
+ // Convert object to pretty-printed JSON string if it isn't already
+ if (typeof json !== 'string') {
+  json = JSON.stringify(json, null, 4);
+ }
+
+ // Escape HTML characters to prevent XSS injection
+ json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+ // Regex to match keys, strings, numbers, booleans, and nulls
+ const regex =
+  /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;
+
+ return json.replace(regex, function (match) {
+  let className = 'json-number';
+
+  if (/^"/.test(match)) {
+   if (/:$/.test(match)) {
+    className = 'json-key';
+   } else {
+    className = 'json-string';
+   }
+  } else if (/true|false/.test(match)) {
+   className = 'json-boolean';
+  } else if (/null/.test(match)) {
+   className = 'json-null';
+  }
+
+  return `<span class="${className}">${match}</span>`;
+ });
+};
+// #endregion Utility.highlightJSON
+//
 module.exports = Utility;

@@ -125,7 +125,7 @@ router.post('/printOne', (req, res, next) => {
   if (error) {
    const message =
     'Error generating your certificate. Resubmit with correct data.';
-   console.log(`my error: ${error.message}`);
+   // console.log(`my error: ${error.message}`);
    // console.log('error = ' + error.message);
    // res.write('welcome, ' + req.body.nameF + '\n' + message);
    return;
@@ -163,18 +163,6 @@ router.get('/printOnePdf', (req, res) => {
  });
 });
 // #endregion router.get /printOnePdf
-
-// #region router.get /printOneJson
-router.get('/printOneJson', (req, res) => {
- res.render('prescriptionJson', {
-  layout: false,
-  name: req.query.name ? req.query.name : '#',
-  jsonString: req.query.jsonString ? req.query.jsonString : '#',
-  json: req.query.json ? req.query.json : '#'
-  // delay: req.query.delay ? req.query.delay : 10
- });
-});
-// #endregion router.get /printOneJson
 
 //#region function runCommand
 function runCommand(cmd) {
@@ -234,16 +222,6 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
 
  // util.writeFile(tfn, lin);
 
- // // latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
- // const cmd = `cd ${src} && latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && rm -f ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps ${dat} ${tex}.tex`;
-
- // const child = spawn(cmd, { shell: true });
- // child.unref(); // Allows the parent process to exit independently
- // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
- // process.on('exit', () => child.kill());
- // console.log(`Child process spawned with PID: ${child.pid}`);
- // //
-
  fs.writeFile(tfn, lin, (error) => {
   if (error) {
    console.error('Error Code:', error.code);
@@ -252,16 +230,11 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
    return;
   }
 
-  console.log('File written successfully!');
-  console.log('Continuing script...');
-
-  // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
-  // res.redirect(`printOneJson?json=${dat}&name=${nam}&jsonStrin=${del}`);
+  // console.log('File written successfully!');
+  // console.log('Continuing script...');
 
   // req.file.path contains the complete system path to the file
   const filePath = req.file.path;
-
-  console.log('\n----\n' + filePath);
 
   // Read file contents as a UTF-8 string (good for text, CSV, JSON, etc.)
   fs.readFile(filePath, 'utf8', (error, data) => {
@@ -291,7 +264,7 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
    </div>
 
    <div>
-   <a href="/prescription/tex?name=${nam}&file=${tex}" class="dracula-btn" type="submit">Proceed</a>
+   <a href="/prescription/texMake?name=${nam}&email=${eml}&file=${tex}" class="dracula-btn" type="submit">Proceed</a>
    <a href="javascript:history.back()" class="dracula-btn" type="reset">Go Back</a>
    </div>
 
@@ -305,15 +278,6 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
 
    res.send(html);
 
-   //    document.getElementById('vanilla-json').innerHTML = syntaxHighlightJson(data);
-   // <script src="../css/highlight.js" defer></script>
-   // target.textContent = syntaxHighlightJson(jsonString);
-   // //hljs.highlightElement(target);
-   //document.getElementById('vanilla-json').innerHTML = syntaxHighlightJson(data);
-
-   //   // Use textContent to safely prevent XSS injections
-   // document.getElementById("json-output").textContent = JSON.stringify(data, null, 2);
-
    //
   });
 
@@ -324,12 +288,76 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
 });
 // #endregion router.post /printFile
 
+//#region router.get /texMake
+router.get('/texMake', (req, res) => {
+ const nam = req.query.name;
+ const eml = req.query.email;
+ const tex = req.query.file;
+ const dtm = util.dateFormat();
+ const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}\n\n`;
+ const src = path.join(__dirname, '../data-certificates');
+ const log = path.join(src, tex + '.txt');
+ const pdf = tex + '.pdf';
+ const del = 10;
+
+ const cmd = `cd ${src} && make nodeLatex file=${tex} n=1 && rm ${tex}.tex`;
+
+ const child = spawn(cmd, { shell: true });
+ child.unref(); // Allows the parent process to exit independently
+ res.redirect(`printOnePdf?pdf=${tex}&name=${nam}&delay=${del}`);
+ process.on('exit', () => child.kill());
+ // console.log(`Child process spawned with PID: ${child.pid}`);
+
+ const logFile = fs.openSync(log, 'w');
+ fs.writeSync(logFile, msg);
+ // fs.writeSync(logFile, '------\nCompiling file...\n');
+ // fs.writeSync(logFile, tex);
+ // fs.writeSync(logFile, '\n------\n\n');
+
+ // 1. Capture standard output
+ child.stdout.on('data', (data) => {
+  // console.log(`stdout: ${data.toString()}`);
+  fs.writeSync(logFile, data.toString());
+ });
+
+ // 2. Capture standard error output
+ child.stderr.on('data', (data) => {
+  // console.error(`stderr: ${data.toString()}`);
+  // fs.writeSync(logFile, '------\nstderr...\n');
+  // fs.writeSync(logFile, data.toString());
+  // fs.writeSync(logFile, '\n------\n');
+ });
+
+ // 3. Handle process system errors (e.g., command not found)
+ child.on('error', (error) => {
+  // console.error(`[System Error] Failed to spawn: ${error.message}`);
+  // fs.writeSync(logFile, '------\nerror...\n');
+  // fs.writeSync(logFile, `[System Error] Failed to spawn: ${error.message}`);
+  // fs.writeSync(logFile, '\n------\n');
+ });
+
+ // 4. Handle process termination (Returns code/signal)
+ // child.on('exit', (code, signal) => {
+ // console.log(`Process exited. Code: ${code}, Signal: ${signal}`);
+ // });
+
+ // 5. Handle stdio stream termination (Guarantees streams are empty)
+ child.on('close', (code, signal) => {
+  // console.log(`Streams closed. Code: ${code}, Signal: ${signal}`);
+  // fs.writeSync(logFile, '\n\n------\nstdout...\n');
+  // fs.writeSync(logFile, `Streams closed. Code: ${code}, Signal: ${signal}`);
+  // fs.writeSync(logFile, '\n------\n');
+  fs.closeSync(logFile); // Explicitly release the system resource
+ });
+
+ //
+});
+//#endregion router.get /texMake
+
 //#region router.get /tex
 router.get('/tex', (req, res) => {
- // res.send(`Hi Amit`);
  // util.writeFile(tfn, lin);
 
- // res.send(`<h1>tex file: ${req.query.file}</h1>`);
  const src = path.join(__dirname, '../data-certificates');
  const tex = req.query.file;
  const cmd = `cd ${src} && \
@@ -349,7 +377,7 @@ router.get('/tex', (req, res) => {
  child.unref(); // Allows the parent process to exit independently
  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
- console.log(`Child process spawned with PID: ${child.pid}`);
+ // console.log(`Child process spawned with PID: ${child.pid}`);
  //
 });
 //#endregion router.get /tex

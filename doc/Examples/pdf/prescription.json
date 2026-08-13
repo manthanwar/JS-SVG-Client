@@ -21,25 +21,34 @@
     "patient": {
         "name": "Rose Flower",
         "age": "21 yr",
+        "ageStyle": {
+            "mask": 0,
+            "color": "pink"
+        },
         "gender": "Female",
         "weight": "45.5 kg",
         "patient_id": "PAT-12345"
     },
     "diagnosis": "Acute Bronchitis",
+    "diagnosisStyle": {
+        "highlight": 1,
+        "highlightColor": "teal",
+        "fontColor": "white"
+    },
     "medications": [
         {
             "drugName": "Amoxicillin",
-            "dosage": "500mg",
-            "form": "Capsule",
+            "dosage": "100mg",
+            "form": "Tablet",
             "frequency": "Three times a day",
             "duration": "7 days",
-            "instructions": "Take with food"
+            "instructions": "\textbf{Take with food}"
         },
         {
             "drugName": "Ibuprofen",
             "dosage": "400mg",
             "form": "Tablet",
-            "frequency": "Every 6 hours as needed",
+            "frequency": "Every 8 hours as needed",
             "duration": "5 days",
             "instructions": "Take for fever or pain"
         },
@@ -52,6 +61,7 @@
             "instructions": "Take to relieve coughing"
         }
     ],
+    "adviceStyleColorHighlight": "cyan",
     "advice": "Drink plenty of water and get adequate rest.",
     "followUpDate": "22/08/2026",
     "style": {

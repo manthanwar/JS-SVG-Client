@@ -42,14 +42,14 @@ timeStarted := $(shell date "+%s%3N")
 timeElapsed:
 	@stopped=$$((`date '+%s%3N'`)); \
 	elapsed=$$((stopped - $(timeStarted))); \
-	printf "time elapsed = %04d ms for total\n" $$elapsed
+	printf "time elapsed: %04d ms for total\n" $$elapsed
 
 TIMES = @date '+%s%3N' > $@_time
 
 TIMEE = @read started < $@_time ; \
 stopped=$$((`date '+%s%3N'`)); \
 elapsed=$$((stopped - started));\
-printf "time elapsed = %04d ms for %s\n" $$elapsed "$@"; \
+printf "time elapsed: %04d ms for %s\n" $$elapsed "$@"; \
 rm $@_time;
 
 # TIMEE = @read started < $@_time ; stopped=$$((`date '+%s%3N'`));\
@@ -250,10 +250,17 @@ pdflatexbiber: ${file}.tex ## make -f $makefile pdflatexbiber file=filename-with
 
 n ?= 1 # number of times to run the loop
 
+nodeNx: ${file}.tex ## run latex n times
+	$(TIMES)
+	@for i in $$(seq 1 ${n}); do \
+		latex -output-directory=${dirout} -quiet ${file}.tex;\
+	done
+	$(TIMEE)
+
 latexNx: ${file}.tex ## run latex n times
 	$(TIMES)
 	@for i in $$(seq 1 ${n}); do \
-		echo -e "\nrunning latex $$i ...\n";\
+		echo -e "\nrunning latex $$i ...";\
 		latex -time-statistics -output-directory=${dirout} -quiet -synctex=-1 ${file}.tex;\
 	done
 	@echo " "
@@ -270,13 +277,13 @@ xelatexNx: ${file}.tex ## run xelatex n times
 	$(TIMEE)
 
 
-nodelatext:
+nodeLatexText:
 	@echo "Testing..."
 	@echo "file = ${file}"
 	@echo "n = ${n}"
 
 
-nodelatex: latexNx ps pdf nodecleanall timeElapsed ## make -f $makefile file=name runlatex n=2
+nodeLatex: nodeNx ps pdf nodecleanall timeElapsed ## make -f $makefile file=name runlatex n=2
 
 runlatexc: cleanall ## make -f $makefile file=filename runlatexc
 

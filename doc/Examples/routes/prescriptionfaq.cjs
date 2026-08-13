@@ -51,7 +51,7 @@ router.get('/', (req, res) => {
  res.redirect('/demo-pub-doc-automation.html');
 });
 
-//region app.post /printOne
+//  #region app.post / printOne
 router.post('/printOne', (req, res, next) => {
  const data = {
   nameT: req.body.nameT, // name Title
@@ -139,7 +139,7 @@ router.post('/printOne', (req, res, next) => {
  res.redirect(`printOnePdf?pdf=${pdf}&name=${name}`);
  //  res.send(JSON.stringify(data) + filePath + '\\n\\n' + fileContent);
 });
-//endregion app.post /printOne
+// #endregion app.post /printOne
 
 router.get('/printOnePdf', (req, res) => {
  res.render('faq', {

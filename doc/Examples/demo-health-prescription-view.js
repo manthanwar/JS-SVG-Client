@@ -41,22 +41,26 @@ function getFile() {
    ppp.innerHTML = `${name}, your medical prescription is printing in ${elp} seconds`;
    time++;
   } else {
-   ppp.innerHTML = `${name}, here is your medical prescription <a
-   href="/data-certificates/${pdf}">${pdf}</a>.
+   ppp.innerHTML = `${name}, here is your medical prescription <br>
+   <ul style="display: flex; flex-direction: column; gap: 12px;">
+   <li><a href="/data-certificates/${pdf.slice(0, -5)}.json">JSON File</a></li>
+   <li><a href="/data-certificates/${pdf}.pdf">PDF File</a></li>
+   <li><a href="/data-certificates/${pdf}.txt">LOG File</a></li>
+   </ul>
    `;
    clearInterval(interval);
   }
  }, 1000);
 }
 
-   // <p style='margin: 40px 0px;'>
-   //  Generated file bundle <a href='/data-certificates/${zip}'>${zip}</a>.
-   // </p>;
+// <p style='margin: 40px 0px;'>
+//  Generated file bundle <a href='/data-certificates/${zip}'>${zip}</a>.
+// </p>;
 // Compilation Statistics <a href="/data-certificates/${txt}">${txt}</a>.
 
-   // <iframe
-   //  src='/data-certificates/${pdf}'
-   //  width='90%'
-   //  height='600px'
-   //  style='margin: 40px; border: none;'
-   // ></iframe>;
+// <iframe
+//  src='/data-certificates/${pdf}'
+//  width='90%'
+//  height='600px'
+//  style='margin: 40px; border: none;'
+// ></iframe>;
