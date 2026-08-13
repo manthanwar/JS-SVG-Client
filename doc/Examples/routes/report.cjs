@@ -223,27 +223,26 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} > ${log} 2>&1 && rm ${xls} ${log} &`;
  // util.writeFile(txt, msg);
 
-
- const logFile = fs.openSync(log, 'w');
  fs.writeFileSync(txt, msg);
  console.log('File written successfully.');
 
- fs.writeSync(logFile, msg);
- fs.writeSync(logFile, 'txt File written successfully.');
- fs.writeSync(logFile, '\n------\nCompiling file...\n');
- fs.writeSync(logFile, xls);
- fs.writeSync(logFile, '\n------\n\n');
-
+ // region spawn nohup ------------------
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
  const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
-
- // region spawn nohup ------------------
  const child = spawn(cmd, { shell: true });
  child.unref(); // Allows the parent process to exit independently
  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
  console.log(`Child process spawned with PID: ${child.pid}`);
  // endregion spawn nohup ------------------
+
+ const logFile = fs.openSync(log, 'w');
+ fs.writeSync(logFile, msg);
+ fs.writeSync(logFile, 'txt File written successfully.');
+ fs.writeSync(logFile, '\n------\nCompiling file...\n');
+ fs.writeSync(logFile, xls);
+ fs.writeSync(logFile, '\n------\n\n');
+
 
  // 1. Capture standard output
  child.stdout.on('data', (data) => {
@@ -280,7 +279,10 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  child.on('close', (code, signal) => {
   console.log(`Streams closed. Code: ${code}, Signal: ${signal}`);
   // fs.writeSync(logFile, '\n\n------\nstdout...\n');
-  fs.writeSync(logFile, `I/O Streams closed. Code: ${code}, Signal: ${signal}\n`);
+  fs.writeSync(
+   logFile,
+   `I/O Streams closed. Code: ${code}, Signal: ${signal}\n`
+  );
   // fs.writeSync(logFile, '\n------\n');
   fs.closeSync(logFile); // Explicitly release the system resource
  });
