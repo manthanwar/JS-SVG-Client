@@ -206,8 +206,9 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const bas = xls.substring(0, idx);
  const pdf = bas + '.pdf';
  const tfl = bas + '.txt';
- const log = bas + '.log';
- const txt = path.join(__dirname, '../data-certificates', tfl);
+ // const log = bas + '.log';
+ const log = path.join(src, bas + '.nog');
+ const txt = path.join(src, tfl);
  const del = 20; //delay
  // const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} > ${log} 2>&1 && rm ${xls} ${log} &`;
  util.writeFile(txt, msg);
@@ -221,6 +222,51 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  process.on('exit', () => child.kill());
  console.log(`Child process spawned with PID: ${child.pid}`);
  // endregion spawn nohup ------------------
+
+ const logFile = fs.openSync(log, 'w');
+ fs.writeSync(logFile, msg);
+ // fs.writeSync(logFile, '------\nCompiling file...\n');
+ // fs.writeSync(logFile, tex);
+ // fs.writeSync(logFile, '\n------\n\n');
+
+ // 1. Capture standard output
+ child.stdout.on('data', (data) => {
+  console.log(`stdout: ${data.toString()}`);
+  const subString = 'This is pdfTeX';
+  if (!data.toString().includes(subString)) {
+   fs.writeSync(logFile, data.toString());
+  }
+ });
+
+ // 2. Capture standard error output
+ child.stderr.on('data', (data) => {
+  console.error(`[stderr:] ${data.toString()}`);
+  // fs.writeSync(logFile, '------\nstderr...\n');
+  fs.writeSync(logFile, `[stderr:] ${data.toString()}`);
+  // fs.writeSync(logFile, '\n------\n');
+ });
+
+ // 3. Handle process system errors (e.g., command not found)
+ child.on('error', (error) => {
+  console.error(`[System Error] Failed to spawn: ${error.message}`);
+  // fs.writeSync(logFile, '------\nerror...\n');
+  fs.writeSync(logFile, `[System Error] Failed to spawn: ${error.message}`);
+  // fs.writeSync(logFile, '\n------\n');
+ });
+
+ // 4. Handle process termination (Returns code/signal)
+ child.on('exit', (code, signal) => {
+ console.log(`Process exited. Code: ${code}, Signal: ${signal}`);
+ });
+
+ // 5. Handle stdio stream termination (Guarantees streams are empty)
+ child.on('close', (code, signal) => {
+  console.log(`Streams closed. Code: ${code}, Signal: ${signal}`);
+  // fs.writeSync(logFile, '\n\n------\nstdout...\n');
+  // fs.writeSync(logFile, `Streams closed. Code: ${code}, Signal: ${signal}`);
+  // fs.writeSync(logFile, '\n------\n');
+  fs.closeSync(logFile); // Explicitly release the system resource
+ });
 
  // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
 
