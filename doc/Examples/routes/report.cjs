@@ -19,6 +19,7 @@
 // =============================================================================
 */
 
+// #region require
 const path = require('path');
 const fs = require('fs');
 const { exec } = require('node:child_process');
@@ -28,7 +29,9 @@ const router = express.Router();
 const multer = require('multer');
 const cookieParser = require('cookie-parser');
 const util = require('./Utility.cjs');
+// #endregion require
 
+// #region mutter upload
 const storage = multer.diskStorage({
  destination: (req, file, cb) => {
   const filePath = path.join(__dirname, '../data-certificates/');
@@ -47,7 +50,9 @@ const storage = multer.diskStorage({
  }
 });
 const upload = multer({ storage: storage });
+// #endregion mutter upload
 
+// #region cookie
 // maxAge: 3600000, // 1 hour in milliseconds
 // httpOnly: false, // Allows client-side JavaScript to access this cookie
 // secure: true, // Recommended for production to send only over HTTPS
@@ -55,12 +60,15 @@ const upload = multer({ storage: storage });
 function setMyCookie(res, name, value, options = {}) {
  res.cookie(name, value, options);
 }
+// #endregion cookie
 
+// #region get /
 router.get('/', (req, res) => {
  res.send('Users home page');
 });
+// #endregion get /
 
-//region app.post /printOne
+// #region post /printOne
 router.post('/printOne', (req, res, next) => {
  const data = {
   nameT: req.body.nameT, // name Title
@@ -154,8 +162,9 @@ router.post('/printOne', (req, res, next) => {
  res.redirect(`printOnePdf?pdf=${pdf}&name=${name}`);
  //  res.send(JSON.stringify(data) + filePath + '\\n\\n' + fileContent);
 });
-//endregion app.post /printOne
+// #endregion post /printOne
 
+// #region get /printOnePdf
 router.get('/printOnePdf', (req, res) => {
  res.render('report', {
   layout: false,
@@ -164,7 +173,9 @@ router.get('/printOnePdf', (req, res) => {
   delay: req.query.delay ? req.query.delay : 10
  });
 });
+// #endregion get /printOnePdf
 
+// #region runCommand
 function runCommand(cmd) {
  return new Promise((resolve, reject) => {
   exec(cmd, (error, stdout, stderr) => {
@@ -188,8 +199,9 @@ function runCommand(cmd) {
   }); //exec
  }); //Promise
 }
+// #endregion /printOnePdf
 
-//region app.post /printMany
+// #region post /printMany
 router.post('/printMany', upload.single('file'), (req, res, next) => {
  if (!req.file || Object.keys(req.file).length === 0) {
   return res.status(400).send('<h1>No files were uploaded.</h1>');
@@ -199,21 +211,31 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const eml = req.body.email;
  const dtm = new Date().toISOString(); // YYYY-MM-DDTHH:mm:ss.sssZ, 'Z' => UTC
  const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}`;
- const src = path.join(__dirname, '../data-certificates');
  const xls = req.file.filename;
  const ext = path.extname(xls);
- const idx = xls.lastIndexOf('.');
- const bas = xls.substring(0, idx);
+ const bas = path.parse(xls).name;
  const pdf = bas + '.pdf';
  const tfl = bas + '.txt';
- // const log = bas + '.log';
+ const src = path.join(__dirname, '../data-certificates');
  const log = path.join(src, bas + '.nog');
  const txt = path.join(src, tfl);
  const del = 20; //delay
  // const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} > ${log} 2>&1 && rm ${xls} ${log} &`;
- util.writeFile(txt, msg);
+ // util.writeFile(txt, msg);
 
- const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
+
+ const logFile = fs.openSync(log, 'w');
+ fs.writeFileSync(txt, msg);
+ console.log('File written successfully.');
+
+ fs.writeSync(logFile, msg);
+ fs.writeSync(logFile, 'txt File written successfully.');
+ fs.writeSync(logFile, '\n------\nCompiling file...\n');
+ fs.writeSync(logFile, xls);
+ fs.writeSync(logFile, '\n------\n\n');
+
+ // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
+ const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
 
  // region spawn nohup ------------------
  const child = spawn(cmd, { shell: true });
@@ -222,12 +244,6 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  process.on('exit', () => child.kill());
  console.log(`Child process spawned with PID: ${child.pid}`);
  // endregion spawn nohup ------------------
-
- const logFile = fs.openSync(log, 'w');
- fs.writeSync(logFile, msg);
- // fs.writeSync(logFile, '------\nCompiling file...\n');
- // fs.writeSync(logFile, tex);
- // fs.writeSync(logFile, '\n------\n\n');
 
  // 1. Capture standard output
  child.stdout.on('data', (data) => {
@@ -256,14 +272,15 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  // 4. Handle process termination (Returns code/signal)
  child.on('exit', (code, signal) => {
- console.log(`Process exited. Code: ${code}, Signal: ${signal}`);
+  console.log(`Child Process exited. Code: ${code}, Signal: ${signal}`);
+  fs.writeSync(logFile, `Process Exited. Code: ${code}, Signal: ${signal}\n`);
  });
 
  // 5. Handle stdio stream termination (Guarantees streams are empty)
  child.on('close', (code, signal) => {
   console.log(`Streams closed. Code: ${code}, Signal: ${signal}`);
   // fs.writeSync(logFile, '\n\n------\nstdout...\n');
-  // fs.writeSync(logFile, `Streams closed. Code: ${code}, Signal: ${signal}`);
+  fs.writeSync(logFile, `I/O Streams closed. Code: ${code}, Signal: ${signal}\n`);
   // fs.writeSync(logFile, '\n------\n');
   fs.closeSync(logFile); // Explicitly release the system resource
  });
@@ -279,14 +296,18 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  //
 });
-//endregion app.post /printMany
+// #endregion post /printMany
 
+// #region get /:id
 router.get('/:id', (req, res) => {
  res.send(`User profile for ID: ${req.params.id}`);
 });
+// #endregion get /:id
 
+// #region get /pub-certificate-one
 router.get('/pub-certificate-one', (req, res) => {
  res.send('Users home page');
 });
+// #endregion get /pub-certificate-one
 
 module.exports = router;
