@@ -274,7 +274,10 @@ app.use((req, res, next) => {
 // Optional: Global 500 Internal Error Handler (Must have 4 arguments)
 app.use((err, req, res, next) => {
  console.error(err.stack);
- res.status(500).send('<h1>Something went wrong on our end!</h1>');
+ // res.status(500).send('<h1>Something went wrong on our end!</h1>');
+ const statusCode = err.statusCode || err.status || 500;
+ res.status(statusCode);
+ res.status(statusCode).send(`<h1>Server Error: ${statusCode}</h1>`);
 });
 
 app.listen(PORT, () => {

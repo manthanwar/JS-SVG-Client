@@ -317,7 +317,7 @@ router.get('/texMake', (req, res) => {
  // 1. Capture standard output
  child.stdout.on('data', (data) => {
   // console.log(`stdout: ${data.toString()}`);
-  const substring = 'This is pdfTeX';
+  const subString = 'This is pdfTeX';
   if (!data.toString().includes(subString)) {
    fs.writeSync(logFile, data.toString());
   }
