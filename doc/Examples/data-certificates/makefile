@@ -253,7 +253,7 @@ n ?= 1 # number of times to run the loop
 nodeNx: ${file}.tex ## run latex n times
 	$(TIMES)
 	@for i in $$(seq 1 ${n}); do \
-		latex -output-directory=${dirout} -quiet ${file}.tex;\
+		latex -interaction=batchmode -output-directory=${dirout} -quiet ${file}.tex;\
 	done
 	$(TIMEE)
 
