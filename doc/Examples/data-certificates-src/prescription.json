@@ -52,7 +52,7 @@
             "instructions": "Take to relieve coughing"
         }
     ],
-    "adviceStyleColorHighlight": "pink",
+    "adviceStyleColorHighlight": "cyan",
     "advice": "Drink plenty of water and get adequate rest.",
     "followUpDate": "22/08/2026",
     "style": {
