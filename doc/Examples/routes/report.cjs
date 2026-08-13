@@ -226,6 +226,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  fs.writeFileSync(txt, msg);
  console.log('File written successfully.');
 
+ process.exit(0);
  // region spawn nohup ------------------
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
  const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
