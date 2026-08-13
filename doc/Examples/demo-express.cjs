@@ -35,6 +35,7 @@ app.use(express.static('doc/Examples'));
 app.use(express.static('doc/Examples/amit'));
 app.use(express.static('doc/Examples/forms'));
 app.use(express.static('doc/Examples/css'));
+app.use(express.static('doc/Examples/js'));
 app.use(express.static('doc/Examples/pdf'));
 app.use(express.static('doc/Examples/src-art'));
 app.use(express.static('doc/Examples/src-gauge'));

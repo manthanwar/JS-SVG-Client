@@ -23,8 +23,8 @@ ${Utils.createListItem('https://covid19.desiign.in/', 'Coronavirus Disease 2019 
 ${Utils.createListItem('book-intelligent-medical-documentation.pdf', 'Intelligent Medical Documentation')}
 ${Utils.createListItemNoUrl('Medical Prescription')}
 <ul>
-${Utils.createListItem(' prescription.pdf', 'Samole Medical Prescription')}
-${Utils.createListItem(' prescription-secured.pdf', 'Samole Medical Prescription - Secured')}
+${Utils.createListItem(' prescription.pdf', 'Sample Medical Prescription')}
+${Utils.createListItem(' prescription-secured.pdf', 'Sample Medical Prescription - Secured')}
 ${Utils.createListItem(' prescription.json', 'Sample MedicalRequest JSON Data')}
 ${Utils.createListItem(' demo-health-prescription.html', 'Create Medical Prescription')}
 </ul>

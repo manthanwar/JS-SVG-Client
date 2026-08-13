@@ -88,8 +88,6 @@ etime:
 	@rm $@_time
 	@ls
 
-
-
 dvi: ${file}.tex ## make -f $makefile dvi file=name diraux=auxiliary-directory
 	mkdir -p ${diraux}
 	latex -time-statistics -output-directory=. -aux-directory=${diraux} -quiet -synctex=-1 -job-name=${file} ${file}.tex
@@ -137,8 +135,6 @@ ls:
 
 clear:
 	@clear
-
-
 
 clean-latex:
 	@rm -f ${file}.aux ${file}.out ${file}.log ${file}.dvi ${file}.ps ${file}.fls ${file}.fdb_latexmk ${file}.gz ${file}.tmp ${file}.bak ${file}.nlo ${file}.nls ${file}.ilg ${file}.glg ${file}.glo ${file}.gls ${file}.glsdefs ${file}.ist ${file}.lof ${file}.lot ${file}.toc ${file}.idx ${file}.ind
@@ -253,7 +249,7 @@ n ?= 1 # number of times to run the loop
 nodeNx: ${file}.tex ## run latex n times
 	$(TIMES)
 	@for i in $$(seq 1 ${n}); do \
-		latex -interaction=batchmode -output-directory=${dirout} -quiet ${file}.tex;\
+		latex -interaction=batchmode -output-directory=${dirout} -quiet ${file}.tex > ${file}.log;\
 	done
 	$(TIMEE)
 

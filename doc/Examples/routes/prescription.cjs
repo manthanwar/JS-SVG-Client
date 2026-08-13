@@ -242,42 +242,42 @@ router.post('/printFile', upload.single('file'), (req, res, next) => {
     return res.status(500).send('Error reading file.');
    }
 
-   // console.log('File content:', data);
-   // res.send('File content read successfully.');
-   // res.send(JSON.stringify(data, null, 2));
-
-   // const data = { name: 'Alice', roles: ['admin', 'user'], active: true };
-   const html = `<html>
-   <head>
+   const html = `<html><head>
    <link rel="stylesheet" href="../css/dracula.css" />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
-
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-
-   </head>
-   <body style="margin:50px;">
-
+   <script src="../js/highlightJSON.js"></script>
+   </head><body style="margin:50px;">
    <h1 style="margin-bottom:20px;">Validate JSON</h1>
-
    <div style="max-width:90%; max-height:400px; overflow: auto; margin-bottom:40px;">
-   <pre style="margin:0px; font-size: 1.5rem;"><code id="json-block" class="language-json"></code></pre>
+   <pre id="json-block" style="margin:0px; font-size: 1.5rem;"></pre>
    </div>
 
    <div>
-   <a href="/prescription/texMake?name=${nam}&email=${eml}&file=${tex}" class="dracula-btn" type="submit">Proceed</a>
-   <a href="javascript:history.back()" class="dracula-btn" type="reset">Go Back</a>
+   <a href="/prescription/texMake?name=${nam}&email=${eml}&file=${tex}" class="dracula-btn" type="submit">Proceed</a>&nbsp; &nbsp; <a href="javascript:history.back()" class="dracula-btn" type="reset">Go Back</a>
    </div>
 
    <script>
+
    const data = ${data};
    const jsonString = JSON.stringify(data, null, 2);
    const target = document.getElementById('json-block');
-   target.textContent = jsonString;
-   hljs.highlightElement(target);
+   target.innerHTML = highlightJSON(jsonString);
+   // target.innerHTML = jsonString;
+
+
    </script></body></html>`;
 
    res.send(html);
 
+   // <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+
+   // <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+   // <code id="json-block" class="language-json"></code>
+
+   //    const target = document.getElementById('json-block');
+   // target.textContent = jsonString;
+   // hljs.highlightElement(target);
+   // hljs.highlightElement(target);
    //
   });
 

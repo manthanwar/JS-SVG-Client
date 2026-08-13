@@ -9,13 +9,23 @@
  --dracula-comment: #6272a4;
 
  /* Accent Colors */
- --dracula-cyan: #8be9fd;
- --dracula-green: #50fa7b;
- --dracula-orange: #ffb86c;
- --dracula-pink: #ff79c6;
- --dracula-purple: #bd93f9;
- --dracula-red: #ff5555;
- --dracula-yellow: #f1fa8c;
+--dracula-black:#21222C;
+--dracula-blue:#BD93F9;
+--dracula-white:#F8F8F2;
+--dracula-cyan:#8BE9FD;
+--dracula-green:#50FA7B;
+--dracula-orange: #ffb86c;
+--dracula-pink:#FF79C6;
+--dracula-red:#FF5555;
+--dracula-yellow:#F1FA8C;
+--dracula-brightBlack: #6272A4;
+--dracula-brightBlue: #D6ACFF;
+--dracula-brightCyan: #A4FFFF;
+--dracula-brightGreen: #69FF94;
+--dracula-brightPurple: #FF92DF;
+--dracula-brightRed: #FF6E6E;
+--dracula-brightWhite: #FFFFFF;
+--dracula-brightYellow: #FFFFA5;
 }
 
 /* The CSS to style your custom button */
@@ -57,4 +67,31 @@
 .dracula-btn:active {
  transform: translateY(0); /* Pushes the button back down */
  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+pre {
+    background-color: var(--dracula-bg);
+    color: #d4d4d4;
+    padding: 15px;
+    border-radius: 5px;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-size: 1.5rem;
+    font-weight: bold;
+    overflow-x: auto;
+}
+
+/* .json-key { color: #9cdcfe; font-weight: bold; }   Light Blue */
+/* .json-string { color: #ce9178; }                Terracotta */
+.json-number { color: #b5cea8; }                /* Light Green */
+.json-boolean { color: #569cd6; }               /* Dark Blue */
+.json-null { color: #646464; font-style: italic; } /* Gray */
+
+.json-key{color: var(--dracula-brightCyan);}
+.json-string{color: var(--dracula-yellow);}
+
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+  color: red;
 }
