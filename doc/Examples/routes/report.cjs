@@ -276,9 +276,9 @@ router.get('/tex', (req, res) => {
  // Define the path to the virtual environment python interpreter
  // Use .venv/Scripts/python.exe for Windows, or .venv/bin/python for macOS/Linux
  const isWindows = process.platform === 'win32';
- const pythonWin = path.resolve('.venv', 'Scripts', 'python.exe');
- const pythonBin = path.resolve('.venv', 'bin', 'python');
- const pythonExe = isWindows ? pythonWin : pythonBin;
+ const pythonExe = isWindows
+  ? path.resolve('.venv', 'Scripts', 'python.exe')
+  : path.resolve('.venv', 'bin', 'python');
 
  const cmd = `cd ${src} && ${pythonExe} xls2dpr.py ${xls}`;
  const child = spawn(cmd, { shell: true });
