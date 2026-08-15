@@ -276,7 +276,12 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
  console.error(err.stack);
  // res.status(500).send('<h1>Something went wrong on our end!</h1>');
- const statusCode = err.statusCode || err.status || 500;
+ // const statusCode = err.statusCode || err.status || 500;
+
+ // Default to 500 Internal Server Error if status is missing or outside 50x range
+ const statusCode =
+  res.statusCode >= 500 && res.statusCode <= 504 ? res.statusCode : 500;
+
  res.status(statusCode);
  res.status(statusCode).send(`<h1>Server Error: ${statusCode}</h1>`);
 });
