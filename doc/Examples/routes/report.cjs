@@ -227,8 +227,14 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  // region spawn nohup ------------------
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
- const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
- const child = spawn(cmd, { shell: true });
+ // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
+ // const child = spawn(cmd, { shell: true });
+
+ const cmd = 'python';
+ const arg = ['xls2dpr.py', xls];
+ const opt = { cwd: src };
+ const child = spawn(cmd, arg, opt);
+
  child.unref(); // Allows the parent process to exit independently
  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
@@ -273,13 +279,22 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  //  fs.closeSync(logFile); // Explicitly release the system resource
  // });
 
-
  //
 });
 // #endregion post /printMany
 
 // #region get /tex
-router.get('/tex', (req, res) => {
+router.get('/xls', (req, res) => {
+ const nam = req.query.name;
+ const eml = req.query.email;
+ const tex = req.query.file;
+ const dtm = util.dateFormat();
+ const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}\n\n`;
+ const src = path.join(__dirname, '../data-certificates');
+ const log = path.join(src, tex + '.txt');
+ const pdf = tex + '.pdf';
+ const del = 10;
+
  res.send('<h1> HIIIIIIIIIII </h1>');
  process.exit(0);
  // region spawn nohup ------------------
