@@ -218,6 +218,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const tfl = bas + '.txt';
  const src = path.join(__dirname, '../data-certificates');
  const pys = path.join(src, 'xls2dpr.py');
+ const xlp = path.join(src, xls);
  const log = path.join(src, bas + '.txt');
  const txt = path.join(src, tfl);
  const del = 20; //delay
@@ -231,8 +232,8 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
  // const child = spawn(cmd, { shell: true });
  //
- const cmd = `cd ${src} && python3 ${pys} ${xls}`;
- const child = spawn(cmd, { shell: true });
+ const cmd = `cd ${src} && python3 ${pys} ${xlp}`;
+ const child = spawn(cmd, { cwd: src, shell: true });
 
  child.unref(); // Allows the parent process to exit independently
  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
