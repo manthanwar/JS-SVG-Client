@@ -223,32 +223,32 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const txt = path.join(src, tfl);
  const del = 10; //delay
 
- const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
- const child = spawn(cmd, { shell: true });
+ // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
+ // const child = spawn(cmd, { shell: true });
 
- child.unref(); // Allows the parent process to exit independently
- child.stdout.on('data', (data) => console.log(`Child stdout: ${data}`));
- child.stderr.on('data', (data) => console.error(`Child stderr: ${data}`));
- child.on('error', (error) => console.error('Child error: ', error.message));
- child.on('close', (code) => console.log(`Child closed with code: ${code}`));
- process.on('exit', () => child.kill());
+ // child.unref(); // Allows the parent process to exit independently
+ // child.stdout.on('data', (data) => console.log(`Child stdout: ${data}`));
+ // child.stderr.on('data', (data) => console.error(`Child stderr: ${data}`));
+ // child.on('error', (error) => console.error('Child error: ', error.message));
+ // child.on('close', (code) => console.log(`Child closed with code: ${code}`));
+ // process.on('exit', () => child.kill());
 
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
 
  // util.writeFile(txt, msg);
  // fs.writeFileSync(txt, msg);
  // console.log('File written successfully.');
 
- // res.send(`<html><body style="margin:100px;">
- //  <h1>${nam}, Your File Uploaded. <a href='/report/xls?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
- //  <html><body>`);
+ res.send(`<html><body style="margin:100px;">
+  <h1>${nam}, Your File Uploaded. <a href='/report/tex?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
+  <html><body>`);
 
  //
 });
 // #endregion post /printMany
 
 // #region get /tex
-router.get('/xls', (req, res) => {
+router.get('/tex', (req, res) => {
  const nam = req.query.name;
  const eml = req.query.email;
  const xls = req.query.file;
@@ -265,7 +265,6 @@ router.get('/xls', (req, res) => {
  // const child = spawn(cmd, { shell: true });
  //
 
-
  // const cmd = 'python';
  // const arg = ['xls2dpr.py', xls];
  // const opt = { cwd: src };
@@ -274,7 +273,7 @@ router.get('/xls', (req, res) => {
  // const cmd = `cd ${src} && python3 ${pys} ${xlp}`;
  // const child = spawn(cmd, { cwd: src, shell: true });
 
- const cmd = `cd ${src} && python xls2dpr.py ${xls}`;
+ const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
  const child = spawn(cmd, { shell: true });
 
  child.unref(); // Allows the parent process to exit independently
