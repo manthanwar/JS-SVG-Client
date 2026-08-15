@@ -214,59 +214,17 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const xls = req.file.filename;
  const ext = path.extname(xls);
  const bas = path.parse(xls).name;
- const pdf = bas + '.pdf';
- const tfl = bas + '.txt';
  const src = path.join(__dirname, '../data-certificates');
  const pys = path.join(src, 'xls2dpr.py');
  const xlp = path.join(src, xls);
- const log = path.join(src, bas + '.txt');
- const txt = path.join(src, tfl);
+ const log = path.join(src, bas + '.nog');
+ const txt = path.join(src, bas + '.txt');
+ const pdf = path.join(src, bas + '.pdf');
  const del = 10; //delay
 
- // Define the path to the virtual environment python interpreter
- // Use .venv/Scripts/python.exe for Windows, or
- // Use .venv/bin/python for macOS/Linux
-
- const isWindows = process.platform === 'win32';
-
- const pythonExe = isWindows
-  ? path.resolve('.venv', 'Scripts', 'python.exe')
-  : path.resolve('.venv', 'bin', 'python');
-
- const cmd = `cd ${src} && ${pythonExe} ${pys} ${xls}`;
- const child = spawn(cmd, { cwd: src, shell: true });
-
- console.log(pythonExe);
- console.log(cmd);
-
- child.unref(); // Allows the parent process to exit independently
- child.stdout.on('data', (data) => console.log(`Child stdout: ${data}`));
- child.stderr.on('data', (data) => console.error(`Child stderr: ${data}`));
- child.on('error', (error) => console.error('Child error: ', error.message));
- child.on('close', (code) => console.log(`Child closed with code: ${code}`));
- process.on('exit', () => child.kill());
-
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
-
- // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
- // const child = spawn(cmd, { shell: true });
-
- // child.unref(); // Allows the parent process to exit independently
- // child.stdout.on('data', (data) => console.log(`Child stdout: ${data}`));
- // child.stderr.on('data', (data) => console.error(`Child stderr: ${data}`));
- // child.on('error', (error) => console.error('Child error: ', error.message));
- // child.on('close', (code) => console.log(`Child closed with code: ${code}`));
- // process.on('exit', () => child.kill());
-
- // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
-
- // util.writeFile(txt, msg);
- // fs.writeFileSync(txt, msg);
- // console.log('File written successfully.');
-
- // res.send(`<html><body style="margin:100px;">
- //  <h1>${nam}, Your File Uploaded. <a href='/report/tex?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
- //  <html><body>`);
+ res.send(`<html><body style="margin:100px;">
+  <h1>${nam}, Your File Uploaded. <a href='/report/tex?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
+  <html><body>`);
 
  //
 });
@@ -277,12 +235,37 @@ router.get('/tex', (req, res) => {
  const nam = req.query.name;
  const eml = req.query.email;
  const xls = req.query.file;
- const pdf = req.query.bas + '.pdf';
+ const bas = req.query.bas;
  const dtm = util.dateFormat();
  const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}\n\n`;
  const src = path.join(__dirname, '../data-certificates');
- const log = path.join(src, xls + '.txt');
- const del = 20;
+ const log = bas + '.npg';
+ const pdf = bas + '.pdf';
+ const pys = path.join(src, 'xls2dpr.py');
+ const del = 10;
+
+ const isWindows = process.platform === 'win32';
+ const pythonExe = isWindows
+  ? path.resolve('.venv', 'Scripts', 'python.exe')
+  : path.resolve('.venv', 'bin', 'python');
+
+ const cmd = `cd ${src} && ${pythonExe} ${pys} ${xls}`;
+ const child = spawn(cmd, { cwd: src, shell: true });
+
+ console.log('\n---------------\n');
+ console.log(pythonExe);
+ console.log('\n---------------\n');
+ console.log(cmd);
+ console.log('\n---------------\n');
+
+ child.unref(); // Allows the parent process to exit independently
+ child.stdout.on('data', (data) => console.log(`Child stdout: ${data}`));
+ child.stderr.on('data', (data) => console.error(`Child stderr: ${data}`));
+ child.on('error', (error) => console.error('Child error: ', error.message));
+ child.on('close', (code) => console.log(`Child closed with code: ${code}`));
+ process.on('exit', () => child.kill());
+
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
 
  // region spawn nohup ------------------
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
@@ -300,27 +283,6 @@ router.get('/tex', (req, res) => {
 
  // Define the path to the virtual environment python interpreter
  // Use .venv/Scripts/python.exe for Windows, or .venv/bin/python for macOS/Linux
- const isWindows = process.platform === 'win32';
-
- const pythonExe = isWindows
-  ? path.join('.venv', 'Scripts', 'python.exe')
-  : path.join('.venv', 'bin', 'python');
-
- const cmd = `cd ${src} && ${pythonExe} xls2dpr.py ${xls}`;
- const child = spawn(cmd, { shell: true });
-
- console.log(pythonExe);
- console.log(cmd);
-
- child.unref(); // Allows the parent process to exit independently
- child.stdout.on('data', (data) => console.log(`Child stdout: ${data}`));
- child.stderr.on('data', (data) => console.error(`Child stderr: ${data}`));
- child.on('error', (error) => console.error('Child error: ', error.message));
- child.on('close', (code) => console.log(`Child closed with code: ${code}`));
- process.on('exit', () => child.kill());
-
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
-
  //
 });
 // #endregion get /tex
