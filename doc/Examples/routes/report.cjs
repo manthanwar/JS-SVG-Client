@@ -245,12 +245,14 @@ router.get('/tex', (req, res) => {
  const del = 10;
 
  const isWindows = process.platform === 'win32';
- const pythonExe = isWindows
+ const shellTrue = isWindows ? true : false;
+  const pythonExe = isWindows
   ? path.resolve('.venv', 'Scripts', 'python.exe')
   : path.resolve('.venv', 'bin', 'python');
 
  const cmd = `cd ${src} && ${pythonExe} ${pys} ${xls}`;
- const child = spawn(cmd, { cwd: src, shell: true });
+ const child = spawn(cmd, { cwd: src, shell: shellTrue });
+
 
  console.log('\n---------------\n');
  console.log(pythonExe);
