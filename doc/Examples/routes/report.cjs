@@ -228,7 +228,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // console.log('File written successfully.');
 
  res.send(`<html><body style="margin:100px; font-family: sans-serif">
-  <h1>${nam}, Your File Uploaded. <a href='/report/xls?pdf=${pdf}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
+  <h1>${nam}, Your File Uploaded. <a href='/report/xls?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
   <html><body>`);
 
  //
@@ -240,11 +240,11 @@ router.get('/xls', (req, res) => {
  const nam = req.query.name;
  const eml = req.query.email;
  const xls = req.query.file;
- const pdf = req.query.pdf;
+ const pdf = req.query.bas + 'pdf';
  const dtm = util.dateFormat();
  const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}\n\n`;
  const src = path.join(__dirname, '../data-certificates');
- const log = path.join(src, xls + '.nog');
+ const log = path.join(src, xls + '.txt');
  const del = 20;
 
  // region spawn nohup ------------------
@@ -255,17 +255,25 @@ router.get('/xls', (req, res) => {
  // const cmd = `cd ${src} && python3 ${pys} ${xlp}`;
  // const child = spawn(cmd, { cwd: src, shell: true });
 
- const cmd = 'python3';
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+
+ const cmd = 'python';
  const arg = ['xls2dpr.py', xls];
  const opt = { cwd: src };
  const child = spawn(cmd, arg, opt);
 
  child.unref(); // Allows the parent process to exit independently
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ child.stdout.on('data', (data) => console.log(`Child stdout: ${data}`));
+ child.stderr.on('data', (data) => console.error(`Child stderr: ${data}`));
+ child.on('error', (error) => console.error('Child error: ', error.message));
+ child.on('close', (code) => console.log(`Child closed with code: ${code}`));
  process.on('exit', () => child.kill());
- // console.log(`Child process spawned with PID: ${child.pid}`);
- // endregion spawn nohup ------------------
+ //
+});
+// #endregion get /tex
 
+// #region get /spawn
+router.get('/spawn', (req, res) => {
  const logFile = fs.openSync(log, 'w');
  fs.writeSync(logFile, msg);
  fs.writeSync(logFile, 'txt File written successfully.');
@@ -327,7 +335,8 @@ router.get('/xls', (req, res) => {
 
  //
 });
-// #endregion get /tex
+
+// #endregion get /spawn
 
 // #region get /:id
 router.get('/:id', (req, res) => {
