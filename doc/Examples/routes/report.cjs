@@ -232,8 +232,13 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
  // const child = spawn(cmd, { shell: true });
  //
- const cmd = `cd ${src} && python3 ${pys} ${xlp}`;
- const child = spawn(cmd, { cwd: src, shell: true });
+ // const cmd = `cd ${src} && python3 ${pys} ${xlp}`;
+ // const child = spawn(cmd, { cwd: src, shell: true });
+
+ const cmd = 'python3';
+ const arg = ['xls2dpr.py', xls];
+ const opt = { cwd: src };
+ const child = spawn(cmd, arg, opt);
 
  child.unref(); // Allows the parent process to exit independently
  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
