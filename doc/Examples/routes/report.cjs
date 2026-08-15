@@ -203,17 +203,13 @@ function runCommand(cmd) {
 
 // #region post /printMany
 router.post('/printMany', upload.single('file'), (req, res, next) => {
-res.send('<h1> AAAAAAAAAHIIIIIIIIIII </h1>');
-process.exit(0);
-
-
  if (!req.file || Object.keys(req.file).length === 0) {
   return res.status(400).send('<h1>No files were uploaded.</h1>');
  }
 
  const nam = req.body.nameF;
  const eml = req.body.email;
- const dtm = new Date().toISOString(); // YYYY-MM-DDTHH:mm:ss.sssZ, 'Z' => UTC
+ const dtm = util.dateFormat();
  const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}`;
  const xls = req.file.filename;
  const ext = path.extname(xls);
@@ -221,16 +217,62 @@ process.exit(0);
  const pdf = bas + '.pdf';
  const tfl = bas + '.txt';
  const src = path.join(__dirname, '../data-certificates');
- const log = path.join(src, bas + '.nog');
+ const log = path.join(src, bas + '.txt');
  const txt = path.join(src, tfl);
  const del = 20; //delay
- // const cmd = `cd ${src} && nohup ./xls2dpr.py ${xls} > ${log} 2>&1 && rm ${xls} ${log} &`;
- util.writeFile(txt, msg);
 
+ // util.writeFile(txt, msg);
  // fs.writeFileSync(txt, msg);
- console.log('File written successfully.');
+ // console.log('File written successfully.');
 
- res.send(`<h1>File Uploaded. <a href='/report/tex'>Proceed to Compile</a>`);
+ // region spawn nohup ------------------
+ // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
+ const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
+ const child = spawn(cmd, { shell: true });
+ child.unref(); // Allows the parent process to exit independently
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ process.on('exit', () => child.kill());
+ console.log(`Child process spawned with PID: ${child.pid}`);
+ // endregion spawn nohup ------------------
+
+ const logFile = fs.openSync(log, 'w');
+ fs.writeSync(logFile, msg);
+ fs.writeSync(logFile, '\n------\n');
+
+ // 1. Capture standard output
+ child.stdout.on('data', (data) => {
+  console.log(`stdout: ${data.toString()}`);
+  const subString = 'This is pdfTeX';
+  if (!data.toString().includes(subString)) {
+   fs.writeSync(logFile, data.toString());
+  }
+ });
+
+ // 2. Capture standard error output
+ // child.stderr.on('data', (data) => {
+ //  console.error(`[stderr:] ${data.toString()}`);
+ //  fs.writeSync(logFile, `[stderr:] ${data.toString()}`);
+ // });
+
+ // 3. Handle process system errors (e.g., command not found)
+ // child.on('error', (error) => {
+ //  console.error(`[System Error] Failed to spawn: ${error.message}`);
+ //  fs.writeSync(logFile, `[System Error] Failed to spawn: ${error.message}`);
+ // });
+
+ // 4. Handle process termination (Returns code/signal)
+ // child.on('exit', (code, signal) => {
+ //  console.log(`Child Process exited. Code: ${code}, Signal: ${signal}`);
+ //  fs.writeSync(logFile, `Process Exited. Code: ${code}, Signal: ${signal}\n`);
+ // });
+
+ // 5. Handle stdio stream termination (Guarantees streams are empty)
+ // child.on('close', (code, signal) => {
+ //  console.log(`Streams closed. Code: ${code}, Signal: ${signal}`);
+ //  fs.writeSync(logFile, `Streams closed. Code: ${code}, Signal: ${signal}\n`);
+ //  fs.closeSync(logFile); // Explicitly release the system resource
+ // });
+
 
  //
 });
