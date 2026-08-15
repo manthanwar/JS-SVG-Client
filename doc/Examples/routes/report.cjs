@@ -228,14 +228,33 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  // region spawn nohup ------------------
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
- const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
+ // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
+ // const child = spawn(cmd, { shell: true });
+ //
+ const cmd = `cd ${src} && python3 ${pys} ${xls}`;
  const child = spawn(cmd, { shell: true });
 
  child.unref(); // Allows the parent process to exit independently
  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
- // console.log(`Child process spawned with PID: ${child.pid}`);
+ console.log(`Child process spawned with PID: ${child.pid}`);
  // endregion spawn nohup ------------------
+
+ child.stdout.on('data', (data) => {
+  console.log(`stdout: ${data}`);
+ });
+
+ child.stderr.on('data', (data) => {
+  console.error(`stderr: ${data}`);
+ });
+
+ child.on('error', (error) => {
+  console.error(`failed to start process: ${error.message}`);
+ });
+
+ child.on('close', (code) => {
+  console.log(`child process exited with code ${code}`);
+ });
 
  //
 });
