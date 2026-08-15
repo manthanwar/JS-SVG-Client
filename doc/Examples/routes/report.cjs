@@ -241,7 +241,7 @@ router.get('/tex', (req, res) => {
  const src = path.join(__dirname, '../data-certificates');
  const log = bas + '.npg';
  const pdf = bas + '.pdf';
- const pys = path.join(src, 'xls2dpr.py');
+ const pys = 'xls2dpr.py';
  const del = 10;
 
  const isWindows = process.platform === 'win32';
