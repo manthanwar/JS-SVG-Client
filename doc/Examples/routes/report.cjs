@@ -227,6 +227,26 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // fs.writeFileSync(txt, msg);
  // console.log('File written successfully.');
 
+ res.send(`<html><body style="margin:100px; font-family: sans-serif">
+  <h1>${nam}, Your File Uploaded. <a href='/report/xls?pdf=${pdf}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
+  <html><body>`);
+
+ //
+});
+// #endregion post /printMany
+
+// #region get /tex
+router.get('/xls', (req, res) => {
+ const nam = req.query.name;
+ const eml = req.query.email;
+ const xls = req.query.file;
+ const pdf = req.query.pdf;
+ const dtm = util.dateFormat();
+ const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}\n\n`;
+ const src = path.join(__dirname, '../data-certificates');
+ const log = path.join(src, xls + '.nog');
+ const del = 20;
+
  // region spawn nohup ------------------
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
@@ -243,51 +263,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  child.unref(); // Allows the parent process to exit independently
  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
- console.log(`Child process spawned with PID: ${child.pid}`);
- // endregion spawn nohup ------------------
-
- child.stdout.on('data', (data) => {
-  console.log(`stdout: ${data}`);
- });
-
- child.stderr.on('data', (data) => {
-  console.error(`stderr: ${data}`);
- });
-
- child.on('error', (error) => {
-  console.error(`failed to start process: ${error.message}`);
- });
-
- child.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
- });
-
- //
-});
-// #endregion post /printMany
-
-// #region get /tex
-router.get('/xls', (req, res) => {
- const nam = req.query.name;
- const eml = req.query.email;
- const tex = req.query.file;
- const dtm = util.dateFormat();
- const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}\n\n`;
- const src = path.join(__dirname, '../data-certificates');
- const log = path.join(src, tex + '.txt');
- const pdf = tex + '.pdf';
- const del = 10;
-
- res.send('<h1> HIIIIIIIIIII </h1>');
- process.exit(0);
- // region spawn nohup ------------------
- // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
- const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
- const child = spawn(cmd, { shell: true });
- child.unref(); // Allows the parent process to exit independently
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
- process.on('exit', () => child.kill());
- console.log(`Child process spawned with PID: ${child.pid}`);
+ // console.log(`Child process spawned with PID: ${child.pid}`);
  // endregion spawn nohup ------------------
 
  const logFile = fs.openSync(log, 'w');
