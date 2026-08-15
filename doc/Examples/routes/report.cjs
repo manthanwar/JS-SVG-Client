@@ -239,9 +239,9 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // fs.writeFileSync(txt, msg);
  // console.log('File written successfully.');
 
- res.send(`<html><body style="margin:100px;">
-  <h1>${nam}, Your File Uploaded. <a href='/report/tex?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
-  <html><body>`);
+ // res.send(`<html><body style="margin:100px;">
+ //  <h1>${nam}, Your File Uploaded. <a href='/report/tex?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
+ //  <html><body>`);
 
  //
 });
@@ -252,7 +252,7 @@ router.get('/tex', (req, res) => {
  const nam = req.query.name;
  const eml = req.query.email;
  const xls = req.query.file;
- const pdf = req.query.bas + 'pdf';
+ const pdf = req.query.bas + '.pdf';
  const dtm = util.dateFormat();
  const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}\n\n`;
  const src = path.join(__dirname, '../data-certificates');
@@ -273,7 +273,14 @@ router.get('/tex', (req, res) => {
  // const cmd = `cd ${src} && python3 ${pys} ${xlp}`;
  // const child = spawn(cmd, { cwd: src, shell: true });
 
- const cmd = `cd ${src} && python xls2dpr.py ${xls}`;
+ // Define the path to the virtual environment python interpreter
+ // Use .venv/Scripts/python.exe for Windows, or .venv/bin/python for macOS/Linux
+ const isWindows = process.platform === 'win32';
+ const pythonWin = path.resolve('.venv', 'Scripts', 'python.exe');
+ const pythonBin = path.resolve('.venv', 'bin', 'python');
+ const pythonExe = isWindows ? pythonWin : pythonBin;
+
+ const cmd = `cd ${src} && ${pythonExe} xls2dpr.py ${xls}`;
  const child = spawn(cmd, { shell: true });
 
  child.unref(); // Allows the parent process to exit independently
