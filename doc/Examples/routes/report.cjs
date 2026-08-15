@@ -217,6 +217,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const pdf = bas + '.pdf';
  const tfl = bas + '.txt';
  const src = path.join(__dirname, '../data-certificates');
+ const pys = path.join(src, 'xls2dpr.py');
  const log = path.join(src, bas + '.txt');
  const txt = path.join(src, tfl);
  const del = 20; //delay
@@ -230,8 +231,10 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
  // const child = spawn(cmd, { shell: true });
 
+ // const isW = process.platform === 'win32';
+ // const cmd = isW ? 'C:\\Python314\\python.exe' : '/usr/bin/python3';
  const cmd = 'python';
- const arg = ['xls2dpr.py', xls];
+ const arg = [pys, xls];
  const opt = { cwd: src };
  const child = spawn(cmd, arg, opt);
 
