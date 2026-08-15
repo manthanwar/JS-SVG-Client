@@ -223,7 +223,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const txt = path.join(src, tfl);
  const del = 10; //delay
 
- const cmd = `cd ${src} && python xls2dpr.py ${xls}`;
+ const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
  const child = spawn(cmd, { shell: true });
 
  child.unref(); // Allows the parent process to exit independently
