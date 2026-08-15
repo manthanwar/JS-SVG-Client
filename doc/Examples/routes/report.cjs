@@ -273,7 +273,7 @@ router.get('/tex', (req, res) => {
  // const cmd = `cd ${src} && python3 ${pys} ${xlp}`;
  // const child = spawn(cmd, { cwd: src, shell: true });
 
- const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
+ const cmd = `cd ${src} && python xls2dpr.py ${xls}`;
  const child = spawn(cmd, { shell: true });
 
  child.unref(); // Allows the parent process to exit independently
