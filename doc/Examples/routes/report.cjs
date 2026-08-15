@@ -283,6 +283,9 @@ router.get('/tex', (req, res) => {
  const cmd = `cd ${src} && ${pythonExe} xls2dpr.py ${xls}`;
  const child = spawn(cmd, { shell: true });
 
+ console.log(pythonExe);
+ console.log(cmd);
+
  child.unref(); // Allows the parent process to exit independently
  child.stdout.on('data', (data) => console.log(`Child stdout: ${data}`));
  child.stderr.on('data', (data) => console.error(`Child stderr: ${data}`));
