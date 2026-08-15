@@ -233,8 +233,8 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
   ? path.resolve('.venv', 'Scripts', 'python.exe')
   : path.resolve('.venv', 'bin', 'python');
 
- const cmd = `cd ${src} && ${pythonExe} xls2dpr.py ${xls}`;
- const child = spawn(cmd, { shell: true });
+ const cmd = `cd ${src} && ${pythonExe} ${pys} ${xls}`;
+ const child = spawn(cmd, { cwd: src, shell: true });
 
  console.log(pythonExe);
  console.log(cmd);
