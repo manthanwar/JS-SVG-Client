@@ -228,15 +228,15 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  // region spawn nohup ------------------
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
- // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
- // const child = spawn(cmd, { shell: true });
+ const cmd = `cd ${src} && python xls2dpr.py ${xls}`;
+ const child = spawn(cmd, { shell: true });
 
  // const isW = process.platform === 'win32';
  // const cmd = isW ? 'C:\\Python314\\python.exe' : '/usr/bin/python3';
- const cmd = 'python';
- const arg = [pys, xls];
- const opt = { cwd: src };
- const child = spawn(cmd, arg, opt);
+ // const cmd = 'python';
+ // const arg = [pys, xls];
+ // const opt = { cwd: src };
+ // const child = spawn(cmd, arg, opt);
 
  child.unref(); // Allows the parent process to exit independently
  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
