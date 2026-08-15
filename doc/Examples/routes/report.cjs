@@ -223,6 +223,31 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const txt = path.join(src, tfl);
  const del = 10; //delay
 
+ // Define the path to the virtual environment python interpreter
+ // Use .venv/Scripts/python.exe for Windows, or
+ // Use .venv/bin/python for macOS/Linux
+
+ const isWindows = process.platform === 'win32';
+
+ const pythonExe = isWindows
+  ? path.resolve('.venv', 'Scripts', 'python.exe')
+  : path.resolve('.venv', 'bin', 'python');
+
+ const cmd = `cd ${src} && ${pythonExe} xls2dpr.py ${xls}`;
+ const child = spawn(cmd, { shell: true });
+
+ console.log(pythonExe);
+ console.log(cmd);
+
+ child.unref(); // Allows the parent process to exit independently
+ child.stdout.on('data', (data) => console.log(`Child stdout: ${data}`));
+ child.stderr.on('data', (data) => console.error(`Child stderr: ${data}`));
+ child.on('error', (error) => console.error('Child error: ', error.message));
+ child.on('close', (code) => console.log(`Child closed with code: ${code}`));
+ process.on('exit', () => child.kill());
+
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls}`;
  // const child = spawn(cmd, { shell: true });
 
@@ -257,7 +282,7 @@ router.get('/tex', (req, res) => {
  const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}\n\n`;
  const src = path.join(__dirname, '../data-certificates');
  const log = path.join(src, xls + '.txt');
- const del = 10;
+ const del = 20;
 
  // region spawn nohup ------------------
  // const cmd = `cd ${src} && python3 xls2dpr.py ${xls} && rm ${xls}`;
@@ -276,9 +301,10 @@ router.get('/tex', (req, res) => {
  // Define the path to the virtual environment python interpreter
  // Use .venv/Scripts/python.exe for Windows, or .venv/bin/python for macOS/Linux
  const isWindows = process.platform === 'win32';
+
  const pythonExe = isWindows
-  ? path.resolve('.venv', 'Scripts', 'python.exe')
-  : path.resolve('.venv', 'bin', 'python');
+  ? path.join('.venv', 'Scripts', 'python.exe')
+  : path.join('.venv', 'bin', 'python');
 
  const cmd = `cd ${src} && ${pythonExe} xls2dpr.py ${xls}`;
  const child = spawn(cmd, { shell: true });
