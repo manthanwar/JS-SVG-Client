@@ -246,13 +246,18 @@ router.get('/tex', (req, res) => {
 
  const isWindows = process.platform === 'win32';
  const shellTrue = isWindows ? true : '/bin/bash';
+ // const pythonExe = isWindows
+ //  ? path.resolve('.venv', 'Scripts', 'python.exe')
+ //  : path.resolve('.venv', 'bin', 'python');
+
  const pythonExe = isWindows
-  ? path.resolve('.venv', 'Scripts', 'python.exe')
-  : path.resolve('.venv', 'bin', 'python');
+  ? path.join(__dirname, '../../../.venv/Scripts/python.exe')
+  : path.join(__dirname, '../../../.venv/bin/python');
 
  const cmd = `cd ${src} && ${pythonExe} ${pys} ${xls}`;
  const child = spawn(cmd, { shell: shellTrue });
 
+ // const cmd = `cd ${src} && python ${pys} ${xls}`;
  // const pythonExe = isWindows
  //  ? path.join(__dirname, '../../../.venv/Scripts/python.exe')
  //  : path.join(__dirname, '../../../.venv/bin/python');
@@ -265,8 +270,8 @@ router.get('/tex', (req, res) => {
  // const arg = [pys, xxx];
  // const child = spawn(cmd, { cwd: src });
 
- console.log('\n---------------\n');
- console.log(pythonExe);
+ // console.log('\n---------------\n');
+ // console.log(pythonExe);
  console.log('\n---------------\n');
  console.log(cmd);
  console.log('\n---------------\n');
