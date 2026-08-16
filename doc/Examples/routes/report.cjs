@@ -250,14 +250,14 @@ router.get('/tex', (req, res) => {
  //  ? path.resolve('.venv', 'Scripts', 'python.exe')
  //  : path.resolve('.venv', 'bin', 'python');
 
- const pythonExe = isWindows
-  ? path.join(__dirname, '../../../.venv/Scripts/python.exe')
-  : path.join(__dirname, '../../../.venv/bin/python');
+ // const pythonExe = isWindows
+ //  ? path.join(__dirname, '../../../.venv/Scripts/python.exe')
+ //  : path.join(__dirname, '../../../.venv/bin/python');
 
- const cmd = `cd ${src} && ${pythonExe} ${pys} ${xls}`;
+ const cmd = `cd ${src} && python ${pys} ${xls}`;
  const child = spawn(cmd, { shell: shellTrue });
 
- // const cmd = `cd ${src} && python ${pys} ${xls}`;
+ // const cmd = `cd ${src} && ${pythonExe} ${pys} ${xls}`;
  // const pythonExe = isWindows
  //  ? path.join(__dirname, '../../../.venv/Scripts/python.exe')
  //  : path.join(__dirname, '../../../.venv/bin/python');
