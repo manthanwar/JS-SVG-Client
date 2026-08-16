@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>SSE Updates</title>
+ </head>
+ <body>
+  <h1>Status Dashboard</h1>
+  <!-- This is the specific tag we want to update -->
+  <div id="status-tag">Waiting for connection...</div>
+
+  <div id="events"></div>
+
+  <script>
+   const eventSource = new EventSource('/report/childEventsStream');
+   //const container = document.getElementById('events');
+   //const newElement = document.createElement('p');
+
+   eventSource.onmessage = (event) => {
+    const container = document.getElementById('events');
+    const newElement = document.createElement('p');
+    newElement.textContent = `New message: ${event.data}`;
+    container.appendChild(newElement);
+   };
+
+   // Optional: Handle errors or closed connections
+   eventSource.onerror = (error) => {
+    console.error('EventSource failed:', error);
+    eventSource.close();
+   };
+  </script>
+ </body>
+</html>

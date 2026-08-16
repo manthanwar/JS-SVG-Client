@@ -211,24 +211,215 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const eml = req.body.email;
  const dtm = util.dateFormat();
  const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}`;
- const xls = req.file.filename;
- const ext = path.extname(xls);
- const bas = path.parse(xls).name;
+ const xls = req.file.filename; // basename.extension
+ const ext = path.extname(xls); // extension
+ const bas = path.parse(xls).name; // basename
  const src = path.join(__dirname, '../data-certificates');
- const pys = path.join(src, 'xls2dpr.py');
- const xlp = path.join(src, xls);
- const log = path.join(src, bas + '.nog');
- const txt = path.join(src, bas + '.txt');
- const pdf = path.join(src, bas + '.pdf');
+ const pys = path.join(src, 'xls2dpr.py'); // python script path
+ const pyt = path.join(src, 'testSpawn.py');
+ const log = bas + '.nog';
+ const txt = bas + '.txt';
+ const pdf = bas + '.pdf';
  const del = 10; //delay
+ const pyd = { file: { basename: bas, extname: ext }, message: msg };
 
- res.send(`<html><body style="margin:100px;">
-  <h1>${nam}, Your File Uploaded. <a href='/report/tex?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
-  <html><body>`);
+ // const child = spawn('python', ['-u', pyt]);
+
+ // Use req.app to access the global Express app instance
+ // req.app.set('spawnChildProcess', child);
+
+ res.sendFile(path.join(src, 'testSpawn.html'));
+
+ // const child = spawn('python', [pyt]);
+
+ // // Store the instance using a unique key in app locals
+ // router.set('spawnChildProcess', child);
+
+ // // Stream data as it arrives from stdout
+ // child.stdout.on('data', (data) => {
+ //  res.write(`<h1>${data}</h1><br>`);
+ // });
+
+ // // Optional: capture errors too
+ // child.stderr.on('data', (data) => {
+ //  res.write(`ERROR: ${data}`);
+ // });
+
+ // // End response when the process finishes
+ // child.on('close', (code) => {
+ //  res.end(`\nProcess exited with code ${code}`);
+ //  router.set('spawnChildProcess', null);
+ // });
+
+ // res.send(`<h1> python spawned</h1>`);
+
+ // res.send(`<html><body style="margijn:100px;">
+ //  <h1>${nam}, Your File Uploaded. <a href='/report/tex?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
+ //  <html><body>`);
 
  //
 });
 // #endregion post /printMany
+
+// #region get /childEventsStream
+router.get('/childEventsStream', (req, res) => {
+ // const nam = req.body.nameF;
+ // const eml = req.body.email;
+ // const dtm = util.dateFormat();
+ // const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}`;
+ // const xls = req.file.filename; // basename.extension
+ // const ext = path.extname(xls); // extension
+ // const bas = path.parse(xls).name; // basename
+ const src = path.join(__dirname, '../data-certificates');
+ // const pys = path.join(src, 'xls2dpr.py'); // python script path
+ const pyt = path.join(src, 'testSpawn.py');
+ // const log = bas + '.nog';
+ // const txt = bas + '.txt';
+ // const pdf = bas + '.pdf';
+ // const del = 10; //delay
+ // const pyd = { file: { basename: bas, extname: ext }, message: msg };
+
+ const child = spawn('python', [pyt]);
+
+ // Use req.app to access the global Express app instance
+ // req.app.set('spawnChildProcess', child);
+
+ // Crucial headers required for Server-Sent Events (SSE)
+ res.setHeader('Content-Type', 'text/event-stream');
+ res.setHeader('Cache-Control', 'no-cache');
+ res.setHeader('Connection', 'keep-alive');
+ res.flushHeaders(); // Establishes the stream with the client immediately
+
+ // Send a message immediately upon connection
+ res.write('data: Connected to live stream...\n\n');
+
+
+ // Stream data as it arrives from stdout
+ child.stdout.on('data', (data) => {
+  console.log(`DATA: ${data}`);
+  const lines = data.toString().split('\n');
+   lines.forEach((line) => {
+    const trimmed = line.trim();
+    if (trimmed) {
+     // Format matching the SSE spec: "data: <message>\n\n"
+     res.write(`data: ${trimmed}\n\n`);
+    }
+   });
+  // res.write(`DATA: ${data}\n\n`);
+ });
+
+ // Optional: capture errors too
+ child.stderr.on('data', (data) => {
+  console.log(`ERROR: ${data}`);
+  res.write(`ERROR: ${data.toString()}\n\n`);
+ });
+
+ // End response when the process finishes
+ child.on('close', (code) => {
+  console.log(`\nProcess exited with code ${code}`);
+  res.end(`Close: Process exited with code ${code}\n\n`);
+  // req.app.set('spawnChildProcess', null);
+ });
+
+ // Clean up interval when client disconnects
+ req.on('close', () => {
+  res.end();
+  console.log('Client disconnected, killing Python process...');
+  child.kill();
+ });
+
+ //
+});
+// #endregion post /childEventsStream
+
+// #region get /childEventsStreamTimer
+router.get('/childEventsStreamTimer', (req, res) => {
+ // Crucial headers required for Server-Sent Events (SSE)
+ res.setHeader('Content-Type', 'text/event-stream');
+ res.setHeader('Cache-Control', 'no-cache');
+ res.setHeader('Connection', 'keep-alive');
+ res.flushHeaders(); // Establishes the stream with the client immediately
+
+ // Send a message immediately upon connection
+ res.write('data: Connected to live stream\n\n');
+
+ // Send data stream intervals every 3 seconds
+ const intervalId = setInterval(() => {
+  const timeStamp = new Date().toLocaleTimeString();
+  res.write(`data: Server Time is ${timeStamp}\n\n`); // Double newline '\n\n' is mandatory in SSE
+ }, 3000);
+
+ // Clean up interval when client disconnects
+ req.on('close', () => {
+  clearInterval(intervalId);
+  res.end();
+ });
+
+ //
+});
+// #endregion post /childEventsStreamTimer
+
+// #region post /sendTextStream
+router.post('/childTextStream', upload.single('file'), (req, res, next) => {
+ if (!req.file || Object.keys(req.file).length === 0) {
+  return res.status(400).send('<h1>No files were uploaded.</h1>');
+ }
+
+ const nam = req.body.nameF;
+ const eml = req.body.email;
+ const dtm = util.dateFormat();
+ const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}`;
+ const xls = req.file.filename; // basename.extension
+ const ext = path.extname(xls); // extension
+ const bas = path.parse(xls).name; // basename
+ const src = path.join(__dirname, '../data-certificates');
+ const pys = path.join(src, 'xls2dpr.py'); // python script path
+ const pyt = path.join(src, 'testSpawn.py');
+ const log = bas + '.nog';
+ const txt = bas + '.txt';
+ const pdf = bas + '.pdf';
+ const del = 10; //delay
+ const pyd = { file: { basename: bas, extname: ext }, message: msg };
+
+ const child = spawn('python', [pyt]);
+
+ // Store the instance using a unique key in app locals
+ router.set('spawnChildProcess', child);
+
+ // Set headers for plain text streaming
+ // res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+ res.setHeader('Content-Type', 'text/html; charset=utf-8');
+ res.setHeader('Transfer-Encoding', 'chunked');
+
+ // res.setHeader('Content-Type', 'text/event-stream');
+ // res.setHeader('Cache-Control', 'no-cache');
+ // res.setHeader('Connection', 'keep-alive');
+
+ // Stream data as it arrives from stdout
+ child.stdout.on('data', (data) => {
+  res.write(`<h1>${data}</h1><br>`);
+ });
+
+ // Optional: capture errors too
+ child.stderr.on('data', (data) => {
+  res.write(`ERROR: ${data}`);
+ });
+
+ // End response when the process finishes
+ child.on('close', (code) => {
+  res.end(`\nProcess exited with code ${code}`);
+  router.set('spawnChildProcess', null);
+ });
+
+ // res.send(`<h1> python spawned</h1>`);
+
+ // res.send(`<html><body style="margin:100px;">
+ //  <h1>${nam}, Your File Uploaded. <a href='/report/tex?bas=${bas}&file=${xls}&name=${nam}&email=${eml}'>Proceed to Report</a></h1>
+ //  <html><body>`);
+
+ //
+});
+// #endregion post /sendTextStream
 
 // #region get /tex
 router.get('/tex', (req, res) => {

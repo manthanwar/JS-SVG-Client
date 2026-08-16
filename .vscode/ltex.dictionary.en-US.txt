@@ -1,0 +1,6 @@
+const
+eventSource
+onmessage
+textContent
+onerror
+EventSource
