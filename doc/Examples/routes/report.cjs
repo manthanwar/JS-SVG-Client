@@ -239,15 +239,13 @@ router.get('/tex', (req, res) => {
  const dtm = util.dateFormat();
  const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}\n\n`;
  const src = path.join(__dirname, '../data-certificates');
- const ven = path.join(__dirname, '../../../.venv');
- // const pys = path.join(src, 'xls2dpr.py');
  const pys = 'xls2dpr.py';
  const log = bas + '.npg';
  const pdf = bas + '.pdf';
  const del = 10;
 
  const isWindows = process.platform === 'win32';
- const shellTrue = isWindows ? true : false;
+ const shellTrue = isWindows ? true : '/bin/bash';
  const pythonExe = isWindows
   ? path.resolve('.venv', 'Scripts', 'python.exe')
   : path.resolve('.venv', 'bin', 'python');
@@ -255,13 +253,16 @@ router.get('/tex', (req, res) => {
  const cmd = `cd ${src} && ${pythonExe} ${pys} ${xls}`;
  const child = spawn(cmd, { shell: shellTrue });
 
+ // const pythonExe = isWindows
+ //  ? path.join(__dirname, '../../../.venv/Scripts/python.exe')
+ //  : path.join(__dirname, '../../../.venv/bin/python');
  // const child = spawn(cmd, { cwd: src, shell: shellTrue });
  // const pythonExe = isWindows
  //  ? path.join(ven, 'Scripts', 'python.exe')
  //  : path.join(ven, 'bin', 'python');
 
  // const cmd = pythonExe;
- // const arg = [pys, xls];
+ // const arg = [pys, xxx];
  // const child = spawn(cmd, { cwd: src });
 
  console.log('\n---------------\n');
