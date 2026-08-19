@@ -231,11 +231,12 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const cmd = isW ? 'python' : '/usr/bin/python3';
  const arg = ['-u', pys, xlp];
  const opt = { cwd: process.cwd() };
+
  const child = spawn(cmd, arg, opt);
 
- // child.unref(); // Allows the parent process to exit independently
- // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
- // process.on('exit', () => child.kill());
+ child.unref(); // Allows the parent process to exit independently
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ process.on('exit', () => child.kill());
 
  // req.app.set('spawnChildProcess', child);
  // res.sendFile(path.join(src, 'testSpawn.html'));

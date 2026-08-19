@@ -338,7 +338,7 @@ Utility.spawnTex = (req, res, data) => {
 
  // console.log(childA);
  child.unref(); // Allows the parent process to exit independently
- res.redirect(`printOnePdf?nam=${nam}&del=${del}&bas=${bas}&xls=${xls}`);
+ // res.redirect(`printOnePdf?nam=${nam}&del=${del}&bas=${bas}&xls=${xls}`);
  process.on('exit', () => child.kill());
 
  child.on('error', (error) => {
