@@ -295,11 +295,11 @@ app.use((err, req, res, next) => {
 
  // Handling 502 Errors (Bad Gateway)
  // Handle rejected promises that have no .catch() block
-process.on('unhandledRejection', (reason, promise) => {
+ process.on('unhandledRejection', (reason, promise) => {
   console.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
- // Optional: Perform synchronous cleanup here (e.g., close DB connections)
- // Optional: Gracefully shut down and let PM2 restart the app
-});
+  // Optional: Perform synchronous cleanup here (e.g., close DB connections)
+  // Optional: Gracefully shut down and let PM2 restart the app
+ });
 
  // Handle synchronous or asynchronous errors thrown outside try/catch blocks
  process.on('uncaughtException', (error) => {
@@ -315,7 +315,7 @@ process.on('unhandledRejection', (reason, promise) => {
 
  res.status(statusCode);
  res.status(statusCode).send(`<h1>Server Error: ${statusCode}</h1>`);
-};);
+});
 
 const server = app.listen(PORT, () => {
  console.log('Server started at http://localhost:' + PORT);
