@@ -223,12 +223,14 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const del = 10; //delay
  const pyd = { file: { basename: bas, extname: ext }, message: msg };
 
- // const child = spawn('python', ['-u', pyt]);
+ const child = spawn('python', ['-u', pys, xls]);
 
- // Use req.app to access the global Express app instance
+ child.unref(); // Allows the parent process to exit independently
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ process.on('exit', () => child.kill());
+
  // req.app.set('spawnChildProcess', child);
-
- res.sendFile(path.join(src, 'testSpawn.html'));
+ // res.sendFile(path.join(src, 'testSpawn.html'));
 
  // const child = spawn('python', [pyt]);
 
@@ -270,19 +272,25 @@ router.get('/childEventsStream', (req, res) => {
  // const xls = req.file.filename; // basename.extension
  // const ext = path.extname(xls); // extension
  // const bas = path.parse(xls).name; // basename
- const src = path.join(__dirname, '../data-certificates');
+ // const src = path.join(__dirname, '../data-certificates');
  // const pys = path.join(src, 'xls2dpr.py'); // python script path
- const pyt = path.join(src, 'testSpawn.py');
+ // const pyt = path.join(src, 'testSpawn.py');
  // const log = bas + '.nog';
  // const txt = bas + '.txt';
  // const pdf = bas + '.pdf';
  // const del = 10; //delay
  // const pyd = { file: { basename: bas, extname: ext }, message: msg };
 
- const child = spawn('python', [pyt]);
+ // const child = spawn('python', [pyt]);
 
  // Use req.app to access the global Express app instance
  // req.app.set('spawnChildProcess', child);
+
+ const child = req.app.get('spawnChildProcess');
+
+ if (!child) {
+  return res.status(404).send('No active process found.');
+ }
 
  // Crucial headers required for Server-Sent Events (SSE)
  res.setHeader('Content-Type', 'text/event-stream');
@@ -293,18 +301,17 @@ router.get('/childEventsStream', (req, res) => {
  // Send a message immediately upon connection
  res.write('data: Connected to live stream...\n\n');
 
-
  // Stream data as it arrives from stdout
  child.stdout.on('data', (data) => {
   console.log(`DATA: ${data}`);
   const lines = data.toString().split('\n');
-   lines.forEach((line) => {
-    const trimmed = line.trim();
-    if (trimmed) {
-     // Format matching the SSE spec: "data: <message>\n\n"
-     res.write(`data: ${trimmed}\n\n`);
-    }
-   });
+  lines.forEach((line) => {
+   const trimmed = line.trim();
+   if (trimmed) {
+    // Format matching the SSE spec: "data: <message>\n\n"
+    res.write(`data: ${trimmed}\n\n`);
+   }
+  });
   // res.write(`DATA: ${data}\n\n`);
  });
 

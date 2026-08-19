@@ -21,6 +21,8 @@ prescription.cls
 pst-icon-macros.sty
 script.sh
 testPython.py
+testSpawn.html
+testSpawn.py
 testUtility.py
 traffic.log
 xls2dpr.py

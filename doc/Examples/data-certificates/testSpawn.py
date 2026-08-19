@@ -12,13 +12,17 @@ def main():
 
     sys.stdout.flush()
 
-    time.sleep(15)
+    # time.sleep(3)
 
     # Get the directory containing the current file
     dir_path = Path(__file__).resolve().parent
     print(f"Directory path: {dir_path}")
-
     sys.stdout.flush()
+
+    xls = sys.argv[1] if len(sys.argv) > 1 else "No xlx provided"
+    print(f"xls file: {xls}")
+    sys.stdout.flush()
+
 
     # # message = sys.argv[1] if len(sys.argv) > 1 else "No message provided"
     # # Check if argument is provided

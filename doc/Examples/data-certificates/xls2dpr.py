@@ -40,17 +40,18 @@
 from excel2tex import ExcelToTexArticle as xls2dpr
 from excel2tex import Utility as util
 # import excel2tex
+# from datetime import datetime
+import time
 import sys
 import os
-import time
-from datetime import datetime
+from pathlib import Path
 import pandas as pd
 
 if __name__ == "__main__":
     # timeStarted = time.time()
     timeStarted = util.tic()
 
-    current_datetime = datetime.now()
+    # current_datetime = datetime.now()
     # print("Current Date and Time:", current_datetime, '\n')
     # print("Current Date and Time:", current_datetime)
 
@@ -62,8 +63,12 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         # The first argument after the script name is at index 1
         excelFile = sys.argv[1]
+        print(f"[Python Output] xls filename: {excelFile}")
+        # sys.stdout.flush()
     else:
-        print("Please provide an argument when running the script.")
+        print("[Python Error:] Please provide an xls filename argument.")
+        # sys.stdout.flush()
+        sys.exit(1)  # Exits the script with an error code
 
     # if len(sys.argv) >= 3:
     #     dataType = sys.argv[2]
@@ -86,6 +91,12 @@ if __name__ == "__main__":
     # # print(*sheets, sep='\n')
     # # print(len(sheets))
 
+    # print("[Python Output] Current working directory Old:", os.getcwd())
+    # sys.stdout.flush()
+    os.chdir(Path('./doc/Examples/data-certificates'))
+    print("[Python Output] Current working directory New:", os.getcwd())
+    # sys.stdout.flush()
+
     xt = xls2dpr(excelFile)
 
     # xt.printClassInfo()
@@ -96,10 +107,12 @@ if __name__ == "__main__":
     # xt.getMeansFinance(isCode=False)
 
     xt.createReport()
+    # sys.exit(0)
 
     # del xt
     # cmd = 'rm ' + excelFile
     # util.runCmd(cmd)
-    util.toc(timeStarted)
+    timeElapsed = util.toc(timeStarted)
+    print(f"[Python Output] Time Elapsed: {timeElapsed}")
 
     # sys.exit(0)  # Exit with a success status code
