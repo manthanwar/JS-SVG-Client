@@ -74,7 +74,7 @@ window.onload = (event) => {
   };
  }
 
- fetch('demo-pub-certificate-personal-form-tab.html')
+ fetch('demo-pub-certificate-personal-form.html')
   .then((response) => response.text())
   .then((data) => {
    article.innerHTML = data;
