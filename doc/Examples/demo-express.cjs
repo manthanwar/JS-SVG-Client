@@ -273,13 +273,32 @@ app.use((req, res, next) => {
  res.status(404).send('<h1>Oops! Page not found.</h1>');
 });
 
+//  Handling 503 Errors (Service Unavailable)
+//  either undergoing maintenance or completely overloaded with traffic
+app.use((req, res, next) => {
+ if (serverIsOverloaded) {
+  res.setHeader('Retry-After', '30'); // Suggests client retries in 30 seconds
+  return res.status(503).send('<h1>Service Under Heavy Load</h1>');
+ }
+ next();
+});
+
 // Optional: Global 500 Internal Error Handler (Must have 4 arguments)
 app.use((err, req, res, next) => {
- console.error(err.stack);
+ console.error('SYSTEM ERROR LOG:', err.stack);
  // res.status(500).send('<h1>Something went wrong on our end!</h1>');
  // const statusCode = err.statusCode || err.status || 500;
 
  // Default to 500 Internal Server Error if status is missing or outside 50x range
+
+ // res.status(500).send(`<h1>Server Error: ${res.statusCode}</h1>`);
+
+ // Handling 502 Errors (Bad Gateway)
+ process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  // Optional: Gracefully shut down and let PM2 restart the app
+ });
+
  const statusCode =
   res.statusCode >= 500 && res.statusCode <= 504 ? res.statusCode : 500;
 
@@ -287,6 +306,18 @@ app.use((err, req, res, next) => {
  res.status(statusCode).send(`<h1>Server Error: ${statusCode}</h1>`);
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
  console.log('Server started at http://localhost:' + PORT);
 });
+
+// Handling 504 Errors (Gateway Timeout)
+// 2. Set the global request timeout in milliseconds (e.g., 5000ms = 5 seconds)
+
+// Configure explicit network timeouts (in milliseconds)
+// server.headersTimeout = 60000; // 1 minute
+// server.requestTimeout = 300000; // 5 minutes
+// server.timeout = 30000;        // 30 seconds idle timeout
+// server.setTimeout(55000);
+
+// Set global server timeout to 5 minutes (in milliseconds)
+server.setTimeout(5 * 60 * 1000);
