@@ -233,10 +233,10 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const opt = { cwd: process.cwd() };
 
  const child = spawn(cmd, arg, opt);
-
  child.unref(); // Allows the parent process to exit independently
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
+
+ res.redirect(`printOnePdf?nam=${nam}&del=${del}&bas=${bas}&xls=${xls}`);
 
  // req.app.set('spawnChildProcess', child);
  // res.sendFile(path.join(src, 'testSpawn.html'));
@@ -251,10 +251,17 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  //  res.write(`<h1>${data}</h1><br>`);
  // });
 
- // // Optional: capture errors too
- // child.stderr.on('data', (data) => {
- //  res.write(`ERROR: ${data}`);
- // });
+
+ child.on('error', (error) => {
+   console.error('[Spawn Error]', error.message);
+   // fs.writeSync(fsL, error.message);
+  });
+
+
+ // Optional: capture errors too
+ child.stderr.on('data', (data) => {
+  res.write(`ERROR: ${data}`);
+ });
 
  // // End response when the process finishes
 

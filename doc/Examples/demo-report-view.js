@@ -45,10 +45,10 @@ function getFile() {
   } else {
    ppp.innerHTML = `${nam}, your report is ready<br>
    <ul style="display: flex; flex-direction: column; gap: 12px;">
-   <li><a href="/data-certificates/${pdf}">PDF File</a></li>
-   <li><a href="/data-certificates/${xls}">XLS File</a></li>
-   <li><a href="/data-certificates/${txt}">LOG File</a></li>
-   <li><a href="/data-certificates/${zip}">ZIP File</a></li>
+   <li><a href="/data-certificates/${pdf}" target="_blank">PDF File</a></li>
+   <li><a href="/data-certificates/${xls}" target="_blank">XLS File</a></li>
+   <li><a href="/data-certificates/${txt}" target="_blank">LOG File</a></li>
+   <li><a href="/data-certificates/${zip}" target="_blank">ZIP File</a></li>
    </ul>
    `;
    clearInterval(interval);

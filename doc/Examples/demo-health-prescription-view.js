@@ -43,9 +43,9 @@ function getFile() {
   } else {
    ppp.innerHTML = `${name}, here is your medical prescription <br>
    <ul style="display: flex; flex-direction: column; gap: 12px;">
-   <li><a href="/data-certificates/${pdf.slice(0, -5)}.json">JSON File</a></li>
-   <li><a href="/data-certificates/${pdf}.pdf">PDF File</a></li>
-   <li><a href="/data-certificates/${pdf}.txt">LOG File</a></li>
+   <li><a href="/data-certificates/${pdf.slice(0, -5)}.json" target="_blank">JSON File</a></li>
+   <li><a href="/data-certificates/${pdf}.pdf" target="_blank">PDF File</a></li>
+   <li><a href="/data-certificates/${pdf}.txt" target="_blank">LOG File</a></li>
    </ul>
    `;
    clearInterval(interval);
