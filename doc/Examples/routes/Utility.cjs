@@ -314,5 +314,67 @@ Utility.highlightJSON = (json) => {
  });
 };
 // #endregion Utility.highlightJSON
+
+// #region Utility.spawnTex
+Utility.spawnTex = (req, res, data) => {
+ const nam = data.nam;
+ const eml = data.eml;
+ const msg = data.msg;
+ const del = data.del;
+ const src = data.src;
+ const bas = data.bas;
+ const tex = data.tex;
+ const pdf = data.pdf;
+ const txt = data.txt;
+ const log = data.log;
+
+ const fsL = fs.openSync(txt, 'w');
+ fs.writeSync(fsL, msg + '\n\n');
+
+ const cmd = `cd ${src} && make nodeLatex file=${bas} n=1 && rm ${bas}.tex`;
+
+ const child = spawn(cmd, [], { shell: true });
+
+ // console.log(childA);
+ child.unref(); // Allows the parent process to exit independently
+ res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ process.on('exit', () => child.kill());
+
+ child.on('error', (error) => {
+  console.error('[Spawn Error]', error.message);
+ });
+
+ child.stdout.on('data', (data) => {
+  console.log(`[STDOUT] data:  ${data.toString()}\n\n`);
+  fs.writeSync(fsL, data.toString());
+  // res.write(`<h1>${data}</h1><br>`);
+ });
+
+ child.stderr.on('data', (data) => {
+  console.log(data.toString());
+  // res.write(`ERROR: ${data}`);
+ });
+
+ child.on('close', (code) => {
+  console.log(`\nsub-Process exited with code ${code}`);
+  fs.closeSync(fsL);
+  // res.send(`\nProcess exited with code ${code}`);
+  // router.set('spawnChildProcess', null);
+ });
+
+
+ // const cmd = `cd ${src} && \
+ // latex -quiet ${tex}.tex && \
+ // latex -quiet ${tex}.tex && \
+ // dvips -q ${tex}.dvi && \
+ // ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
+ // rm -f ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.out ${tex}.out.ps ${tex}.ps \
+ // `;
+
+
+ //
+};
+// #endregion Utility.spawnTex
+
 //
 module.exports = Utility;

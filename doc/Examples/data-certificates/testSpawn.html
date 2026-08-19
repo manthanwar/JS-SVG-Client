@@ -2,6 +2,12 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8" />
+  <link
+   rel="stylesheet"
+   type="text/css"
+   media="screen"
+   href="../textSpawn.css"
+  />
   <title>SSE Updates</title>
  </head>
  <body>
@@ -16,10 +22,12 @@
    //const container = document.getElementById('events');
    //const newElement = document.createElement('p');
 
+   const container = document.getElementById('events');
+   document.body.style.fontSize = '30px';
    eventSource.onmessage = (event) => {
-    const container = document.getElementById('events');
     const newElement = document.createElement('p');
-    newElement.textContent = `New message: ${event.data}`;
+    //newElement.textContent = `New message: ${event.data}`;
+    newElement.innerHTML = `New message: ${event.data}`;
     container.appendChild(newElement);
    };
 

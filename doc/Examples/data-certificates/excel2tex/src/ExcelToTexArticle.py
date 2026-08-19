@@ -91,7 +91,7 @@ class ExcelToTexArticle:
         self.summary = df.iloc[0, 0]
         return None
 
-    def getMeansFinance(self, sheet: str = 'meansFinance', isCode: bool = False) -> None:
+    def getMeansFinance(self, sheet: str = 'meansFinance', isCode: bool = False) -> str:
         df = pd.read_excel(io=self.excelFile, sheet_name=sheet)
         # headers = df.columns
         # print(df.iloc[1, 0])
@@ -130,9 +130,9 @@ class ExcelToTexArticle:
         # baseName = os.path.splitext(self.excelFile)[0]
         # filePath = baseName + '.tex'
         util.writeFile(fileName=self.latexFile, lines=lines, isCode=isCode)
-        return None
+        return self.latexFile
 
-    def createReport(self) -> None:
+    def createReport(self) -> str:
         self.getMeansFinance()
         # fileName = f'report-{row.nameN}-{row.nameF}'
         basFile = os.path.splitext(self.excelFile)[0]
@@ -142,11 +142,10 @@ class ExcelToTexArticle:
         elapsed = f'\nDone: {util.toc(util.timeStarted):.4f} sec\n'
         util.appendFile(fileName=txtFile, lines=elapsed)
         pdfXlsx = f'{pdfFile} {txtFile} {self.excelFile}'
+        util.runCmd(cmd)
         util.zip(archive=basFile, filePath=pdfXlsx)
         cmd = f'rm {self.latexFile} {txtFile}'
-        util.runCmd(cmd)
-
-        return None
+        return pdfFile
 
 
     def createZip(self) -> None:

@@ -217,17 +217,23 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const src = path.join(__dirname, '../data-certificates');
  const pys = path.join(src, 'xls2dpr.py'); // python script path
  const pyt = path.join(src, 'testSpawn.py');
- const log = bas + '.nog';
- const txt = bas + '.txt';
+ const xlp = path.join(src, xls);
+ const log = path.join(src, bas + '.nog');
+ const txt = path.join(src, bas + '.txt');
+ const tex = bas + '.tex';
  const pdf = bas + '.pdf';
  const del = 10; //delay
  const pyd = { file: { basename: bas, extname: ext }, message: msg };
 
- const child = spawn('python', ['-u', pys, xls]);
+ const isW = process.platform === 'win32';
+ const cmd = isW ? 'python' : '/usr/bin/python3';
+ const arg = ['-u', pys, xlp];
+ const opt = { cwd: process.cwd() };
+ const child = spawn(cmd, arg, opt);
 
- child.unref(); // Allows the parent process to exit independently
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
- process.on('exit', () => child.kill());
+ // child.unref(); // Allows the parent process to exit independently
+ // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ // process.on('exit', () => child.kill());
 
  // req.app.set('spawnChildProcess', child);
  // res.sendFile(path.join(src, 'testSpawn.html'));
@@ -248,10 +254,25 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // });
 
  // // End response when the process finishes
- // child.on('close', (code) => {
- //  res.end(`\nProcess exited with code ${code}`);
- //  router.set('spawnChildProcess', null);
- // });
+
+ const data = {
+  nam: nam, // name
+  eml: eml, // email
+  msg: msg, // message
+  del: del, // delay
+  src: src, // source folder
+  bas: bas, // basename
+  tex: tex, // tex
+  pdf: pdf, // pdf
+  txt: txt, // txt
+  log: log // node log
+ };
+
+ child.on('close', (code) => {
+  util.spawnTex(req, res, data);
+  // res.send(`\nProcess exited with code ${code}`);
+  // router.set('spawnChildProcess', null);
+ });
 
  // res.send(`<h1> python spawned</h1>`);
 
@@ -321,10 +342,21 @@ router.get('/childEventsStream', (req, res) => {
   res.write(`ERROR: ${data.toString()}\n\n`);
  });
 
+ child.on('exit', (code) => {
+  console.log(`\nProcess exited with code ${code}`);
+  res.write(`[Processed Exited] with code: ${code}\n\n`);
+ });
+
  // End response when the process finishes
  child.on('close', (code) => {
-  console.log(`\nProcess exited with code ${code}`);
-  res.end(`Close: Process exited with code ${code}\n\n`);
+  if (code === 0) {
+   console.log(`\nProcess closed successfully`);
+   res.write(`[Processed Closed] successfully\n\n`);
+  } else {
+   console.log(`\nProcess closed with code ${code}`);
+   res.write(`[Processed Closed] with code: ${code}\n\n`);
+  }
+  res.end();
   // req.app.set('spawnChildProcess', null);
  });
 

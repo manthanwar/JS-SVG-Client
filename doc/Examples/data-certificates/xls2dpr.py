@@ -104,7 +104,9 @@ if __name__ == "__main__":
     # xt.getSummary()
 
     # xt.getMeansFinance(isCode=True)
-    # xt.getMeansFinance(isCode=False)
+    texFile = xt.getMeansFinance(isCode=False)
+    print(f'[File Written]<br> {texFile}')
+    sys.exit(0)
 
     xt.createReport()
     # sys.exit(0)

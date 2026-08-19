@@ -137,7 +137,7 @@ clear:
 	@clear
 
 clean-latex:
-	@rm -f ${file}.aux ${file}.out ${file}.log ${file}.dvi ${file}.ps ${file}.fls ${file}.fdb_latexmk ${file}.gz ${file}.tmp ${file}.bak ${file}.nlo ${file}.nls ${file}.ilg ${file}.glg ${file}.glo ${file}.gls ${file}.glsdefs ${file}.ist ${file}.lof ${file}.lot ${file}.toc ${file}.idx ${file}.ind
+	@rm -f ${file}.aux ${file}.out ${file}.log ${file}.dvi ${file}.out.ps ${file}.ps ${file}.fls ${file}.fdb_latexmk ${file}.gz ${file}.tmp ${file}.bak ${file}.nlo ${file}.nls ${file}.ilg ${file}.glg ${file}.glo ${file}.gls ${file}.glsdefs ${file}.ist ${file}.lof ${file}.lot ${file}.toc ${file}.idx ${file}.ind
 
 clean-pdflatex: ## clean pdflatex created files
 	@rm -f ${file}.aux ${file}.bcf ${file}.blg ${file}.bbl ${file}.brf ${file}.log ${file}.out ${file}.xml ${file}.xdv
