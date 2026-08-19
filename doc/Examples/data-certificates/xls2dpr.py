@@ -108,7 +108,7 @@ if __name__ == "__main__":
     print(f'[File Written]<br> {texFile}')
     sys.exit(0)
 
-    xt.createReport()
+    # xt.createReport()
     # sys.exit(0)
 
     # del xt

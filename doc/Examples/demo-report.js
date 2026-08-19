@@ -15,7 +15,7 @@ dataTemplate.navMenu.push({
 
 // function setHeader(file) {
 window.onload = (event) => {
- dataTemplate.renderBody('demo-pub-doc-create.html');
+ dataTemplate.renderBody('demo-report.html');
 
  // dataTemplate.renderBody(file);
 
@@ -74,7 +74,7 @@ window.onload = (event) => {
   };
  }
 
- fetch('demo-pub-doc-create-form.html')
+ fetch('demo-report-form.html')
   .then((response) => response.text())
   .then((data) => {
    article.innerHTML = data;

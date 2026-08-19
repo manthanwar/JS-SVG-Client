@@ -45,7 +45,7 @@ ${Utils.createListItem(' demo-health-prescription.html', 'Create Medical Prescri
 
 <h3>Project Reports and Other Publications</h3>
 <ul>
-${Utils.createListItem('demo-pub-doc-create.html', 'Create Project Report')}
+${Utils.createListItem('demo-report.html', 'Create Project Report')}
 ${Utils.createListItem(
  'demo-pub-doc-faq.html',
  'Create Frequently Asked Questions'

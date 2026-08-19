@@ -323,6 +323,7 @@ Utility.spawnTex = (req, res, data) => {
  const del = data.del;
  const src = data.src;
  const bas = data.bas;
+ const xls = data.xls;
  const tex = data.tex;
  const pdf = data.pdf;
  const txt = data.txt;
@@ -331,32 +332,34 @@ Utility.spawnTex = (req, res, data) => {
  const fsL = fs.openSync(txt, 'w');
  fs.writeSync(fsL, msg + '\n\n');
 
- const cmd = `cd ${src} && make nodeLatex file=${bas} n=1 && rm ${bas}.tex`;
+ const cmd = `cd ${src} && make nodeLatex file=${bas} n=1 && rm ${bas}.tex && zip -q ${bas}.zip ${xls} ${bas}.pdf ${bas}.txt`;
 
  const child = spawn(cmd, [], { shell: true });
 
  // console.log(childA);
  child.unref(); // Allows the parent process to exit independently
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ res.redirect(`printOnePdf?nam=${nam}&del=${del}&bas=${bas}&xls=${xls}`);
  process.on('exit', () => child.kill());
 
  child.on('error', (error) => {
-  console.error('[Spawn Error]', error.message);
+  // console.error('[Spawn Error]', error.message);
+  fs.writeSync(fsL, error.message);
  });
 
  child.stdout.on('data', (data) => {
-  console.log(`[STDOUT] data:  ${data.toString()}\n\n`);
+  // console.log(`[STDOUT] data:  ${data.toString()}\n\n`);
   fs.writeSync(fsL, data.toString());
   // res.write(`<h1>${data}</h1><br>`);
  });
 
  child.stderr.on('data', (data) => {
-  console.log(data.toString());
+  // console.log(data.toString());
+  fs.writeSync(fsL, + data.toString());
   // res.write(`ERROR: ${data}`);
  });
 
  child.on('close', (code) => {
-  console.log(`\nsub-Process exited with code ${code}`);
+  // console.log(`\nsub-Process exited with code ${code}`);
   fs.closeSync(fsL);
   // res.send(`\nProcess exited with code ${code}`);
   // router.set('spawnChildProcess', null);

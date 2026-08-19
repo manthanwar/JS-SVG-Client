@@ -165,12 +165,14 @@ router.post('/printOne', (req, res, next) => {
 // #endregion post /printOne
 
 // #region get /printOnePdf
+// name, delay, basename, xls
 router.get('/printOnePdf', (req, res) => {
  res.render('report', {
   layout: false,
-  name: req.query.name ? req.query.name : '#',
-  pdf: req.query.pdf ? req.query.pdf : '#',
-  delay: req.query.delay ? req.query.delay : 10
+  nam: req.query.nam ? req.query.nam : '#',
+  del: req.query.del ? req.query.del : 10,
+  bas: req.query.bas ? req.query.bas : '#',
+  xls: req.query.xls ? req.query.xls : '#'
  });
 });
 // #endregion get /printOnePdf
@@ -262,6 +264,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
   del: del, // delay
   src: src, // source folder
   bas: bas, // basename
+  xls: xls, // xls
   tex: tex, // tex
   pdf: pdf, // pdf
   txt: txt, // txt

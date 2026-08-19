@@ -33,6 +33,7 @@ app.use(express.static('dist'));
 app.use(express.static('doc'));
 app.use(express.static('doc/Examples'));
 app.use(express.static('doc/Examples/amit'));
+app.use(express.static('doc/Examples/data'));
 app.use(express.static('doc/Examples/forms'));
 app.use(express.static('doc/Examples/css'));
 app.use(express.static('doc/Examples/js'));
