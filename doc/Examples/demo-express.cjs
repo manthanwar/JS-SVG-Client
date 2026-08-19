@@ -294,9 +294,20 @@ app.use((err, req, res, next) => {
  // res.status(500).send(`<h1>Server Error: ${res.statusCode}</h1>`);
 
  // Handling 502 Errors (Bad Gateway)
- process.on('unhandledRejection', (reason, promise) => {
-  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  // Optional: Gracefully shut down and let PM2 restart the app
+ // Handle rejected promises that have no .catch() block
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
+ // Optional: Perform synchronous cleanup here (e.g., close DB connections)
+ // Optional: Gracefully shut down and let PM2 restart the app
+});
+
+ // Handle synchronous or asynchronous errors thrown outside try/catch blocks
+ process.on('uncaughtException', (error) => {
+  console.error('💥 Uncaught Exception thrown:', error);
+
+  // Application is now in an undefined state.
+  // Log synchronously and force a clean exit to let your process manager (PM2/Docker) restart it.
+  process.exit(1);
  });
 
  const statusCode =
@@ -304,7 +315,7 @@ app.use((err, req, res, next) => {
 
  res.status(statusCode);
  res.status(statusCode).send(`<h1>Server Error: ${statusCode}</h1>`);
-});
+};);
 
 const server = app.listen(PORT, () => {
  console.log('Server started at http://localhost:' + PORT);

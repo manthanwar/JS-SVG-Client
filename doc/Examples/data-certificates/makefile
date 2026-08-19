@@ -83,14 +83,14 @@ print: ## print variables
 
 etime:
 	$(TIMES)
-	@# @pdflatex ${file}.tex -synctex=-1 -quiet -time-statistics
+	@# @pdflatex ${file}.tex -synctex=-1 -time-statistics
 	$(TIMEE)
 	@rm $@_time
 	@ls
 
 dvi: ${file}.tex ## make -f $makefile dvi file=name diraux=auxiliary-directory
 	mkdir -p ${diraux}
-	latex -time-statistics -output-directory=. -aux-directory=${diraux} -quiet -synctex=-1 -job-name=${file} ${file}.tex
+	latex -time-statistics -output-directory=. -aux-directory=${diraux} -synctex=-1 -job-name=${file} ${file}.tex
 
 ps: ${file}.dvi ## make -f $makefile ps file=filename-without-extension
 	$(TIMES)
@@ -99,32 +99,32 @@ ps: ${file}.dvi ## make -f $makefile ps file=filename-without-extension
 
 pdf: ${file}.ps ## make -f $makefile pdf file=filename-without-extension
 	$(TIMES)
-	@ps2pdf -dNOSAFER ${file}.ps ${file}.pdf
+	@ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${file}.ps ${file}.pdf
 	@rm -f ${file}.ps ${file}.dvi
 	$(TIMEE)
 
 latex: ${file}.tex ## make -f $makefile latex file=filename-without-extension
 	$(TIMES)
-	@latex -output-directory=. -quiet -synctex=-1 -time-statistics --shell-escape ${file}.tex
+	@latex -output-directory=. -synctex=-1 -time-statistics --shell-escape ${file}.tex
 	$(TIMEE)
 
 latexDirout: ${file}.tex ## make -f $makefile latexDirout file=name dirout=name
 	$(TIMES)
-	@latex -output-directory=${dirout} -quiet -synctex=-1 -time-statistics --shell-escape ${file}.tex
+	@latex -output-directory=${dirout} -synctex=-1 -time-statistics --shell-escape ${file}.tex
 	$(TIMEE)
 
 bibtex: ${file} ## make -f $makefile bibtex file=filename-without-extension
 	$(TIMES)
-	@bibtex ${file} -quiet
+	@bibtex -terse ${file}
 	$(TIMEE)
 
 biber: ${file}.bcf ## make -f $makefile biber file=filename-without-extension
 	$(TIMES)
-	@biber ${file} -quiet
+	@biber --quiet ${file}
 	$(TIMEE)
 
 pdflatex: ${file}.tex ## make -f $makefile pdflatex file=filename
-	@pdflatex ${file}.tex -synctex=-1 -quiet -time-statistics
+	@pdflatex ${file}.tex -synctex=-1 -interaction=batchmode -time-statistics
 
 .PHONY: build
 build:	dvi ps pdf
@@ -249,7 +249,7 @@ n ?= 1 # number of times to run the loop
 nodeNx: ${file}.tex ## run latex n times
 	$(TIMES)
 	@for i in $$(seq 1 ${n}); do \
-		latex -interaction=batchmode -output-directory=${dirout} -quiet ${file}.tex > ${file}.log;\
+		latex -interaction=batchmode -output-directory=${dirout} ${file}.tex > ${file}.log;\
 	done
 	$(TIMEE)
 
@@ -257,7 +257,7 @@ latexNx: ${file}.tex ## run latex n times
 	$(TIMES)
 	@for i in $$(seq 1 ${n}); do \
 		echo -e "\nrunning latex $$i ...";\
-		latex -time-statistics -output-directory=${dirout} -quiet -synctex=-1 ${file}.tex;\
+		latex -time-statistics -output-directory=${dirout} -interaction=batchmode -synctex=-1 ${file}.tex;\
 	done
 	@echo " "
 	$(TIMEE)
@@ -268,7 +268,7 @@ xelatexNx: ${file}.tex ## run xelatex n times
 	$(TIMES)
 	@for i in $$(seq 1 ${n}); do \
 		echo -e "\nrunning xelatex $$i time...";\
-		xelatex -halt-on-error -output-directory=. -interaction=nonstopmode -quiet -synctex=-1 -time-statistics -shell-escape -output-driver="xdvipdfmx -i dvipdfmx-unsafe.cfg -q -E" ${file}.tex;\
+		xelatex -halt-on-error -output-directory=. -interaction=nonstopmode -synctex=-1 -time-statistics -shell-escape -output-driver="xdvipdfmx -i dvipdfmx-unsafe.cfg -q -E" ${file}.tex;\
 	done
 	$(TIMEE)
 
