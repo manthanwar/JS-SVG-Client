@@ -347,14 +347,14 @@ Utility.spawnTex = (req, res, data) => {
  });
 
  child.stdout.on('data', (data) => {
-  // console.log(`[STDOUT] data:  ${data.toString()}\n\n`);
+  console.log(`[STDOUT] data:  ${data.toString()}\n\n`);
   fs.writeSync(fsL, data.toString());
   // res.write(`<h1>${data}</h1><br>`);
  });
 
  child.stderr.on('data', (data) => {
-  // console.log(data.toString());
-  fs.writeSync(fsL, + data.toString());
+  console.log(data.toString());
+  fs.writeSync(fsL, '[STDERROR]' + data.toString());
   // res.write(`ERROR: ${data}`);
  });
 
