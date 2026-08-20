@@ -19,6 +19,7 @@
 // =============================================================================
 */
 
+// #region required
 const path = require('path');
 const fs = require('fs');
 const { exec } = require('node:child_process');
@@ -28,7 +29,9 @@ const router = express.Router();
 const multer = require('multer');
 const cookieParser = require('cookie-parser');
 const util = require('./Utility.cjs');
+// #endregion required
 
+// #region storage
 const storage = multer.diskStorage({
  destination: (req, file, cb) => {
   const filePath = path.join(__dirname, '../data-certificates/');
@@ -47,7 +50,9 @@ const storage = multer.diskStorage({
  }
 });
 const upload = multer({ storage: storage });
+// #endregion storage
 
+// #region cookie
 // maxAge: 3600000, // 1 hour in milliseconds
 // httpOnly: false, // Allows client-side JavaScript to access this cookie
 // secure: true, // Recommended for production to send only over HTTPS
@@ -55,12 +60,64 @@ const upload = multer({ storage: storage });
 function setMyCookie(res, name, value, options = {}) {
  res.cookie(name, value, options);
 }
+// #endregion cookie
 
+// #region get /
 router.get('/', (req, res) => {
  res.send('Users home page');
 });
+// #endregion get /
 
-//region app.post /printOne
+// #region runCommand
+function runCommand(cmd) {
+ return new Promise((resolve, reject) => {
+  exec(cmd, (error, stdout, stderr) => {
+   if (error) {
+    const message = 'Error processing certificate. Resubmit with correct data.';
+    console.log(`error: ${error.message}`);
+    reject(error);
+    return { success: true, message: message, error: error };
+   }
+   if (stderr) {
+    const message = 'Error compiling certificate. Resubmit with correct data.';
+    console.log(`error-stderr: ${stderr}`);
+    reject(stderr);
+    return { success: true, message: message, error: stderr };
+   }
+   if (stdout) {
+    const message = 'Certificate compiled successfully.';
+    resolve(message);
+    return { success: true, message: message };
+   }
+  }); //exec
+ }); //Promise
+}
+// #endregion runCommand
+
+// #region get /printOnePdf
+router.get('/printOnePdf', (req, res) => {
+ res.render('certificate', {
+  layout: false,
+  name: req.query.name ? req.query.name : '#',
+  delay: req.query.delay ? req.query.delay : 10,
+  bas: req.query.bas ? req.query.bas : '#',
+  pdf: req.query.pdf ? req.query.pdf : '#'
+ });
+});
+// #endregion get /printOnePdf
+
+// #region get /printManyPdf
+router.get('/printManyPdf', (req, res) => {
+ res.render('certificateMany', {
+  layout: false,
+  name: req.query.name ? req.query.name : '#',
+  pdf: req.query.pdf ? req.query.pdf : '#',
+  delay: req.query.delay ? req.query.delay : 60
+ });
+});
+// #endregion get /printManyPdf
+
+// #region app.post /printOne
 router.post('/printOne', (req, res, next) => {
  const data = {
   nameT: req.body.nameT, // name Title
@@ -77,7 +134,6 @@ router.post('/printOne', (req, res, next) => {
   color: req.body.color.slice(1) // certificate color
  };
 
- //  const name = data.nameF + ' ' + data.nameM + ' ' + data.nameL;
  const name = data.nameF;
  const examDate = new Date(data.examD);
  const examYYY = examDate.getFullYear();
@@ -95,8 +151,11 @@ router.post('/printOne', (req, res, next) => {
  const filePath = path.join(__dirname, '../data-certificates/' + fileName);
  //  const classPath = '../src-tex/certificate/amm-pst-certificate';
  const tex = fileName.slice(0, -4);
-
  const pdf = tex + '.pdf';
+ const log = tex + '.txt';
+ const dtm = util.dateFormat();
+ const nam = data.nameF + ' ' + data.nameM + ' ' + data.nameL;
+
  //  \\RequirePackage\{../src-tex/pst-art-logo\}%
  //  \\documentclass\{${classPath}\}%
  const fileContent = `\\documentclass\{amm-pst-certificate\}%
@@ -123,10 +182,13 @@ router.post('/printOne', (req, res, next) => {
 
  // latex -quiet ${tex}.tex && latex -quiet ${tex}.tex && \
 
- const cmd = `cd ${src} && \
+ const cmda = `cd ${src} && \
  latex ${tex}.tex && latex ${tex}.tex && \
  dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && \
  rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.ps ${tex}.out.ps`;
+
+ const cmd = `cd ${src} && (echo Name: ${nam} && echo Date: ${dtm} && printf '\\n' && make -f ../data-certificates/makefile nodeLatex file=${tex} n=1) > ${log}`;
+
  exec(cmd, (error, stdout, stderr) => {
   if (error) {
    const message =
@@ -154,54 +216,12 @@ router.post('/printOne', (req, res, next) => {
   }
  }); //exec
 
- res.redirect(`printOnePdf?pdf=${pdf}&name=${name}`);
+ res.redirect(`printOnePdf?bas=${tex}&pdf=${pdf}&name=${name}`);
  //  res.send(JSON.stringify(data) + filePath + '\\n\\n' + fileContent);
 });
-//endregion app.post /printOne
+// #endregion app.post /printOne
 
-router.get('/printOnePdf', (req, res) => {
- res.render('certificate', {
-  layout: false,
-  name: req.query.name ? req.query.name : '#',
-  pdf: req.query.pdf ? req.query.pdf : '#',
-  delay: req.query.delay ? req.query.delay : 10
- });
-});
-
-router.get('/printManyPdf', (req, res) => {
- res.render('certificateMany', {
-  layout: false,
-  name: req.query.name ? req.query.name : '#',
-  pdf: req.query.pdf ? req.query.pdf : '#',
-  delay: req.query.delay ? req.query.delay : 60
- });
-});
-
-function runCommand(cmd) {
- return new Promise((resolve, reject) => {
-  exec(cmd, (error, stdout, stderr) => {
-   if (error) {
-    const message = 'Error processing certificate. Resubmit with correct data.';
-    console.log(`error: ${error.message}`);
-    reject(error);
-    return { success: true, message: message, error: error };
-   }
-   if (stderr) {
-    const message = 'Error compiling certificate. Resubmit with correct data.';
-    console.log(`error-stderr: ${stderr}`);
-    reject(stderr);
-    return { success: true, message: message, error: stderr };
-   }
-   if (stdout) {
-    const message = 'Certificate compiled successfully.';
-    resolve(message);
-    return { success: true, message: message };
-   }
-  }); //exec
- }); //Promise
-}
-
-//region app.post /printMany
+// #region app.post /printMany
 router.post('/printMany', upload.single('file'), (req, res, next) => {
  if (!req.file || Object.keys(req.file).length === 0) {
   return res.status(400).send('<h1>No files were uploaded.</h1>');
@@ -228,26 +248,26 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  const del = typ == 'indices' ? 10 * lAr.length : 10 * row; //delay
  const pyC = process.platform === 'win32' ? 'python' : '/usr/bin/python3';
 
- const cmd = `cd ${src} && ${pyC} -u xls2tex.py ${xls} ${typ} ${csv} > ${log} 2>&1 && rm ${xls} ${log} &`;
+const cmd = `cd ${src} && ${pyC} -u xls2tex.py ${xls} ${typ} ${csv} > ${log} 2>&1 && rm ${xls} ${log} &`;
  util.writeFile(txt, msg);
 
  // region spawn nohup --------------------
  const child = spawn(cmd, { shell: true });
  child.unref(); // Allows the parent process to exit independently
- res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ res.redirect(`printOnePdf?bas=${bas}&pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
  // console.log(`Child process spawned with PID: ${child.pid}`);
  // endregion spawn nohup ------------------
 
- // child.on('error', (err) => {
- //  console.error(`Failed to start child process: ${err}`);
- //  cmderrData += err.toString();
- // });
+ child.on('error', (err) => {
+  console.error(`Failed to start child process: ${err}`);
+  // cmderrData += err.toString();
+ });
 
- // child.stderr.on('data', (data) => {
- //  console.error(`stderr: ${data}`);
- //  // stderrData += data.toString();
- // });
+ child.stderr.on('data', (data) => {
+  console.error(`stderr: ${data}`);
+  // stderrData += data.toString();
+ });
 
  // child.stdout.on('data', (data) => {
  //  console.log(`stdout: ${data}`);
@@ -372,14 +392,18 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  //
 });
-//endregion app.post /printMany
+// #endregion app.post /printMany
 
+// #region get /:id
 router.get('/:id', (req, res) => {
  res.send(`User profile for ID: ${req.params.id}`);
 });
+// #endregion get /:id
 
+// #region get /pub-certificate-one
 router.get('/pub-certificate-one', (req, res) => {
  res.send('Users home page');
 });
+// #endregion get /pub-certificate-one
 
 module.exports = router;

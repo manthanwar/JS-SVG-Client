@@ -256,6 +256,7 @@ app.post('/pub-business-card', function (req, res, next) {
   rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.out ${tex}.ps`;
 
   const cmd = `cd ${src} && (echo Name: ${name} && echo Mail: ${mail} && echo Date: ${dtm} && printf '\\n' && make -f ../data-certificates/makefile nodeLatex file=${tex} n=1) > ${log}`;
+  
   exec(cmd, (error, stdout, stderr) => {
    if (error) {
     const message = 'Error generating your card. Resubmit with correct data.';

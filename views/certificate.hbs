@@ -8,15 +8,19 @@
   <script> var name = name.name</script>
  </head>
  <body>
-  <div style="margin:100px">
-  <h1>Your Certificate</h1><br>
-  <div style="font-size: 30px;">Hi {{name}}, <span id='ppp'>your certificate is printing in </span></div>
+  <div style='margin:100px'>
+   <h1>Your Certificate</h1><br />
+   <div style='font-size: 30px;'>Hi
+    {{name}},
+    <span id='ppp'>your certificate is printing in </span></div>
   </div>
   <script>
-   let delay = `{{delay}}`; let time = 1; const ppp = document.getElementById('ppp');
-   const interval = setInterval(() => { if (time <= delay) { ppp.innerHTML =
-   `your certificate is printing in ${(delay - time)}
-   seconds`; time++; } else { ppp.innerHTML = `here is your certificate <a href="/data-certificates/{{pdf}}">{{pdf}}</a>.`; clearInterval(interval); } }, 1000);
+   let delay = `{{delay}}`; let time = 1; const ppp =
+   document.getElementById('ppp'); const interval = setInterval(() => { if (time
+   <= delay) { ppp.innerHTML = `your certificate is printing in ${(delay -
+   time)} seconds`; time++; } else { ppp.innerHTML = `here is your certificate
+   <a href="/data-certificates/{{pdf}}">{{pdf}}</a>.`; clearInterval(interval);
+   } }, 1000);
   </script>
  </body>
 </html>
