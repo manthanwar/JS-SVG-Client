@@ -1,3 +1,4 @@
+// #region required
 // const config = require('./doc/Examples/config.js');
 // const config = require('./config.js');
 const PORT = process.env.PORT || 3000;
@@ -24,7 +25,9 @@ app.set('view engine', '.hbs');
 
 app.use(requestIp.mw()); // Middleware to populate req.clientIp
 util.traffic(app, '../data-certificates/traffic.log');
+// #endregion required
 
+// #region use Static
 //parse application/x-www-form-urlencoded post data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // to support JSON-encoded bodies
@@ -46,23 +49,29 @@ app.use(express.static('doc/Examples/src-plot'));
 app.use(express.static('doc/Examples/src-tex'));
 app.use(express.static('doc/Examples/src-tex-data'));
 app.use(express.static('doc/Examples/data-certificates'));
+// #endregion use Static
 
-// routes
+// #region routes
 app.use('/certificate', certificate);
 app.use('/report', report);
 app.use('/invoice', invoice);
 app.use('/faq', faq);
 app.use('/prescription', prescription);
+// #endregion routes
 
+// #region get /
 app.get('/', function (req, res) {
  res.sendFile(path.join(__dirname, 'demo-home.html'));
 });
+// #endregion get /
 
+// #region get /pub
 app.get('/pub', function (req, res) {
  res.sendFile(path.join(__dirname, 'pub.html'));
 });
+// #endregion get /pub
 
-//region app.post /pub-business-card-spawn
+// #region app.post /pub-business-card-spawn
 app.post('/pub-business-card-spawn', (req, res, next) => {
  const data = {
   nameF: req.body.nameF,
@@ -161,11 +170,17 @@ app.post('/pub-business-card-spawn', (req, res, next) => {
     if (stdout) {
      message = `<a href="${pdf}" target="_blank">Here is your business card</a>`;
      // res.send(message);
-     console.log(`stdout: ${stdout}`);
-     console.log(message);
-     console.log('mmmm = ' + message);
+     // console.log(`stdout: ${stdout}`);
+     // console.log(message);
+     // console.log('mmmm = ' + message);
      res.setHeader('Content-type', 'text/html');
-     res.send('welcome, ' + req.body.nameF + '\n' + message);
+     res.send(
+      '<div style="font-size:30px;"> welcome, ' +
+       req.body.nameF +
+       '\n' +
+       message +
+       '</div>'
+     );
     }
    }
   );
@@ -174,9 +189,9 @@ app.post('/pub-business-card-spawn', (req, res, next) => {
  // res.setHeader('Content-type', 'text/html');
  // res.send('welcome, ' + req.body.nameF + '\n' + message);
 });
-//endregion app.post /pub-business-card-spawn
+// #endregion app.post /pub-business-card-spawn
 
-//region app.post /pub-business-card
+// #region app.post /pub-business-card
 app.post('/pub-business-card', function (req, res, next) {
  const data = {
   nameF: req.body.nameF,
@@ -184,7 +199,7 @@ app.post('/pub-business-card', function (req, res, next) {
   nameL: req.body.nameL,
   rankT: req.body.rankT,
   email: req.body.email,
-  wSite: 'www.dolphin.com',
+  wSite: '\\href\{https://desiign.in\}\{www.dolphin.com\}',
   phone: req.body.phone,
   place: req.body.place.split('\n')
  };
@@ -202,6 +217,10 @@ app.post('/pub-business-card', function (req, res, next) {
  const filePath = path.join(__dirname, '/src-tex-data/' + fileName);
  const tex = fileName.slice(0, -4);
  const pdf = tex + '.pdf';
+ const log = tex + '.txt';
+ const dtm = util.dateFormat();
+ const msg = `Name: ${name}\nMail: ${mail}\nDate: ${dtm}`;
+
  const fileContent = `\\documentclass{../src-tex/amm-pst-business-card}
 \\RequirePackage\{../src-tex/pst-art-logo\}%
 \\begin{document}%
@@ -228,7 +247,15 @@ app.post('/pub-business-card', function (req, res, next) {
   const mak = path.join(__dirname, '/src-tex/makefile');
   // const cmd = `cd ${src} && make -f ${mak} latexruns file=${tex}`;
   // const cmd = `cd ${src} && make -f ../src-tex/makefile latexruns file=${tex}`;
-  const cmd = `cd ${src} && latex ${tex}.tex && latex ${tex}.tex && dvips -q ${tex}.dvi && ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps && rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.out ${tex}.ps`;
+
+  const cmda = `cd ${src} && \
+  latex -interaction=batchmode ${tex}.tex && \
+  latex -interaction=batchmode ${tex}.tex && \
+  dvips -q ${tex}.dvi && \
+  ps2pdf -dNOSAFER -dALLOWPSTRANSPARENCY ${tex}.ps > ${log} 2>&1 && \
+  rm ${tex}.aux ${tex}.dvi ${tex}.log ${tex}.out ${tex}.ps`;
+
+  const cmd = `cd ${src} && (echo Name: ${name} && echo Mail: ${mail} && echo Date: ${dtm} && printf '\\n' && make -f ../data-certificates/makefile nodeLatex file=${tex} n=1) > ${log}`;
   exec(cmd, (error, stdout, stderr) => {
    if (error) {
     const message = 'Error generating your card. Resubmit with correct data.';
@@ -253,17 +280,20 @@ app.post('/pub-business-card', function (req, res, next) {
   }); //exec
  }); //fs.writeFile
 
- res.redirect(`/pub-business-card-pdf?pdf=${pdf}&name=${name}`);
+ res.redirect(`/pub-business-card-pdf?bas=${tex}&pdf=${pdf}&name=${name}`);
 });
-//endregion app.post /pub-business-card
+// #endregion app.post /pub-business-card
 
+// #region get /pub-business-card-pdf
 app.get('/pub-business-card-pdf', (req, res) => {
  res.render('pub-business-card-pdf', {
   layout: false,
   name: req.query.name ? req.query.name : '#',
-  pdf: req.query.pdf ? req.query.pdf : '#'
+  pdf: req.query.pdf ? req.query.pdf : '#',
+  bas: req.query.pdf ? req.query.bas : '#'
  });
 });
+// #endregion get /pub-business-card-pdf
 
 // Whenever a connection is received, reset the timer.
 // app.on('request', resetTimer);

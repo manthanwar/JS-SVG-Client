@@ -42,14 +42,14 @@ timeStarted := $(shell date "+%s%3N")
 timeElapsed:
 	@stopped=$$((`date '+%s%3N'`)); \
 	elapsed=$$((stopped - $(timeStarted))); \
-	printf "time elapsed: %04d ms for total\n" $$elapsed
+	printf "time elapsed: %6d ms for total\n" $$elapsed
 
 TIMES = @date '+%s%3N' > $@_time
 
 TIMEE = @read started < $@_time ; \
 stopped=$$((`date '+%s%3N'`)); \
 elapsed=$$((stopped - started));\
-printf "time elapsed: %04d ms for %s\n" $$elapsed "$@"; \
+printf "time elapsed: %6d ms for %s\n" $$elapsed "$@"; \
 rm $@_time;
 
 # TIMEE = @read started < $@_time ; stopped=$$((`date '+%s%3N'`));\

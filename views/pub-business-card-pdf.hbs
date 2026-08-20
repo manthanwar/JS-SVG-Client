@@ -9,14 +9,14 @@
  </head>
  <body>
   <h1>Your Business Card</h1>
-  <p id='ppp'>Hi {{name}}, your card is printing...</p>
+  <p id='ppp' style='font-size: 24px;'>Hi {{name}}, your card is printing...</p>
   <script>
-   let delay = 10;
-   let time = 1; const ppp = document.getElementById('ppp'); const interval =
-   setInterval(() => { if (time <= delay) { ppp.innerHTML = `Hi
-   {{name}}, your card is printing in ` + (delay - time) + ' seconds.'; time++; } else {
-   ppp.innerHTML = `Hi
-   {{name}}, here is your card <a href="{{pdf}}">{{pdf}}</a>.`;
+   let delay = 10; let time = 1; const ppp = document.getElementById('ppp');
+   const interval = setInterval(() => { if (time <= delay) { ppp.innerHTML = `Hi
+   {{name}}, your card is printing in ` + (delay - time) + ' seconds.'; time++;
+   } else { ppp.innerHTML = `Hi
+   {{name}}, here is your card <br> <ul> <li><a href="{{pdf}}" target="_blank">{{pdf}}</a></li>
+   <li><a href="{{bas}}.txt" target="_blank">{{bas}}.txt</a></li> </ul> `;
    clearInterval(interval); } }, 1000);
   </script>
  </body>

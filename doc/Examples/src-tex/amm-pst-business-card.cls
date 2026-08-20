@@ -36,7 +36,7 @@
 \hypersetup{
   pdfauthor   ={Amit Manohar Manthanwar},
   pdftitle    ={Amit Talk},
-  pdfsubject  ={Materials and Technologies Research Innovation Company},
+  pdfsubject  ={Design Intelligence Research Innovation Company},
   pdfkeywords ={Systems Engineering, Food, Water, Energy, Environment, Health},
   pdfproducer ={Amit Mahohar Manthanwar using LaTeX},
   pdfcreator  ={Amit Manohar Manthanwar using LaTeX},
@@ -45,9 +45,11 @@
   anchorcolor = pink,
   citecolor   = black,
   urlcolor    = black,
-  pdfpagemode = FullScreen
+  pdfpagemode = FullScreen,
+  pdfstartview={FitH}
+  % pdfstartview={XYZ null null 2.00}
 }
-\hypersetup{pdfstartview={XYZ null null 1.00}} % PDF opens to 100% zoom
+% \hypersetup{pdfstartview={XYZ null null 1.00}} % PDF opens to 100% zoom
 %-------------------------------------------------------------------------------
 %-------------------------------------------------------------------------------
 %===============================================================================

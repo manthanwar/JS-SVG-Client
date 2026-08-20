@@ -209,7 +209,7 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  const nam = req.body.nameF;
  const eml = req.body.email;
- const dtm = new Date().toISOString(); // YYYY-MM-DDTHH:mm:ss.sssZ, 'Z' => UTC
+ const dtm = util.dateFormat();
  const msg = `Name: ${nam}\nMail: ${eml}\nDate: ${dtm}`;
  const typ = req.body.dataType;
  const row = req.body.dataRows;
@@ -230,54 +230,14 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  const cmd = `cd ${src} && ${pyC} -u xls2tex.py ${xls} ${typ} ${csv} > ${log} 2>&1 && rm ${xls} ${log} &`;
  util.writeFile(txt, msg);
- // if (ext != '.xlsx' || ext != '.xls') {
- //  res.send(`<div style="margin:100px;">
- //  <h1 style="color:maroon;">File Error</h1><h1>Upload .xlsx or .xls file.</h1></div>`);
- // }
-
- // runCommand(cmd)
- //  .then(() => runCommand('command2 arg2'))
- //  .then(() => console.log('All commands executed successfully.'))
- //  .catch((error) =>
- //   console.error(`Failed to execute commands: ${error.message}`)
- //  );
 
  // region spawn nohup --------------------
  const child = spawn(cmd, { shell: true });
  child.unref(); // Allows the parent process to exit independently
  res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
  process.on('exit', () => child.kill());
- console.log(`Child process spawned with PID: ${child.pid}`);
+ // console.log(`Child process spawned with PID: ${child.pid}`);
  // endregion spawn nohup ------------------
-
- // region spawn nohup log --------------------
- // const logFile = 'spawn-nohup.out'; // File to redirect output
- // const command = 'python';
- // const command = './xls2tex.py';
- // const xlsPath = path.join(src, xls);
- // const args = [xlsPath, xls, typ, csv]; // Array of arguments to pass
-
- // const child = spawn('nohup', [command, ...args, '>', logFile, '&'], {
- //  detached: true,
- //  // stdio: 'ignore' // or 'inherit' if you want to see nohup's output
- //  stdio: 'inherit'
- // });
-
- // const child = spawn(cmd, { shell: true });
-
- // child.unref(); // Allows the parent process to exit independently
- // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
-
- // endregion spawn nohup log ------------------
-
- // region send response early -------------
- // const child = spawn(cmd, { shell: true });
- // let stdoutData = 'SUCCESS';
- // let stderrData = '';
- // let cmderrData = '';
-
- // // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
- // res.redirect(`printManyPdf?pdf=${pdf}&name=${nam}&delay=${del}`);
 
  // child.on('error', (err) => {
  //  console.error(`Failed to start child process: ${err}`);
@@ -286,12 +246,12 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
 
  // child.stderr.on('data', (data) => {
  //  console.error(`stderr: ${data}`);
- //  stderrData += data.toString();
+ //  // stderrData += data.toString();
  // });
 
  // child.stdout.on('data', (data) => {
  //  console.log(`stdout: ${data}`);
- //  stdoutData += data.toString();
+ //  // stdoutData += data.toString();
  // });
 
  // child.on('exit', (code) => {
@@ -315,6 +275,18 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  //  }
  // });
  // end region send response early ----------------
+
+ // if (ext != '.xlsx' || ext != '.xls') {
+ //  res.send(`<div style="margin:100px;">
+ //  <h1 style="color:maroon;">File Error</h1><h1>Upload .xlsx or .xls file.</h1></div>`);
+ // }
+
+ // runCommand(cmd)
+ //  .then(() => runCommand('command2 arg2'))
+ //  .then(() => console.log('All commands executed successfully.'))
+ //  .catch((error) =>
+ //   console.error(`Failed to execute commands: ${error.message}`)
+ //  );
 
  // region send response after close --------------
  // const child = spawn(cmd, { shell: true });
@@ -368,6 +340,35 @@ router.post('/printMany', upload.single('file'), (req, res, next) => {
  // endregion test spawn echo ------------
 
  // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+
+ // region spawn nohup log --------------------
+ // const logFile = 'spawn-nohup.out'; // File to redirect output
+ // const command = 'python';
+ // const command = './xls2tex.py';
+ // const xlsPath = path.join(src, xls);
+ // const args = [xlsPath, xls, typ, csv]; // Array of arguments to pass
+
+ // const child = spawn('nohup', [command, ...args, '>', logFile, '&'], {
+ //  detached: true,
+ //  // stdio: 'ignore' // or 'inherit' if you want to see nohup's output
+ //  stdio: 'inherit'
+ // });
+
+ // const child = spawn(cmd, { shell: true });
+
+ // child.unref(); // Allows the parent process to exit independently
+ // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+
+ // endregion spawn nohup log ------------------
+
+ // region send response early -------------
+ // const child = spawn(cmd, { shell: true });
+ // let stdoutData = 'SUCCESS';
+ // let stderrData = '';
+ // let cmderrData = '';
+
+ // // res.redirect(`printOnePdf?pdf=${pdf}&name=${nam}&delay=${del}`);
+ // res.redirect(`printManyPdf?pdf=${pdf}&name=${nam}&delay=${del}`);
 
  //
 });
