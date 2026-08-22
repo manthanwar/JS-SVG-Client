@@ -9,8 +9,8 @@
 - [Version 0.2.0](#version-020)
   - [New Features](#new-features)
   - [Dependencies](#dependencies)
-- [Version 1.0.0](#version-100)
-  - [New Features](#new-features-1)
+- [\[1.0.0\] - 2026-08-21](#100---2026-08-21)
+  - [Added - :rocket: \[New Feature\]](#added---rocket-new-feature)
   - [Improvements](#improvements)
   - [Known Issues](#known-issues)
 - [Future Version 2027](#future-version-2027)
@@ -87,17 +87,23 @@ Software version names follow a round-robin assignment cycle based on the follow
   - openpyxl
   - DateTime
 
-## Version 1.0.0
+## [1.0.0] - 2026-08-21
 
-### New Features
+### Added - :rocket: [New Feature]
 
-- Various forms including Know Your Customer (KYC) form
-- Automated document processing for
-  - Medical Prescription including security
+- [Product 1 - Intelligent Designs](https://desiign.in/)
+- [Product 2 - Intelligent Forms](https://desiign.in/forms.html)
+- [Product 3 - Professional Documentation](https://desiign.in/demo-pub-certificate.html)
+- [Product 4 - Technical Documentation](https://desiign.in/demo-dashboard.html)
+- [Product 5 - Commercial Documentation](https://desiign.in/demo-pub-branding.html)
+- [Product 6 - Business Documentation](https://desiign.in/demo-pub-doc-automation.html)
+- [Product 7 - School Documentation](https://desiign.in/demo-education.html)
+- [Product 8 - Medical Documentation](https://desiign.in/demo-health.html)
+- [Product 9 - Legal Documentation](https://desiign.in/)
 
 ### Improvements
 
-- Updated documentation
+- Updated - :memo: [Documentation]
 
 ### Known Issues
 

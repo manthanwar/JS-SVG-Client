@@ -70,13 +70,20 @@ ways.
 
 **Learn more about contributing:**
 
+- [Getting started](#getting-started)
+  - [Ready to make a change? Fork the repo](#ready-to-make-a-change-fork-the-repo)
+  - [Make your update](#make-your-update)
+  - [Open a Pull Request (PR)](#open-a-pull-request-pr)
+  - [Submit your PR and get it reviewed](#submit-your-pr-and-get-it-reviewed)
+  - [Your PR is merged](#your-pr-is-merged)
+  - [Keep contributing as you use GitHub Docs](#keep-contributing-as-you-use-github-docs)
 - [Types of contributions :memo:](#types-of-contributions-memo)
   - [:mega: Discussions](#mega-discussions)
   - [:beetle: Issues](#beetle-issues)
-  - [:hammer_and_wrench: Pull requests](#hammer_and_wrench-pull-requests)
+  - [:hammer\_and\_wrench: Pull requests](#hammer_and_wrench-pull-requests)
   - [:question: Support](#question-support)
-  - [:earth_asia: Translations](#earth_asia-translations)
-  - [:balance_scale: Site Policy](#balance_scale-site-policy)
+  - [:earth\_asia: Translations](#earth_asia-translations)
+  - [:balance\_scale: Site Policy](#balance_scale-site-policy)
 - [Starting with an issue](#starting-with-an-issue)
   - [Labels](#labels)
 - [Opening a pull request](#opening-a-pull-request)
@@ -86,6 +93,14 @@ ways.
   - [Pull request template](#pull-request-template)
   - [Suggested changes](#suggested-changes)
 - [Windows](#windows)
+- [Editor setup](#editor-setup)
+- [Debugging code](#debugging-code)
+- [How to Tag](#how-to-tag)
+  - [Create Tag](#create-tag)
+  - [Sharing Tags (Pushing to Remote)](#sharing-tags-pushing-to-remote)
+  - [Viewing and Managing Tags](#viewing-and-managing-tags)
+  - [LFS](#lfs)
+- [Support this work](#support-this-work)
 
 ## Types of contributions :memo:
 
@@ -316,6 +331,77 @@ load JSON Schema files.
 ## Debugging code
 
 A common approach to debugging JavaScript code is to walk through the code using the [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/) debugger.
+
+## How to Tag
+
+### Create Tag
+
+To create a Git tag on your current commit, run `git tag <tagname>`
+
+Annotated Tag (Recommended for releases): Stores the creator's name, email, date, and a message.
+
+```bash
+git tag -a v1.0.0 -m "Release v1.0.0 - 2026.08.22 - Dolphin Ganges"
+
+git push origin v1.0.0
+```
+
+### Sharing Tags (Pushing to Remote)
+
+- Push a Single Tag: Sends only the specified tag to your repository.
+
+```bash
+git push origin v1.0.0
+```
+
+- Push All Tags: Pushes all local tags that do not exist on the remote server yet.
+
+```bash
+git push origin --tags
+```
+
+### Viewing and Managing Tags
+
+- List All Tags: Displays alphabetical list of existing tags.
+
+```bash
+git tag
+```
+
+- View Tag Details: Shows the commit information and annotation message.
+
+```bash
+git show v1.0.0
+```
+
+- Delete a Local Tag: Removes the tag from your local machine.
+
+```bash
+git tag -d v1.0.0
+```
+
+- Delete a Remote Tag: Removes the tag from the remote repository.
+
+```bash
+git push origin --delete v1.0.0
+```
+
+- Checkout your tag locally:
+
+```bash
+git checkout tags/<tag_name>
+```
+
+### LFS
+
+By default, Git tags do not automatically include Git LFS media files when you create or push them; Git tags only point to Git commits, which contain the lightweight LFS text pointer files rather than the actual large binaries.
+
+- Force download all LFS assets for that tag:
+
+```bash
+git lfs fetch --all
+git lfs checkout
+```
 
 ## Support this work
 

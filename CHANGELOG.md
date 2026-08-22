@@ -190,7 +190,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
   - Gauges
   - Dials
 
-#### [Product 2 - Intelligent Forms](/forms.html)
+#### [Product 2 - Intelligent Forms](https://desiign.in/forms.html)
 
 ##### 2.1 Utility Documents - LPG Cooking Gas Forms
 
@@ -210,7 +210,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 - [x] Property Transfer Form (PT5)
 
-#### [Product 3 - Professional Documentation](/demo-pub-certificate.html)
+#### [Product 3 - Professional Documentation](https://desiign.in/demo-pub-certificate.html)
 
 - [x] Certificates
   - Single certificate using form entry
@@ -219,25 +219,25 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 - [x] Resume and Europass CV
 - [x] Letters in English and Devanagari
 
-#### [Product 4 - Technical Documentation](/demo-dashboard.html)
+#### [Product 4 - Technical Documentation](https://desiign.in/demo-dashboard.html)
 
 - [x] Release Notes
 - [x] User Guide
 - [x] Technical Manual
 - [x] Frequently Asked Questions (FAQs) using text file
-- [x] [Dashboard Components](/demo-dashboard.html)
+- [x] [Dashboard Components](https://desiign.in/demo-dashboard.html)
   - [x] Plots and Chart
-    - [x] [Pie Chart](/demo-plot-pie.html)
-    - [x] [Bar Chart](/demo-plot-bar-axisY.html)
-    - [x] [Scatter Chart](/demo-plot-scatter.html)
-    - [x] [Bubble Chart](/demo-plot-bubble.html)
-    - [x] [Line Plot](/demo-plot-lines.html)
-    - [x] [Time Series](/demo-plot-timeSeries.html)
+    - [x] [Pie Chart](https://desiign.in/demo-plot-pie.html)
+    - [x] [Bar Chart](https://desiign.in/demo-plot-bar-axisY.html)
+    - [x] [Scatter Chart](https://desiign.in/demo-plot-scatter.html)
+    - [x] [Bubble Chart](https://desiign.in/demo-plot-bubble.html)
+    - [x] [Line Plot](https://desiign.in/demo-plot-lines.html)
+    - [x] [Time Series](https://desiign.in/demo-plot-timeSeries.html)
   - [x] [Gauges]()
-    - [x] [Radial Progress](/demo-gauge-radial-progress.html)
-    - [x] [Radial Half](/demo-gauge-radial-half.html)
-    - [x] [Radial Three Qurter](/demo-gauge-radial-3quarter.html)
-    - [x] [Radial Gauge](/demo-gauge-radial.html)
+    - [x] [Radial Progress](https://desiign.in/demo-gauge-radial-progress.html)
+    - [x] [Radial Half](https://desiign.in/demo-gauge-radial-half.html)
+    - [x] [Radial Three Qurter](https://desiign.in/demo-gauge-radial-3quarter.html)
+    - [x] [Radial Gauge](https://desiign.in/demo-gauge-radial.html)
 - [x] Gantt Chart
 - [x] Custom Infographics
 
@@ -252,7 +252,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 - [ ] Waybill
 - [ ] Letter of Credit
 
-#### [Product 6 - Business Documentation](/demo-pub-doc-automation.html)
+#### [Product 6 - Business Documentation](https://desiign.in/demo-pub-doc-automation.html)
 
 - [x] Business cards using form entry
 - [x] Forms
@@ -264,7 +264,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 - [x] Presentations
 - [x] Business Plan
 
-#### [Product 7 - School Documentation](/demo-education.html)
+#### [Product 7 - School Documentation](https://desiign.in/demo-education.html)
 
 - [x] School Information Management
   - Product Proposal for Schools
@@ -283,7 +283,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
   - Learn to Create Design Intelligence
   - Learn to Create Geometric Art
 
-#### [Product 8 - Medical Documentation](/demo-health.html)
+#### [Product 8 - Medical Documentation](https://desiign.in/demo-health.html)
 
 - Clinical and Treatment Records
   - [x] Prescription - Automated document processing using JSON for
@@ -331,3 +331,5 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ### Updated - :memo: [Documentation]
 
 - Guide on Form Processing [README](/doc/Examples/README.md )
+
+**Full Changelog**: <https://github.com/manthanwar/JS-SVG-Client/commits/v1.0.0>
