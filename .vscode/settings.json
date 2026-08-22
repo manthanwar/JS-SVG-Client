@@ -88,6 +88,9 @@
         "editor.detectIndentation": false
     },
     "[markdown]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 100,
+        "editor.rulers": [ 100 ],
         // "editor.fontFamily": "Source Code Pro, monospace",
         // "editor.fontSize": 14,
         // "editor.lineHeight": 22,
@@ -103,9 +106,11 @@
         // "files.trimTrailingWhitespace": false,
         "editor.formatOnSave": false,
     },
-    "markdownlint.config": { "extends": ".vscode/markdownlint.json" },
-    "markdown.preview.fontSize": 24,
-    "markdown.preview.lineHeight": 1.5,
+    "markdown.extension.toc.levels": "2..3",
+    "markdownlint.configFile": ".vscode/markdownlint.json",
+    "markdown.extension.preview.autoShowPreviewToSide": true,
+    // "markdown.preview.fontSize": 14,
+    // "markdown.preview.lineHeight": 1.5,
     "markdown.preview.scrollPreviewWithEditor": true,
     "markdown.preview.scrollEditorWithPreview": true,
     // "markdown-preview-github-styles.lightTheme": "dark",
@@ -249,7 +254,9 @@
                     "settings": {
                         // "foreground": "#bd93f9", // purple
                         // "foreground": "#C16069" // crmson
-                        "foreground": "#8be9fd", // cyan
+                        // "foreground": "#8be9fd", // cyan
+                        // "foreground": "#FF5555", // red
+                        "foreground": "#FF6E6E", // bright red
                     }
                 },
                 {
@@ -258,14 +265,42 @@
                         // "foreground": "#D2876D" // brick
                         // "foreground": "#bd93f9", // purple
                         // "foreground": "#8be9fd", // cyan
-                        "foreground": "#D2876D" // brick
+                        // "foreground": "#D2876D" // brick
+                        // "foreground": "#50FA7B" ,// green
+                        "foreground": "#69FF94" // bright green
                     }
                 },
                 {
                     "scope": "heading.3.markdown",
                     "settings": {
                         // "foreground": "#8be9fd", // cyan
-                        "foreground": "#86C0D1" // lightBlue
+                        "foreground": "#A4FFFF" // bright cyan
+                    }
+                },
+                {
+                    "scope": "heading.4.markdown",
+                    "settings": {
+                        "foreground": "#F1FA8C", // yellow
+                        // "foreground": "#FFFFA5", // bright yellow
+
+                    }
+                },
+                {
+                    "scope": "heading.5.markdown",
+                    "settings": {
+                        // "foreground": "#BD93F9", // blue
+                        // "foreground": "#D6ACFF", // bright blue
+                        // "foreground": "#FF79C6", // pink
+                        "foreground": "#ffb86c", // orange
+
+                    }
+                },
+                {
+                    "scope": "heading.6.markdown",
+                    "settings": {
+                        "foreground": "#F8F8F2", // white
+                        // "foreground": "#FFFFFF", // bright white
+
                     }
                 },
                 {

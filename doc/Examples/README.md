@@ -2,7 +2,38 @@
 
 ## How to add new HTML Form?
 
-### Example Health
+### Example: Medical Prescription
+
+<!-- #region details -->
+<details>
+<summary>List of Files</summary>
+
+* [This File] Documentation: /doc/Examples/README.md
+* Add Entry to Nav Menu and to main page
+  * /doc/Examples/demo-data-template.js
+  * URL: <https://desiign.in/demo-health.html>
+  * /doc/Examples/demo-health.html
+  * /doc/Examples/demo-health.js
+* Demo HTML Link Page and Form
+  * /doc/Examples/demo-health-prescription.html
+  * /doc/Examples/demo-health-prescription.js
+  * /doc/Examples/demo-health-prescription-form.html
+  * /doc/Examples/demo-health-prescription-view.js
+  * /doc/Examples/css/dracula.css
+* Demo CJS Form Processor
+  * /doc/Examples/demo-express.cjs
+  * /doc/Examples/routes/prescription.cjs
+  * /views/prescription.hbs
+* Demo Data
+  * /doc/Examples/data/prescription.json
+* Demo TeX Style and Class
+  * /doc/Examples/data-certificates/prescription-design-001.tex
+  * /doc/Examples/data-certificates/prescription.cls
+* Keep Files and Clean Generated Files
+  * /scripts/keepFiles.txt
+
+</details>
+<!-- #endregion details -->
 
 #### Step 1: Add Health Link Entry to Nav Menu
 
@@ -87,12 +118,7 @@ ${Utils.createListItem(' demo-health-prescription.html', 'Create Medical Prescri
 };
 ```
 
-
-
-
-### Example Medical Prescription
-
-#### Step 1: Add demo-health-prescription.html
+#### Step 4: Add demo-health-prescription.html
 
 * JS-SVG-Client/doc/Examples/demo-health-prescription.html
 
@@ -111,7 +137,7 @@ ${Utils.createListItem(' demo-health-prescription.html', 'Create Medical Prescri
 </html>
 ```
 
-#### Step 2: Add demo-health-prescription.js
+#### Step 5: Add demo-health-prescription.js
 
 JS-SVG-Client/doc/Examples/demo-health-prescription.js
 
@@ -141,7 +167,7 @@ window.onload = (event) => {
 // #endregion window.onload
 ```
 
-#### Step 4: Add demo-health-prescription-form.html
+#### Step 6: Add demo-health-prescription-form.html
 
 * JS-SVG-Client/doc/Examples/demo-health-prescription-form.html
 
@@ -232,11 +258,11 @@ window.onload = (event) => {
 <!-- #endregion Third Tab -->
 ```
 
-#### Step 5: Add Route File prescription.cjs
+#### Step 7: Add Route File prescription.cjs
 
 * JS-SVG-Client/doc/Examples/routes/prescription.cjs
 
-#### Step 5: Add Route Entry to Express App
+#### Step 8: Add Route Entry to Express App
 
 * JS-SVG-Client/doc/Examples/demo-express.cjs
 
@@ -245,11 +271,15 @@ const prescription = require('./routes/prescription.cjs');
 app.use('/prescription', prescription);
 ```
 
-#### Step 7. Access it via
 
-* <https://desiign.in/demo-pub-doc-prescription.html>
+#### Step 9. Keep Source, Backup Data and Cleanup Generated Files
 
-#### Step . Keep Source, Backup Data and Cleanup Generated Files
+##### Add Entry to Keep Files: `
+
+
+`bash
+npm run clean
+```
 
 ##### Keep Source Files
 
@@ -267,9 +297,6 @@ Run Cleanup Script `npm run clean`
 
 * JS-SVG-Client/scripts/cleanup.sh
 * JS-SVG-Client/scripts/cleanup.py
-
-
-
 
 /d/GitHub/JS-SVG-Client/doc/views/prescription.hbs
 

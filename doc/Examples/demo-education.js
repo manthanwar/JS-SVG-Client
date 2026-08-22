@@ -31,6 +31,19 @@ window.onload = (event) => {
 
  article.innerHTML = `
 
+<h3>School Information Management</h3>
+<ul style="margin-top: 30px;">
+${Utils.createListItem(
+ 'dolphin-product-proposal-school.pdf',
+ 'Product Proposal for Schools'
+)}
+
+${Utils.createListItem('demo-pub-doc-automation.html', 'Admin and Finance Documents')}
+
+${Utils.createListItem('demo-pub-doc-automation.html', 'Intelligent Document Automation')}
+
+</ul>
+
 <h3>Skill Development Courses</h3>
 <ul style="margin-top: 30px;">
 ${Utils.createListItem(

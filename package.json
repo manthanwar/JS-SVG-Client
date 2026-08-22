@@ -1,6 +1,9 @@
 {
   "name": "js-svg-client",
-  "version": "2024.12.16",
+  "version": "1.0.0",
+  "version-date": "2026.08.22",
+  "version-name": "Dolphin Ganges - 2026 Autumn - Freedom day!",
+  "version-born": "2024.12.16",
   "type": "module",
   "help-build": "remove type: module to build webpack",
   "description": "Client Side SVG using JavaScript",
