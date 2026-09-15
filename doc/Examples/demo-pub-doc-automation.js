@@ -59,6 +59,12 @@ ${Utils.createListItem('forms.html', 'Various Forms')}
 </ul>
 
 
+<h3>Greetings</h3>
+<ul>
+${Utils.createListItem('greetings.html', 'Seasonal Greetings')}
+</ul>
+
+
 
  `;
 
